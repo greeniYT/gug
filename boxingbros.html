@@ -1,0 +1,277 @@
+<html lang="en">
+
+<head>
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script type="text/javascript" id="analytics" async="" src="https://cdn.jsdelivr.net/gh/st39/sdk@main/ga.js"></script>
+    <script type="text/javascript" async="" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <script id="gamemonetize-sdk" src="https://cdn.jsdelivr.net/gh/st39/sdk@main/sdkjs.js"></script>
+    <script src="//www.google.com/jsapi"></script>
+    <script>
+        window.parent.maeExportApis_();
+    </script>
+
+
+    <meta charset="utf-8">
+    <title>Wrestle Bros</title>
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <script>
+        (function() {
+            const isAdLikeId = (id) => {
+                if (!id) return false;
+                const s = String(id).toLowerCase();
+                const needles = [
+                    'ad-', '-ad', 'adunit', 'ad_unit', 'adunit2', 'setupad', 'banner',
+                    'preroll', 'midroll', 'postroll', 'reward', 'rewarded', 'interstitial',
+                    'cg', 'crazygames', 'siderail', 'siderail-left', 'siderail-right'
+                ];
+                return needles.some(k => s.includes(k));
+            };
+            const origGet = document.getElementById.bind(document);
+            document.getElementById = function(id) {
+                const el = origGet(id);
+                if (el || !isAdLikeId(id)) return el;
+                const d = document.createElement('div');
+                d.id = id;
+                d.style.cssText = 'display:none;position:absolute;width:0;height:0;opacity:0;pointer-events:none;';
+                const attach = () => (document.body || document.documentElement).appendChild(d);
+                if (!document.body) document.addEventListener('DOMContentLoaded', attach, {
+                    once: true
+                });
+                else attach();
+                return d;
+            };
+        })();
+    </script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function() {};
+
+        function GamePlayStart() {}
+
+        function GamePlayStop() {}
+
+        function HideSetupAds() {}
+
+        function translateAllDesktopAds() {}
+
+        function translateAllMobileAds() {}
+
+        function translateAdUnit() {}
+
+        function refreshSetupadAds() {}
+
+        function displayBannerAd() {}
+
+        function ShowAd1() {}
+
+        function ShowAd2() {}
+
+        function ShowAd3() {}
+
+        function ShowAd4() {}
+
+        function ShowAd6() {}
+
+        function ShowAd7() {}
+
+        function ShowAd8() {}
+
+        function ShowAd9() {}
+
+        function showAdBreak() {
+            if (window.Main && typeof window.Main.DoneInterstitialAd === 'function') {
+                try {
+                    window.Main.DoneInterstitialAd(false);
+                } catch (e) {}
+            }
+        }
+
+        function ShowInterstitial() {
+            showAdBreak();
+        }
+
+        function ShowVideo() {
+            if (window.Main && typeof window.Main.DoneVideoAd === 'function') {
+                try {
+                    window.Main.DoneVideoAd(true);
+                } catch (e) {}
+            }
+        }
+
+        function ShowVideo2() {
+            ShowVideo();
+        }
+
+        function initSetupadRewarded() {}
+
+        function initAdinPlay() {}
+
+        function loadVideo() {}
+
+        function prepareRewardedAd() {}
+
+        function initializeAdUnit() {}
+
+        function makeRewardedVisible() {}
+
+        function updateStatus() {}
+
+        function SendEvent() {}
+
+        function setCGInviteLink() {}
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/gh/brodeliver/wb@1/WrestleBros.js?th=716"></script>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            background: #000;
+            color: orange;
+            overflow: hidden;
+        }
+
+        #openfl-content {
+            background: #000;
+            width: 100%;
+            height: 100%;
+        }
+
+        #loading {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            z-index: 9999;
+            text-align: center;
+        }
+
+        #loading img {
+            image-rendering: pixelated;
+        }
+
+        [id^="ad"],
+        [id$="-ad"],
+        [id*="ad-"],
+        [id*="-ad"],
+        .ad,
+        [class^="ad-"],
+        [class*=" ad-"],
+        [class*="-ad "],
+        #preroll,
+        #interstitial-ad,
+        #rewarded-ad,
+        #videoAd,
+        #midroll,
+        #setupad-container,
+        #setupad-desktop-top,
+        #setupad-desktop-bottom,
+        #setupad-mobile-bottom {
+            display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            position: absolute !important;
+            width: 0 !important;
+            height: 0 !important;
+            opacity: 0 !important;
+        }
+    </style>
+    <style type="text/css">
+        #button {
+            display: none;
+        }
+
+        .imgb_vis {
+            animation: imgb-animation 7s linear;
+        }
+
+        @keyframes imgb-animation {
+            10% {
+                transform: translateX(0);
+            }
+
+            20% {
+                transform: translateX(100px);
+            }
+
+            90% {
+                transform: translateX(100px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1266.0" data-gr-ext-installed="">
+    <iframe src="" allow="autoplay" id="audio" style="display:none"></iframe>
+    <noscript>Enable JavaScript bro!</noscript>
+
+    <div id="loading" style="display: none; visibility: hidden;"> . </div>
+
+    <div id="game2" style="width:100%;height:100%;">
+        <div id="openfl-content" style="width: 100%; height: 100%; cursor: default;"><input type="text" autocapitalize="off" autocomplete="off" style="position: absolute; opacity: 0; color: transparent; left: 0px; top: 50%; width: 1px; height: 1px; pointer-events: none; z-index: -10000000;"></div>
+    </div>
+
+    <script>
+        if (window.lime && typeof lime.embed === 'function') {
+            try {
+                lime.embed("WrestleBros", "openfl-content", 0, 0, {
+                    parameters: {}
+                });
+            } catch (e) {}
+        }
+    </script>
+    <script type="text/javascript">
+        window.SDK_OPTIONS = {
+            gameId: "r2tzpy9cgrn2u4xgzc9z0zbtvxm16mby",
+            onEvent: function(a) {
+                switch (a.name) {
+                    case "SDK_GAME_PAUSE":
+                        break;
+                    case "SDK_GAME_START":
+                        break;
+                    case "SDK_READY":
+                        break
+                }
+            }
+        };
+        (function(a, b, c) {
+            var d = a.getElementsByTagName(b)[0];
+            a.getElementById(c) || (a = a.createElement(b), a.id = c, a.src = "https://cdn.jsdelivr.net/gh/st39/sdk@main/sdkjs.js", d.parentNode.insertBefore(a, d))
+        })(document, "script", "gamemonetize-sdk");
+    </script>
+    <script type="text/javascript">
+        let isAdShown = false;
+
+        function onClick(e) {
+            if (!isAdShown && typeof sdk !== 'undefined' && typeof sdk.showBanner === 'function') {
+                sdk.showBanner();
+                isAdShown = true
+            }
+            window.removeEventListener("click", onClick)
+        }
+        window.addEventListener("click", onClick);
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/st39/sdk@main/api.js"></script>
+
+
+    <div id="button" class="imgb imgb_vis" style="position: fixed; top: 10%; left: -100px; z-index: 10; display: none;"><a target="_blank" href="https://sites.google.com/view/classroom6x/" title="More Unblocked Games 6x"><img src="https://lh4.googleusercontent.com/lUEWrXMVEr4AdjKISyJahDRJ61bwfvHdpeYm86Djn5U8oCm9dI60NGXSBqad9HUvzTXgqlkosA_hWV-VuXPjzrkGvh3_kNSgYk8ySWzXnDpbBCBiooyBbU8oBy3YBZMDkW8RcRVmDuC0raoeqZBm8kBlqs6c5mdfkJeN2aE68lXS_lcOZ5_F7lIuM6qLVg" width="100" height="30" style="cursor:pointer;" alt="Unblocked Games Classroom 6x"></a></div>
+    <div id="imaContainer" style="position: absolute; z-index: 10000; top: 0px; left: 0px; width: 100%; height: 100%; background-color: rgb(0, 0, 0); visibility: hidden; overflow: hidden;"><video id="imaVideo"></video></div>
+    <div id="imaContainer_new" style="position: absolute; z-index: 10000; top: 0px; left: 0px; width: 100%; height: 100%; background-color: rgb(0, 0, 0); visibility: hidden; overflow: hidden;">
+        <video2 id="imaVideo2"></video2>
+    </div>
+    <div id="preroll" style="display: none; position: absolute; width: 0px; height: 0px; opacity: 0; pointer-events: none; visibility: hidden;"></div>
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+
+</html>
