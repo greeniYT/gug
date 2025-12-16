@@ -1,0 +1,536 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>
+    // Auth protection - runs before page content loads
+    if (sessionStorage.getItem('grogyAuth') !== 'true') {
+        window.location.href = 'login.html';
+    }
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tutorials - Greeni's Notebook: Powerful Learning!</title>
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', 'Arial', sans-serif;
+      background: #1a4d2e url('https://codehs.com/uploads/78adcf7cc651dcefd0a5a92bdb889791');
+      color: #000;
+      line-height: 1.4;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      padding-bottom: 40px;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 20px;
+      background: #2d7a4a;
+      border: 5px solid #1a4d2e;
+      margin: 10px;
+      box-shadow: 5px 5px 0px #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      background: #ff6b6b;
+      border: 3px solid #0a3d2e;
+      color: #fff;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 14px;
+      box-shadow: 3px 3px 0px #000;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background: #ff5252;
+      box-shadow: 5px 5px 0px #000;
+      transform: scale(1.05);
+    }
+
+    .header-center {
+      flex: 1;
+      text-align: center;
+    }
+
+    .site-logo {
+      max-width: 300px;
+      height: auto;
+      margin-bottom: 15px;
+      font-size: 36px;
+      font-weight: bold;
+      color: #00d4ff;
+    }
+
+    .search-container {
+      max-width: 600px;
+      margin: 20px auto;
+      display: flex;
+      gap: 10px;
+      padding: 0 20px;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 12px 15px;
+      border: 3px solid #0a3d2e;
+      background: #fff;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 14px;
+      box-shadow: 3px 3px 0px #000;
+    }
+
+    .search-btn {
+      background: #00d4ff;
+      border: 3px solid #0a3d2e;
+      color: #0a3d2e;
+      padding: 12px 30px;
+      cursor: pointer;
+      font-weight: bold;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 14px;
+      box-shadow: 3px 3px 0px #000;
+      transition: all 0.2s;
+    }
+
+    .search-btn:hover {
+      background: #00a8cc;
+      box-shadow: 5px 5px 0px #000;
+      transform: scale(1.05);
+    }
+
+    .videos-grid {
+      max-width: 1200px;
+      margin: 20px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .video-card {
+      background: #2d7a4a;
+      border: 5px solid #1a4d2e;
+      box-shadow: 5px 5px 0px #000;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .video-card:hover {
+      transform: scale(1.05);
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 140px;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 40px;
+    }
+
+    .video-info {
+      padding: 12px;
+    }
+
+    .video-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .channel-name {
+      font-size: 11px;
+      color: #0099cc;
+      margin-bottom: 3px;
+    }
+
+    .video-stats {
+      font-size: 10px;
+      color: #333;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .error {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 16px;
+      background: #ff6b6b;
+      border: 3px solid #0a3d2e;
+      margin: 20px;
+      box-shadow: 5px 5px 0px #000;
+      color: #fff;
+    }
+
+    /* Video Player Overlay */
+    .video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000c;
+      display: none;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    .video-controls {
+      background: #2d7a4a;
+      border-bottom: 5px solid #1a4d2e;
+      padding: 10px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-shrink: 0;
+      z-index: 10000;
+      transition: opacity 0.3s, height 0.3s;
+    }
+
+    .video-controls.hidden {
+      opacity: 0;
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .control-btn {
+      background: #00d4ff;
+      border: 3px solid #0a3d2e;
+      color: #0a3d2e;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-weight: bold;
+      font-family: 'Arial Black', sans-serif;
+      box-shadow: 3px 3px 0px #000;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .control-btn:hover {
+      background: #00a8cc;
+      box-shadow: 5px 5px 0px #000;
+      transform: scale(1.05);
+    }
+
+    .video-player-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+      background: #fff;
+    }
+
+    .player-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+    }
+
+    .video-details {
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .video-player-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-family: 'Arial Black', sans-serif;
+    }
+
+    .channel-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px;
+      background: #f0f0f0;
+      border: 3px solid #1a4d2e;
+      margin-bottom: 15px;
+      box-shadow: 3px 3px 0px #000;
+    }
+
+    .channel-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #0099cc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .channel-details {
+      flex: 1;
+    }
+
+    .channel-title {
+      font-weight: bold;
+      font-family: 'Arial Black', sans-serif;
+    }
+
+    .channel-stats {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .video-description {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="content">
+    <header>
+      <a href="index.html" class="back-btn">← Back</a>
+      <div class="header-center">
+        <img src="https://pika-pika-14987361.codehs.me/new/greenitube.png" alt="VAULT" class="site-logo" />
+        <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/greenitube.png" alt="VAULT" class="site-logo" />
+      </div>
+      <div style="width: 80px;"></div>
+    </header>
+
+    <div class="search-container">
+      <input 
+        type="text" 
+        class="search-input" 
+        id="searchInput" 
+        placeholder="Search videos..."
+      />
+      <button class="search-btn" id="searchBtn">SEARCH</button>
+    </div>
+
+    <div class="videos-grid" id="videosGrid">
+      <div class="loading">Loading videos...</div>
+    </div>
+  </div>
+
+  <!-- Video Player Overlay -->
+  <div class="video-overlay" id="videoOverlay">
+    <div class="video-controls" id="videoControls">
+      <button class="control-btn" id="closeVideoBtn">Close</button>
+    </div>
+    <div class="video-player-content" id="videoPlayerContent">
+      <!-- Video player will be injected here -->
+    </div>
+  </div>
+
+  <script>
+    // YouTube API Key - You should replace this with your own API key
+    // Get one from: https://console.developers.google.com/
+    const API_KEY = 'AIzaSyCz6VMNHIUFc7Bd8sO1Qg30Fii9_rrtuI0';
+    const SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
+    const VIDEOS_URL = 'https://www.googleapis.com/youtube/v3/videos';
+    const CHANNELS_URL = 'https://www.googleapis.com/youtube/v3/channels';
+
+    const videosGrid = document.getElementById('videosGrid');
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const videoOverlay = document.getElementById('videoOverlay');
+    const closeVideoBtn = document.getElementById('closeVideoBtn');
+    const videoPlayerContent = document.getElementById('videoPlayerContent');
+
+    let currentVideos = [];
+
+    // Load popular videos on page load
+    function loadPopularVideos() {
+      fetchVideos('popular games', true);
+    }
+
+    // Fetch videos from YouTube API
+    async function fetchVideos(query, isPopular = false) {
+      videosGrid.innerHTML = '<div class="loading">Loading videos...</div>';
+      
+      try {
+        let url = SEARCH_URL + '?part=snippet&maxResults=50&key=' + API_KEY;
+        
+        if (isPopular) {
+          url = VIDEOS_URL + '?part=snippet,statistics&chart=mostPopular&regionCode=US&maxResults=50&key=' + API_KEY;
+        } else {
+          url += '&q=' + encodeURIComponent(query) + '&type=video';
+        }
+
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Failed to fetch videos');
+        
+        const data = await response.json();
+        
+        if (!data.items || data.items.length === 0) {
+          videosGrid.innerHTML = '<div class="error">No videos found. Try another search!</div>';
+          return;
+        }
+
+        currentVideos = data.items;
+        displayVideos(data.items);
+      } catch (error) {
+        videosGrid.innerHTML = '<div class="error">Error loading videos: ' + error.message + '</div>';
+      }
+    }
+
+    // Display videos in grid
+    function displayVideos(videos) {
+      videosGrid.innerHTML = '';
+
+      videos.forEach(video => {
+        const videoId = video.id.videoId || video.id;
+        const snippet = video.snippet;
+        const title = snippet.title;
+        const channelName = snippet.channelTitle;
+        const thumbnail = snippet.thumbnails.medium.url;
+        const viewCount = video.statistics ? formatNumber(video.statistics.viewCount) : 'N/A';
+        
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        card.innerHTML = `
+          <div class="video-thumbnail">
+            <img src="${thumbnail}" style="width: 100%; height: 100%; object-fit: cover;" alt="${title}">
+          </div>
+          <div class="video-info">
+            <div class="video-title">${title}</div>
+            <div class="channel-name">${channelName}</div>
+            <div class="video-stats">${viewCount} views</div>
+          </div>
+        `;
+
+        card.addEventListener('click', () => playVideo(videoId, snippet, video.statistics));
+        videosGrid.appendChild(card);
+      });
+    }
+
+    // Play video in overlay
+    async function playVideo(videoId, snippet, statistics) {
+      try {
+        // Fetch channel information
+        const channelResponse = await fetch(
+          `${CHANNELS_URL}?part=snippet,statistics&forUsername=${snippet.channelTitle}&key=${API_KEY}`
+        );
+        const channelData = await channelResponse.json();
+        const channelInfo = channelData.items?.[0];
+
+        let subscriberCount = 'N/A';
+        if (channelInfo?.statistics?.subscriberCount) {
+          subscriberCount = channelInfo.statistics.subscriberCount === '0' 
+            ? 'Hidden' 
+            : formatNumber(channelInfo.statistics.subscriberCount);
+        }
+
+        const viewCount = statistics?.viewCount ? formatNumber(statistics.viewCount) : 'N/A';
+        const likeCount = statistics?.likeCount ? formatNumber(statistics.likeCount) : 'N/A';
+
+        videoPlayerContent.innerHTML = `
+          <iframe 
+            class="player-frame" 
+            src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1" 
+            allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          ></iframe>
+          <div class="video-details">
+            <div class="video-player-title">${snippet.title}</div>
+            
+            <div class="channel-info">
+              <div class="channel-avatar">${snippet.channelTitle.charAt(0).toUpperCase()}</div>
+              <div class="channel-details">
+                <div class="channel-title">${snippet.channelTitle}</div>
+                <div class="channel-stats">${subscriberCount} subscribers</div>
+              </div>
+            </div>
+
+            <div style="padding: 15px; background: #f9f9f9; border: 3px solid #1a4d2e; margin-bottom: 15px; box-shadow: 3px 3px 0px #000;">
+              <div style="margin-bottom: 8px;"><strong>👁️ Views:</strong> ${viewCount}</div>
+              <div style="margin-bottom: 8px;"><strong>👍 Likes:</strong> ${likeCount}</div>
+              <div><strong>📅 Published:</strong> ${new Date(snippet.publishedAt).toLocaleDateString()}</div>
+            </div>
+
+            <div style="padding: 15px; background: #f0f0f0; border: 3px solid #1a4d2e; box-shadow: 3px 3px 0px #000;">
+              <strong style="display: block; margin-bottom: 10px;">Description:</strong>
+              <div class="video-description">${snippet.description || 'No description available'}</div>
+            </div>
+          </div>
+        `;
+
+        videoOverlay.style.display = 'flex';
+      } catch (error) {
+        videoPlayerContent.innerHTML = `
+          <div style="padding: 20px; color: #ff6b6b;">
+            <strong>Error loading video details:</strong> ${error.message}
+          </div>
+        `;
+        videoOverlay.style.display = 'flex';
+      }
+    }
+
+    // Close video player
+    closeVideoBtn.addEventListener('click', () => {
+      videoOverlay.style.display = 'none';
+      videoPlayerContent.innerHTML = '';
+    });
+
+    // Search functionality
+    searchBtn.addEventListener('click', () => {
+      const query = searchInput.value.trim();
+      if (query) {
+        fetchVideos(query);
+      }
+    });
+
+    searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const query = searchInput.value.trim();
+        if (query) {
+          fetchVideos(query);
+        }
+      }
+    });
+
+    // Format large numbers
+    function formatNumber(num) {
+      if (num >= 1000000) {
+        return (num / 1000000).toFixed(1) + 'M';
+      } else if (num >= 1000) {
+        return (num / 1000).toFixed(1) + 'K';
+      }
+      return num;
+    }
+
+    // Load popular videos on page load
+    loadPopularVideos();
+  </script>
+</body>
+
+</html>

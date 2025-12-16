@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        // Auth protection - runs before page content loads
+    if (sessionStorage.getItem('grogyAuth') !== 'true') {
+        window.location.href = 'login.html';
+    }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeni's Notebook: Powerful Learning!</title>
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
+     <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: #1a4d2e url('https://codehs.com/uploads/78adcf7cc651dcefd0a5a92bdb889791');
+            color: #000;
+            line-height: 1.4;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #ffff00;
+            border-radius: 50%;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: #2d7a4a;
+            border: 5px solid #1a4d2e;
+            margin: 10px;
+            box-shadow: 5px 5px 0px #000;
+        }
+
+        .site-logo {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .tagline {
+            font-size: 16px;
+            color: #0099cc;
+            margin-top: 10px;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            background: #2d7a4a;
+            border: 3px dashed #1a4d2e;
+            margin: 10px;
+        }
+
+        .nav-btn {
+            padding: 15px 30px;
+            background: #00d4ff;
+            border: 3px solid #0a3d2e;
+            color: #0a3d2e;
+            font-family: 'Arial Black', sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            box-shadow: 3px 3px 0px #000;
+            flex: 1;
+            max-width: 150px;
+        }
+
+        .nav-btn:hover {
+            background: #00a8cc;
+            box-shadow: 5px 5px 0px #000;
+            transform: scale(1.05);
+        }
+
+        .nav-btn:nth-child(2) {
+            background: #1a9d7a;
+            color: #fff;
+        }
+
+        .nav-btn:nth-child(3) {
+            background: #0099cc;
+            color: #fff;
+        }
+
+         .nav-btn:nth-child(4) {
+            background: #1a9d7a;
+            color: #fff;
+        }
+
+        .nav-btn:nth-child(5) {
+            background: #0099cc;
+            color: #fff;
+        }
+
+        .nav-btn-icon {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="content">
+        <header>
+            <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/logo.png" alt="VAULT" class="site-logo">
+            <div class="tagline">~ we back baby 🔥 also we got movies ~</div>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="games.html" class="nav-btn">
+                <img src="https://pika-pika-14987361.codehs.me/games.png" alt="Games" class="nav-btn-icon">
+                GAMES
+            </a>
+            <a href="procky.html" class="nav-btn">
+                <img src="https://pika-pika-14987361.codehs.me/new/proxy.png" alt="Proxies" class="nav-btn-icon">
+                PROXIES
+            </a>
+            <a href="movies.html" class="nav-btn">
+                <img src="https://static.cdnlogo.com/logos/g/7/google-play-movies-amp-tv.svg" alt="Movies" class="nav-btn-icon">
+                MOVIES
+            </a>
+            <a href="tube.html" class="nav-btn">
+                <img src="https://pika-pika-14987361.codehs.me/new/greenitube.png" alt="tUBE" class="nav-btn-icon">
+                GREENITUBE
+            </a>
+             <a href="ai.html" class="nav-btn">
+                <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ai-icon.png" alt="Pancho.ai" class="nav-btn-icon">
+                PANCHO.AI
+            </a>
+            <a href="emjs.html" class="nav-btn">
+                <img src="https://pika-pika-14987361.codehs.me/new/emulator.png" alt="EmJs" class="nav-btn-icon">
+                EmulatorJS
+            </a>
+        </div>
+    </div>
+    <!--more data-->
+    <script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
+<div class="commonninja_component pid-24a7fb6e-a9d1-4afb-ad4f-c9760076232f"></div>
+<!--survey-->
+<a data-quiz="Q65UYQTYQ" data-type=4 href="https://take.quiz-maker.com/Q65UYQTYQ">Loading...</a><script>(function(i,s,o,g,r,a,m){var ql=document.querySelectorAll('A[data-quiz],DIV[data-quiz]'); if(ql){if(ql.length){for(var k=0;k<ql.length;k++){ql[k].id='quiz-embed-'+k;ql[k].href="javascript:var i=document.getElementById('quiz-embed-"+k+"');try{qz.startQuiz(i)}catch(e){i.start=1;i.style.cursor='wait';i.style.opacity='0.5'};void(0);"}}};i['QP']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://take.quiz-maker.com/3012/CDN/quiz-embed-v1.js','qp');</script>
+<!--ai-->
+    <zapier-interfaces-chatbot-embed is-popup="true" chatbot-id="cmixugfwj001ss2j44sn02p3o"></zapier-interfaces-chatbot-embed>
+</body>
+
+</html>

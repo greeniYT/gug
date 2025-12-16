@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grogy - Login</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/froggy.webp">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #00a651 0%, #00c9a7 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .header img {
+            height: 50px;
+            width: auto;
+        }
+
+        .login-container {
+            background: white;
+            padding: 50px 45px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            overflow: hidden;
+        }
+
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .login-container h2 {
+            color: #00a651;
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 2.2em;
+        }
+
+        .login-container p {
+            color: #888;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s;
+            background: #f9f9f9;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #00a651;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #00a651 0%, #00c9a7 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 166, 81, 0.3);
+        }
+
+        .login-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .error-message {
+            color: #d32f2f;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            display: none;
+        }
+
+        .welcome-text {
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/grogy.png" alt="Grogy Logo">
+    </div>
+
+    <div class="login-container">
+        <div class="logo-section">
+            <div class="logo-circle">
+                <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/froggy.webp" alt="Math Icon">
+            </div>
+            <h2>Grogy</h2>
+            <p>Math Learning Platform</p>
+        </div>
+        
+        <div id="errorMessage" class="error-message">Invalid ID. Please try again.</div>
+
+        <form onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="id">ID</label>
+                <input type="password" id="id" name="id" placeholder="Enter your ID" required>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <p class="welcome-text">Lets see how much you know!</p>
+    </div>
+
+    <script>
+        // Check if already logged in - redirect to assignments
+        function checkLoggedIn() {
+            if (sessionStorage.getItem('grogyAuth') === 'true') {
+                window.location.href = 'assignments.html';
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const idInput = document.getElementById('id').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (idInput === 'SAL23') {
+                sessionStorage.setItem('grogyAuth', 'true');
+                window.location.href = 'assignments.html';
+            } else {
+                errorMessage.style.display = 'block';
+                document.getElementById('id').value = '';
+                document.getElementById('id').focus();
+            }
+        }
+
+        // Run check when page loads
+        checkLoggedIn();
+    </script>
+</body>
+</html>

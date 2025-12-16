@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>
+    // Auth protection - runs before page content loads
+    if (sessionStorage.getItem('grogyAuth') !== 'true') {
+        window.location.href = 'login.html';
+    }
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lessons - Greeni's Notebook: Powerful Learning!</title>
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', 'Arial', sans-serif;
+      background: #1a4d2e url('assets/img/bg.gif') no-repeat center center fixed;
+      background-size: cover;
+      color: #000;
+      line-height: 1.4;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px 10px;
+      background: #2d7a4a;
+      border: 5px solid #1a4d2e;
+      margin: 10px;
+      box-shadow: 5px 5px 0px #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      background: #ff6b6b;
+      border: 3px solid #0a3d2e;
+      color: #fff;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 14px;
+      box-shadow: 3px 3px 0px #000;
+      text-decoration: none;
+      transition: all 0.2s;
+      border-radius: 6px;
+    }
+
+    .back-btn:hover {
+      background: #ff5252;
+      box-shadow: 5px 5px 0px #000;
+      transform: scale(1.05);
+    }
+
+    .header-center {
+      flex: 1;
+      text-align: center;
+    }
+
+    .site-logo {
+      max-width: 200px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+      font-family: 'Arial Black', sans-serif;
+      color: #00d4ff;
+      text-shadow: 2px 2px 0 #0a3d2e;
+    }
+
+    #moviesGrid {
+      max-width: 960px;
+      margin: 0 auto 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .movie-card {
+      background: #2d7a4a;
+      border: 5px solid #1a4d2e;
+      box-shadow: 5px 5px 0px #000;
+      width: 220px;
+      color: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-weight: bold;
+      font-family: 'Arial Black', sans-serif;
+      gap: 10px;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .movie-card:hover {
+      transform: scale(1.05);
+      box-shadow: 7px 7px 0px #000;
+    }
+
+    .movie-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 3px solid #0a3d2e;
+      box-shadow: 3px 3px 0px #000;
+    }
+
+    .movie-card h3 {
+      font-size: 18px;
+      color: #00d4ff;
+      text-align: center;
+      margin-top: 6px;
+      text-shadow: 1px 1px 0 #0a3d2e;
+    }
+
+    .movie-card p {
+      font-size: 14px;
+      color: #000;
+      padding: 0 10px 10px;
+      text-align: center;
+    }
+
+    /* Modal styles */
+    #movieModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    #movieModal.active {
+      display: flex;
+    }
+
+    .modal-inner {
+      background: #2d7a4a;
+      border: 5px solid #1a4d2e;
+      box-shadow: 5px 5px 0 #000;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 900px;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      color: #000;
+      font-family: 'Arial Black', sans-serif;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background: #1a4d2e;
+      border-bottom: 5px solid #0a3d2e;
+      border-radius: 15px 15px 0 0;
+      color: #00d4ff;
+      text-shadow: 1px 1px 0 #000;
+    }
+
+    .modal-header button {
+      background: #ff6b6b;
+      border: 3px solid #0a3d2e;
+      color: #fff;
+      padding: 6px 16px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 3px 3px 0 #000;
+      border-radius: 8px;
+      transition: all 0.2s;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 16px;
+    }
+
+    .modal-header button:hover {
+      background: #ff5252;
+      box-shadow: 5px 5px 0 #000;
+      transform: scale(1.05);
+    }
+
+    .modal-content {
+      flex: 1;
+      background: #000;
+      border-radius: 0 0 15px 15px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    iframe#movieFrame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .fullscreen-btn {
+      background: #00d4ff;
+      border: 3px solid #0a3d2e;
+      color: #0a3d2e;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      font-family: 'Arial Black', sans-serif;
+      box-shadow: 3px 3px 0 #000;
+      border-radius: 8px;
+      margin: 10px 20px;
+      align-self: flex-end;
+      transition: all 0.2s;
+      width: fit-content;
+    }
+
+    .fullscreen-btn:hover {
+      background: #00a8cc;
+      box-shadow: 5px 5px 0 #000;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      .movie-card {
+        width: 100%;
+      }
+
+      .modal-inner {
+        height: 70vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html" class="back-btn">← Back</a>
+    <div class="header-center">
+      <img src="https://pika-pika-14987361.codehs.me/new/logo.png" alt="Logo" class="site-logo" />
+    </div>
+    <div style="width: 80px;"></div>
+  </header>
+
+  <h1>Movies</h1>
+
+  <div id="moviesGrid"></div>
+
+  <!-- Modal -->
+  <div id="movieModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-inner">
+      <div class="modal-header">
+        <h2 id="modalMovieTitle">Movie</h2>
+        <button id="closeModal" aria-label="Close modal">✖</button>
+      </div>
+      <div class="modal-content">
+        <iframe id="movieFrame" src="" allowfullscreen sandbox="allow-same-origin allow-scripts allow-forms"></iframe>
+      </div>
+      <button id="fullscreenBtn" class="fullscreen-btn">Fullscreen</button>
+    </div>
+  </div>
+
+  <script>
+    const moviesData = [
+      {
+        title: "Cars",
+        description: "A hot-shot race-car named Lightning McQueen gets waylaid in Radiator Springs, where he finds the true meaning of friendship and family.",
+        thumbnail: "https://upload.wikimedia.org/wikipedia/en/3/34/Cars_2006.jpg",
+        videoSrc: "https://drive.google.com/file/d/1RoWQ2LZecPYvsZ48Sah7_xBvZzEHcXL1/preview"
+      },
+      {
+        title: "Cars 2",
+        description: "Racecar Lightning McQueen (Owen Wilson) and his tow-truck buddy, Mater (Larry the Cable Guy), have adventures overseas for the World Grand Prix.",
+        thumbnail: "https://upload.wikimedia.org/wikipedia/en/7/7f/Cars_2_Poster.jpg",
+        videoSrc: "https://drive.google.com/file/d/1YinG1kmgSqWI5kQwfDsQO6vK1xzM6K7o/preview"
+      },
+      {
+        title: "Detective Pikachu",
+        description: "Ace detective Harry Goodman goes mysteriously missing, prompting his 21-year-old son, Tim, to find out what happened. Aiding in the investigation is Harry's former Pokémon partner, super-sleuth Detective Pikachu.",
+        thumbnail: "https://upload.wikimedia.org/wikipedia/en/e/e5/Pok%C3%A9mon_Detective_Pikachu_teaser_poster.jpg",
+        videoSrc: "https://drive.google.com/file/d/1q5wcbuy536XQKTBAF7ImApMAlNMVHM5T/preview"
+      },
+      {
+        title: "Home Alone",
+        description: "When bratty 8-year-old Kevin McCallister (Macaulay Culkin) acts out the night before a family trip to Paris, his mother (Catherine O'Hara) makes him sleep in the attic. After the McCallisters mistakenly leave for the airport without Kevin, he awakens to an empty house and assumes his wish to have no family has come true. But his excitement sours when he realizes that two con men (Joe Pesci, Daniel Stern) plan to rob the McCallister residence, and that he alone must protect the family home.",
+        thumbnail: "https://upload.wikimedia.org/wikipedia/en/7/76/Home_alone_poster.jpg",
+        videoSrc: "https://drive.google.com/file/d/1l7dSSnBmw9Fnku5lxl7zYk7CsQa4JU3d/preview"
+      }
+    ];
+
+    function populateGrid() {
+      const grid = document.getElementById('moviesGrid');
+      grid.innerHTML = '';
+      moviesData.forEach(m => {
+        const card = document.createElement('div');
+        card.className = 'movie-card';
+        card.innerHTML = `
+          <img src="${m.thumbnail}" alt="${m.title}">
+          <h3>${m.title}</h3>
+          <p>${m.description.slice(0, 60)}…</p>
+        `;
+        card.dataset.title = m.title;
+        card.dataset.videoSrc = m.videoSrc;
+        card.addEventListener('click', () => openModal(card.dataset));
+        grid.appendChild(card);
+      });
+    }
+
+    function openModal(data) {
+      const modal = document.getElementById('movieModal');
+      document.getElementById('modalMovieTitle').textContent = data.title;
+      const frame = document.getElementById('movieFrame');
+      frame.src = data.videoSrc;
+      modal.classList.add('active');
+      modal.focus();
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('movieModal');
+      modal.classList.remove('active');
+      document.getElementById('movieFrame').src = '';
+    }
+
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+
+    document.getElementById('fullscreenBtn').addEventListener('click', () => {
+      const frame = document.getElementById('movieFrame');
+      if (frame.requestFullscreen) {
+        frame.requestFullscreen();
+      } else if (frame.webkitRequestFullscreen) {
+        frame.webkitRequestFullscreen();
+      } else if (frame.msRequestFullscreen) {
+        frame.msRequestFullscreen();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.getElementById('movieModal').classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    populateGrid();
+  </script>
+
+</body>
+
+</html>

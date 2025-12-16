@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>
+    // Auth protection - runs before page content loads
+    if (sessionStorage.getItem('grogyAuth') !== 'true') {
+        window.location.href = 'login.html';
+    }
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Games - Greeni's Notebook: Powerful Learning!</title>
+   <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', 'Arial', sans-serif;
+      background: #1a4d2e url('https://codehs.com/uploads/78adcf7cc651dcefd0a5a92bdb889791');
+      color: #000;
+      line-height: 1.4;
+    }
+
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #ffff00;
+      border-radius: 50%;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      padding-bottom: 40px;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 20px;
+      background: #2d7a4a;
+      border: 5px solid #1a4d2e;
+      margin: 10px;
+      box-shadow: 5px 5px 0px #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      background: #ff6b6b;
+      border: 3px solid #0a3d2e;
+      color: #fff;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 14px;
+      box-shadow: 3px 3px 0px #000;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background: #ff5252;
+      box-shadow: 5px 5px 0px #000;
+      transform: scale(1.05);
+    }
+
+    .header-center {
+      flex: 1;
+      text-align: center;
+    }
+
+    .site-logo {
+      max-width: 300px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .tagline {
+      font-size: 16px;
+      color: #0099cc;
+      margin-top: 10px;
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    .search-bar {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 12px 15px;
+      font-size: 16px;
+      border: 3px solid #1a4d2e;
+      background: #fff;
+      color: #000;
+      font-family: 'Arial', sans-serif;
+      box-shadow: 3px 3px 0px #000;
+      transition: all 0.2s;
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      box-shadow: 5px 5px 0px #000;
+      transform: scale(1.02);
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: #2d7a4a;
+      border: 3px dashed #1a4d2e;
+      margin: 10px;
+    }
+
+    .nav-btn {
+      padding: 15px 30px;
+      background: #00d4ff;
+      border: 3px solid #0a3d2e;
+      color: #0a3d2e;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      box-shadow: 3px 3px 0px #000;
+      flex: 1;
+      max-width: 150px;
+    }
+
+    .nav-btn:hover {
+      background: #00a8cc;
+      box-shadow: 5px 5px 0px #000;
+      transform: scale(1.05);
+    }
+
+    .nav-btn:nth-child(2) {
+      background: #1a9d7a;
+      color: #fff;
+    }
+
+    .nav-btn:nth-child(3) {
+      background: #0099cc;
+      color: #fff;
+    }
+
+    .nav-btn-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .games-list {
+      max-width: 900px;
+      margin: 20px auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .game-card {
+      background: #2d7a4a;
+      border: 5px solid #1a4d2e;
+      box-shadow: 5px 5px 0px #000;
+      padding: 15px;
+      width: 180px;
+      color: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-weight: bold;
+      font-family: 'Arial Black', sans-serif;
+      gap: 10px;
+    }
+
+    .game-card img {
+      max-width: 100%;
+      height: auto;
+      border: 3px solid #0a3d2e;
+      box-shadow: 3px 3px 0px #000;
+    }
+
+    .play-btn {
+      background: #00d4ff;
+      border: 3px solid #0a3d2e;
+      color: #0a3d2e;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s;
+      box-shadow: 3px 3px 0px #000;
+      font-family: 'Arial Black', sans-serif;
+    }
+
+    .play-btn:hover {
+      background: #00a8cc;
+      box-shadow: 5px 5px 0px #000;
+      transform: scale(1.05);
+    }
+
+    .game-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000c;
+      display: none;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    .game-controls {
+      background: #2d7a4a;
+      border-bottom: 5px solid #1a4d2e;
+      padding: 10px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-shrink: 0;
+      z-index: 10000;
+      transition: opacity 0.3s, height 0.3s;
+    }
+
+    .game-controls.hidden {
+      opacity: 0;
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .control-btn {
+      background: #00d4ff;
+      border: 3px solid #0a3d2e;
+      color: #0a3d2e;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-weight: bold;
+      font-family: 'Arial Black', sans-serif;
+      box-shadow: 3px 3px 0px #000;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .control-btn:hover {
+      background: #00a8cc;
+      box-shadow: 5px 5px 0px #000;
+      transform: scale(1.05);
+    }
+
+    .game-content {
+      flex: 1;
+      overflow: auto;
+      background: #fff;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .game-content iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .game-content canvas {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+    }
+
+    .game-overlay.fullscreen {
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-controls {
+      max-width: 600px;
+      margin: 30px auto 20px;
+      padding: 20px;
+      background: #2d7a4a;
+      border: 5px solid #1a4d2e;
+      box-shadow: 5px 5px 0px #000;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-btn {
+      padding: 12px 25px;
+      background: #00d4ff;
+      border: 3px solid #0a3d2e;
+      color: #0a3d2e;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 3px 3px 0px #000;
+      white-space: nowrap;
+    }
+
+    .footer-btn:hover {
+      background: #00a8cc;
+      box-shadow: 5px 5px 0px #000;
+      transform: scale(1.05);
+    }
+
+    #importFile {
+      display: none;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 40px 20px;
+      color: #000;
+      font-size: 18px;
+      font-weight: bold;
+      background: #2d7a4a;
+      border: 3px solid #1a4d2e;
+      margin: 20px;
+      box-shadow: 3px 3px 0px #000;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="content">
+    <header>
+      <a href="index.html" class="back-btn">← Back</a>
+      <div class="header-center">
+        <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/games.png" alt="VAULT" class="site-logo" />
+      </div>
+      <div style="width: 80px;"></div>
+    </header>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="🔍 Search games...">
+    </div>
+
+    <div class="games-list" id="gamesList"></div>
+    <div class="no-results" id="noResults" style="display: none;">No games found. Try a different search!</div>
+
+    <div class="footer-controls">
+      <button class="footer-btn" id="exportBtn">📥 Export Data</button>
+      <button class="footer-btn" id="importBtn">📤 Import Data</button>
+      <input type="file" id="importFile" accept=".json">
+    </div>
+  </div>
+
+  <div class="game-overlay" id="gameOverlay" tabindex="-1">
+    <div class="game-controls" id="gameControls">
+      <button class="control-btn" id="cursorToggleBtn">Hide Cursor</button>
+      <button class="control-btn" id="fullscreenGameBtn">Fullscreen</button>
+      <button class="control-btn" id="closeGameBtn">Close</button>
+    </div>
+    <div class="game-content" id="gameContent" tabindex="0">
+    </div>
+  </div>
+
+  <script>
+    const games = [
+  {
+    name: 'Gun Spin',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gunspin.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gnspn.html'
+  },
+  {
+    name: 'Squid Games',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sq.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sq.html'
+  },
+  {
+    name: 'Slope Plus',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/slope-plus-slope3online.io.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Slope.html'
+  },
+   {
+    name: 'Slope 2',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/slope-2.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Slope%202.html'
+  },
+  {
+    name: 'Drift Boss',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/drift-boss-game.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/driftboss.html'
+  },
+   {
+    name: 'Subway Surfers',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/subway_surfers.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/subwaysurfers.html'
+  },
+  {
+    name: 'Cluster Rush',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/cluster-rush.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/clusterrush.html'
+  },
+  {
+    name: 'Tube Jumpers',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tube-jumpers-game-cover-400x400.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Tube%20Jumpers.html'
+  },
+  {
+    name: 'Rooftop Snipers',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rs.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs.html'
+  },
+   {
+    name: 'Rooftop Snipers 2',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rs2.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs2.html'
+  },
+   {
+    name: 'Space Waves',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/space-waves.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/spacewaves.html'
+  },
+   {
+    name: 'Buckshot Roulette',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/205.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/br.html'
+  },
+   {
+    name: 'Thats Not My Neighbor!',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/thats-not-my-neighbor.icon.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tnmn.html'
+  },
+  {
+    name: 'Friday Night Funkin (FNF)',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@refs/heads/main/icons/friday-night-funkin.avif',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnf.html'
+  },
+  {
+    name: 'Block Blast',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/block-blast.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/blockbuster.html'
+  },
+   {
+    name: 'Ultamate Flash Sonic',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sonicflash.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sonicflash.html'
+  },
+  {
+    name: 'People Playground',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/peopleplayground.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/peopleplayground.html'
+  },
+  {
+    name: 'Diggy',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/diggy.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/diggy.html'
+  },
+  {
+    name: 'They Are Comming',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tac.jfif',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tac.html'
+  },
+   {
+    name: 'Wrestle Bros',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/boxingbros.jfif',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/boxingbros.html'
+  },
+  {
+    name: 'Basket Bros',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketbros-io.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketbros.html'
+  },
+  {
+    name: 'Baseball Bros',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/baseball-bros-game.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Baseball%20Bros.html'
+  },
+   {
+    name: 'Escape Road',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/escaperoad.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Escape%20Road.html'
+  },
+   {
+    name: 'Schoolboy Runaway',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/schoolboy.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Schoolboy%20Runaway.html'
+  },
+  {
+    name: 'Football Bros',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/football-bros-m320x190.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Football%20Bros.html'
+  },
+  {
+    name: 'Baldis Basics Clasic Remastered',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/466.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bbcr.html'
+  },
+   {
+    name: 'Getting Over It',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/goi.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/goi.html'
+  },
+  {
+    name: '12 Minigame Battles',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/12battles.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/12battles.html'
+  },
+  {
+    name: 'Pumpkill 64',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pumpkill.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pumpkill.html'
+  },
+  {
+    name: '3Dash',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/3dash.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/3dash.html'
+  },
+  {
+    name: 'War Of The Knights',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/wtk.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/knights.html'
+  },
+   {
+    name: 'Unfair Mario',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/unfairmario.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/unfairmario.html'
+  },
+   {
+    name: 'Sprinter',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sprinter.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sprinter.html'
+  },
+  {
+    name: 'Race Survival',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rs.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/racesurvival.html'
+  },
+   {
+    name: 'FNAF 3D',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/fnaf3d.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf3dd.html'
+  },
+   {
+    name: 'Bank Robbery 2',
+    image: 'https://codehs.com/uploads/66b295c40702814fe388317c40a66efb',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Bank%20Robbery%202.html'
+  },
+  {
+    name: 'Snow Rider 3D',
+    image: 'https://theartsherpa.com/blog/image/blog_image/821/large/_v=b2a4d1759977095',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Snow%20Rider%203D.html'
+  },
+  {
+    name: 'Sybon Action (Cat Mario)',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/Syobon_Takumi_cover_.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/catmario.html'
+  },
+  {
+    name: 'Red vs Blue',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rvb.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rvb.html'
+  }
+];
+
+    const gamesList = document.getElementById('gamesList');
+    const noResults = document.getElementById('noResults');
+    const gameOverlay = document.getElementById('gameOverlay');
+    const gameContent = document.getElementById('gameContent');
+    const gameControls = document.getElementById('gameControls');
+    const closeGameBtn = document.getElementById('closeGameBtn');
+    const fullscreenGameBtn = document.getElementById('fullscreenGameBtn');
+    const cursorToggleBtn = document.getElementById('cursorToggleBtn');
+    const searchInput = document.getElementById('searchInput');
+    const exportBtn = document.getElementById('exportBtn');
+    const importBtn = document.getElementById('importBtn');
+    const importFile = document.getElementById('importFile');
+
+    let isFullscreen = false;
+    let cursorHidden = false;
+    let filteredGames = [...games];
+
+    function renderGames(gamesToRender = games) {
+      gamesList.innerHTML = '';
+      
+      if (gamesToRender.length === 0) {
+        noResults.style.display = 'block';
+        return;
+      }
+      
+      noResults.style.display = 'none';
+
+      gamesToRender.forEach(game => {
+        const card = document.createElement('div');
+        card.className = 'game-card';
+
+        const img = document.createElement('img');
+        img.src = game.image;
+        img.alt = game.name;
+        card.appendChild(img);
+
+        const title = document.createElement('div');
+        title.textContent = game.name;
+        card.appendChild(title);
+
+        const btn = document.createElement('button');
+        btn.className = 'play-btn';
+        btn.textContent = 'PLAY';
+        btn.dataset.file = game.file;
+        btn.addEventListener('click', () => loadGame(game.file));
+        card.appendChild(btn);
+
+        gamesList.appendChild(card);
+      });
+    }
+
+    function filterGames(query) {
+      const lowerQuery = query.toLowerCase().trim();
+      
+      if (lowerQuery === '') {
+        filteredGames = [...games];
+      } else {
+        filteredGames = games.filter(game => 
+          game.name.toLowerCase().includes(lowerQuery)
+        );
+      }
+      
+      renderGames(filteredGames);
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      filterGames(e.target.value);
+    });
+
+    function exportData() {
+      const dataToExport = {
+        games: games,
+        exportDate: new Date().toISOString(),
+        version: '1.0'
+      };
+      
+      const dataString = JSON.stringify(dataToExport, null, 2);
+      const blob = new Blob([dataString], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `games-data-${Date.now()}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    function importData(file) {
+      const reader = new FileReader();
+      
+      reader.onload = (e) => {
+        try {
+          const importedData = JSON.parse(e.target.result);
+          
+          if (importedData.games && Array.isArray(importedData.games)) {
+            games.length = 0;
+            games.push(...importedData.games);
+            filteredGames = [...games];
+            renderGames(filteredGames);
+            alert('✅ Games data imported successfully!');
+          } else {
+            alert('❌ Invalid file format. Please export data using the Export button.');
+          }
+        } catch (error) {
+          alert('❌ Error reading file: ' + error.message);
+        }
+      };
+      
+      reader.onerror = () => {
+        alert('❌ Error reading file.');
+      };
+      
+      reader.readAsText(file);
+    }
+
+    exportBtn.addEventListener('click', exportData);
+    
+    importBtn.addEventListener('click', () => {
+      importFile.click();
+    });
+    
+    importFile.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files[0]) {
+        importData(e.target.files[0]);
+      }
+    });
+
+    async function loadGame(file) {
+      try {
+        const response = await fetch(file, {cache: "no-store"});
+        if (!response.ok) throw new Error(`Failed to load ${file}: ${response.statusText}`);
+        const text = await response.text();
+
+        const iframe = document.createElement('iframe');
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = 'none';
+        iframe.sandbox.add('allow-scripts', 'allow-same-origin', 'allow-forms', 'allow-popups', 'allow-modals');
+        
+        gameContent.innerHTML = '';
+        gameContent.appendChild(iframe);
+        
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        doc.open();
+        doc.write(text);
+        doc.close();
+
+        showOverlay();
+      } catch (error) {
+        gameContent.innerHTML = `<div style="color: red; padding: 20px; text-align: center;"><strong>Error loading game:</strong> ${error.message}</div>`;
+        showOverlay();
+      }
+    }
+
+    function showOverlay() {
+      gameOverlay.style.display = 'flex';
+      isFullscreen = false;
+      cursorHidden = false;
+      gameOverlay.classList.remove('fullscreen');
+      gameControls.classList.remove('hidden');
+      cursorToggleBtn.textContent = 'Hide Cursor';
+      document.body.style.cursor = 'auto';
+      gameOverlay.focus();
+    }
+
+    function hideOverlay() {
+      gameOverlay.style.display = 'none';
+      gameContent.innerHTML = '';
+      document.body.style.cursor = 'auto';
+      if (isFullscreen) {
+        exitFullscreen();
+        isFullscreen = false;
+        gameOverlay.classList.remove('fullscreen');
+      }
+    }
+
+    cursorToggleBtn.addEventListener('click', () => {
+      cursorHidden = !cursorHidden;
+      if (cursorHidden) {
+        document.body.style.cursor = 'none';
+        cursorToggleBtn.textContent = 'Show Cursor';
+      } else {
+        document.body.style.cursor = 'auto';
+        cursorToggleBtn.textContent = 'Hide Cursor';
+      }
+    });
+
+    fullscreenGameBtn.addEventListener('click', () => {
+      if (!isFullscreen) {
+        enterFullscreen(gameOverlay);
+        gameControls.classList.add('hidden');
+      } else {
+        exitFullscreen();
+        gameControls.classList.remove('hidden');
+      }
+      isFullscreen = !isFullscreen;
+      gameOverlay.classList.toggle('fullscreen', isFullscreen);
+    });
+
+    closeGameBtn.addEventListener('click', hideOverlay);
+
+    function enterFullscreen(element) {
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+      }
+    }
+
+    function exitFullscreen() {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement && isFullscreen) {
+        isFullscreen = false;
+        gameOverlay.classList.remove('fullscreen');
+        gameControls.classList.remove('hidden');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (gameOverlay.style.display === 'flex') {
+          hideOverlay();
+        }
+      }
+    });
+
+    renderGames();
+  </script>
+</body>
+
+</html>
