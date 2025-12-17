@@ -1,0 +1,207 @@
+ [
+  {
+    name: 'Gun Spin',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gunspin.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gnspn.html'
+  },
+  {
+    name: 'Squid Games',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sq.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sq.html'
+  },
+  {
+    name: 'Slope Plus',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/slope-plus-slope3online.io.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Slope.html'
+  },
+   {
+    name: 'Slope 2',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/slope-2.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Slope%202.html'
+  },
+  {
+    name: 'Drift Boss',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/drift-boss-game.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/driftboss.html'
+  },
+   {
+    name: 'Subway Surfers',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/subway_surfers.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/subwaysurfers.html'
+  },
+  {
+    name: 'Cluster Rush',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/cluster-rush.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/clusterrush.html'
+  },
+  {
+    name: 'Tube Jumpers',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tube-jumpers-game-cover-400x400.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Tube%20Jumpers.html'
+  },
+  {
+    name: 'Rooftop Snipers',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rs.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs.html'
+  },
+   {
+    name: 'Rooftop Snipers 2',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rs2.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs2.html'
+  },
+   {
+    name: 'Space Waves',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/space-waves.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/spacewaves.html'
+  },
+   {
+    name: 'Buckshot Roulette',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/205.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/br.html'
+  },
+   {
+    name: 'Thats Not My Neighbor!',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/thats-not-my-neighbor.icon.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tnmn.html'
+  },
+  {
+    name: 'Friday Night Funkin (FNF)',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@refs/heads/main/icons/friday-night-funkin.avif',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnf.html'
+  },
+  {
+    name: 'Block Blast',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/block-blast.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/blockblastingg.html'
+  },
+   {
+    name: 'Super Mario 63',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/mario63.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/mario63.html'
+  },
+   {
+    name: 'Ultamate Flash Sonic',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sonicflash.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sonicflash.html'
+  },
+  {
+    name: 'People Playground',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/peopleplayground.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/peopleplayground.html'
+  },
+  {
+    name: 'Diggy',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/diggy.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/diggy.html'
+  },
+  {
+    name: 'They Are Comming',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tac.jfif',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tac.html'
+  },
+   {
+    name: 'Wrestle Bros',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/boxingbros.jfif',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/boxingbros.html'
+  },
+  {
+    name: 'Basket Bros',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketbros-io.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketbros.html'
+  },
+  {
+    name: 'Baseball Bros',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/baseball-bros-game.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Baseball%20Bros.html'
+  },
+   {
+    name: 'Escape Road',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/escaperoad.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Escape%20Road.html'
+  },
+   {
+    name: 'Schoolboy Runaway',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/schoolboy.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Schoolboy%20Runaway.html'
+  },
+  {
+    name: 'Football Bros',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/football-bros-m320x190.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Football%20Bros.html'
+  },
+  {
+    name: 'Retro Bowl',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/retrobowl.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Retro%20Bowl.html'
+  },
+  {
+    name: 'Baldis Basics Clasic Remastered',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/466.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bbcr.html'
+  },
+   {
+    name: 'Getting Over It',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/goi.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/goi.html'
+  },
+  {
+    name: '12 Minigame Battles',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/12battles.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/12battles.html'
+  },
+  {
+    name: 'Pumpkill 64',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pumpkill.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pumpkill.html'
+  },
+  {
+    name: '3Dash',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/3dash.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/3dash.html'
+  },
+  {
+    name: 'War Of The Knights',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/wtk.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/knights.html'
+  },
+   {
+    name: 'Unfair Mario',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/unfairmario.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/unfairmario.html'
+  },
+   {
+    name: 'Sprinter',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sprinter.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sprinter.html'
+  },
+  {
+    name: 'Race Survival',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rs.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/racesurvival.html'
+  },
+   {
+    name: 'FNAF 3D',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/fnaf3d.png',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf3dd.html'
+  },
+   {
+    name: 'Bank Robbery 2',
+    image: 'https://codehs.com/uploads/66b295c40702814fe388317c40a66efb',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Bank%20Robbery%202.html'
+  },
+  {
+    name: 'Snow Rider 3D',
+    image: 'https://theartsherpa.com/blog/image/blog_image/821/large/_v=b2a4d1759977095',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Snow%20Rider%203D.html'
+  },
+  {
+    name: 'Sybon Action (Cat Mario)',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/Syobon_Takumi_cover_.webp',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/catmario.html'
+  },
+  {
+    name: 'Red vs Blue',
+    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rvb.jpg',
+    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rvb.html'
+  }
+]
