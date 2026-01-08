@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+    // Auth protection - runs before page content loads
+    if (sessionStorage.getItem('grogyAuth') !== 'true') {
+        window.location.href = 'login.html';
+    }
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resources - Greeni's Notebook: Powerful Learning!</title>
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', 'Arial', sans-serif;
+       background: #1a4d2e url('https://codehs.com/uploads/78adcf7cc651dcefd0a5a92bdb889791');
+      color: #000;
+      line-height: 1.4;
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 20px;
+      background: #2d7a4a;
+      border: 5px solid #1a4d2e;
+      margin: 10px;
+      box-shadow: 5px 5px 0px #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      background: #ff6b6b;
+      border: 3px solid #0a3d2e;
+      color: #fff;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 14px;
+      box-shadow: 3px 3px 0px #000;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background: #ff5252;
+      box-shadow: 5px 5px 0px #000;
+      transform: scale(1.05);
+    }
+
+    .header-center {
+      flex: 1;
+      text-align: center;
+    }
+
+    .site-logo {
+      max-width: 300px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .tagline {
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .options-grid {
+      max-width: 1200px;
+      margin: 20px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .option-card {
+      background: #2d7a4a;
+      border: 5px solid #1a4d2e;
+      box-shadow: 5px 5px 0px #000;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-card:hover {
+      transform: scale(1.05);
+      box-shadow: 7px 7px 0px #000;
+    }
+
+    .option-icon {
+      width: 80px;
+      height: 80px;
+      background: #00d4ff;
+      border: 3px solid #0a3d2e;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      box-shadow: 3px 3px 0px #000;
+    }
+
+    .option-name {
+      font-size: 18px;
+      text-align: center;
+      font-weight: bold;
+      font-family: 'Arial Black', sans-serif;
+      color: #fff;
+      text-shadow: 2px 2px 0px #000;
+    }
+
+    .option-desc {
+      font-size: 14px;
+      text-align: center;
+      color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="back-btn">← Back</a>
+    <div class="header-center">
+      <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/logo.png" alt="VAULT" class="site-logo" />
+    </div>
+    <div style="width: 80px;"></div>
+  </header>
+
+  <div class="options-grid" id="optionsGrid"></div>
+
+  <script>
+    const options = [
+      {
+        name: 'Emulator.JS',
+        icon: 'https://pika-pika-14987361.codehs.me/new/emulator.png',
+        url: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/apps/emjs.html',
+        desc: 'Play Retro Games'
+      },
+      {
+        name: 'Xash - Half Life',
+        icon: 'https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@354e3c6939a08e472482653567d566ba3a2aa527/half%20life/favicon.ico',
+        url: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/apps/ht.html',
+        desc: 'Half Life'
+      },
+      {
+        name: 'gn-math',
+        icon: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/gnmath.webp',
+        url: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/apps/gnmath.html',
+        desc: 'Play a bunch of games!'
+      },
+      {
+        name: 'Ruffle',
+        icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Ruffle_vector_logo.svg/2560px-Ruffle_vector_logo.svg.png',
+        url: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/apps/Ruffle.html',
+        desc: 'Play Flash Games.'
+      },
+      {
+        name: 'Eaglercraft',
+        icon: 'https://gms.parcoil.com/minecraft-18/favicon.png',
+        url: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/apps/eagle.html',
+        desc: 'Minecraft'
+      }
+    ];
+
+    const optionsGrid = document.getElementById('optionsGrid');
+
+    function openInAboutBlank(url) {
+      const win = window.open('about:blank', '_blank');
+      if (win) {
+        // Check if it's an HTML file
+        if (url.endsWith('.html')) {
+          // Fetch the HTML file and inject it directly
+          fetch(url)
+            .then(response => response.text())
+            .then(html => {
+              win.document.write(html);
+              win.document.close();
+            })
+            .catch(error => {
+              console.error('Error loading HTML file:', error);
+              win.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                  <title>Error</title>
+                  <style>
+                    body { 
+                      margin: 0; 
+                      padding: 20px; 
+                      font-family: Arial, sans-serif;
+                      background: #1a4d2e;
+                      color: #fff;
+                    }
+                  </style>
+                </head>
+                <body>
+                  <h1>Error Loading Page</h1>
+                  <p>Could not load the HTML file. Please try again.</p>
+                </body>
+                </html>
+              `);
+              win.document.close();
+            });
+        } else {
+          // For non-HTML files, use iframe as before
+          win.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <title>Loading...</title>
+              <style>
+                body { margin: 0; padding: 0; overflow: hidden; }
+                iframe { width: 100vw; height: 100vh; border: none; }
+              </style>
+            </head>
+            <body>
+              <iframe src="${url}"></iframe>
+            </body>
+            </html>
+          `);
+          win.document.close();
+        }
+      }
+    }
+
+    function renderOptions() {
+      optionsGrid.innerHTML = '';
+
+      options.forEach((option) => {
+        const card = document.createElement('div');
+        card.className = 'option-card';
+
+        const icon = document.createElement('img');
+        icon.className = 'option-icon';
+        icon.src = option.icon;
+        icon.alt = option.name;
+        icon.style.padding = '8px';
+        icon.style.objectFit = 'contain';
+        card.appendChild(icon);
+
+        const name = document.createElement('div');
+        name.className = 'option-name';
+        name.textContent = option.name;
+        card.appendChild(name);
+
+        const desc = document.createElement('div');
+        desc.className = 'option-desc';
+        desc.textContent = option.desc;
+        card.appendChild(desc);
+
+        card.addEventListener('click', () => {
+          openInAboutBlank(option.url);
+        });
+
+        optionsGrid.appendChild(card);
+      });
+    }
+
+    renderOptions();
+  </script>
+</body>
+</html>

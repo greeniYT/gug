@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        // Auth protection - runs before page content loads
+    if (sessionStorage.getItem('grogyAuth') !== 'true') {
+        window.location.href = 'login.html';
+    }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeni's Notebook: Powerful Learning!</title>
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
+    <script async type='module'
+        src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: #1a4d2e url('https://codehs.com/uploads/78adcf7cc651dcefd0a5a92bdb889791');
+            color: #000;
+            line-height: 1.4;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #ffff00;
+            border-radius: 50%;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: #2d7a4a;
+            border: 5px solid #1a4d2e;
+            margin: 10px;
+            box-shadow: 5px 5px 0px #000;
+        }
+
+        .site-logo {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .tagline {
+            font-size: 16px;
+            color: #0099cc;
+            margin-top: 10px;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            background: #2d7a4a;
+            border: 3px dashed #1a4d2e;
+            margin: 10px;
+        }
+
+        .nav-btn {
+            padding: 15px 30px;
+            background: #00d4ff;
+            border: 3px solid #0a3d2e;
+            color: #0a3d2e;
+            font-family: 'Arial Black', sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            box-shadow: 3px 3px 0px #000;
+            flex: 1;
+            max-width: 150px;
+        }
+
+        .nav-btn:hover {
+            background: #00a8cc;
+            box-shadow: 5px 5px 0px #000;
+            transform: scale(1.05);
+        }
+
+        .nav-btn:nth-child(2) {
+            background: #1a9d7a;
+            color: #fff;
+        }
+
+        .nav-btn:nth-child(3) {
+            background: #0099cc;
+            color: #fff;
+        }
+
+        .nav-btn:nth-child(4) {
+            background: #1a9d7a;
+            color: #fff;
+        }
+
+        .nav-btn:nth-child(5) {
+            background: #0099cc;
+            color: #fff;
+        }
+
+        .nav-btn-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .contacts-section {
+            text-align: center;
+            padding: 30px 20px;
+            background: #2d7a4a;
+            border: 5px solid #1a4d2e;
+            margin: 20px 10px 40px;
+            box-shadow: 5px 5px 0px #000;
+            color: #fff;
+        }
+
+        .contacts-section h2 {
+            font-family: 'Arial Black', sans-serif;
+            margin-bottom: 20px;
+            color: #00d4ff;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        .contacts-section a {
+            margin: 0 15px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .contacts-section a:hover {
+            transform: scale(1.2);
+        }
+
+        .contacts-section .app {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            filter: drop-shadow(1px 1px 1px #000);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+    <div class="content">
+        <header>
+            <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/logo.png" alt="VAULT" class="site-logo">
+            <div class="tagline">CHEK OTHER APPS FOR MORE STUFF</div>
+            <img id="randomImage" src="" alt="pancho variant" />
+        </header>
+
+        <div class="nav-buttons">
+            <a href="games.html" class="nav-btn">
+                <img src="https://pika-pika-14987361.codehs.me/games.png" alt="Games" class="nav-btn-icon">
+                GAMES
+            </a>
+            <a href="procky.html" class="nav-btn">
+                <img src="https://pika-pika-14987361.codehs.me/new/proxy.png" alt="Proxies" class="nav-btn-icon">
+                PROXIES
+            </a>
+            <a href="chat.html" class="nav-btn">
+                <img src="https://www.cnet.com/a/img/resize/4bee48a48a14c5d94be68cc399469a2d94c8f9a5/hub/2012/09/17/32daf71b-fdc2-11e2-8c7c-d4ae52e62bcc/MessagesIconX.png?auto=webp&fit=crop&height=675&width=1200" alt="Proxies" class="nav-btn-icon">
+                CHAT
+            </a>
+            <a href="movies.html" class="nav-btn">
+                <img src="https://static.cdnlogo.com/logos/g/7/google-play-movies-amp-tv.svg" alt="Movies" class="nav-btn-icon">
+                MOVIES
+            </a>
+            <a href="tube.html" class="nav-btn">
+                <img src="https://pika-pika-14987361.codehs.me/new/greenitube.png" alt="tUBE" class="nav-btn-icon">
+                GREENITUBE
+            </a>
+            <a href="https://teachermessage.zapier.app/" class="nav-btn">
+                <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ai-icon.png" alt="Pancho.ai" class="nav-btn-icon">
+                PANCHO.AI
+            </a>
+            <a href="other.html" class="nav-btn">
+                <img src="https://pika-pika-14987361.codehs.me/new/activities.png" alt="Other" class="nav-btn-icon">
+                OTHER APPS
+            </a>
+        </div>
+    </div>
+    <!--more data-->
+    <script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
+    <div class="commonninja_component pid-24a7fb6e-a9d1-4afb-ad4f-c9760076232f"></div>
+    <!--survey-->
+    <a data-quiz="Q65UYQTYQ" data-type=4 href="https://take.quiz-maker.com/Q65UYQTYQ">Loading...</a>
+    <script>
+        (function(i,s,o,g,r,a,m){var ql=document.querySelectorAll('A[data-quiz],DIV[data-quiz]'); if(ql){if(ql.length){for(var k=0;k<ql.length;k++){ql[k].id='quiz-embed-'+k;ql[k].href="javascript:var i=document.getElementById('quiz-embed-"+k+"');try{qz.startQuiz(i)}catch(e){i.start=1;i.style.cursor='wait';i.style.opacity='0.5'};void(0);"}}};i['QP']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://take.quiz-maker.com/3012/CDN/quiz-embed-v1.js','qp');
+    </script>
+    <!--ai-->
+    <zapier-interfaces-chatbot-embed is-popup="true" chatbot-id="cmixugfwj001ss2j44sn02p3o">
+    </zapier-interfaces-chatbot-embed>
+    <div class="section contacts-section">
+        <h2>Contacts</h2>
+        <a href="https://discord.gg/5xxWCJGBT8" target="_blank" rel="noopener noreferrer">
+            <img src="https://media.lordicon.com/icons/wired/flat/2566-logo-discord.gif" class="app" alt="discord">
+        </a>
+        <a href="mailto:notgreenirealz@gmail.com" target="_blank" rel="noopener noreferrer">
+            <img src="https://community.atlassian.com/forums/image/serverpage/image-id/288548iFB1D37DC9B9B5C99?v=v2" class="app" alt="gmail pibb">
+        </a>
+        <a href="mailto:greenirealz@outlook.com" target="_blank" rel="noopener noreferrer">
+            <img src="https://www.windowslatest.com/wp-content/uploads/2021/08/Outlook-PWA.gif" class="app" alt="outlook">
+        </a>
+    </div>
+    <script>
+        const images = [
+    'https://codehs.com/uploads/0066ae4945af5af1ed7253272f47515e',
+    'https://codehs.com/uploads/cad71ae0cd57a3fd3d23b4c4b3c7d13e',
+    'https://codehs.com/uploads/0e57102ab92325b6dfee564cc3a3df26',
+    'https://codehs.com/uploads/633c8073b742d415635d9808cfa928fc',
+    'https://codehs.com/uploads/a6434247b971eadf857641d3731fc747',
+    'https://codehs.com/uploads/b5a1a351c3a8d6b40bcca569442b5d24',
+    'https://codehs.com/uploads/cd9ee035f22300c996389a8eb03c3fe6',
+    'https://codehs.com/uploads/0eef29285a81b16dc7fc294351111df0',
+    'https://codehs.com/uploads/9757d742749d04ca20558002202eb574',
+    'https://codehs.com/uploads/86d711fa3e8c7ffc2b3cce4c8bb28adf',
+    'https://codehs.com/uploads/ae5a2bc40f7691f04b329e3ca3806be9',
+    'https://codehs.com/uploads/19cdeb539de8f4f508e7a88fbe8263a1',
+    'https://codehs.com/uploads/acd271b21ee3b45dea60041215d7dbd7',
+    'https://codehs.com/uploads/f6e4775b42bb11c97fab315d6791f46b',
+    'https://codehs.com/uploads/fafcbe11e72ad812b0f4f5892fa77bea',
+    'https://codehs.com/uploads/9ba151f98ea4ddb4841825b70358afc0',
+    'https://codehs.com/uploads/ab5d240f4e41a81d8e9f310fbac90f69'
+  ];
+
+  function loadRandomImage() {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    document.getElementById('randomImage').src = images[randomIndex];
+  }
+
+  loadRandomImage();
+    </script>
+</body>
+
+</html>
