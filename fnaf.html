@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FNAF Local Game Launcher</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+
+    /* Background */
+    background:
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+        url("https://imgs.search.brave.com/EqC2kjJ0x-3qANhKkKbeS77QqmILWSG-U2rNnbRdf58/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDM5MTE1/NzUuanBn"); /* change image if you want */
+    background-size: cover;
+    background-position: center;
+}
+
+h1 {
+    color: #ff2b2b;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+p {
+    opacity: 0.85;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+/* Game cards */
+.game-btn {
+    background: rgba(20, 20, 20, 0.9);
+    border: 2px solid #ff2b2b;
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.game-btn img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.game-btn span {
+    font-size: 18px;
+}
+
+.game-btn:hover {
+    background: #ff2b2b;
+    transform: scale(1.08);
+    box-shadow: 0 0 25px #ff0000;
+}
+
+/* iframe fullscreen */
+#game-frame {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    display: none;
+    z-index: 1000;
+    background: #000;
+}
+
+#back-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1001;
+    padding: 12px 20px;
+    background: #ff2b2b;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px #ff0000;
+    display: none;
+}
+</style>
+</head>
+
+<body>
+<h1>FNAF Game Launcher</h1>
+<p>Every Fnaf Game (except fnaf sb)</p>
+
+<div class="grid">
+
+<div class="game-btn" data-game="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf-series/fnaf.html">
+    <img src="https://cdn.jsdelivr.net/gh/gn-math/covers@main/38.png">
+    <span>FNAF 1</span>
+</div>
+
+<div class="game-btn" data-game="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf-series/fnaf2.html">
+    <img src="https://cdn.jsdelivr.net/gh/gn-math/covers@main/39.png">
+    <span>FNAF 2</span>
+</div>
+
+<div class="game-btn" data-game="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf-series/fnaf3.html">
+    <img src="https://cdn.jsdelivr.net/gh/gn-math/covers@main/40.png">
+    <span>FNAF 3</span>
+</div>
+
+<div class="game-btn" data-game="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf-series/fnaf4.html">
+    <img src="https://cdn.jsdelivr.net/gh/gn-math/covers@main/41.png">
+    <span>FNAF 4</span>
+</div>
+
+<div class="game-btn" data-game="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf-series/fnaf4halloween.html">
+    <img src="https://cdn.jsdelivr.net/gh/gn-math/covers@main/428.png">
+    <span>FNAF 4 Halloween</span>
+</div>
+
+<div class="game-btn" data-game="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf-series/fnafworld.html">
+    <img src="https://cdn.jsdelivr.net/gh/gn-math/covers@main/190.png">
+    <span>FNAF World</span>
+</div>
+
+<div class="game-btn" data-game="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf-series/fnafsl.html">
+    <img src="https://cdn.jsdelivr.net/gh/gn-math/covers@main/185.png">
+    <span>Sister Location</span>
+</div>
+
+<div class="game-btn" data-game="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf-series/fnafpizzasim.html">
+    <img src="https://cdn.jsdelivr.net/gh/gn-math/covers@main/191.png">
+    <span>Pizzeria Simulator</span>
+</div>
+
+<div class="game-btn" data-game="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf-series/fnafucn.html">
+    <img src="https://cdn.jsdelivr.net/gh/gn-math/covers@main/192.png">
+    <span>Ultimate Custom Night</span>
+</div>
+
+</div>
+
+<iframe id="game-frame"
+sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms allow-pointer-lock">
+</iframe>
+
+<button id="back-btn" onclick="closeGame()">Back to Launcher</button>
+
+<script>
+const iframe = document.getElementById('game-frame');
+const backBtn = document.getElementById('back-btn');
+
+let gameRunning = false;
+
+/* Launch game */
+async function launchGame(url) {
+    try {
+        // fully reset iframe first (important)
+        iframe.src = "about:blank";
+
+        const res = await fetch(url);
+        const html = await res.text();
+
+        const dc = iframe.contentDocument;
+        dc.open();
+        dc.write(html);
+        dc.close();
+
+        iframe.style.display = "block";
+        document.body.style.overflow = "hidden";
+        gameRunning = true;
+
+    } catch (e) {
+        alert("Failed to load game");
+    }
+}
+
+/* Close game completely */
+function closeGame() {
+    iframe.style.display = "none";
+
+    // KILL the game
+    iframe.src = "about:blank";
+    iframe.contentDocument.open();
+    iframe.contentDocument.write("");
+    iframe.contentDocument.close();
+
+    backBtn.style.display = "none";
+    document.body.style.overflow = "auto";
+    gameRunning = false;
+}
+
+/* Show back button only near top */
+document.addEventListener("mousemove", (e) => {
+    if (!gameRunning) return;
+
+    if (e.clientY < 80) {
+        backBtn.style.display = "block";
+    } else {
+        backBtn.style.display = "none";
+    }
+});
+
+/* Button click listeners */
+document.querySelectorAll(".game-btn").forEach(btn =>
+    btn.addEventListener("click", () => launchGame(btn.dataset.game))
+);
+</script>
+
+</body>
+</html>
