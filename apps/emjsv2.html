@@ -265,29 +265,66 @@
 <body>
     <div id=top>
         <h1>EmulatorJS</h1>
-        <a href="index.html" class="back-btn">← Back</a>
         <img src=https://pika-pika-14987361.codehs.me/new/emulator.png alt=Logo class=logo>
     </div>
     <div id=box>
         <input type=file id=input>
 Drag ROM file or click here
     </div>
-    <div class="dropdown-container">
-            <button id="swfButton" class="top-nav-button">
-                Downloads ▼
-            </button>
-            <div id="swfDropdown" class="dropdown-menu">
-                <a href="https://cdn.jsdelivr.net/gh/greeniYT/ROM-s@main/Super%20Mario%2064%20%28USA%29.z64"
-                    download="Super%20Mario%2064%20%28USA%29.z64" class="dropdown-item">Super Mario 64</a>
-                <a href="https://cdn.jsdelivr.net/gh/greeniYT/ROM-s@main/smb.nes" download="smb.nes"
-                    class="dropdown-item">Super Mario Bros</a>
-                <a href="https://cdn.jsdelivr.net/gh/a456pur/seraph@ae2fcc6d6a9cd051654fcc0519080db1f79cf2a7/games/mariokart64/mariokart64.zip" download="smb.nes"
-                    class="dropdown-item"> Mario Kart 64</a>
-                <a href="https://cdn.jsdelivr.net/gh/greeniYT/ROM-s@main/Sonic%20The%20Hedgehog%20%28USA%2C%20Europe%29.md"
-                    download="Sonic%20The%20Hedgehog%20%28USA%2C%20Europe%29.md" class="dropdown-item">Sonic The
-                    Hedgehog</a>
-            </div>
-        </div>
+    <select id="romDownload">
+    <option value="">-- Select a ROM to download --</option>
+
+    <option value="https://cdn.jsdelivr.net/gh/greeniYT/ROM-s@main/Super%20Mario%2064%20%28USA%29.z64"
+        data-name="Super Mario 64 (USA).z64">
+        Super Mario 64
+    </option>
+
+    <option value="https://cdn.jsdelivr.net/gh/greeniYT/ROM-s@main/smb.nes"
+        data-name="smb.nes">
+        Super Mario Bros
+    </option>
+    
+    <option value="https://cdn.jsdelivr.net/gh/greeniYT/ROM-s@main/smb2.nes"
+        data-name="smb2.nes">
+        Super Mario Bros 2
+    </option>
+    
+    <option value="https://cdn.jsdelivr.net/gh/greeniYT/ROM-s@main/smb2ll.nes"
+        data-name="smb2ll.nes">
+        Super Mario Bros Lost Levels
+    </option>
+    
+    <option value="https://cdn.jsdelivr.net/gh/greeniYT/ROM-s@main/smb3.zip"
+        data-name="smb3.zip">
+        Super Mario Bros 3
+    </option>
+
+    <option value="https://cdn.jsdelivr.net/gh/greeniYT/ROM-s@main/Mario%20Kart%2064%20(USA).n64">
+        Mario Kart 64
+    </option>
+    
+    <option value="https://cdn.jsdelivr.net/gh/greeniYT/ROM-s@main/smashbros.zip">
+       Super Smash Bros 64
+    </option>
+
+    <option value="https://cdn.jsdelivr.net/gh/greeniYT/ROM-s@main/Sonic%20The%20Hedgehog%20%28USA%2C%20Europe%29.md"
+        data-name="Sonic The Hedgehog.md">
+        Sonic the Hedgehog
+    </option>
+    
+    <option value="https://cdn.jsdelivr.net/gh/greeniYT/ROM-s@main/sth2.zip"
+        data-name="sth2.zip">
+        Sonic the Hedgehog 2
+    </option>
+    
+    <option value="https://cdn.jsdelivr.net/gh/greeniYT/ROM-s@main/sth3.zip"
+        data-name="sth3.zip">
+        Sonic the Hedgehog 3 and Knuckles
+    </option>
+</select>
+
+<button onclick="downloadRom()">Download</button>
+
     <div id=version>
         <select id=version-select></select>
         <button id=download class=hide onclick=downloadversion()>
@@ -326,7 +363,23 @@ Drag ROM file or click here
     </div>
     <div class=popup-overlay></div>
     <script>
-        if("serviceWorker"in navigator){const e=navigator.serviceWorker.register("https://cdn.jsdelivr.net/EmulatorJS/demo/sw.js");console.log(e)}function loadVersions(e){const t=document.getElementById("version-select");var n=JSON.parse(e);t.innerHTML="",addOptions(t,n.releases,n.default,n.github),addOptions(t,n.versions,n.default),t.addEventListener("change",(()=>{localStorage.setItem("version",t[t.selectedIndex].textContent),window.cdn="https://cdn.jsdelivr.net/gh/genizy/emu@7bf5cbb0b94866568d2aaa1fd42ebb5acd517e0d/"}))}function detectAdBlock(e){let t=!1;try{const e=document.querySelector('iframe[src="'+window.EJS_AdUrl+'"]');var n=e.contentWindow.document;window.EJS_AdUrl=e.src,n||(t=!0)}catch(e){t=!0}t&&window.EJS_adBlocked(e)}function loadJSON(e,t){var n=new XMLHttpRequest;n.overrideMimeType("application/json"),n.open("GET",e,!0),n.onreadystatechange=function(){4===n.readyState&&(200===n.status?t(n.responseText):t(null))},n.send()}function addOptions(e,t,n,o){for(const n in t){const a=document.createElement("option");a.value=t[n],a.textContent="stable"==n?"stable ("+o+")":n,a.selected=!0,window.cdn="https://cdn.jsdelivr.net/gh/genizy/emu@7bf5cbb0b94866568d2aaa1fd42ebb5acd517e0d/",e.appendChild(a)}}function openSettings(){document.getElementById("popup-settings").classList.add("show"),"false"==localStorage.getItem("pwa")&&checkinstall()}function closeSettings(){document.getElementById("popup-settings").classList.remove("show")}loadJSON("/versions",(e=>{loadJSON("https://cdn.emulatorjs.org/versions.json",(e=>loadVersions(e))),document.getElementById("offline-status").textContent="Offline Status: NOT INSTALLED"})),input.addEventListener("change",(async()=>{const e=input.files[0],t=input.files[0].name.split("."),n=await(async e=>["fds","nes","unif","unf"].includes(e)?"nes":["smc","fig","sfc","gd3","gd7","dx2","bsx","swc"].includes(e)?"snes":["z64","n64"].includes(e)?"n64":["pce"].includes(e)?"pce":["ngp","ngc"].includes(e)?"ngp":["ws","wsc"].includes(e)?"ws":["col","cv"].includes(e)?"coleco":["d64"].includes(e)?"vice_x64":["nds","gba","gb","z64","n64"].includes(e)?e:await new Promise((e=>{const t={"Nintendo 64":"n64","Nintendo Game Boy":"gb","Nintendo Game Boy Advance":"gba","Nintendo DS":"nds","Nintendo Entertainment System":"nes","Super Nintendo Entertainment System":"snes",PlayStation:"psx","Virtual Boy":"vb","Sega Mega Drive":"segaMD","Sega Master System":"segaMS","Sega CD":"segaCD","Atari Lynx":"lynx","Sega 32X":"sega32x","Atari Jaguar":"jaguar","Sega Game Gear":"segaGG","Sega Saturn":"segaSaturn","Atari 7800":"atari7800","Atari 2600":"atari2600","NEC TurboGrafx-16/SuperGrafx/PC Engine":"pce","NEC PC-FX":"pcfx","SNK NeoGeo Pocket (Color)":"ngp","Bandai WonderSwan (Color)":"ws",ColecoVision:"coleco","Commodore 64":"vice_x64","PlayStation Portable":"psp"},n=document.createElement("button"),o=document.createElement("select");for(const e in t){const n=document.createElement("option");n.value=t[e],n.textContent=e,o.appendChild(n)}n.onclick=()=>e(o[o.selectedIndex].value),n.textContent="Load game",box.innerHTML="",box.appendChild(o),box.appendChild(n)})))(t.pop()),o=document.createElement("div"),a=document.createElement("div"),s=document.createElement("script");a.id="game",o.id="display";const i=document.getElementById("top"),l=document.getElementById("version");i.remove(),l.remove(),box.remove(),o.appendChild(a),document.body.appendChild(o);const d=window.cdn||"https://cdn.jsdelivr.net/gh/genizy/emu@7bf5cbb0b94866568d2aaa1fd42ebb5acd517e0d/";window.EJS_player="#game",window.EJS_gameName=t.shift(),window.EJS_biosUrl="",window.EJS_gameUrl=e,window.EJS_core=n,window.EJS_pathtodata=d,window.EJS_startOnLoaded=!0,window.EJS_AdUrl="https://blocker-15472805.codehs.me/emjsad.png","psp"===n&&(window.EJS_threads=!0),window.EJS_ready=function(){detectAdBlock("https://blocker-15472805.codehs.me/emjsad.png")},s.src=d+"loader.js",document.body.appendChild(s)})),box.ondragover=()=>box.setAttribute("drag",!0),box.ondragleave=()=>box.removeAttribute("drag");let installPrompt=null;const installButton=document.querySelector("#install"),installBox=document.querySelector("#installbox"),installBoxText=document.querySelector("#installboxtext");function checkinstall(e){if(console.log("Checking install"),navigator.userAgent.includes("Firefox")||navigator.userAgent.includes("OPR")&&!navigator.userAgent.includes("Mobile"))return installButton.style.display="none",void(installBoxText.innerHTML="PWA's are not supported on this browser.");if(window.matchMedia("(display-mode: standalone)").matches||e)installButton.textContent="Installed",installButton.disabled=!0,installButton.style.display="inline",installBoxText.innerHTML="Install PWA: ";else{if(installButton.style.display="none",navigator.userAgent.includes("Safari")&&!navigator.userAgent.includes("Chrome"))return void(installBoxText.innerHTML="PWA's are supported on this browser, but prompt is not supported.<br> Please install manually");"getInstalledRelatedApps"in navigator&&navigator.getInstalledRelatedApps().then((e=>{e.length>0&&checkinstall(!0)})),installBoxText.innerHTML="PWA is either already installed, or prompt is not supported on this browser.<br> Please install manually.<br>Note: PWA's are not supported in Incognito/Private mode."}}localStorage.setItem("pwa","false"),window.addEventListener("beforeinstallprompt",(e=>{e.preventDefault(),installPrompt=e,localStorage.setItem("pwa","true"),installButton.textContent="Install",installButton.disabled=!1,console.log("Supported")})),installButton.addEventListener("click",(async()=>{if(!installPrompt)return;const e=await installPrompt.prompt();console.log(`Install prompt was: ${e.outcome}`),installPrompt=null})),document.addEventListener("visibilitychange",(function(){window.matchMedia("(display-mode: standalone)").addListener((e=>{e.matches&&checkinstall(!0)}))}))
+        if("serviceWorker"in navigator){const e=navigator.serviceWorker.register("https://cdn.jsdelivr.net/EmulatorJS/demo/sw.js");console.log(e)}function loadVersions(e){const t=document.getElementById("version-select");var n=JSON.parse(e);t.innerHTML="",addOptions(t,n.releases,n.default,n.github),addOptions(t,n.versions,n.default),t.addEventListener("change",(()=>{localStorage.setItem("version",t[t.selectedIndex].textContent),window.cdn="https://cdn.jsdelivr.net/gh/genizy/emu@7bf5cbb0b94866568d2aaa1fd42ebb5acd517e0d/"}))}function detectAdBlock(e){let t=!1;try{const e=document.querySelector('iframe[src="'+window.EJS_AdUrl+'"]');var n=e.contentWindow.document;window.EJS_AdUrl=e.src,n||(t=!0)}catch(e){t=!0}t&&window.EJS_adBlocked(e)}function loadJSON(e,t){var n=new XMLHttpRequest;n.overrideMimeType("application/json"),n.open("GET",e,!0),n.onreadystatechange=function(){4===n.readyState&&(200===n.status?t(n.responseText):t(null))},n.send()}function addOptions(e,t,n,o){for(const n in t){const a=document.createElement("option");a.value=t[n],a.textContent="stable"==n?"stable ("+o+")":n,a.selected=!0,window.cdn="https://cdn.jsdelivr.net/gh/genizy/emu@7bf5cbb0b94866568d2aaa1fd42ebb5acd517e0d/",e.appendChild(a)}}function openSettings(){document.getElementById("popup-settings").classList.add("show"),"false"==localStorage.getItem("pwa")&&checkinstall()}function closeSettings(){document.getElementById("popup-settings").classList.remove("show")}loadJSON("/versions",(e=>{loadJSON("https://cdn.emulatorjs.org/versions.json",(e=>loadVersions(e))),document.getElementById("offline-status").textContent="Offline Status: NOT INSTALLED"})),input.addEventListener("change",(async()=>{const e=input.files[0],t=input.files[0].name.split("."),n=await(async e=>["fds","nes","unif","unf"].includes(e)?"nes":["smc","fig","sfc","gd3","gd7","dx2","bsx","swc"].includes(e)?"snes":["z64","n64"].includes(e)?"n64":["pce"].includes(e)?"pce":["ngp","ngc"].includes(e)?"ngp":["ws","wsc"].includes(e)?"ws":["col","cv"].includes(e)?"coleco":["d64"].includes(e)?"vice_x64":["nds","gba","gb","z64","n64"].includes(e)?e:await new Promise((e=>{const t={"Nintendo 64":"n64","Nintendo Game Boy":"gb","Nintendo Game Boy Advance":"gba","Nintendo DS":"nds","Nintendo Entertainment System":"nes","Super Nintendo Entertainment System":"snes",PlayStation:"psx","Virtual Boy":"vb","Sega Mega Drive":"segaMD","Sega Master System":"segaMS","Sega CD":"segaCD","Atari Lynx":"lynx","Sega 32X":"sega32x","Atari Jaguar":"jaguar","Sega Game Gear":"segaGG","Sega Saturn":"segaSaturn","Atari 7800":"atari7800","Atari 2600":"atari2600","NEC TurboGrafx-16/SuperGrafx/PC Engine":"pce","NEC PC-FX":"pcfx","SNK NeoGeo Pocket (Color)":"ngp","Bandai WonderSwan (Color)":"ws",ColecoVision:"coleco","Commodore 64":"vice_x64","PlayStation Portable":"psp"},n=document.createElement("button"),o=document.createElement("select");for(const e in t){const n=document.createElement("option");n.value=t[e],n.textContent=e,o.appendChild(n)}n.onclick=()=>e(o[o.selectedIndex].value),n.textContent="Load game",box.innerHTML="",box.appendChild(o),box.appendChild(n)})))(t.pop()),o=document.createElement("div"),a=document.createElement("div"),s=document.createElement("script");a.id="game",o.id="display";const i=document.getElementById("top"),l=document.getElementById("version");i.remove(),l.remove(),box.remove(),o.appendChild(a),document.body.appendChild(o);const d=window.cdn||"https://cdn.jsdelivr.net/gh/genizy/emu@7bf5cbb0b94866568d2aaa1fd42ebb5acd517e0d/";window.EJS_player="#game",window.EJS_gameName=t.shift(),window.EJS_biosUrl="",window.EJS_gameUrl=e,window.EJS_core=n,window.EJS_pathtodata=d,window.EJS_startOnLoaded=!0,window.EJS_AdUrl="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/emjsad.png","psp"===n&&(window.EJS_threads=!0),window.EJS_ready=function(){detectAdBlock("https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/emjsad.png")},s.src=d+"loader.js",document.body.appendChild(s)})),box.ondragover=()=>box.setAttribute("drag",!0),box.ondragleave=()=>box.removeAttribute("drag");let installPrompt=null;const installButton=document.querySelector("#install"),installBox=document.querySelector("#installbox"),installBoxText=document.querySelector("#installboxtext");function checkinstall(e){if(console.log("Checking install"),navigator.userAgent.includes("Firefox")||navigator.userAgent.includes("OPR")&&!navigator.userAgent.includes("Mobile"))return installButton.style.display="none",void(installBoxText.innerHTML="PWA's are not supported on this browser.");if(window.matchMedia("(display-mode: standalone)").matches||e)installButton.textContent="Installed",installButton.disabled=!0,installButton.style.display="inline",installBoxText.innerHTML="Install PWA: ";else{if(installButton.style.display="none",navigator.userAgent.includes("Safari")&&!navigator.userAgent.includes("Chrome"))return void(installBoxText.innerHTML="PWA's are supported on this browser, but prompt is not supported.<br> Please install manually");"getInstalledRelatedApps"in navigator&&navigator.getInstalledRelatedApps().then((e=>{e.length>0&&checkinstall(!0)})),installBoxText.innerHTML="PWA is either already installed, or prompt is not supported on this browser.<br> Please install manually.<br>Note: PWA's are not supported in Incognito/Private mode."}}localStorage.setItem("pwa","false"),window.addEventListener("beforeinstallprompt",(e=>{e.preventDefault(),installPrompt=e,localStorage.setItem("pwa","true"),installButton.textContent="Install",installButton.disabled=!1,console.log("Supported")})),installButton.addEventListener("click",(async()=>{if(!installPrompt)return;const e=await installPrompt.prompt();console.log(`Install prompt was: ${e.outcome}`),installPrompt=null})),document.addEventListener("visibilitychange",(function(){window.matchMedia("(display-mode: standalone)").addListener((e=>{e.matches&&checkinstall(!0)}))}))
+        
+        function downloadRom() {
+    const select = document.getElementById("romDownload");
+    const url = select.value;
+    if (!url) return;
+
+    const filename = select.options[select.selectedIndex].dataset.name;
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
     </script>
 </body>
 
