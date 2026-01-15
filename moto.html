@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MotoX3M Game Launcher</title>
+
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    background:
+      linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)),
+      url("https://play-lh.googleusercontent.com/-d7_7CyzFKX14nIHsaqT7UqlHx_IfKzNweEmu9nRrO5aL3B5MFkQFhH5rntFs6TqET8=w526-h296-rw"); /* MotoX3M dirt bike wallpaper */
+    background-size: cover;
+    background-position: center;
+  }
+
+  h1 {
+    color: #ff6600;
+    text-shadow: 0 0 15px #ff4500;
+    font-weight: 900;
+    font-size: 3em;
+    margin-bottom: 5px;
+  }
+
+  p {
+    font-size: 1.2em;
+    opacity: 0.9;
+    margin-bottom: 40px;
+    font-weight: 600;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto 60px auto;
+  }
+
+  /* Game cards */
+  .game-btn {
+    background: rgba(30, 30, 30, 0.85);
+    border: 3px solid #ff6600;
+    border-radius: 15px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 0 10px #ff6600;
+  }
+
+  .game-btn img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px #ff6600);
+  }
+
+  .game-btn span {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffb347;
+    text-shadow: 0 0 6px #ff6600;
+  }
+
+  .game-btn:hover {
+    background: #ff6600;
+    color: #222;
+    transform: scale(1.1);
+    box-shadow: 0 0 30px #ff4500;
+  }
+
+  /* iframe fullscreen */
+  #game-frame {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    display: none;
+    z-index: 1000;
+    background: #000;
+  }
+
+  #back-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1001;
+    padding: 12px 24px;
+    background: #ff6600;
+    color: #222;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #ff4500;
+    display: none;
+    transition: background 0.3s ease;
+  }
+
+  #back-btn:hover {
+    background: #ff4500;
+    color: #fff;
+  }
+</style>
+</head>
+
+<body>
+  <h1>MotoX3M Launcher</h1>
+  <p>All your favorite MotoX3M levels in one place! 🏍️💨</p>
+
+  <div class="grid">
+    <div class="game-btn" data-game="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/moto/moto1.html">
+      <img src="https://m.media-amazon.com/images/M/MV5BNzUwYjViNDItYmI4MC00M2E2LWE1YzUtYmYyYTRmZTAyMzBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="MotoX3M 1">
+      <span>MotoX3M 1</span>
+    </div>
+
+    <div class="game-btn" data-game="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/moto/moto2.html">
+      <img src="https://live.staticflickr.com/4234/35476134865_7c17dc7172_z.jpg" alt="MotoX3M 2">
+      <span>MotoX3M 2</span>
+    </div>
+
+    <div class="game-btn" data-game="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/moto/moto3.html">
+      <img src="https://frivgamesfriv.wordpress.com/wp-content/uploads/2017/01/moto-x3m-3.jpg" alt="MotoX3M 3">
+      <span>MotoX3M 3</span>
+    </div>
+
+    <div class="game-btn" data-game="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/moto/motowinter.html">
+      <img src="https://images.hellokids.com/_uploads/_tiny_galerie/20181250/vign-moto-x3m-winter-hk-jgr_xba.jpg" alt="MotoX3M 4">
+      <span>MotoX3M 4 Winter</span>
+    </div>
+
+    <div class="game-btn" data-game="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/moto/motopool.html">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWjlI8d6-SmIT6M0TUIL3xoTkbacNUzfrrurc6lFXyQkJ0Oo02QuElcdx4zCjPSIyMwAFADfhx8vOyEWbkzy_uhzli8t-u-Ug0elflPcf4urWZJFSZtVTsaM306nklDDITEApY0pxvMY8D/s1600/moto-x3m-poolparty.jpg" alt="MotoX3M 3">
+      <span>MotoX3M 5 Pool Party</span>
+    </div>
+
+    <div class="game-btn" data-game="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/moto/motospooky.html">
+      <img src="https://store-images.s-microsoft.com/image/apps.14221.14416086599502674.ee9a5302-c027-4b7f-9e86-3ac25e5ba3b8.10a99cc7-4f6c-4c31-8641-f88915d5de9a?h=210" alt="MotoX3M 4">
+      <span>MotoX3M 6 Spooky Land</span>
+    </div>
+  </div>
+
+  <iframe id="game-frame" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms allow-pointer-lock"></iframe>
+
+  <button id="back-btn" onclick="closeGame()">Back to Launcher</button>
+
+  <script>
+    const iframe = document.getElementById('game-frame');
+    const backBtn = document.getElementById('back-btn');
+
+    let gameRunning = false;
+
+    async function launchGame(url) {
+      try {
+        iframe.src = "about:blank";
+
+        const res = await fetch(url);
+        const html = await res.text();
+
+        const dc = iframe.contentDocument;
+        dc.open();
+        dc.write(html);
+        dc.close();
+
+        iframe.style.display = "block";
+        document.body.style.overflow = "hidden";
+        gameRunning = true;
+
+      } catch (e) {
+        alert("Failed to load game");
+      }
+    }
+
+    function closeGame() {
+      iframe.style.display = "none";
+      iframe.src = "about:blank";
+      iframe.contentDocument.open();
+      iframe.contentDocument.write("");
+      iframe.contentDocument.close();
+
+      backBtn.style.display = "none";
+      document.body.style.overflow = "auto";
+      gameRunning = false;
+    }
+
+    document.addEventListener("mousemove", (e) => {
+      if (!gameRunning) return;
+
+      if (e.clientY < 80) {
+        backBtn.style.display = "block";
+      } else {
+        backBtn.style.display = "none";
+      }
+    });
+
+    document.querySelectorAll(".game-btn").forEach(btn =>
+      btn.addEventListener("click", () => launchGame(btn.dataset.game))
+    );
+  </script>
+</body>
+</html>
