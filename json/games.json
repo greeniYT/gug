@@ -1,663 +1,663 @@
 [
   {
-    name: 'Block Blast',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/block-blast.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/blockblastv2.html'
+    name: "Block Blast",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/block-blast.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/blockblastv2.html"
   },
   {
-    name: 'Sausage Flip',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sausageflip.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sausageflip.html'
+    name: "Sausage Flip",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sausageflip.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sausageflip.html"
   },
   {
-    name: 'Tiny Fishing',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tinyfish.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tinyfish.html'
+    name: "Tiny Fishing",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tinyfish.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tinyfish.html"
   },
   {
-    name: 'Red Ball 4',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/redball4.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/redball4.html'
+    name: "Red Ball 4",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/redball4.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/redball4.html"
   },
   {
-    name: 'Pou',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pou.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pou.html'
+    name: "Pou",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pou.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pou.html"
   },
   {
-    name: 'Retro Bowl',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/retrobowl.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Retro%20Bowl.html'
+    name: "Retro Bowl",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/retrobowl.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Retro%20Bowl.html"
   },
   {
-    name: 'Chicken CS',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/chickencs.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/chickencs.html'
+    name: "Chicken CS",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/chickencs.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/chickencs.html"
   },
   {
-    name: 'Retro Bowl College',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rbcollege.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rbcollege.html'
+    name: "Retro Bowl College",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rbcollege.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rbcollege.html"
   },
   {
-    name: 'Death Run 3D',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/deathrun.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/deathrun.html'
+    name: "Death Run 3D",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/deathrun.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/deathrun.html"
   },
   {
-    name: 'Rio Rex',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/riorex.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/riorex.html'
+    name: "Rio Rex",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/riorex.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/riorex.html"
   },
   {
-    name: 'Picos School (inapropriate warning)',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/picoschool.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/picoschool.html'
+    name: "Picos School (inapropriate warning)",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/picoschool.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/picoschool.html"
   },
   {
-    name: 'Rise Higher',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/risehigher.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/risehigher.html'
+    name: "Rise Higher",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/risehigher.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/risehigher.html"
   },
   {
-    name: 'Four Colors',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/4colors.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/4colors.html'
+    name: "Four Colors",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/4colors.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/4colors.html"
   },
   {
-    name: 'Johnny Trigger',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/johntrigger.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/johntrigger.html'
+    name: "Johnny Trigger",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/johntrigger.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/johntrigger.html"
   },
   {
-    name: 'Plants vs Zombies',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pvz.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pvz.html'
+    name: "Plants vs Zombies",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pvz.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pvz.html"
   },
   {
-    name: 'Animator Vs Animation the game (special edition)',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ava.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ava.html'
+    name: "Animator Vs Animation the game (special edition)",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ava.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ava.html"
   },
   {
-    name: 'Plants vs Zombies MODDED',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pvzm.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pvzm.html'
+    name: "Plants vs Zombies MODDED",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pvzm.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pvzm.html"
   },
   {
-    name: 'Scary Teacher 3D',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/st3d.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/st3d.html'
+    name: "Scary Teacher 3D",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/st3d.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/st3d.html"
   },
   {
-    name: 'The Final Earth 2',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tfe2.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tfe2.html'
+    name: "The Final Earth 2",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tfe2.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tfe2.html"
   },
   {
-    name: 'Dragon vs Icy Bricks',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dvb.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dvb.html'
+    name: "Dragon vs Icy Bricks",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dvb.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dvb.html"
   },
   {
-    name: 'Sonic.EXE',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/se.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/se.html'
+    name: "Sonic.EXE",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/se.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/se.html"
   },
   {
-    name: 'Gun Spin',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gunspin.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gnspn.html'
+    name: "Gun Spin",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gunspin.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gnspn.html"
   },
   {
-    name: 'Henry Stickmin',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/The_Henry_Stickmin_Collection_Infobox.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/henry.html'
+    name: "Henry Stickmin",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/The_Henry_Stickmin_Collection_Infobox.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/henry.html"
   },
   {
-    name: 'Squid Game 2: Minigames',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sq.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sq.html'
+    name: "Squid Game 2: Minigames",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sq.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sq.html"
   },
    {
-    name: 'Tag',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tag.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tag.html'
+    name: "Tag",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tag.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tag.html"
   },
    {
-    name: 'Orange Roulette',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/or.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/or.html'
+    name: "Orange Roulette",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/or.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/or.html"
   },
   {
-    name: 'Bad Piggies',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/badpiggies.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/badpiggies.html'
+    name: "Bad Piggies",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/badpiggies.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/badpiggies.html"
   },
   
   {
-    name: 'Time Shooter 1',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ts1.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ts1.html'
+    name: "Time Shooter 1",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ts1.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ts1.html"
   },
   {
-    name: 'Time Shooter 2',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ts2.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ts2.html'
+    name: "Time Shooter 2",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ts2.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ts2.html"
   },
   {
-    name: 'Time Shooter 3: SWAT',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ts3.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ts3swat.html'
+    name: "Time Shooter 3: SWAT",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ts3.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ts3swat.html"
   },
   {
-    name: 'Jetpack Joyride',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/jj.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/jj.html'
+    name: "Jetpack Joyride",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/jj.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/jj.html"
   },
   {
-    name: 'Level Devil',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ld.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ld.html'
+    name: "Level Devil",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ld.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ld.html"
   },
   {
-    name: 'Basketball Stars',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketball-stars1-m240x240.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketstars.html'
+    name: "Basketball Stars",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketball-stars1-m240x240.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketstars.html"
   },
   {
-    name: 'Stick Slasher',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/stickslash.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickslash.html'
+    name: "Stick Slasher",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/stickslash.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickslash.html"
   },
   {
-    name: 'Basketball Legends 2020',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketlegends.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketlegends.html'
+    name: "Basketball Legends 2020",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketlegends.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketlegends.html"
   },
   {
-    name: 'Slope Plus',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/slope-plus-slope3online.io.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Slope.html'
-  },
-   {
-    name: 'Slope 2 Player',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/slope-2.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/slope2.html'
-  },
-  {
-    name: 'Slope 3',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/slope3.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/slope3.html'
-  },
-  {
-    name: 'Criminal Russia 3D',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/russia3d.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/russia3d.html'
-  },
-  {
-    name: 'Knife Hit',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/knifehit.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/knifehit.html'
-  },
-  {
-    name: 'Battle Simulator',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/battlesim.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/battlesim.html'
-  },
-  {
-    name: 'Level Up: Marios Minigame Mayhem',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/lummm.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/lummm.html'
-  },
-  {
-    name: 'Infinite Mario Bros',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/infmario.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/infmario.html'
-  },
-  {
-    name: 'Grand Theft Auto: Vice City (GTAVC)',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/GTAVC.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/GTAVC.html'
-  },
-  {
-    name: 'Rocket Soccer Derby',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rocketsoccerderby.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rocketsoccerderby.html'
-  },
-  {
-    name: 'Terraria',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/terraria.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/terarria.html'
-  },
-  {
-    name: 'Duck Life',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dl.jpeg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dlv2.html'
+    name: "Slope Plus",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/slope-plus-slope3online.io.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Slope.html"
   },
    {
-    name: 'Basket Random',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketr.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketr.html'
+    name: "Slope 2 Player",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/slope-2.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/slope2.html"
   },
   {
-    name: 'Boxing Random',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/boxingr.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/boxingr.html'
+    name: "Slope 3",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/slope3.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/slope3.html"
   },
   {
-    name: 'Volley Random',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/volleyr.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/volleyr.html'
+    name: "Criminal Russia 3D",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/russia3d.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/russia3d.html"
   },
   {
-    name: 'Soccer Random',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/soccerr.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/soccerr.html'
+    name: "Knife Hit",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/knifehit.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/knifehit.html"
   },
   {
-    name: 'We Become What We Behold',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/wbwwb.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/wbwwb.html'
+    name: "Battle Simulator",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/battlesim.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/battlesim.html"
   },
   {
-    name: 'DTA6',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dta6.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dta6.html'
+    name: "Level Up: Marios Minigame Mayhem",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/lummm.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/lummm.html"
   },
   {
-    name: 'Riddle School Series',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/Riddle-School_logo.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/riddleschool.html'
+    name: "Infinite Mario Bros",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/infmario.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/infmario.html"
   },
   {
-    name: 'Destroy The Car 3D',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dtc3d.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dtc3d.html'
+    name: "Grand Theft Auto: Vice City (GTAVC)",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/GTAVC.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/GTAVC.html"
   },
   {
-    name: 'Draw Jousting',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/drawjoust.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/drawjoust.html'
+    name: "Rocket Soccer Derby",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rocketsoccerderby.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rocketsoccerderby.html"
   },
   {
-    name: 'Drift Boss',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/drift-boss-game.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/driftboss.html'
+    name: "Terraria",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/terraria.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/terarria.html"
   },
   {
-    name: 'Tomb of the Mask',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/totm.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/totm.html'
-  },
-  {
-    name: 'Deltarune',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/deltarune.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/deltarune.html'
-  },
-  {
-    name: 'Monkey Mart',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/monkey-mart.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/monkeymart.html'
+    name: "Duck Life",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dl.jpeg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dlv2.html"
   },
    {
-    name: 'Subway Surfers',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/subway_surfers.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/subwaysurferss.html'
+    name: "Basket Random",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketr.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketr.html"
   },
   {
-    name: 'Bloxorz',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/bloxorz.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bloxorz.html'
+    name: "Boxing Random",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/boxingr.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/boxingr.html"
+  },
+  {
+    name: "Volley Random",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/volleyr.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/volleyr.html"
+  },
+  {
+    name: "Soccer Random",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/soccerr.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/soccerr.html"
+  },
+  {
+    name: "We Become What We Behold",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/wbwwb.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/wbwwb.html"
+  },
+  {
+    name: "DTA6",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dta6.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dta6.html"
+  },
+  {
+    name: "Riddle School Series",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/Riddle-School_logo.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/riddleschool.html"
+  },
+  {
+    name: "Destroy The Car 3D",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dtc3d.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dtc3d.html"
+  },
+  {
+    name: "Draw Jousting",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/drawjoust.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/drawjoust.html"
+  },
+  {
+    name: "Drift Boss",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/drift-boss-game.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/driftboss.html"
+  },
+  {
+    name: "Tomb of the Mask",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/totm.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/totm.html"
+  },
+  {
+    name: "Deltarune",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/deltarune.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/deltarune.html"
+  },
+  {
+    name: "Monkey Mart",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/monkey-mart.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/monkeymart.html"
   },
    {
-    name: 'Pizza Tower',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pt.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pt.html'
+    name: "Subway Surfers",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/subway_surfers.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/subwaysurferss.html"
   },
   {
-    name: 'Cut The Rope (change the lang with 2nd button)',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ctr.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ctr.html'
-  },
-  {
-    name: 'G-Switch',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gswitch.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gswitch.html'
-  },
-  {
-    name: 'G-Switch 2',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gswitch2.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gswitch2.html'
-  },
-  {
-    name: 'Candy Crush',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/cc.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/cc.html'
-  },
-  {
-    name: 'Super Mario Crossover',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/smcross.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smcross.html'
-  },
-  {
-    name: 'Crossy Road',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/crossyroad.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/crossyroad.html'
-  },
-  {
-    name: 'Raft',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/raft.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/raft.html'
-  },
-  {
-    name: 'Stick Fighter',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/stickfighter.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickfighter.html'
-  },
-  {
-    name: 'Stickman Hook',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/stickhook.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickhook.html'
-  },
-  {
-    name: 'Ragdoll Archers',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ragarch.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ragarch.html'
-  },
-  {
-    name: 'Mari0',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/mari0.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pmari0.html'
-  },
-  {
-    name: 'Ragdoll Hit',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/raghit.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/raghit.html'
-  },
-  {
-    name: 'QWOP',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/qwop.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/qwop.html'
-  },
-  {
-    name: 'Fruit Ninja',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/fruitninja.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fruitninja.html'
-  },
-  {
-    name: 'Angry Birds',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ab.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abnew.html'
-  },
-  {
-    name: 'Angry Birds RIO',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/abrio.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abrio.html'
-  },
-  {
-    name: 'Cluster Rush',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/cluster-rush.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/clusterrush.html'
-  },
-  {
-    name: 'Smash Hit',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/smashhit.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smashhitv2.html'
-  },
-  {
-    name: 'Tube Jumpers',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tube-jumpers-game-cover-400x400.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Tube%20Jumpers.html'
+    name: "Bloxorz",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/bloxorz.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bloxorz.html"
   },
    {
-    name: 'BitLife',
-    image: 'https://play-lh.googleusercontent.com/fUM-UyywXxjC8soxAZdIlxJrlRRXmql8wkE426SHzft4lJycSKVd2jCYQQX1BEG9Xw',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bitlife.html'
+    name: "Pizza Tower",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pt.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pt.html"
   },
   {
-    name: 'Stickman Duel',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/stickmanduel.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickmanduel.html'
+    name: "Cut The Rope (change the lang with 2nd button)",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ctr.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ctr.html"
   },
   {
-    name: 'Rooftop Snipers',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rs.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs.html'
+    name: "G-Switch",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gswitch.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gswitch.html"
+  },
+  {
+    name: "G-Switch 2",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gswitch2.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gswitch2.html"
+  },
+  {
+    name: "Candy Crush",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/cc.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/cc.html"
+  },
+  {
+    name: "Super Mario Crossover",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/smcross.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smcross.html"
+  },
+  {
+    name: "Crossy Road",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/crossyroad.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/crossyroad.html"
+  },
+  {
+    name: "Raft",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/raft.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/raft.html"
+  },
+  {
+    name: "Stick Fighter",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/stickfighter.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickfighter.html"
+  },
+  {
+    name: "Stickman Hook",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/stickhook.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickhook.html"
+  },
+  {
+    name: "Ragdoll Archers",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ragarch.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ragarch.html"
+  },
+  {
+    name: "Mari0",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/mari0.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pmari0.html"
+  },
+  {
+    name: "Ragdoll Hit",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/raghit.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/raghit.html"
+  },
+  {
+    name: "QWOP",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/qwop.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/qwop.html"
+  },
+  {
+    name: "Fruit Ninja",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/fruitninja.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fruitninja.html"
+  },
+  {
+    name: "Angry Birds",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ab.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abnew.html"
+  },
+  {
+    name: "Angry Birds RIO",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/abrio.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abrio.html"
+  },
+  {
+    name: "Cluster Rush",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/cluster-rush.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/clusterrush.html"
+  },
+  {
+    name: "Smash Hit",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/smashhit.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smashhitv2.html"
+  },
+  {
+    name: "Tube Jumpers",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tube-jumpers-game-cover-400x400.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Tube%20Jumpers.html"
   },
    {
-    name: 'Rooftop Snipers 2',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rs2.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs2.html'
+    name: "BitLife",
+    image: "https://play-lh.googleusercontent.com/fUM-UyywXxjC8soxAZdIlxJrlRRXmql8wkE426SHzft4lJycSKVd2jCYQQX1BEG9Xw",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bitlife.html"
   },
   {
-    name: 'Jelly Mario',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/jellymario.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/jellymario.html'
+    name: "Stickman Duel",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/stickmanduel.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickmanduel.html"
   },
   {
-    name: 'N@zi Zombies: Portable (NZP)',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/nzp.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/nzp.html'
+    name: "Rooftop Snipers",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rs.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs.html"
   },
    {
-    name: 'Space Waves',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/space-waves.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/spacewaves.html'
+    name: "Rooftop Snipers 2",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rs2.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs2.html"
   },
   {
-    name: 'MotoX3M Series',
-    image: 'https://parental-control.flashget.com/wp-content/uploads/sites/3/2025/01/Moto-X3M.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/moto.html'
+    name: "Jelly Mario",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/jellymario.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/jellymario.html"
   },
   {
-    name: 'Vex Series',
-    image: 'https://play-lh.googleusercontent.com/dcEJdY9smUt_CXJP7gKQV1RAgK-0lasc9UbDp_0qR-QAXyavsvHjHTRYN_BAS3vunXvw=w240-h480-rw',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Vex.html'
+    name: "N@zi Zombies: Portable (NZP)",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/nzp.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/nzp.html"
   },
    {
-    name: 'Buckshot Roulette',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/205.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/br.html'
+    name: "Space Waves",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/space-waves.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/spacewaves.html"
+  },
+  {
+    name: "MotoX3M Series",
+    image: "https://parental-control.flashget.com/wp-content/uploads/sites/3/2025/01/Moto-X3M.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/moto.html"
+  },
+  {
+    name: "Vex Series",
+    image: "https://play-lh.googleusercontent.com/dcEJdY9smUt_CXJP7gKQV1RAgK-0lasc9UbDp_0qR-QAXyavsvHjHTRYN_BAS3vunXvw=w240-h480-rw",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Vex.html"
   },
    {
-    name: 'Thats Not My Neighbor!',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/thats-not-my-neighbor.icon.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tnmn.html'
-  },
-  {
-    name: 'Friday Night Funkin (FNF)',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@refs/heads/main/icons/friday-night-funkin.avif',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnf.html'
-  },
-  {
-    name: 'Grindcraft',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@refs/heads/main/icons/grindcraft.avif',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/grindcraftv3.html'
+    name: "Buckshot Roulette",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/205.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/br.html"
   },
    {
-    name: 'House Of Hazards',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/hoh.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/hoh.html'
+    name: "Thats Not My Neighbor!",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/thats-not-my-neighbor.icon.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tnmn.html"
   },
   {
-    name: 'Grand Action Simulator - New York Car Gang (GASNYCG)',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gasnycg.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gasnycg.html'
+    name: "Friday Night Funkin (FNF)",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@refs/heads/main/icons/friday-night-funkin.avif",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnf.html"
+  },
+  {
+    name: "Grindcraft",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@refs/heads/main/icons/grindcraft.avif",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/grindcraftv3.html"
   },
    {
-    name: 'Super Mario 63',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/mario63.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/mario63.html'
+    name: "House Of Hazards",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/hoh.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/hoh.html"
+  },
+  {
+    name: "Grand Action Simulator - New York Car Gang (GASNYCG)",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gasnycg.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gasnycg.html"
   },
    {
-    name: 'Ultamate Flash Sonic',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sonicflash.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sonicflash.html'
-  },
-  {
-    name: 'People Playground',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/peopleplayground.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/peopleplayground.html'
-  },
-  {
-    name: 'Diggy',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/diggy.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/diggy.html'
-  },
-  {
-    name: 'They Are Comming',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tac.jfif',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tac.html'
+    name: "Super Mario 63",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/mario63.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/mario63.html"
   },
    {
-    name: 'Wrestle Bros',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/boxingbros.jfif',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/boxingbros.html'
+    name: "Ultamate Flash Sonic",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sonicflash.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sonicflash.html"
   },
   {
-    name: 'Basket Bros',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketbros-io.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketbros.html'
+    name: "People Playground",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/peopleplayground.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/peopleplayground.html"
   },
   {
-    name: 'Baseball Bros',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/baseball-bros-game.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Baseball%20Bros.html'
+    name: "Diggy",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/diggy.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/diggy.html"
+  },
+  {
+    name: "They Are Comming",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tac.jfif",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tac.html"
   },
    {
-    name: 'Escape Road',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/escaperoad.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Escape%20Road.html'
+    name: "Wrestle Bros",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/boxingbros.jfif",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/boxingbros.html"
   },
   {
-    name: 'Paper Minecraft v11.7 (Minecraft 2D)',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/paperminecraft.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/paperminecraft.html'
+    name: "Basket Bros",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketbros-io.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketbros.html"
+  },
+  {
+    name: "Baseball Bros",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/baseball-bros-game.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Baseball%20Bros.html"
   },
    {
-    name: 'Schoolboy Runaway',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/schoolboy.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Schoolboy%20Runaway.html'
+    name: "Escape Road",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/escaperoad.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Escape%20Road.html"
   },
   {
-    name: 'Football Bros',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/football-bros-m320x190.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Football%20Bros.html'
-  },
-  {
-    name: 'Baldis Basics Clasic Remastered',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/466.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bbcr.html'
+    name: "Paper Minecraft v11.7 (Minecraft 2D)",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/paperminecraft.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/paperminecraft.html"
   },
    {
-    name: 'Getting Over It',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/goi.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/goi.html'
+    name: "Schoolboy Runaway",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/schoolboy.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Schoolboy%20Runaway.html"
   },
   {
-    name: '12 Minigame Battles',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/12battles.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/12battles.html'
+    name: "Football Bros",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/football-bros-m320x190.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Football%20Bros.html"
   },
   {
-    name: 'Pumpkill 64',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pumpkill.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pumpkill.html'
-  },
-  {
-    name: '3Dash',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/3dash.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/3dash.html'
-  },
-  {
-    name: 'War Of The Knights',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/wtk.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/knights.html'
+    name: "Baldis Basics Clasic Remastered",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/466.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bbcr.html"
   },
    {
-    name: 'Unfair Mario',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/unfairmario.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/unfairmario.html'
+    name: "Getting Over It",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/goi.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/goi.html"
+  },
+  {
+    name: "12 Minigame Battles",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/12battles.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/12battles.html"
+  },
+  {
+    name: "Pumpkill 64",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pumpkill.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pumpkill.html"
+  },
+  {
+    name: "3Dash",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/3dash.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/3dash.html"
+  },
+  {
+    name: "War Of The Knights",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/wtk.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/knights.html"
   },
    {
-    name: 'Sprinter',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sprinter.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sprinter.html'
-  },
-  {
-    name: 'Granny',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/granny.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/granny.html'
+    name: "Unfair Mario",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/unfairmario.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/unfairmario.html"
   },
    {
-    name: 'Granny 2',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/granny2.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/granny2.html'
+    name: "Sprinter",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sprinter.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sprinter.html"
+  },
+  {
+    name: "Granny",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/granny.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/granny.html"
   },
    {
-    name: 'Granny3',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/granny3.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/granny3.html'
-  },
-  {
-    name: 'Race Survival',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rs.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/racesurvival.html'
+    name: "Granny 2",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/granny2.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/granny2.html"
   },
    {
-    name: 'Dragon Ball Z Devolution',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dbzd.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dbzd.html'
+    name: "Granny3",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/granny3.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/granny3.html"
   },
   {
-    name: 'Five Nights At Freddys (FNAF)',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/fnaf.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf.html'
+    name: "Race Survival",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rs.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/racesurvival.html"
   },
    {
-    name: 'FNAF 3D',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/fnaf3d.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf3dd.html'
+    name: "Dragon Ball Z Devolution",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dbzd.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dbzd.html"
+  },
+  {
+    name: "Five Nights At Freddys (FNAF)",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/fnaf.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf.html"
   },
    {
-    name: 'Bank Robbery 2',
-    image: 'https://codehs.com/uploads/66b295c40702814fe388317c40a66efb',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Bank%20Robbery%202.html'
+    name: "FNAF 3D",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/fnaf3d.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf3dd.html"
+  },
+   {
+    name: "Bank Robbery 2",
+    image: "https://codehs.com/uploads/66b295c40702814fe388317c40a66efb",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Bank%20Robbery%202.html"
   },
   {
-    name: 'Summer Rider 3D',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/summerrider.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/summerrider.html'
+    name: "Summer Rider 3D",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/summerrider.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/summerrider.html"
   },
   {
-    name: 'Snow Rider 3D',
-    image: 'https://theartsherpa.com/blog/image/blog_image/821/large/_v=b2a4d1759977095',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Snow%20Rider%203D.html'
+    name: "Snow Rider 3D",
+    image: "https://theartsherpa.com/blog/image/blog_image/821/large/_v=b2a4d1759977095",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Snow%20Rider%203D.html"
   },
   {
-    name: 'Sybon Action (Cat Mario)',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/Syobon_Takumi_cover_.webp',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/catmario.html'
+    name: "Sybon Action (Cat Mario)",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/Syobon_Takumi_cover_.webp",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/catmario.html"
   },
   {
-    name: 'A Koopas Revenge',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/koopa1.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/koopa1.html'
+    name: "A Koopas Revenge",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/koopa1.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/koopa1.html"
   },
   {
-    name: 'A Koopas Revenge 2',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/koopa2.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/koopa2.html'
+    name: "A Koopas Revenge 2",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/koopa2.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/koopa2.html"
   },
   {
-    name: 'Geometry Dash',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gd.png',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gd.html'
+    name: "Geometry Dash",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gd.png",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gd.html"
   },
   {
-    name: 'Red vs Blue',
-    image: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rvb.jpg',
-    file: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rvb.html'
+    name: "Red vs Blue",
+    image: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rvb.jpg",
+    file: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rvb.html"
   }
 ]
