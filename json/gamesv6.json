@@ -180,14 +180,29 @@
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketstars.html"
   },
   {
+    "name": "Basketball Legends 2020",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketlegends.webp",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketlegends.html"
+  },
+  {
     "name": "Stick Slasher",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/stickslash.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickslash.html"
   },
   {
-    "name": "Basketball Legends 2020",
-    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketlegends.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketlegends.html"
+    "name": "KS2 Teams",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ks2t.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ks2t.html"
+  },
+{
+    "name": "PolyTrack",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/polytrack.webp",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/polytrack.html"
+  },
+{
+    "name": "Javelin Fighting",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/javelin.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/javelin.html"
   },
   {
     "name": "Slope Plus",
