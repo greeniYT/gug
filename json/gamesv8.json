@@ -60,6 +60,11 @@
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/picoschool.html"
   },
   {
+    "name": "Dan The Man",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dan.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dan.html"
+  },
+  {
     "name": "Rise Higher",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/risehigher.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/risehigher.html"
