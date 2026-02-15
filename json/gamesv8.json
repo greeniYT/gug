@@ -430,6 +430,11 @@
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abrio.html"
   },
   {
+    "name": "Angry Birds Space",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/abspace.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abspace.html"
+  },
+  {
     "name": "Cluster Rush",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/cluster-rush.webp",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/clusterrush.html"
