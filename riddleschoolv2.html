@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Riddle School Launcher</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Comic+Sans+MS:wght@400;700&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 100%);
+    background-attachment: fixed;
+    color: #333;
+    text-align: center;
+    min-height: 100vh;
+  }
+
+  /* Cloud decoration */
+  body::before {
+    content: '☁️ ☁️ ☁️';
+    position: fixed;
+    top: 30px;
+    left: 0;
+    right: 0;
+    font-size: 3em;
+    color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+    letter-spacing: 100px;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  h1 {
+    font-size: 4em;
+    margin: 40px 0 10px 0;
+    color: #FF6B35;
+    text-shadow: 
+      3px 3px 0px #FFD700,
+      6px 6px 0px #FF1493,
+      9px 9px 20px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+    letter-spacing: 2px;
+    transform: rotate(-2deg);
+  }
+
+  .subtitle {
+    font-size: 1.5em;
+    color: #FF1493;
+    margin: 0;
+    font-weight: 700;
+    text-shadow: 2px 2px 0px #FFD700;
+  }
+
+  .tagline {
+    font-size: 1.1em;
+    color: #0066CC;
+    margin: 10px 0 40px 0;
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  .section-title {
+    font-size: 2.2em;
+    margin: 60px 0 35px 0;
+    color: #FF1493;
+    text-shadow: 3px 3px 0px #FFD700;
+    font-weight: 700;
+    display: inline-block;
+    padding: 15px 30px;
+    background: #FFF9E6;
+    border: 5px solid #FFD700;
+    border-radius: 20px;
+    transform: rotate(1deg);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    margin: 0 auto 60px;
+    justify-items: center;
+  }
+
+  .game-btn {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    border: 8px solid #FF6B35;
+    border-radius: 20px;
+    padding: 20px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 
+      5px 5px 0px rgba(0, 0, 0, 0.3),
+      inset -2px -2px 0px rgba(255, 255, 255, 0.5);
+    position: relative;
+    width: 100%;
+    max-width: 180px;
+  }
+
+  .game-btn img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    filter: drop-shadow(3px 3px 0px rgba(0, 0, 0, 0.2));
+    transition: transform 0.2s ease;
+  }
+
+  .game-btn span {
+    font-weight: 700;
+    font-size: 1em;
+    color: #333;
+    text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.7);
+    line-height: 1.2;
+  }
+
+  .game-btn:hover {
+    transform: scale(1.15) rotate(-3deg);
+    box-shadow: 
+      8px 8px 0px rgba(0, 0, 0, 0.4),
+      inset -2px -2px 0px rgba(255, 255, 255, 0.5);
+    border-color: #FF1493;
+  }
+
+  .game-btn:hover img {
+    transform: rotate(5deg) scale(1.1);
+  }
+
+  .game-btn:active {
+    transform: scale(1.1) rotate(-3deg) translateY(3px);
+    box-shadow: 
+      3px 3px 0px rgba(0, 0, 0, 0.3),
+      inset -2px -2px 0px rgba(255, 255, 255, 0.5);
+  }
+
+  .fanmade-note {
+    font-size: 0.75em;
+    color: #FF1493;
+    margin-top: 5px;
+    font-weight: bold;
+    background: #FFE6F0;
+    padding: 3px 8px;
+    border-radius: 10px;
+    border: 2px solid #FF1493;
+  }
+
+  #game-frame {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    display: none;
+    z-index: 1000;
+    background: #000;
+  }
+
+  #back-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    padding: 15px 25px;
+    background: linear-gradient(135deg, #FF1493 0%, #FF6B35 100%);
+    color: #FFF;
+    border: 5px solid #FFD700;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 1.1em;
+    border-radius: 15px;
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.3);
+    display: none;
+    transition: all 0.2s ease;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  #back-btn:hover {
+    transform: scale(1.1) rotate(2deg);
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.4);
+  }
+
+  #back-btn:active {
+    transform: scale(1.05) rotate(2deg) translateY(3px);
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+  }
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>RIDDLE SCHOOL</h1>
+    <p class="subtitle">Game Launcher</p>
+    <p class="tagline">"Can you escape the school?"</p>
+
+    <h2 class="section-title">Official Games</h2>
+    <div class="grid" id="gameGrid"></div>
+
+    <h2 class="section-title">⭐ Fanmade Games</h2>
+    <div class="grid" id="fanmadeGrid"></div>
+  </div>
+
+  <iframe id="game-frame" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms allow-pointer-lock"></iframe>
+  <button id="back-btn" onclick="closeGame()">← Back</button>
+
+<script>
+  // Official games
+  const games = [
+    {
+      name: "Riddle School 1",
+      img: "https://cdn.jsdelivr.net/gh/gn-math/covers@main/287.png",
+      url: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs/rs1.html"
+    },
+    {
+      name: "Riddle School 2",
+      img: "https://cdn.jsdelivr.net/gh/gn-math/covers@main/288.png",
+      url: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs/rs2.html"
+    },
+    {
+      name: "Riddle School 3",
+      img: "https://cdn.jsdelivr.net/gh/gn-math/covers@main/289.png",
+      url: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs/rs3.html"
+    },
+    {
+      name: "Riddle School 4",
+      img: "https://cdn.jsdelivr.net/gh/gn-math/covers@main/290.png",
+      url: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs/rs4.html"
+    },
+    {
+      name: "Riddle School 5",
+      img: "https://cdn.jsdelivr.net/gh/gn-math/covers@main/291.png",
+      url: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs/rs5.html"
+    },
+    {
+      name: "Riddle Transfer 1",
+      img: "https://cdn.jsdelivr.net/gh/gn-math/covers@main/292.png",
+      url: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs/rt.html"
+    },
+    {
+      name: "Riddle Transfer 2",
+      img: "https://cdn.jsdelivr.net/gh/gn-math/covers@main/293.png",
+      url: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs/rt2.html"
+    },
+  ];
+
+  // Fanmade games - add your creations here! 👇
+  const fanmadeGames = [
+     {
+       name: "Riddle University",
+       img: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs/ru.jpg",
+       url: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs/ru.html",
+       creator: "GammaGotGuy"
+     },
+      {
+       name: "Riddle School 1½",
+       img: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs/rs1half.webp",
+       url: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs/rs1half.html",
+       creator: "GammaGotGuy"
+     }
+
+  ];
+
+  const gameGrid = document.getElementById('gameGrid');
+  const fanmadeGrid = document.getElementById('fanmadeGrid');
+  const iframe = document.getElementById('game-frame');
+  const backBtn = document.getElementById('back-btn');
+
+  // Generate official game buttons
+  games.forEach(game => {
+    const btn = document.createElement('div');
+    btn.className = 'game-btn';
+    btn.innerHTML = `
+      <img src="${game.img}" alt="${game.name}">
+      <span>${game.name}</span>
+    `;
+    btn.addEventListener('click', () => launchGame(game.url));
+    gameGrid.appendChild(btn);
+  });
+
+  // Generate fanmade game buttons
+  fanmadeGames.forEach(game => {
+    const btn = document.createElement('div');
+    btn.className = 'game-btn';
+    btn.innerHTML = `
+      <img src="${game.img}" alt="${game.name}">
+      <span>${game.name}</span>
+      <div class="fanmade-note">by ${game.creator}</div>
+    `;
+    if (game.url !== "#") {
+      btn.addEventListener('click', () => launchGame(game.url));
+    } else {
+      btn.style.opacity = '0.6';
+      btn.style.cursor = 'not-allowed';
+    }
+    fanmadeGrid.appendChild(btn);
+  });
+
+  let gameRunning = false;
+
+  async function launchGame(url) {
+    if (url === "#") {
+      alert("Coming soon!");
+      return;
+    }
+
+    try {
+      iframe.src = "about:blank";
+
+      const res = await fetch(url);
+      const html = await res.text();
+
+      const dc = iframe.contentDocument || iframe.contentWindow.document;
+      dc.open();
+      dc.write(html);
+      dc.close();
+
+      iframe.style.display = "block";
+      backBtn.style.display = "block";
+      document.body.style.overflow = "hidden";
+      gameRunning = true;
+    } catch {
+      alert("Failed to load game!");
+    }
+  }
+
+  function closeGame() {
+    iframe.style.display = "none";
+    iframe.src = "about:blank";
+    const dc = iframe.contentDocument || iframe.contentWindow.document;
+    dc.open();
+    dc.write("");
+    dc.close();
+
+    backBtn.style.display = "none";
+    document.body.style.overflow = "auto";
+    gameRunning = false;
+  }
+</script>
+</body>
+</html>
