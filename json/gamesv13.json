@@ -327,7 +327,12 @@
   {
     "name": "Riddle School",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/Riddle-School_logo.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/riddleschool.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/riddleschoolv2.html"
+  },
+  {
+    "name": "Stick Duel - The War",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sd-thewar.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sd-thewar.html"
   },
   {
     "name": "Destroy The Car 3D",
