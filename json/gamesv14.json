@@ -55,6 +55,11 @@
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/deathrun.html"
   },
   {
+    "name": "Super Mario Construct",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/smc.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smc.html"
+  },
+  {
     "name": "Rio Rex",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/riorex.png",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/riorex.html"
