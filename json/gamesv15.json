@@ -405,6 +405,26 @@
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/cc.html"
   },
   {
+    "name": "Rhythm Hell",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rh.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rh.html"
+  },
+{
+    "name": "Catch the Candy",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ctc.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ctc.html"
+  },
+{
+    "name": "The Backrooms Game",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/backrooms.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/backrooms.html"
+  },
+{
+    "name": "Planet Smash Destruction",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/psd.avif",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/psd.html"
+  },
+  {
     "name": "Super Mario Crossover",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/smcross.webp",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smcross.html"
