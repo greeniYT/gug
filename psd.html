@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+    <!-- Content encoding -->
+    <base href="https://cdn.jsdelivr.net/gh/greeniYT/planet-mars@main/" target="_blank">
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=yes" />
+    <!-- Page info and stylesheets -->
+    <title>Solar Smash</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
+    <link rel="stylesheet" href="TemplateData/style.css" />
+    <link rel="manifest" href="manifest.webmanifest" />
+</head>
+
+<body>
+    <!-- Unity canvas -->
+    <div id="unity-container">
+        <canvas id="unity-canvas" tabindex="-1"></canvas>
+        <div id="unity-loading-bar">
+            <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/psd.avif" alt="PSD Icon" width="64" height="64" id="unity-logo">   </div>
+            <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Unity loader script -->
+    <script>
+        const BASE_URL = "https://cdn.jsdelivr.net/gh/greeniYT/planet-mars@main";
+        const BUILD_URL = BASE_URL + "/Build";
+
+        const unityApp = {
+
+            applyCommonFixes: function() {
+                // Disable unwanted page scroll.
+                window.addEventListener("wheel", (event) => event.preventDefault(), {
+                    passive: false,
+                });
+
+                // Disable unwanted key events.
+                window.addEventListener("keydown", (event) => {
+                    if (["ArrowUp", "ArrowDown"].includes(event.key)) {
+                        event.preventDefault();
+                    }
+                });
+
+                // Disable context menu appearing after right click outside of the unity canvas.
+                window.addEventListener('contextmenu', (event) => event.preventDefault());
+                document.addEventListener('contextmenu', (event) => event.preventDefault());
+            },
+
+            tryRotationLock() {
+                const PORTRAIT_ONLY = "";
+                let isPortraitLocked = false;
+                if (!unityApp.isEmpty(PORTRAIT_ONLY)) {
+                    isPortraitLocked = unityApp.toBoolean(PORTRAIT_ONLY);
+                }
+
+                const LANDSCAPE_ONLY = "true";
+                let isLandscapeLocked = false;
+                if (!unityApp.isEmpty(LANDSCAPE_ONLY)) {
+                    isLandscapeLocked = unityApp.toBoolean(LANDSCAPE_ONLY);
+                }
+
+                if (isPortraitLocked && isLandscapeLocked) {
+                    throw new Error("Both portrait and landscape lock cannot be enabled at the same time.");
+                }
+
+                const root = document.createElement("div");
+
+                // Stretch to full screen.
+                root.style.background = 'rgb(10, 10, 10, 0.7)';
+                root.style.display = 'flex';
+                root.style.position = 'fixed';
+                root.style.top = '0';
+                root.style.left = '0';
+                root.style.width = '100%';
+                root.style.height = '100%';
+
+                // Create blur background effect.
+                root.style.backdropFilter = 'blur(10px)';
+
+                // Create intuitive image instruction for the user.
+                const image = document.createElement('img');
+                if (isPortraitLocked) {
+                    image.src = BASE_URL + '/TemplateData/portrait-only.png';
+                } else if (isLandscapeLocked) {
+                    image.src = BASE_URL + '/TemplateData/landscape-only.png';
+                }
+                image.style.display = 'flex';
+                image.style.width = '100px';
+                image.style.height = '100px';
+                image.style.margin = 'auto';
+                root.appendChild(image);
+
+                document.body.appendChild(root);
+
+                function updateRotationLock() {
+                    let display = 'none';
+                    if (unityApp.isMobile()) {
+                        if (isPortraitLocked && isLandscapeLocked) {
+                            root.style.display = display;
+                            return;
+                        }
+                        if (isPortraitLocked) {
+                            display = window.innerHeight < window.innerWidth ? 'flex' : 'none';
+                        } else if (isLandscapeLocked) {
+                            display = window.innerHeight > window.innerWidth ? 'flex' : 'none';
+                        }
+                    }
+                    root.style.display = display;
+                }
+
+                window.addEventListener("load", updateRotationLock);
+                window.addEventListener("resize", updateRotationLock);
+                document.addEventListener("readystatechange", updateRotationLock);
+                document.addEventListener("DOMContentLoaded", updateRotationLock);
+
+                updateRotationLock();
+            },
+
+            tryLockAspectRatio() {
+                const mobileAspectRatioInput = "16/9";
+                const isMobileLocked = !this.isEmpty(mobileAspectRatioInput);
+                const mobileAspectRatio = isMobileLocked ? this.toNumber(mobileAspectRatioInput) : 1.0;
+
+                const desktopAspectRatioInput = "16/9";
+                const isDesktopLocked = !this.isEmpty(desktopAspectRatioInput);
+                const desktopAspectRatio = isDesktopLocked ? this.toNumber(desktopAspectRatioInput) : 1.0;
+
+                const container = document.querySelector("#unity-container");
+                const canvas = document.querySelector("#unity-canvas");
+
+                function centerCanvas() {
+                    canvas.style.margin = "auto";
+                    canvas.style.top = "0";
+                    canvas.style.left = "0";
+                    canvas.style.bottom = "0";
+                    canvas.style.right = "0";
+                }
+
+                function resetAspectRatio() {
+                    canvas.style.width = "100%";
+                    canvas.style.height = "100%";
+                    centerCanvas();
+                }
+
+                function recalculateAspectRatio(aspectRatio) {
+                    let containerWidth = container.clientWidth;
+                    let containerHeight = container.clientHeight;
+
+                    if (containerWidth / containerHeight > aspectRatio) {
+                        canvas.style.width = Math.floor(containerHeight * aspectRatio) + "px";
+                        canvas.style.height = "100%";
+                    } else {
+                        canvas.style.width = "100%";
+                        canvas.style.height = Math.floor(containerWidth / aspectRatio) + "px";
+                    }
+                }
+
+                function updateAspectRatio() {
+                    resetAspectRatio();
+                    if (unityApp.isMobile()) {
+                        if (isMobileLocked) {
+                            recalculateAspectRatio(mobileAspectRatio);
+                        }
+                    } else {
+                        if (isDesktopLocked) {
+                            recalculateAspectRatio(desktopAspectRatio);
+                        }
+                    }
+                    centerCanvas();
+                }
+
+                window.addEventListener("load", updateAspectRatio);
+                window.addEventListener("resize", updateAspectRatio);
+                document.addEventListener("readystatechange", updateAspectRatio);
+                document.addEventListener("DOMContentLoaded", updateAspectRatio);
+
+                updateAspectRatio();
+            },
+
+            /**
+             * Fetches an array of URLs and concatenates their ArrayBuffers into one.
+             * @param {string[]} urls
+             * @param {function(number):void} onProgress - called with 0.0–1.0 as each part loads
+             * @returns {Promise<ArrayBuffer>}
+             */
+            fetchAndConcatParts: async function(urls, onProgress) {
+                let loaded = 0;
+                const buffers = await Promise.all(urls.map((url, i) =>
+                    fetch(url).then(async (res) => {
+                        if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status} ${res.statusText}`);
+                        const buf = await res.arrayBuffer();
+                        loaded++;
+                        if (onProgress) onProgress(loaded / urls.length);
+                        return buf;
+                    })
+                ));
+
+                // Concatenate all ArrayBuffers into one.
+                const totalLength = buffers.reduce((sum, b) => sum + b.byteLength, 0);
+                const combined = new Uint8Array(totalLength);
+                let offset = 0;
+                for (const buf of buffers) {
+                    combined.set(new Uint8Array(buf), offset);
+                    offset += buf.byteLength;
+                }
+                return combined.buffer;
+            },
+
+            startLoading: async function() {
+                const canvas = document.querySelector("#unity-canvas");
+                const loadingBar = document.querySelector("#unity-loading-bar");
+                const progressBarFull = document.querySelector("#unity-progress-bar-full");
+
+                loadingBar.style.display = "block";
+
+                // --- Split file URLs ---
+                const wasmParts = [
+                    BUILD_URL + "/83e33515b87cc02d093d245f7d07c5cf.wasm.br.part1",
+                    BUILD_URL + "/83e33515b87cc02d093d245f7d07c5cf.wasm.br.part2",
+                    BUILD_URL + "/83e33515b87cc02d093d245f7d07c5cf.wasm.br.part3",
+                    BUILD_URL + "/83e33515b87cc02d093d245f7d07c5cf.wasm.br.part4",
+                ];
+                const dataParts = [
+                    BUILD_URL + "/991b28b5b569bc43c198a7f63fcf31cf.data.br.part1",
+                    BUILD_URL + "/991b28b5b569bc43c198a7f63fcf31cf.data.br.part2",
+                ];
+
+                // Track combined progress: wasm = 60%, data = 40% of the pre-load phase.
+                // Unity itself will then report 0→1 once it starts initializing.
+                let wasmProgress = 0;
+                let dataProgress = 0;
+
+                function updateProgress() {
+                    // Pre-load phase accounts for the first 50% of the bar.
+                    progressBarFull.style.width = (50 * (wasmProgress * 0.6 + dataProgress * 0.4)) + "%";
+                }
+
+                try {
+                    // Fetch all parts in parallel (wasm and data simultaneously).
+                    const [wasmBuffer, dataBuffer] = await Promise.all([
+                        this.fetchAndConcatParts(wasmParts, (p) => { wasmProgress = p; updateProgress(); }),
+                        this.fetchAndConcatParts(dataParts, (p) => { dataProgress = p; updateProgress(); }),
+                    ]);
+
+                    // Convert concatenated buffers to Blob URLs so Unity's loader can read them.
+                    const wasmBlobUrl = URL.createObjectURL(new Blob([wasmBuffer], { type: "application/wasm" }));
+                    const dataBlobUrl = URL.createObjectURL(new Blob([dataBuffer], { type: "application/octet-stream" }));
+
+                    const loaderUrl = BUILD_URL + "/292ab7b7793ac03ba1256ca5d8bcdeb7.loader.js";
+                    const config = {
+                        arguments: [],
+                        dataUrl: dataBlobUrl,
+                        frameworkUrl: BUILD_URL + "/56c058ba7006bd3267487886d9b9ff1b.framework.js",
+                        codeUrl: wasmBlobUrl,
+                        streamingAssetsUrl: "StreamingAssets",
+                        companyName: "MirraGames",
+                        productName: "Solar Smash",
+                        productVersion: "1.0.0",
+                        showBanner: (msg, type) => {
+                            if (type === 'error') {
+                                console.error(msg);
+                            } else {
+                                console.warn(msg);
+                            }
+                        },
+                    };
+
+                    const script = document.createElement("script");
+                    script.src = loaderUrl;
+                    script.onerror = () => {
+                        alert("Failed to load Unity loader script. Check that the loader URL is correct.");
+                        loadingBar.style.display = "none";
+                    };
+                    script.onload = () => {
+                        createUnityInstance(canvas, config, (progress) => {
+                            // Unity reports 0→1; map this to the remaining 50–100% of the bar.
+                            progressBarFull.style.width = (50 + 50 * progress) + "%";
+                        }).then((unityInstance) => {
+                            loadingBar.style.display = "none";
+                            // Revoke blob URLs to free memory now that Unity has loaded them.
+                            URL.revokeObjectURL(wasmBlobUrl);
+                            URL.revokeObjectURL(dataBlobUrl);
+                        }).catch((message) => {
+                            alert(message);
+                            loadingBar.style.display = "none";
+                        });
+                    };
+                    document.body.appendChild(script);
+
+                } catch (err) {
+                    alert("Failed to load game files: " + err.message);
+                    loadingBar.style.display = "none";
+                }
+            },
+
+            isMobile: function() {
+                return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            },
+
+            isEmpty: function(value) {
+                return value === undefined || value === null || value === "";
+            },
+
+            toBoolean: function(value) {
+                return value === true || value === "true" || value === 1 || value === "1" || value === "True";
+            },
+
+            isNumber: function(value) {
+                return typeof value === 'number' && !isNaN(value);
+            },
+
+            toNumber: function(value) {
+                function handleMathExpression(str) {
+                    const mathMatch = str.match(/^(\d*\.?\d+)\s*([+\-*/])\s*(\d*\.?\d+)$/);
+                    if (!mathMatch) return null;
+
+                    const a = parseFloat(mathMatch[1]);
+                    const operator = mathMatch[2];
+                    const b = parseFloat(mathMatch[3]);
+
+                    const operators = {
+                        '+': (a, b) => a + b,
+                        '-': (a, b) => a - b,
+                        '*': (a, b) => a * b,
+                        '/': (a, b) => b !== 0 ? a / b : NaN,
+                    };
+                    return operators[operator](a, b);
+                }
+
+                function convertToNumber(str) {
+                    const num = parseFloat(str);
+                    return isNaN(num) ? 0 : num;
+                }
+
+                if (this.isNumber(value)) return value;
+                if (this.isEmpty(value)) return 0;
+
+                const str = String(value).trim();
+                if (str === '') return 0;
+
+                return handleMathExpression(str) || convertToNumber(str);
+            },
+
+        };
+
+        // Apply common fixes.
+        unityApp.applyCommonFixes();
+
+        // Lock rotation.
+        unityApp.tryRotationLock();
+
+        // Lock aspect ratio.
+        unityApp.tryLockAspectRatio();
+
+        // Automatically start after script is loaded.
+        unityApp.startLoading();
+    </script>
+</body>
+
+</html>
