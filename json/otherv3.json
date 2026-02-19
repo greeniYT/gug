@@ -15,6 +15,11 @@
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/apps/canvas.html"
   },
   {
+    "name": "Music",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/music.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/apps/music.html"
+  },
+  {
     "name": "Ruffle",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Ruffle_vector_logo.svg/2560px-Ruffle_vector_logo.svg.png",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/apps/Ruffle.html"
