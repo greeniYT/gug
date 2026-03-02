@@ -30,6 +30,16 @@
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/redball4.html"
   },
   {
+    "name": "Sonic CD",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/scd.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/scd.html"
+  },
+  {
+    "name": "Sonic Robo Blast 2",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/srb2.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/srb2.html"
+  },
+  {
     "name": "Pou",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pou.webp",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pou.html"
