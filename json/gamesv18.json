@@ -35,6 +35,11 @@
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/scd.html"
   },
   {
+    "name": "Sonic Mania Plus",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sonicmania.webp",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sonicmania.html"
+  },
+  {
     "name": "Sonic Robo Blast 2",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/srb2.png",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/srb2.html"
