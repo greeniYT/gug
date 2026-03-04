@@ -12,7 +12,7 @@
   {
     "name": "Gladihoppers",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gladihoppers.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gladdihoppers.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gladdihoppersv2.html"
   },
   {
     "name": "ULTRAKILL",
@@ -770,8 +770,8 @@
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gd.html"
   },
   {
-    "name": "Red vs Blue",
+    "name": "Red vs Blue (ripoff ravenfield)",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rvb.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rvb.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rvbvs.html"
   }
 ]
