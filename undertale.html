@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <base href="https://cdn.jsdelivr.net/gh/greeniYT/ut@main/test1/" target="_blank">
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <link rel="icon" type="x-icon" href="favicon.png">
+    <title>UNDERTALE</title>
+    <style>
+      @-webkit-keyframes rotation {
+        from { -webkit-transform: rotate(0deg); }
+        to { -webkit-transform: rotate(360deg); }
+      }
+      @-moz-keyframes rotation {
+        from { -moz-transform: rotate(0deg); }
+        to { -moz-transform: rotate(360deg); }
+      }
+      @-o-keyframes rotation {
+        from { -o-transform: rotate(0deg); }
+        to { -o-transform: rotate(360deg); }
+      }
+      @keyframes rotation {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      html { background: #111111; }
+
+      body {
+        font-family: arial;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        min-height: fill-available;
+        min-width: 100vw;
+        background-color: #111111;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+        place-items: center;
+      }
+
+      body.scrollingDisabled { overflow: hidden; }
+
+      .emscripten { padding-right: 0; display: block; }
+
+      div.emscripten {
+        text-align: center;
+        font-family: "Lucida Console", Monaco, monospace;
+      }
+
+      canvas.emscripten {
+        display: none;
+        background-color: black;
+        position: flex;
+        transition: opacity 5s ease-in;
+        -webkit-transition: opacity 5s ease-in;
+        opacity: 0;
+        filter: blur(0) grayscale(0);
+        image-rendering: optimizeSpeed;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: -o-crisp-edges;
+        image-rendering: pixelated;
+        -ms-interpolation-mode: nearest-neighbor;
+      }
+
+      canvas.active {
+        animation-name: fadeIn;
+        animation-duration: 2s;
+        opacity: 1;
+      }
+
+      canvas.paused {
+        animation-name: blur;
+        animation-duration: 0.5s;
+        filter: blur(2px) grayscale(1);
+      }
+
+      canvas.unpaused { animation-name: none; }
+      canvas.animatedSizeTransitions { transition: width 0.3s ease, height 0.3s ease; }
+
+      @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+
+      @keyframes blur {
+        0% { filter: blur(0) grayscale(0); }
+        100% { filter: blur(2px) grayscale(1); }
+      }
+
+      .spinner {
+        height: 30px;
+        width: 30px;
+        -webkit-animation: rotation 0.8s linear infinite;
+        -moz-animation: rotation 0.8s linear infinite;
+        -o-animation: rotation 0.8s linear infinite;
+        animation: rotation 0.8s linear infinite;
+        border: 5px solid #bdff00;
+        border-top: 5px solid #719900;
+        border-radius: 100%;
+      }
+
+      #status {
+        display: inline-block;
+        vertical-align: top;
+        font-weight: bold;
+        color: #ccc;
+      }
+
+      #progress {
+        width: 250px;
+        height: 10px;
+        -webkit-appearance: none;
+        appearance: none;
+        padding: 5px;
+      }
+
+      progress[value]::-webkit-progress-bar {
+        background-color: #8492a6;
+        height: 10px;
+        border-radius: 15px;
+      }
+      progress[value]::-webkit-progress-value {
+        background-image: -webkit-linear-gradient(left, #719900, #bdff00);
+        height: 10px;
+        border-radius: 15px;
+      }
+
+      div.loading {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+      }
+      div.loading > * { padding: 10px; margin: 10px; }
+
+      /* Hide the output/button container completely */
+      .output-container { display: none !important; }
+
+      #output { display: none !important; }
+
+      #message-container {
+        display: none;
+        min-height: 50px;
+        background-color: rgba(20, 20, 20, 0.5);
+        outline: none;
+        border: none;
+        padding: 0;
+        width: 100%;
+        position: absolute;
+        top: 0;
+      }
+
+      #messages {
+        margin-left: 50px;
+        color: white;
+        font-family: "Lucida Console", Monaco, monospace;
+        outline: none;
+        border: none;
+        padding: 0;
+      }
+
+      img.qrCode { opacity: 1.0; width: 50%; height: 50%; }
+
+      #pauseMenuContainer {
+        position: absolute;
+        top: 0; bottom: 0; left: 0; right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #pauseMenuContainer[hidden] { display: none !important; opacity: 0; }
+
+      #pauseMenuBorder {
+        background: linear-gradient(135deg, #FA1E4E, transparent 40%);
+        padding: 1px;
+        border-radius: 4px;
+        clip-path: polygon(10.5px 0, 100% 0, 100% 100%, 0 100%, 0 10.5px);
+        width: 70vw;
+        max-width: 400px;
+      }
+
+      #pauseMenu {
+        display: flex;
+        flex-direction: column;
+        padding: 60px 30px 60px 30px;
+        background: linear-gradient(180deg, #2E273F 16.15%, rgba(46, 39, 63, 0.79) 56.25%, #2E273F 91.15%);
+        border-radius: 4px;
+        clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+        animation-name: fadeIn;
+        animation-duration: 0.5s;
+        opacity: 1;
+      }
+
+      #pauseMenu button {
+        font-weight: 500;
+        font-size: 17px;
+        color: white;
+        background: #FA1E4E;
+        border: 1px solid #FA1E4E;
+        border-radius: 6px;
+        padding: 12px 24px;
+        margin: 5px 0;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+
+      #pauseMenu button#quitButton { background: #FA1E4E40; }
+      #pauseMenu button:hover { filter: brightness(1.15); }
+      #pauseMenu button:active { filter: brightness(0.85); }
+      #pauseMenu button[hidden] { display: none; }
+
+      /* Fullscreen button */
+      #fullscreen-btn {
+        position: fixed;
+        bottom: 36px;
+        right: 12px;
+        z-index: 9999;
+        background: rgba(0,0,0,0.6);
+        border: 1px solid rgba(189,255,0,0.4);
+        border-radius: 6px;
+        color: #bdff00;
+        font-family: "Lucida Console", Monaco, monospace;
+        font-size: 13px;
+        padding: 6px 10px;
+        cursor: pointer;
+        transition: background 0.2s, border-color 0.2s;
+        line-height: 1;
+      }
+      #fullscreen-btn:hover {
+        background: rgba(189,255,0,0.15);
+        border-color: #bdff00;
+      }
+
+      /* Credits bar */
+      #credits-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 6px 12px;
+        background: rgba(0, 0, 0, 0.55);
+        font-family: "Lucida Console", Monaco, monospace;
+        font-size: 12px;
+        z-index: 9999;
+      }
+
+      #credits-bar a {
+        color: #bdff00;
+        text-decoration: none;
+        opacity: 0.85;
+        transition: opacity 0.2s;
+      }
+
+      #credits-bar a:hover {
+        opacity: 1;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas
+      class="emscripten"
+      id="canvas"
+      oncontextmenu="event.preventDefault()"
+      tabindex="-1"
+    ></canvas>
+
+    <div id="pauseMenuContainer" hidden>
+      <div id="pauseMenuBorder">
+        <div id="pauseMenu">
+          <button id="resumeButton" onclick="resume()">Resume</button>
+          <button id="quitButton" onclick="quitIfSupported()">Quit</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="loading">
+      <div class="spinner" id="spinner"></div>
+      <div class="emscripten" id="status">Preparing game data...</div>
+      <progress value="0" max="100" id="progress" hidden="1"></progress>
+    </div>
+
+    <!-- Buttons hidden but kept in DOM so existing JS references don't break -->
+    <div class="output-container" id="output-container" style="display:none!important;visibility:hidden!important;">
+      <button class="output-button" onclick="toggleConsole()">Toggle Console</button>
+      <button id="QRButton" class="output-button" onclick="togglegithub()">Visit Github Repo</button>
+      <button id="QR2Button" class="output-button" onclick="toggleclear_site_cache()">Clear Site Cache</button>
+      <button class="output-button" id="stats-button" onclick="toggleFPS()">Enable FPS Counter</button>
+      <button class="output-button" id="share-button" onclick="togglewebports()">View All Web Ports</button>
+      <button class="output-button" onclick="togglejoin_discord()">Join Discord Server</button>
+      <input id="colorpicker" type="color" onchange="changecolor(this)">
+      <textarea id="output" rows="8"></textarea>
+    </div>
+
+    <div id="message-container">
+      <div id="messages"></div>
+    </div>
+
+    <!-- Fullscreen button -->
+    <button id="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">⛶ Fullscreen</button>
+
+    <!-- Credits bar -->
+    <div id="credits-bar">
+      <a href="https://github.com/burnedpopcorn" target="_blank" rel="noopener">credit to burnedpopcorn180</a>
+      <a href="https://github.com/greeniYT" target="_blank" rel="noopener">ripped by: greeni</a>
+    </div>
+
+    <script async
+      data-ad-client="ca-pub-123"
+      data-ad-frequency-hint="30s"
+      data-adbreak-test="on"
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+    </script>
+    <script>
+      window.adsbygoogle = window.adsbygoogle || [];
+      const adBreak = adConfig = function(o) { adsbygoogle.push(o); }
+    </script>
+
+    <script type="text/javascript">
+      // ─── Config ───────────────────────────────────────────────────────────────
+      const BASE_URL   = "https://cdn.jsdelivr.net/gh/greeniYT/ut@main/test1/";
+      const TOTAL_PARTS = 7;
+      const CHANGE_ASPECT_RATIO = true;
+
+      // ─── Filtered console strings ─────────────────────────────────────────────
+      const CONSOLE_layer_set_visible     = "layer_set_visible() - could not find specified layer in current room";
+      const CONSOLE_layer_tilemap_get_id  = "layer_tilemap_get_id() - specified tilemap not found";
+      const CONSOLE_layer_depth           = "layer_depth() - can't find specified layer";
+      const CONSOLE_draw_tilemap          = "draw_tilemap() - couldn't find specified tilemap";
+      const CONSOLE_layer_get_all_elements = "layer_get_all_elements() - can't find specified layer";
+
+      const BAD_STRINGS = new Set([
+        CONSOLE_layer_set_visible,
+        CONSOLE_layer_tilemap_get_id,
+        CONSOLE_layer_depth,
+        CONSOLE_draw_tilemap,
+        CONSOLE_layer_get_all_elements
+      ]);
+
+      console.log("*************************");
+      console.log("BetterRunner v1.2");
+      console.log("_____by burnedpopcorn180");
+      console.log("*************************");
+
+      // ─── Page elements ────────────────────────────────────────────────────────
+      var bodyElement            = document.getElementsByTagName("body")[0];
+      var statusElement          = document.getElementById("status");
+      var progressElement        = document.getElementById("progress");
+      var spinnerElement         = document.getElementById("spinner");
+      var canvasElement          = document.getElementById("canvas");
+      var outputElement          = document.getElementById("output");
+      var outputContainerElement = document.getElementById("output-container");
+      var pauseMenu              = document.getElementById("pauseMenuContainer");
+      var resumeButton           = document.getElementById("resumeButton");
+      var quitButton             = document.getElementById("quitButton");
+      const messageContainerElement = document.getElementById("message-container");
+      const messagesElement         = document.getElementById("messages");
+
+      let rollbackMessages = [];
+      let clearRollbackMessagesTimeoutId = -1;
+
+      function changecolor(el) {
+        document.body.style.backgroundColor = el.value;
+      }
+
+      // ─── Rollback messages ────────────────────────────────────────────────────
+      const showRollbackMessage = function(message) {
+        let messages = "";
+        rollbackMessages.push(message);
+        rollbackMessages.forEach(m => messages += "<p>" + m + "</p>");
+        messagesElement.innerHTML = messages;
+        messageContainerElement.style.display = 'block';
+        if (clearRollbackMessagesTimeoutId === -1) clearTimeout(clearRollbackMessagesTimeoutId);
+        clearRollbackMessagesTimeoutId = setTimeout(clearRollbackMessages, 5000);
+      };
+
+      const clearRollbackMessages = function() {
+        clearRollbackMessagesTimeoutId = -1;
+        rollbackMessages = [];
+        messageContainerElement.style.display = 'none';
+      };
+
+      // ─── Aspect ratio ─────────────────────────────────────────────────────────
+      var startingHeight, startingWidth, startingAspect;
+
+      function ensureAspectRatio() {
+        if (!canvasElement || !CHANGE_ASPECT_RATIO) return;
+        if (startingHeight === undefined && startingWidth === undefined) return;
+        canvasElement.classList.add("active");
+        const maxWidth = window.innerWidth;
+        const maxHeight = window.innerHeight;
+        var newHeight, newWidth;
+        var heightQuotient = startingHeight / maxHeight;
+        var widthQuotient  = startingWidth  / maxWidth;
+        if (heightQuotient > widthQuotient) {
+          newHeight = maxHeight;
+          newWidth  = newHeight * startingAspect;
+        } else {
+          newWidth  = maxWidth;
+          newHeight = newWidth / startingAspect;
+        }
+        canvasElement.style.height = newHeight + "px";
+        canvasElement.style.width  = newWidth  + "px";
+      }
+
+      const resizeObserver = new ResizeObserver(() => {
+        window.requestAnimationFrame(ensureAspectRatio);
+        setTimeout(() => window.requestAnimationFrame(ensureAspectRatio), 100);
+      });
+      resizeObserver.observe(document.body);
+
+      // ─── Part-file merger ─────────────────────────────────────────────────────
+      async function fetchParts() {
+        const parts = [];
+        let totalBytes = 0;
+
+        for (let i = 1; i <= TOTAL_PARTS; i++) {
+          const url = BASE_URL + "game.unx.part" + i;
+          statusElement.innerHTML = "Loading game data... (part " + i + " of " + TOTAL_PARTS + ")";
+          progressElement.hidden  = false;
+          progressElement.value   = Math.round(((i - 1) / TOTAL_PARTS) * 100);
+          progressElement.max     = 100;
+
+          const resp = await fetch(url);
+          if (!resp.ok) throw new Error("Failed to fetch " + url + " (" + resp.status + ")");
+
+          const buf = await resp.arrayBuffer();
+          parts.push(new Uint8Array(buf));
+          totalBytes += buf.byteLength;
+          console.log("Part " + i + " loaded: " + buf.byteLength + " bytes");
+        }
+
+        statusElement.innerHTML = "Merging game data...";
+        progressElement.value   = 95;
+        const merged = new Uint8Array(totalBytes);
+        let offset = 0;
+        for (const part of parts) {
+          merged.set(part, offset);
+          offset += part.length;
+        }
+        console.log("game.unx merged: " + totalBytes + " bytes total");
+
+        window.__gameUnxData = merged;
+
+        progressElement.value   = 100;
+        statusElement.innerHTML = "Starting game...";
+        progressElement.hidden  = true;
+      }
+
+      // ─── XHR + fetch intercept ────────────────────────────────────────────────
+      (function patchXHR() {
+        const OrigXHR = window.XMLHttpRequest;
+        function PatchedXHR() {
+          const xhr = new OrigXHR();
+          let _url = "";
+
+          const origOpen = xhr.open.bind(xhr);
+          xhr.open = function(method, url, ...rest) {
+            _url = url;
+            return origOpen(method, url, ...rest);
+          };
+
+          const origSend = xhr.send.bind(xhr);
+          xhr.send = function(body) {
+            if (typeof _url === "string" && _url.includes("game.unx") && window.__gameUnxData) {
+              console.log("XHR intercept: serving game.unx from memory for", _url);
+              setTimeout(() => {
+                Object.defineProperty(xhr, "readyState",  { get: () => 4 });
+                Object.defineProperty(xhr, "status",      { get: () => 200 });
+                Object.defineProperty(xhr, "response",    { get: () => window.__gameUnxData.buffer });
+                Object.defineProperty(xhr, "responseType",{ get: () => "arraybuffer" });
+                if (typeof xhr.onreadystatechange === "function") xhr.onreadystatechange();
+                if (typeof xhr.onload === "function") xhr.onload();
+              }, 0);
+              return;
+            }
+            return origSend(body);
+          };
+
+          return xhr;
+        }
+        PatchedXHR.prototype = OrigXHR.prototype;
+        window.XMLHttpRequest = PatchedXHR;
+      })();
+
+      (function patchFetch() {
+        const origFetch = window.fetch.bind(window);
+        window.fetch = function(input, init) {
+          const url = typeof input === "string" ? input : (input && input.url) || "";
+          if (url.includes("game.unx") && window.__gameUnxData) {
+            console.log("fetch intercept: serving game.unx from memory for", url);
+            const blob = new Blob([window.__gameUnxData], { type: "application/octet-stream" });
+            return Promise.resolve(new Response(blob, { status: 200 }));
+          }
+          return origFetch(input, init);
+        };
+      })();
+
+      // ─── Module definition ────────────────────────────────────────────────────
+      var loadprogress = 0;
+
+      var Module = {
+        preRun:  [],
+        postRun: [],
+
+        print: (function() {
+          var element = document.getElementById("output");
+          if (element) element.value = "";
+          return function(text) {
+            if (text === "Starting WAD") loadprogress += 1;
+            if (loadprogress === 1)       Module.setStatus(text);
+            else if (loadprogress >= 2)   Module.setStatus("");
+
+            if (arguments.length > 1)
+              text = Array.prototype.slice.call(arguments).join(" ");
+
+            if (!BAD_STRINGS.has(text)) console.log(text);
+
+            if (text === "Entering main loop.") {
+              ensureAspectRatio();
+              loadprogress += 1;
+            }
+
+            if (element && !BAD_STRINGS.has(text)) {
+              element.value += text + "\n";
+              element.scrollTop = element.scrollHeight;
+            }
+          };
+        })(),
+
+        printErr: function(text) {
+          if (arguments.length > 1)
+            text = Array.prototype.slice.call(arguments).join(" ");
+          console.error(text);
+        },
+
+        canvas: (function() {
+          return document.getElementById("canvas");
+        })(),
+
+        setStatus: function(text) {
+          if (!Module.setStatus.last)
+            Module.setStatus.last = { time: Date.now(), text: "" };
+          if (text === Module.setStatus.last.text) return;
+          var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
+          var now = Date.now();
+          if (m && now - Module.setStatus.last.time < 30) return;
+          Module.setStatus.last.time = now;
+          Module.setStatus.last.text = text;
+          if (m) {
+            text = m[1];
+            progressElement.value  = parseInt(m[2]) * 100;
+            progressElement.max    = parseInt(m[4]) * 100;
+            progressElement.hidden = false;
+            spinnerElement.hidden  = false;
+          } else {
+            progressElement.value  = null;
+            progressElement.max    = null;
+            progressElement.hidden = true;
+            if (!text) {
+              spinnerElement.style.display = "none";
+              canvasElement.style.display  = "block";
+            }
+          }
+          statusElement.innerHTML = text;
+        },
+
+        totalDependencies: 0,
+        monitorRunDependencies: function(left) {
+          this.totalDependencies = Math.max(this.totalDependencies, left);
+          Module.setStatus(
+            left
+              ? "Preparing... (" + (this.totalDependencies - left) + "/" + this.totalDependencies + ")"
+              : "All downloads complete."
+          );
+        },
+      };
+
+      Module.setStatus("Preparing game data...");
+
+      window.onerror = function(event) {
+        Module.setStatus("Exception thrown, see JavaScript console");
+        spinnerElement.style.display = "none";
+        Module.setStatus = function(text) {
+          if (text) Module.printErr("[post-exception status] " + text);
+        };
+      };
+
+      if (typeof window === "object") {
+        Module['arguments'] = window.location.search.substr(1).trim().split('&');
+        if (!Module['arguments'][0]) Module['arguments'] = [];
+      }
+
+      // ─── Fullscreen ───────────────────────────────────────────────────────────
+      function toggleFullscreen() {
+        const el = canvasElement || document.documentElement;
+        if (!document.fullscreenElement) {
+          (el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen).call(el);
+        } else {
+          (document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen).call(document);
+        }
+      }
+
+      document.addEventListener("fullscreenchange", () => {
+        const btn = document.getElementById("fullscreen-btn");
+        if (btn) btn.textContent = document.fullscreenElement ? "✕ Exit Full" : "⛶ Fullscreen";
+      });
+
+      // ─── Button functions (kept for compatibility) ────────────────────────────
+      function toggleConsole() {
+        var isShown = outputElement.style.display === "flex";
+        if (isShown) {
+          outputElement.style.display = "none";
+        } else {
+          outputElement.style.display = "flex";
+        }
+      }
+
+      function togglegithub() {
+        window.open("https://github.com/burnedpopcorn/Pizza-Tower-1.1.0-Web-Port", '_blank').focus();
+      }
+
+      function toggleclear_site_cache() {
+        if (confirm("This Will Clear Site Cache\nThis will ALSO Clear ALL SAVES\nONLY do this if the Site has recently been Updated\nand if you are experiencing crashes relating to texture loading\nContinue?")) {
+          (async () => {
+            const dbs = await window.indexedDB.databases();
+            dbs.forEach(db => { window.indexedDB.deleteDatabase(db.name) });
+          })();
+          alert("All Site Cache Has been Cleared!\nPlease reload the Page");
+        }
+      }
+
+      var stopfps = 0;
+      function toggleFPS() {
+        stopfps += 1;
+        if (stopfps === 1) {
+          window.location.href = "javascript:(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='https://mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()"
+        }
+        if (stopfps >= 5) stopfps = 2;
+      }
+
+      function togglewebports() {
+        window.open("https://burnedwebsite.vercel.app/projects/", '_blank').focus();
+      }
+
+      function togglejoin_discord() {
+        window.open("https://discord.gg/3dPTpruHhc", '_blank').focus();
+      }
+
+      // ─── WAD / async / exception hooks ────────────────────────────────────────
+      var g_pWadLoadCallback = undefined;
+      function setWadLoadCallback(_wadLoadCallback) { g_pWadLoadCallback = _wadLoadCallback; }
+
+      var g_pAddAsyncMethod = -1;
+      function setAddAsyncMethod(asyncMethod) { g_pAddAsyncMethod = asyncMethod; }
+
+      var g_pJSExceptionHandler = undefined;
+      function setJSExceptionHandler(exceptionHandler) {
+        if (typeof exceptionHandler == "function") g_pJSExceptionHandler = exceptionHandler;
+      }
+      function hasJSExceptionHandler() {
+        return (g_pJSExceptionHandler != undefined) && (typeof g_pJSExceptionHandler == "function");
+      }
+      function doJSExceptionHandler(exceptionJSON) {
+        if (typeof g_pJSExceptionHandler == "function") {
+          var exception = JSON.parse(exceptionJSON);
+          g_pJSExceptionHandler(exception);
+        }
+      }
+
+      // ─── File manifest ────────────────────────────────────────────────────────
+      function manifestFiles() {
+        return ["runner.data", "runner.js", "runner.wasm", "audio-worklet.js", "game.unx"].join(";");
+      }
+
+      function manifestFilesMD5() {
+        return [
+          "f27d559c3b646eb1b6f3a14786946e2d",
+          "db5d7a12d2cd866bf536f8ce8c8ffb94",
+          "591f58ecebef9006336731fff76594fb",
+          "e8f1e8db8cf996f8715a6f2164c2e44e",
+          "b1e763db5c753fc5928976defdaccaae"
+        ];
+      }
+
+      function onFirstFrameRendered() {}
+
+      function onGameSetWindowSize(width, height) {
+        if (startingHeight === undefined && startingWidth === undefined) {
+          console.log("Initial window size set to width: " + width + ", height: " + height);
+          startingHeight = height;
+          startingWidth  = width;
+          startingAspect = startingWidth / startingHeight;
+        }
+      }
+
+      // ─── Ads ──────────────────────────────────────────────────────────────────
+      function triggerAd(adId, _callback_beforeAd, _callback_afterAd, _callback_adDismissed, _callback_adViewed, _callback_adbreakDone) {
+        var pRValueCopy       = triggerAdPrefix(_callback_beforeAd, _callback_afterAd, _callback_adDismissed, _callback_adViewed, _callback_adbreakDone);
+        var pCallbackBeforeAd  = pRValueCopy + (0 * 16);
+        var pCallbackAfterAd   = pRValueCopy + (1 * 16);
+        var pCallbackAdDismissed = pRValueCopy + (2 * 16);
+        var pCallbackAdViewed  = pRValueCopy + (3 * 16);
+        var pCallbackAdBreakDone = pRValueCopy + (4 * 16);
+        adBreak({
+          "type": "reward",
+          "name": adId,
+          "beforeAd":     () => { console.log("beforeAd");     doGMLCallback(pCallbackBeforeAd,    { id: adId }); },
+          "afterAd":      () => { console.log("afterAd");      doGMLCallback(pCallbackAfterAd,     { id: adId }); },
+          "beforeReward": (showAdFn) => { console.log("beforeReward"); showAdFn(); },
+          "adDismissed":  () => { console.log("adDismissed");  doGMLCallback(pCallbackAdDismissed, { id: adId }); },
+          "adViewed":     () => { console.log("adViewed");     doGMLCallback(pCallbackAdViewed,    { id: adId }); },
+          "adBreakDone":  (placementInfo) => {
+            console.log("adBreakDone");
+            doGMLCallback(pCallbackAdBreakDone, { id: adId });
+            triggerAdPostfix(pRValueCopy);
+          },
+        });
+      }
+
+      // ─── Pause / resume ───────────────────────────────────────────────────────
+      function pause() {
+        if (!canvasElement.classList.contains("active")) return;
+        GM_pause();
+        pauseMenu.hidden = false;
+        canvasElement.classList.add("paused");
+      }
+
+      function resume() {
+        GM_unpause();
+        pauseMenu.hidden = true;
+        canvasElement.classList.remove("paused");
+        canvasElement.classList.add("unpaused");
+        enterFullscreenIfSupported();
+        lockOrientationIfSupported();
+      }
+
+      function quitIfSupported() {
+        if (window.oprt && window.oprt.closeTab) {
+          window.oprt.closeTab();
+        } else if (window.chrome && window.chrome.runtime && window.chrome.runtime.sendMessage) {
+          window.chrome.runtime.sendMessage('mpojjmidmnpcpopbebmecmjdkdbgdeke', { command: 'closeTab' });
+        }
+      }
+
+      function enterFullscreenIfSupported() {
+        if (!window.oprt || !window.oprt.enterFullscreen) return;
+        window.oprt.enterFullscreen();
+        let viewStatus = GM_get_view_status();
+        viewStatus.fullscreen = true;
+        GM_set_view_status(viewStatus);
+      }
+
+      function lockOrientationIfSupported() {
+        if (!window.oprt || !window.oprt.lockPortraitOrientation || !window.oprt.lockLandscapeOrientation) return;
+        let viewStatus = GM_get_view_status();
+        if (viewStatus.landscape === true && viewStatus.portrait === false) {
+          window.oprt.lockPortraitOrientation();
+        } else if (viewStatus.landscape === false && viewStatus.portrait === true) {
+          window.oprt.lockPortraitOrientation();
+        }
+      }
+
+      // ─── Mobile ───────────────────────────────────────────────────────────────
+      if (/Android|iPhone|iPod/i.test(navigator.userAgent)) {
+        bodyElement.className = "scrollingDisabled";
+        canvasElement.classList.add("animatedSizeTransitions");
+        outputContainerElement.hidden = true;
+      }
+
+      document.addEventListener("visibilitychange", (event) => {
+        if (document.visibilityState != "visible") pause();
+      });
+
+      window.addEventListener("load", (event) => {
+        if ((!window.oprt || !window.oprt.enterFullscreen) &&
+            (!window.chrome || !window.chrome.runtime || !window.chrome.runtime.sendMessage)) {
+          quitButton.hidden = true;
+        }
+      });
+
+      setWadLoadCallback(() => {
+        enterFullscreenIfSupported();
+        lockOrientationIfSupported();
+      });
+
+      // ─── Fetch parts, then dynamically inject runner.js ───────────────────────
+      (async () => {
+        try {
+          await fetchParts();
+
+          const script = document.createElement("script");
+          script.type  = "text/javascript";
+          script.src   = BASE_URL + "runner.js";
+          script.async = true;
+          document.body.appendChild(script);
+
+        } catch (err) {
+          console.error("Failed to load game parts:", err);
+          statusElement.innerHTML = "Error loading game: " + err.message;
+          spinnerElement.style.display = "none";
+        }
+      })();
+    </script>
+  </body>
+</html>
