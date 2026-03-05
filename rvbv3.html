@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8" >
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/eheheh-6/hex@main/style.css" >
+    <script>global = window;  var __bfs__=function(){"use strict";function t(t,r){return r.forEach((function(r){r&&"string"!=typeof r&&!Array.isArray(r)&&Object.keys(r).forEach((function(e){if("default"!==e&&!(e in t)){var n=Object.getOwnPropertyDescriptor(r,e);Object.defineProperty(t,e,n.get?n:{enumerable:!0,get:function(){return r[e]}})}}))})),Object.freeze(t)}var r=[],e=[],n="undefined"!=typeof Uint8Array?Uint8Array:Array,o=!1;function i(){o=!0;for(var t="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",n=0,i=t.length;n<i;++n)r[n]=t[n],e[t.charCodeAt(n)]=n;e["-".charCodeAt(0)]=62,e["_".charCodeAt(0)]=63}window.process = {  env: { NODE_ENV: 'development' },  nextTick: function(cb) {    return requestAnimationFrame(cb);  },  browser: false,  once: __bfs__.BFSRequire('process').once,};window.path = __bfs__.BFSRequire('path');window.fs = __bfs__.BFSRequire('fs');window.events = __bfs__.BFSRequire('events');window.os = __bfs__.BFSRequire('os');window.process = __bfs__.BFSRequire('process');window.process.stdout = {isTTY: true};window.buffer = __bfs__.BFSRequire('buffer');window.buffer.hasOwnProperty = () => true;window.Buffer = window.buffer.Buffer;window.require = __bfs__.BFSRequire;window.__filename = '/index.js';window.__dirname = '/';__bfs__.backends.InMemory.Create({}, ( e, inMemory ) => {  if ( e ) {    console.error(e);    return;  };  __bfs__.initialize(inMemory);});</script>
+    <script src="https://cdn.jsdelivr.net/gh/eheheh-6/hex@main/v2.05d2ba7fadb5ca96a381.js"></script>
+    <style>
+        canvas:focus {
+            outline: none;
+        }
+
+        html, body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            height: 100%;
+        }
+
+        /* ── Loading Screen ── */
+        #loading-cover {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0d0d0d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        #unity-loading-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            width: 320px;
+        }
+
+        #unity-logo img {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            border-radius: 16px;
+        }
+
+        #unity-progress-bar-empty {
+            width: 100%;
+            height: 18px;
+            background: #333;
+            border-radius: 9px;
+            overflow: hidden;
+            border: 1px solid #555;
+        }
+
+        #unity-progress-bar-full {
+            height: 100%;
+            width: 0%;
+            background: #fff;
+            border-radius: 9px;
+            transition: width 0.3s ease;
+        }
+
+        /* Spinner */
+        .spinner {
+            width: 36px;
+            height: 36px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #e63946;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        #unity-container,
+        #unity-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="dark">
+    <div id="unity-container" class="unity-desktop">
+        <canvas id="unity-canvas"></canvas>
+    </div>
+    <div id="loading-cover">
+        <div id="unity-loading-bar">
+            <div id="unity-logo"><img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rvb.jpg"></div>
+            <div id="unity-progress-bar-empty" style="display: none;">
+                <div id="unity-progress-bar-full"></div>
+            </div>
+            <div class="spinner"></div>
+        </div>
+    </div>
+    <script>
+        const hideFullScreenButton = "";
+        const buildUrl = "https://cdn.jsdelivr.net/gh/eheheh-6/hex@main/Build";
+        const loaderUrl = buildUrl + "/Final.loader.js";
+        const config = {
+            dataUrl: buildUrl + "/Final.data.unityweb",
+            frameworkUrl: buildUrl + "/Final.framework.js.unityweb",
+            codeUrl: buildUrl + "/Final.wasm.unityweb",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "SteelRaven7",
+            productName: "Ravenfield",
+            productVersion: "1.0"
+        };
+
+        // Patch UnityLoader to support multiple data files
+        const originalUnityLoaderFetch = fetch;
+        fetch = async function(url, ...args) {
+            if (url.endsWith("/Final.data.unityweb")) {
+                const part1 = await originalUnityLoaderFetch(buildUrl + "/Final_part1.data.unityweb");
+                const part2 = await originalUnityLoaderFetch(buildUrl + "/Final_part2.data.unityweb");
+                const part1Buffer = await part1.arrayBuffer();
+                const part2Buffer = await part2.arrayBuffer();
+                const combinedBuffer = new Uint8Array(part1Buffer.byteLength + part2Buffer.byteLength);
+                combinedBuffer.set(new Uint8Array(part1Buffer), 0);
+                combinedBuffer.set(new Uint8Array(part2Buffer), part1Buffer.byteLength);
+                return new Response(combinedBuffer.buffer);
+            }
+            return originalUnityLoaderFetch(url, ...args);
+        };
+
+        const container = document.querySelector("#unity-container");
+        const canvas = document.querySelector("#unity-canvas");
+        const loadingCover = document.querySelector("#loading-cover");
+        const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
+        const progressBarFull = document.querySelector("#unity-progress-bar-full");
+        const spinner = document.querySelector('.spinner');
+
+        canvas.style.background = "url('https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rvb.jpg') center / cover";
+
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        function FocusGame() {
+            window.focus();
+            canvas.focus();
+        }
+        window.addEventListener('pointerdown', () => { FocusGame(); });
+        window.addEventListener('touchstart', () => { FocusGame(); });
+
+        let StartUnityInstance;
+        let myGameInstance = null;
+        let ysdk = null;
+        let player = null;
+        let leaderboard;
+        let payments = null;
+        let initGame = false;
+        let nowFullAdOpen = false;
+
+        const script = document.createElement("script");
+        script.src = loaderUrl;
+        script.onload = () => {
+            StartUnityInstance = function() {
+                createUnityInstance(canvas, config, (progress) => {
+                    spinner.style.display = "none";
+                    progressBarEmpty.style.display = "";
+                    progressBarFull.style.width = `${100 * progress}%`;
+                }).then((unityInstance) => {
+                    myGameInstance = unityInstance;
+                    loadingCover.style.display = "none";
+                }).catch((message) => {
+                    console.error(message);
+                });
+            };
+            if (LocalHost())
+                StartUnityInstance_IfUnloaded();
+        };
+
+        function StartUnityInstance_IfUnloaded() {
+            if (spinner.style.display !== "none") StartUnityInstance();
+        }
+
+        function LocalHost() {
+            var host = window.location.hostname;
+            return host == "localhost" || host == "127.0.0.1";
+        }
+
+        setTimeout(StartUnityInstance_IfUnloaded, 5000);
+        InitYSDK();
+
+        async function InitYSDK() {
+            try {
+                if (LocalHost()) return;
+                console.log('Init Yandex SDK');
+                ysdk = await YaGames.init();
+                FullAdShow();
+            } catch (e) {
+                console.error('CRASH Initialization SDK: ', e);
+            }
+            StartUnityInstance_IfUnloaded();
+        }
+
+        function InitGame() {
+            console.log('Init Game Success');
+            initGame = true;
+            if (nowFullAdOpen == true && myGameInstance != null) {
+                myGameInstance.SendMessage('YandexGame', 'OpenFullAd');
+            }
+        }
+
+        function FullAdShow() {
+            try {
+                if (nowFullAdOpen !== true && ysdk !== null) {
+                    ysdk.adv.showFullscreenAdv({
+                        callbacks: {
+                            onOpen: () => {
+                                console.log('Open Ad Interstitial');
+                                nowFullAdOpen = true;
+                                if (initGame === true) {
+                                    myGameInstance.SendMessage('YandexGame', 'OpenFullAd');
+                                }
+                            },
+                            onClose: (wasShown) => {
+                                nowFullAdOpen = false;
+                                if (initGame === true) {
+                                    myGameInstance.SendMessage('YandexGame', 'CloseFullAd', wasShown ? 'true' : 'false');
+                                }
+                                FocusGame();
+                            },
+                            onError: (error) => {
+                                console.error('Error Ad Interstitial', error);
+                                myGameInstance.SendMessage('YandexGame', 'ErrorFullAd');
+                                FocusGame();
+                            }
+                        }
+                    });
+                }
+            } catch (e) {
+                console.error('CRASH FullAd Show: ', e.message);
+            }
+        }
+
+        function RewardedShow(id) {
+            try {
+                ysdk.adv.showRewardedVideo({
+                    callbacks: {
+                        onOpen: () => {
+                            console.log('Opened Video Ad. Id: ' + id);
+                            myGameInstance.SendMessage('YandexGame', 'OpenVideo');
+                        },
+                        onClose: () => {
+                            console.log('Closed Video Ad. Id: ' + id);
+                            myGameInstance.SendMessage('YandexGame', 'CloseVideo');
+                            FocusGame();
+                        },
+                        onRewarded: () => {
+                            console.log('Reward Video Ad. Id: ' + id);
+                            myGameInstance.SendMessage('YandexGame', 'RewardVideo', id);
+                        },
+                        onError: (e) => {
+                            console.error('Error Video Ad. Id: ' + id, e);
+                            myGameInstance.SendMessage('YandexGame', 'ErrorVideo');
+                        }
+                    }
+                });
+            } catch (err) {
+                console.error('CRASH Rewarded Video Ad Show: ', err.message);
+            }
+        }
+
+        function StickyAdActivity(show) {
+            try {
+                ysdk.adv.getBannerAdvStatus().then(({ stickyAdvIsShowing, reason }) => {
+                    if (stickyAdvIsShowing) {
+                        if (!show) ysdk.adv.hideBannerAdv();
+                    } else if (reason) {
+                        console.log('Sticky ad are not shown. Reason:', reason);
+                    } else if (show) {
+                        ysdk.adv.showBannerAdv();
+                    }
+                });
+            } catch (e) {
+                console.error('CRASH Sticky Activity: ', e.message);
+            }
+        }
+
+        function SetLeaderboardScores(_name, score) {
+            try {
+                ysdk.getLeaderboards().then(leaderboard => {
+                    leaderboard.setLeaderboardScore(_name, score);
+                });
+            } catch (e) {
+                console.error('CRASH Set Leaderboard Scores: ', e.message);
+            }
+        }
+
+        function Review() {
+            try {
+                ysdk.feedback.canReview().then(({ value, reason }) => {
+                    if (value) {
+                        ysdk.feedback.requestReview().then(({ feedbackSent }) => {
+                            myGameInstance.SendMessage('YandexGame', 'ReviewSent', feedbackSent ? 'true' : 'false');
+                            FocusGame();
+                        });
+                    } else {
+                        console.log('Review can show = false', reason);
+                        FocusGame();
+                    }
+                });
+            } catch (e) {
+                console.error('CRASH Review: ', e.message);
+                FocusGame();
+            }
+        }
+
+        function PromptShow() {
+            try {
+                ysdk.shortcut.showPrompt().then(result => {
+                    if (result.outcome === 'accepted') {
+                        myGameInstance.SendMessage('YandexGame', 'OnPromptSuccess');
+                    } else {
+                        myGameInstance.SendMessage('YandexGame', 'OnPromptFail');
+                    }
+                    FocusGame();
+                });
+            } catch (e) {
+                console.error('CRASH Prompt Show: ', e.message);
+                FocusGame();
+            }
+        }
+
+        document.body.appendChild(script);
+    </script>
+</body>
+
+</html>
