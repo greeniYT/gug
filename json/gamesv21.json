@@ -384,6 +384,11 @@
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/deltarune.webp",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/deltarune.html"
   },
+   {
+    "name": "Undertale",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/undertale.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/undertale.html"
+  },
   {
     "name": "Monkey Mart",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/monkey-mart.webp",
