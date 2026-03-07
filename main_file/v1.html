@@ -2068,13 +2068,13 @@
     let ambianceEnabled = true;
     let ambianceStarted = false;
 
-    const CONTENT_URLS = {
-      games: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/gamesv23.json',
-      movies: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/movies.json',
-      minecraft: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/mcv3.json',
-      other: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/otherv3.json'
-    };
-
+    const v = Date.now();
+const CONTENT_URLS = {
+  games:     `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/gamesv23.json?v=${v}`,
+  movies:    `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/movies.json?v=${v}`,
+  minecraft: `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/mcv3.json?v=${v}`,
+  other:     `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/otherv3.json?v=${v}`
+};
     const AMBIANCE_URLS = [
       'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance.mp3',
       'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance2.mp3',
