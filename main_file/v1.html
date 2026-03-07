@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:title" content="Greeni's Notebook">
+  <meta property="og:description" content="Testing...">
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/bred.webp">
+  <meta property="og:url" content="https://grogy-learning-17470093.codehs.me/">
+  <meta property="og:type" content="website">
   <title>Greeni's Notebook: Lockdown Browser</title>
   <link rel="icon" type="image/png" href="../assets/favicon.png">
   <style>
@@ -27,17 +33,77 @@
       color: var(--xbox-light);
       min-height: 100vh;
       overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(16, 124, 16, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 0% 100%, rgba(155, 240, 11, 0.05) 0%, transparent 40%);
+      cursor: url('https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/c.png') 0 0, auto;
     }
 
-    body.light-mode {
-      background: #F5F5F5;
-      color: #1F1F1F;
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(16, 124, 16, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 0% 100%, rgba(155, 240, 11, 0.02) 0%, transparent 40%);
+    body.cursor-clicking {
+      cursor: url('https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/cl.png') 0 0, auto;
+    }
+
+    button,
+    a,
+    .game-card,
+    .tab-btn,
+    .contact-link,
+    [role="button"],
+    input[type="button"],
+    input[type="heroSection"] input[type="submit"] {
+      cursor: url('https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/c.png') 0 0, auto !important;
+    }
+
+    #spaceBackground {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(135deg, #020205 0%, #0a0810 50%, #010103 100%);
+      transition: background 0.3s ease;
+    }
+
+    body.light-mode #spaceBackground {
+      background: linear-gradient(135deg, #0a0e27 0%, #1a0033 50%, #0f0a2e 100%);
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0;
+      animation: twinkle 3s infinite;
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: 0.3;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .nebula {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .nebula-purple {
+      background: radial-gradient(circle, #9945ff, transparent);
+    }
+
+    .nebula-cyan {
+      background: radial-gradient(circle, #00d9ff, transparent);
+    }
+
+    .nebula-pink {
+      background: radial-gradient(circle, #ff006e, transparent);
     }
 
     body::before {
@@ -47,13 +113,18 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
       pointer-events: none;
       z-index: 0;
     }
 
+    body.light-mode {
+      background: #F5F5F5;
+      color: #1F1F1F;
+    }
+
     body.light-mode::before {
-      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.05) 100%);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.05) 100%);
     }
 
     .content {
@@ -71,7 +142,7 @@
       padding: 20px 40px;
       background: rgba(15, 15, 15, 0.8);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -80,7 +151,7 @@
 
     body.light-mode header {
       background: rgba(255, 255, 255, 0.85);
-      border-bottom: 1px solid rgba(0,0,0,0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .header-left {
@@ -136,16 +207,17 @@
     .time-display {
       font-size: 18px;
       font-weight: 300;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255, 255, 255, 0.9);
       font-variant-numeric: tabular-nums;
     }
 
     body.light-mode .time-display {
-      color: rgba(0,0,0,0.8);
+      color: rgba(0, 0, 0, 0.8);
     }
 
-    .menu-btn, .settings-btn {
-      background: rgba(255,255,255,0.1);
+    .menu-btn,
+    .settings-btn {
+      background: rgba(255, 255, 255, 0.1);
       border: none;
       color: var(--xbox-light);
       padding: 10px 16px;
@@ -164,10 +236,11 @@
     body.light-mode .menu-btn,
     body.light-mode .settings-btn {
       color: #1F1F1F;
-      background: rgba(0,0,0,0.08);
+      background: rgba(0, 0, 0, 0.08);
     }
 
-    .menu-btn:hover, .settings-btn:hover {
+    .menu-btn:hover,
+    .settings-btn:hover {
       background: var(--xbox-green);
       color: white;
       transform: translateY(-1px);
@@ -197,6 +270,19 @@
       display: flex;
       flex-direction: column;
       gap: 40px;
+      animation: fadeIn 0.6s ease-out 0.8s both;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero-section {
@@ -241,7 +327,7 @@
       left: 0;
       right: 0;
       padding: 40px;
-      background: linear-gradient(transparent, rgba(0,0,0,0.9));
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
     }
 
     .hero-badge {
@@ -261,12 +347,12 @@
       font-size: 48px;
       font-weight: 300;
       margin-bottom: 12px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
 
     .hero-subtitle {
       font-size: 16px;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
       max-width: 600px;
       line-height: 1.5;
     }
@@ -285,6 +371,7 @@
       from {
         width: 0%;
       }
+
       to {
         width: 100%;
       }
@@ -314,21 +401,21 @@
     }
 
     body.light-mode .search-bar::placeholder {
-      color: rgba(0,0,0,0.4);
+      color: rgba(0, 0, 0, 0.4);
     }
 
     .search-bar:focus {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       border-color: var(--xbox-green);
     }
 
     body.light-mode .search-bar:focus {
-      background: rgba(0,0,0,0.05);
+      background: rgba(0, 0, 0, 0.05);
       border-color: var(--xbox-green);
     }
 
     .search-bar::placeholder {
-      color: rgba(255,255,255,0.4);
+      color: rgba(255, 255, 255, 0.4);
     }
 
     .section-header {
@@ -360,7 +447,7 @@
     }
 
     .view-all {
-      color: rgba(255,255,255,0.6);
+      color: rgba(255, 255, 255, 0.6);
       text-decoration: none;
       font-size: 14px;
       font-weight: 500;
@@ -368,36 +455,27 @@
     }
 
     body.light-mode .view-all {
-      color: rgba(0,0,0,0.6);
+      color: rgba(0, 0, 0, 0.6);
     }
 
     .view-all:hover {
       color: var(--xbox-accent);
     }
 
-    .games-row-container {
+    .games-grid-container {
       position: relative;
-      margin: 0 -40px;
-      padding: 0 40px;
+      width: 100%;
     }
 
-    .games-row {
-      display: flex;
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 24px;
-      overflow-x: auto;
-      scroll-behavior: smooth;
       padding: 20px 0;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    .games-row::-webkit-scrollbar {
-      display: none;
     }
 
     .game-card {
-      flex: 0 0 auto;
-      width: 240px;
+      width: 100%;
       height: 270px;
       background: var(--xbox-gray);
       border-radius: 8px;
@@ -415,11 +493,10 @@
     .game-card:hover {
       transform: translateY(-8px) scale(1.02);
       border-color: var(--xbox-green);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(16, 124, 16, 0.3);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(16, 124, 16, 0.3);
     }
 
     .game-card.featured {
-      width: 240px;
       height: 270px;
     }
 
@@ -472,14 +549,14 @@
 
     .game-meta {
       font-size: 13px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255, 255, 255, 0.5);
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
     body.light-mode .game-meta {
-      color: rgba(0,0,0,0.5);
+      color: rgba(0, 0, 0, 0.5);
     }
 
     .game-badge {
@@ -508,7 +585,7 @@
       justify-content: center;
       z-index: 3;
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
 
     .play-overlay::after {
@@ -536,7 +613,7 @@
       justify-content: center;
       z-index: 3;
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
 
     .download-overlay::after {
@@ -552,7 +629,7 @@
     .no-results {
       text-align: center;
       padding: 80px 20px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255, 255, 255, 0.5);
       font-size: 18px;
       background: var(--xbox-gray);
       border-radius: 8px;
@@ -561,136 +638,11 @@
 
     body.light-mode .no-results {
       background: #E0E0E0;
-      color: rgba(0,0,0,0.5);
+      color: rgba(0, 0, 0, 0.5);
     }
 
     .scroll-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 48px;
-      height: 48px;
-      background: rgba(0,0,0,0.8);
-      border: none;
-      border-radius: 50%;
-      color: white;
-      cursor: pointer;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      opacity: 0;
-      transition: opacity 0.2s;
-      backdrop-filter: blur(10px);
-    }
-
-    .games-row-container:hover .scroll-btn {
-      opacity: 1;
-    }
-
-    .scroll-btn:hover {
-      background: var(--xbox-green);
-    }
-
-    .scroll-btn.left {
-      left: 20px;
-    }
-
-    .scroll-btn.right {
-      right: 20px;
-    }
-
-    .game-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #000;
       display: none;
-      flex-direction: column;
-      z-index: 9999;
-    }
-
-    .game-controls {
-      background: rgba(15, 15, 15, 0.95);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      padding: 16px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-shrink: 0;
-      z-index: 10000;
-      transition: opacity 0.3s, height 0.3s;
-      backdrop-filter: blur(20px);
-    }
-
-    .game-controls.hidden {
-      opacity: 0;
-      height: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .control-group {
-      display: flex;
-      gap: 12px;
-    }
-
-    .control-btn {
-      background: rgba(255,255,255,0.1);
-      border: none;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 13px;
-      transition: all 0.2s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .control-btn:hover {
-      background: rgba(255,255,255,0.2);
-    }
-
-    .control-btn.primary {
-      background: var(--xbox-green);
-    }
-
-    .control-btn.primary:hover {
-      background: #0e6e0e;
-      box-shadow: 0 4px 12px rgba(16, 124, 16, 0.4);
-    }
-
-    .game-content {
-      flex: 1;
-      overflow: auto;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-    }
-
-    .game-content iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
-
-    .game-overlay.fullscreen {
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #000;
-      display: flex;
-      flex-direction: column;
     }
 
     .loading {
@@ -698,7 +650,7 @@
       align-items: center;
       justify-content: center;
       padding: 40px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255, 255, 255, 0.5);
       font-size: 16px;
       gap: 12px;
     }
@@ -706,14 +658,10 @@
     .spinner {
       width: 24px;
       height: 24px;
-      border: 3px solid rgba(255,255,255,0.1);
+      border: 3px solid rgba(255, 255, 255, 0.1);
       border-top-color: var(--xbox-green);
       border-radius: 50%;
       animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
     }
 
     .error-message {
@@ -740,19 +688,21 @@
       .main-content {
         padding: 20px;
       }
-      
+
       .game-card {
-        width: 180px;
         height: 220px;
       }
-      
+
       .game-card.featured {
-        width: 180px;
         height: 220px;
       }
-      
+
       .hero-title {
         font-size: 32px;
+      }
+
+      .intro-text {
+        font-size: 24px;
       }
     }
 
@@ -760,14 +710,14 @@
       display: flex;
       gap: 8px;
       margin-bottom: 40px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       overflow-x: auto;
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
 
     body.light-mode .tabs-container {
-      border-bottom: 1px solid rgba(0,0,0,0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .tabs-container::-webkit-scrollbar {
@@ -778,7 +728,7 @@
       padding: 12px 24px;
       background: none;
       border: none;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255, 255, 255, 0.6);
       font-size: 16px;
       font-weight: 500;
       cursor: pointer;
@@ -790,15 +740,15 @@
     }
 
     body.light-mode .tab-btn {
-      color: rgba(0,0,0,0.6);
+      color: rgba(0, 0, 0, 0.6);
     }
 
     .tab-btn:hover {
-      color: rgba(255,255,255,0.9);
+      color: rgba(255, 255, 255, 0.9);
     }
 
     body.light-mode .tab-btn:hover {
-      color: rgba(0,0,0,0.9);
+      color: rgba(0, 0, 0, 0.9);
     }
 
     .tab-btn.active {
@@ -811,7 +761,6 @@
       border-bottom-color: var(--xbox-green);
     }
 
-    /* Modal Styles */
     .modal {
       display: none;
       position: fixed;
@@ -825,8 +774,13 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     .modal.active {
@@ -857,6 +811,7 @@
         transform: translateY(30px);
         opacity: 0;
       }
+
       to {
         transform: translateY(0);
         opacity: 1;
@@ -946,11 +901,11 @@
       border-radius: 50%;
     }
 
-    input:checked + .slider {
+    input:checked+.slider {
       background-color: var(--xbox-green);
     }
 
-    input:checked + .slider:before {
+    input:checked+.slider:before {
       transform: translateX(26px);
     }
 
@@ -1114,9 +1069,498 @@
       object-fit: contain;
       display: block;
     }
+
+    .game-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      display: none;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    .game-controls {
+      background: rgba(15, 15, 15, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      z-index: 10000;
+      transition: opacity 0.3s, height 0.3s;
+      backdrop-filter: blur(20px);
+    }
+
+    .game-controls.hidden {
+      opacity: 0;
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .control-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .control-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .control-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .control-btn.primary {
+      background: var(--xbox-green);
+    }
+
+    .control-btn.primary:hover {
+      background: #0e6e0e;
+      box-shadow: 0 4px 12px rgba(16, 124, 16, 0.4);
+    }
+
+    .game-content {
+      flex: 1;
+      overflow: auto;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .game-content iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .game-overlay.fullscreen {
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10001;
+      backdrop-filter: blur(10px);
+    }
+
+    .loading-overlay.active {
+      display: flex;
+      animation: fadeInLoad 0.3s ease-out;
+    }
+
+    @keyframes fadeInLoad {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .loading-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .loading-spinner {
+      width: 80px;
+      height: 80px;
+      position: relative;
+    }
+
+    .loading-spinner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 4px solid rgba(16, 124, 16, 0.2);
+      border-top-color: var(--xbox-green);
+      border-radius: 50%;
+      animation: spin 1.5s linear infinite;
+    }
+
+    .loading-spinner::after {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      width: 60%;
+      height: 60%;
+      border: 3px solid rgba(155, 240, 11, 0.3);
+      border-right-color: var(--xbox-accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite reverse;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading-text {
+      font-size: 18px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .loading-bar {
+      width: 200px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .loading-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--xbox-green), var(--xbox-accent));
+      width: 30%;
+      border-radius: 2px;
+      animation: loadingProgress 2s ease-in-out infinite;
+    }
+
+    @keyframes loadingProgress {
+      0% {
+        width: 10%;
+      }
+
+      50% {
+        width: 70%;
+      }
+
+      100% {
+        width: 90%;
+      }
+    }
+
+    .intro-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+    }
+
+    .intro-overlay.hide {
+      animation: fadeOutIntro 0.6s ease-out forwards;
+    }
+
+    @keyframes fadeOutIntro {
+      from {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      to {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+
+    .intro-video-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .intro-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .intro-video::-webkit-media-controls {
+      display: none;
+    }
+
+    .skip-intro-btn {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(10px);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 10;
+    }
+
+    .skip-intro-btn:hover {
+      background: var(--xbox-green);
+      border-color: var(--xbox-green);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(16, 124, 16, 0.4);
+    }
+
+    .intro-fallback {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #020205 0%, #0a0810 50%, #010103 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      animation: introScaleIn 2.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @keyframes introScaleIn {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      50% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .intro-logo {
+      width: 120px;
+      height: 120px;
+      background: var(--xbox-green);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      font-weight: 700;
+      color: #000;
+      box-shadow: 0 20px 60px rgba(16, 124, 16, 0.4);
+      animation: introBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s both;
+    }
+
+    @keyframes introBounce {
+      0% {
+        transform: scale(0);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .intro-text {
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--xbox-light);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      animation: introFadeIn 0.8s ease-out 0.8s both;
+    }
+
+    @keyframes introFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--xbox-darker);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--xbox-gray);
+      border-radius: 5px;
+      border: 2px solid var(--xbox-darker);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--xbox-green);
+    }
+
+    body.light-mode ::-webkit-scrollbar-track {
+      background: #E0E0E0;
+    }
+
+    body.light-mode ::-webkit-scrollbar-thumb {
+      background: #B0B0B0;
+      border: 2px solid #E0E0E0;
+    }
+
+    body.light-mode ::-webkit-scrollbar-thumb:hover {
+      background: var(--xbox-green);
+    }
+
+    body.intro-active {
+      overflow: hidden;
+    }
+
+    body.intro-active ::-webkit-scrollbar {
+      display: none;
+    }
+
+    .favorites-section {
+      margin-bottom: 40px;
+    }
+
+    .favorites-section .section-title::before {
+      background: #FFD700;
+    }
+
+    .star-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 32px;
+      height: 32px;
+      background: rgba(0, 0, 0, 0.6);
+      border: none;
+      border-radius: 50%;
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: all 0.2s ease;
+      z-index: 5;
+      backdrop-filter: blur(4px);
+    }
+
+    .star-btn:hover {
+      background: rgba(0, 0, 0, 0.8);
+      transform: scale(1.1);
+    }
+
+    .star-btn.active {
+      color: #FFD700;
+      background: rgba(255, 215, 0, 0.2);
+    }
+
+    .star-btn.active:hover {
+      background: rgba(255, 215, 0, 0.3);
+    }
+
+    body.light-mode .star-btn {
+      background: rgba(255, 255, 255, 0.6);
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    body.light-mode .star-btn:hover {
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    body.light-mode .star-btn.active {
+      color: #FFD700;
+      background: rgba(255, 215, 0, 0.3);
+    }
+
+    .game-card {
+      position: relative;
+    }
   </style>
 </head>
-<body>
+
+<body class="intro-active">
+  <!-- Intro Overlay -->
+  <div class="intro-overlay" id="introOverlay">
+    <div class="intro-video-container">
+      <video id="introVideo" class="intro-video" autoplay muted playsinline>
+        <source src="" type="video/mp4">
+        <div class="intro-fallback" id="introFallback">
+          <div class="intro-logo">🎮</div>
+          <div class="intro-text">Greeni's Vault</div>
+        </div>
+      </video>
+      <button class="skip-intro-btn" id="skipIntroBtn">Skip Intro</button>
+    </div>
+  </div>
+
+  <!-- Intro Audio (plays separately from video) -->
+  <audio id="introAudio" playsinline></audio>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-content">
+      <div class="loading-spinner"></div>
+      <div class="loading-text" id="loadingText">Loading Game...</div>
+      <div class="loading-bar">
+        <div class="loading-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="spaceBackground"></div>
+
   <div class="content">
     <header>
       <div class="header-left">
@@ -1140,7 +1584,6 @@
       <div class="hero-section" id="heroSection">
         <img src="" alt="Featured" class="hero-image" id="heroImage">
         <div class="hero-content">
-          <div class="hero-badge">Open Now</div>
           <h1 class="hero-title" id="heroTitle">title</h1>
           <p class="hero-subtitle" id="heroSubtitle">Click to launch</p>
         </div>
@@ -1151,25 +1594,34 @@
         <input type="text" id="searchInput" class="search-bar" placeholder="Search...">
       </div>
 
+      <!-- Favorites Section -->
+      <div class="favorites-section" id="favoritesSection" style="display: none;">
+        <div class="section-header">
+          <h2 class="section-title">Favorites</h2>
+        </div>
+        <div class="games-grid-container">
+          <div class="games-grid" id="favoritesGrid">
+          </div>
+        </div>
+      </div>
+
       <div class="games-section">
         <div class="section-header">
           <h2 class="section-title" id="sectionTitle">Games</h2>
         </div>
-        
-        <div class="games-row-container">
-          <button class="scroll-btn left" onclick="scrollGames('left')">‹</button>
-          <div class="games-row" id="gamesList">
+
+        <div class="games-grid-container">
+          <div class="games-grid" id="gamesList">
             <div class="loading">
               <div class="spinner"></div>
               Loading...
             </div>
           </div>
-          <button class="scroll-btn right" onclick="scrollGames('right')">›</button>
         </div>
       </div>
 
       <div class="no-results" id="noResults" style="display: none;">
-        <div style="font-size: 48px; margin-bottom: 16px;">🎮</div>
+        <div style="font-size: 48px; margin-bottom: 16px;">:(</div>
         <div>No content found matching your search.</div>
         <div style="font-size: 14px; margin-top: 8px; opacity: 0.6;">Try a different keyword</div>
       </div>
@@ -1212,14 +1664,16 @@
 
       <div class="credits-section">
         <h3>About</h3>
-        <p><strong>Greeni's Unblocked Games</strong> features 115+ unblocked games including Block Blast, Slope, Geometry Dash, Retro Bowl, and more!</p>
-        <p style="margin-top: 12px;">Join our growing community with live chat to connect and talk with other players, a thriving Discord community, and constantly added new games.</p>
-        
+        <p><strong>Greeni's Unblocked Games</strong> features 115+ unblocked games including Block Blast, Slope,
+          Geometry Dash, Retro Bowl, and more!</p>
+        <p style="margin-top: 12px;">Join our growing community with live chat to connect and talk with other players, a
+          thriving Discord community, and constantly added new games.</p>
+
         <h3 style="margin-top: 16px;">Credits</h3>
         <p><strong>Creator:</strong><br>Greeni</p>
         <p><strong>gn-math Team</strong> (mainly bread)<br>Most Ports and Games, and their site</p>
         <p><strong>Ultimate Game Docs</strong><br>Doc Full Of Games!</p>
-        <p><strong>Version:</strong> 1.1</p>
+        <p><strong>Version:</strong> 2.3</p>
       </div>
 
       <div class="modal-divider"></div>
@@ -1227,19 +1681,23 @@
       <div class="contacts-section">
         <h3>Connect With Us</h3>
         <div class="contacts-grid">
-          <a href="https://discord.gg/5xxWCJGBT8" target="_blank" rel="noopener noreferrer" class="contact-link" title="Join our Discord">
+          <a href="https://discord.gg/5xxWCJGBT8" target="_blank" rel="noopener noreferrer" class="contact-link"
+            title="Join our Discord">
             <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/dc.gif" alt="Discord" class="contact-icon">
             <span>Discord</span>
           </a>
-          <a href="https://www.tiktok.com/@greeniwastaken" target="_blank" rel="noopener noreferrer" class="contact-link" title="Follow on TikTok">
+          <a href="https://www.tiktok.com/@greeniwastaken" target="_blank" rel="noopener noreferrer"
+            class="contact-link" title="Follow on TikTok">
             <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/tt.gif" alt="TikTok" class="contact-icon">
             <span>TikTok</span>
           </a>
-          <a href="mailto:notgreenirealz@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-link" title="Email us">
+          <a href="mailto:notgreenirealz@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-link"
+            title="Email us">
             <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/gm.gif" alt="Gmail" class="contact-icon">
             <span>Gmail</span>
           </a>
-          <a href="mailto:greenirealz@outlook.com" target="_blank" rel="noopener noreferrer" class="contact-link" title="Email us">
+          <a href="mailto:greenirealz@outlook.com" target="_blank" rel="noopener noreferrer" class="contact-link"
+            title="Email us">
             <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ol.gif" alt="Outlook" class="contact-icon">
             <span>Outlook</span>
           </a>
@@ -1252,6 +1710,7 @@
     <div class="game-controls" id="gameControls">
       <div class="control-group">
         <button class="control-btn" id="newTabBtn">Open in New Tab</button>
+        <!--<button class="control-btn" id="reloadGameBtn">Reload</button>-->
         <button class="control-btn" id="cursorToggleBtn">Hide Cursor</button>
         <button class="control-btn" id="fullscreenGameBtn">Fullscreen</button>
         <button class="control-btn primary" id="closeGameBtn">Close</button>
@@ -1260,10 +1719,332 @@
     <div class="game-content" id="gameContent" tabindex="0"></div>
   </div>
 
-  <!-- Ambient Audio -->
+
   <audio id="ambianceAudio" loop preload="auto"></audio>
 
+  <script async type='module'
+    src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+  <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmixugfwj001ss2j44sn02p3o'>
+  </zapier-interfaces-chatbot-embed>
+
   <script>
+    let allFavorites = JSON.parse(localStorage.getItem('favoritesV2')) || {};
+
+    function saveFavorites() {
+      localStorage.setItem('favoritesV2', JSON.stringify(allFavorites));
+    }
+
+    function getCurrentTabFavorites() {
+      return allFavorites[currentTab] || [];
+    }
+
+    function toggleFavorite(game, event) {
+      event.stopPropagation();
+
+      if (!allFavorites[currentTab]) {
+        allFavorites[currentTab] = [];
+      }
+
+      const tabFavs = allFavorites[currentTab];
+      const index = tabFavs.findIndex(f => f.name === game.name);
+
+      if (index > -1) {
+        tabFavs.splice(index, 1);
+      } else {
+        tabFavs.push(game);
+      }
+
+      saveFavorites();
+      renderFavorites();
+
+      const searchQuery = document.getElementById('searchInput').value;
+      if (searchQuery.trim() === '') {
+        renderGames(games);
+      } else {
+        filterGames(searchQuery);
+      }
+    }
+
+    function isFavorited(gameName) {
+      return getCurrentTabFavorites().some(f => f.name === gameName);
+    }
+
+    function renderFavorites() {
+      const favoritesSection = document.getElementById('favoritesSection');
+      const favoritesGrid = document.getElementById('favoritesGrid');
+      const tabFavs = getCurrentTabFavorites();
+
+      if (tabFavs.length === 0) {
+        favoritesSection.style.display = 'none';
+        return;
+      }
+
+      favoritesSection.style.display = 'block';
+      favoritesGrid.innerHTML = '';
+
+      tabFavs.forEach((game) => {
+        const card = createGameCard(game, true);
+        favoritesGrid.appendChild(card);
+      });
+    }
+
+    function createGameCard(game, isFavoriteSection = false) {
+      const card = document.createElement('div');
+      card.className = 'game-card';
+
+      const img = document.createElement('img');
+      img.src = game.image;
+      img.alt = game.name;
+      img.className = 'game-image';
+      img.loading = 'lazy';
+      card.appendChild(img);
+
+      const starBtn = document.createElement('button');
+      starBtn.className = 'star-btn' + (isFavorited(game.name) ? ' active' : '');
+      starBtn.innerHTML = '★';
+      starBtn.title = isFavorited(game.name) ? 'Remove from favorites' : 'Add to favorites';
+      starBtn.onclick = (e) => toggleFavorite(game, e);
+      card.appendChild(starBtn);
+
+      const info = document.createElement('div');
+      info.className = 'game-info';
+
+      const title = document.createElement('div');
+      title.className = 'game-title';
+      title.textContent = game.name;
+      info.appendChild(title);
+
+      const meta = document.createElement('div');
+      meta.className = 'game-meta';
+      meta.innerHTML = ``;
+      info.appendChild(meta);
+
+      card.appendChild(info);
+
+      if (currentTab === 'minecraft') {
+        const downloadBtn = document.createElement('div');
+        downloadBtn.className = 'download-overlay';
+        card.appendChild(downloadBtn);
+        card.addEventListener('click', () => {
+          playSound('click');
+          downloadMod(game.file);
+        });
+      } else {
+        const playBtn = document.createElement('div');
+        playBtn.className = 'play-overlay';
+        card.appendChild(playBtn);
+        card.addEventListener('click', () => {
+          playSound('click');
+          loadGame(game.file, game.name);
+        });
+      }
+
+      card.addEventListener('mouseenter', () => playSound('hover'));
+
+      return card;
+    }
+
+    let introComplete = false;
+
+    function hideIntro() {
+      const intro = document.getElementById('introOverlay');
+      const introAudio = document.getElementById('introAudio');
+      intro.classList.add('hide');
+      introAudio.pause();
+      introAudio.currentTime = 0;
+
+      document.body.classList.remove('intro-active');
+
+      setTimeout(() => {
+        intro.style.display = 'none';
+        introComplete = true;
+        if (ambianceEnabled && !isGamePlaying && !isMoviePlaying) {
+          playAmbiance();
+        }
+      }, 600);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const introVideo = document.getElementById('introVideo');
+      const introAudio = document.getElementById('introAudio');
+      const introOverlay = document.getElementById('introOverlay');
+      const skipIntroBtn = document.getElementById('skipIntroBtn');
+
+      skipIntroBtn.addEventListener('click', () => {
+        playSound('click');
+        hideIntro();
+      });
+
+      const introVideoUrl = 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/intro.mp4';
+      const introAudioUrl = 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/intro.mp3';
+
+      if (introVideoUrl) {
+        introVideo.querySelector('source').src = introVideoUrl;
+        introVideo.load();
+
+        if (introAudioUrl) {
+          introAudio.src = introAudioUrl;
+          introAudio.load();
+        }
+
+        introVideo.addEventListener('play', () => {
+          if (introAudioUrl && introAudio.paused) {
+            introAudio.play().catch(err => console.log('Audio playback prevented:', err));
+          }
+        }, { once: true });
+
+        introVideo.addEventListener('ended', () => {
+          hideIntro();
+        }, { once: true });
+
+        setTimeout(() => {
+          if (introOverlay.style.display !== 'none') {
+            hideIntro();
+          }
+        }, 20000);
+      } else {
+        setTimeout(() => {
+          hideIntro();
+        }, 2000);
+      }
+    });
+
+    function showLoadingOverlay(text = 'Loading...') {
+      const overlay = document.getElementById('loadingOverlay');
+      document.getElementById('loadingText').textContent = text;
+      overlay.classList.add('active');
+    }
+
+    function hideLoadingOverlay() {
+      const overlay = document.getElementById('loadingOverlay');
+      overlay.classList.remove('active');
+    }
+
+    function playSound(type) {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const now = audioContext.currentTime;
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+
+      oscillator.connect(gain);
+      gain.connect(audioContext.destination);
+
+      if (type === 'click') {
+        oscillator.frequency.setValueAtTime(800, now);
+        oscillator.frequency.exponentialRampToValueAtTime(400, now + 0.1);
+        gain.gain.setValueAtTime(0.1, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+        oscillator.start(now);
+        oscillator.stop(now + 0.1);
+      } else if (type === 'hover') {
+        oscillator.frequency.setValueAtTime(600, now);
+        oscillator.frequency.exponentialRampToValueAtTime(800, now + 0.05);
+        gain.gain.setValueAtTime(0.05, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+        oscillator.start(now);
+        oscillator.stop(now + 0.05);
+      }
+    }
+
+    function createSpaceBackground() {
+      const bg = document.getElementById('spaceBackground');
+      const stars = [];
+      const repelRadius = 150;
+      const repelForce = 5;
+
+      for (let i = 0; i < 150; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        const size = Math.random() * 2 + 1;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        star.style.left = x + 'px';
+        star.style.top = y + 'px';
+        star.style.position = 'fixed';
+        star.style.animation = `twinkle ${Math.random() * 2 + 2}s infinite`;
+
+        bg.appendChild(star);
+
+        stars.push({
+          element: star,
+          x: x,
+          y: y,
+          baseX: x,
+          baseY: y,
+          vx: 0,
+          vy: 0,
+          driftX: (Math.random() - 0.5) * 0.5,
+          driftY: (Math.random() - 0.5) * 0.5,
+          size: size
+        });
+      }
+
+      const nebulas = [
+        { class: 'nebula-purple', size: 400, x: 10, y: 20 },
+        { class: 'nebula-cyan', size: 350, x: 70, y: 30 },
+        { class: 'nebula-pink', size: 300, x: 40, y: 70 }
+      ];
+
+      nebulas.forEach(nebula => {
+        const el = document.createElement('div');
+        el.className = 'nebula ' + nebula.class;
+        el.style.width = nebula.size + 'px';
+        el.style.height = nebula.size + 'px';
+        el.style.left = nebula.x + '%';
+        el.style.top = nebula.y + '%';
+        el.style.transform = 'translate(-50%, -50%)';
+        bg.appendChild(el);
+      });
+
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      function animateStars() {
+        stars.forEach(star => {
+          star.baseX += star.driftX;
+          star.baseY += star.driftY;
+
+          if (star.baseX < 0) star.baseX = window.innerWidth;
+          if (star.baseX > window.innerWidth) star.baseX = 0;
+          if (star.baseY < 0) star.baseY = window.innerHeight;
+          if (star.baseY > window.innerHeight) star.baseY = 0;
+
+          const dx = star.x - mouseX;
+          const dy = star.y - mouseY;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < repelRadius && distance > 0) {
+            const angle = Math.atan2(dy, dx);
+            const force = (repelRadius - distance) / repelRadius * repelForce;
+            star.vx = Math.cos(angle) * force;
+            star.vy = Math.sin(angle) * force;
+          } else {
+            star.vx += (star.baseX - star.x) * 0.02;
+            star.vy += (star.baseY - star.y) * 0.02;
+            star.vx *= 0.92;
+            star.vy *= 0.92;
+          }
+
+          star.x += star.vx;
+          star.y += star.vy;
+
+          star.element.style.transform = `translate(${star.x}px, ${star.y}px)`;
+        });
+
+        requestAnimationFrame(animateStars);
+      }
+
+      animateStars();
+    }
+
     function updateClock() {
       const now = new Date();
       const hours = now.getHours();
@@ -1285,25 +2066,32 @@
     let isGamePlaying = false;
     let isMoviePlaying = false;
     let ambianceEnabled = true;
+    let ambianceStarted = false;
 
     const CONTENT_URLS = {
-      games: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/gamesv2.json',
+      games: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/gamesv23.json',
       movies: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/movies.json',
-      minecraft: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/mcv2.json',
-      other: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@76f1aecacd7aa2ed6d68f48d486a8fc8632e61e1/json/otherv2.json'
+      minecraft: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/mcv3.json',
+      other: 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/otherv3.json'
     };
 
-    // Ambient audio URLs (free royalty-free options)
     const AMBIANCE_URLS = [
-      'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance.mp3'
+      'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance.mp3',
+      'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance2.mp3',
+      'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance3.mp3',
+      'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance4.mp3'
     ];
 
-    // Initialize ambiance
     const ambianceAudio = document.getElementById('ambianceAudio');
-    ambianceAudio.src = AMBIANCE_URLS[0];
+    ambianceAudio.src = AMBIANCE_URLS[Math.floor(Math.random() * AMBIANCE_URLS.length)];
     ambianceAudio.volume = 0.5;
+    ambianceAudio.loop = true;
 
-    // Load settings from localStorage
+    ambianceAudio.addEventListener('ended', () => {
+      ambianceAudio.src = AMBIANCE_URLS[Math.floor(Math.random() * AMBIANCE_URLS.length)];
+      ambianceAudio.play().catch(err => console.log('Ambiance playback failed:', err));
+    });
+
     function loadSettings() {
       const savedLightMode = localStorage.getItem('lightMode') === 'true';
       const savedAmbiance = localStorage.getItem('ambianceEnabled') !== 'false';
@@ -1320,28 +2108,24 @@
       document.getElementById('volumeValue').textContent = savedVolume + '%';
       ambianceAudio.volume = parseInt(savedVolume) / 100;
 
-      if (ambianceEnabled) {
-        playAmbiance();
-      }
     }
 
-    // Save settings to localStorage
     function saveSettings() {
       localStorage.setItem('lightMode', document.getElementById('lightModeToggle').checked);
       localStorage.setItem('ambianceEnabled', document.getElementById('ambianceToggle').checked);
       localStorage.setItem('ambianceVolume', document.getElementById('volumeSlider').value);
     }
 
-    // Light mode toggle
     document.getElementById('lightModeToggle').addEventListener('change', (e) => {
+      playSound('click');
       document.body.classList.toggle('light-mode', e.target.checked);
       saveSettings();
     });
 
-    // Ambiance toggle
     document.getElementById('ambianceToggle').addEventListener('change', (e) => {
+      playSound('click');
       ambianceEnabled = e.target.checked;
-      if (ambianceEnabled && !isGamePlaying && !isMoviePlaying) {
+      if (ambianceEnabled && introComplete && !isGamePlaying && !isMoviePlaying) {
         playAmbiance();
       } else {
         pauseAmbiance();
@@ -1349,7 +2133,6 @@
       saveSettings();
     });
 
-    // Volume control
     document.getElementById('volumeSlider').addEventListener('input', (e) => {
       const volume = parseInt(e.target.value);
       document.getElementById('volumeValue').textContent = volume + '%';
@@ -1358,8 +2141,9 @@
     });
 
     function playAmbiance() {
-      if (ambianceEnabled && !isGamePlaying && !isMoviePlaying) {
+      if (ambianceEnabled && introComplete && !isGamePlaying && !isMoviePlaying) {
         ambianceAudio.play().catch(err => console.log('Ambiance autoplay prevented:', err));
+        ambianceStarted = true;
       }
     }
 
@@ -1367,16 +2151,16 @@
       ambianceAudio.pause();
     }
 
-    // Menu button
     document.getElementById('menuBtn').addEventListener('click', () => {
+      playSound('click');
       document.getElementById('settingsModal').classList.add('active');
     });
 
     function closeSettings() {
+      playSound('click');
       document.getElementById('settingsModal').classList.remove('active');
     }
 
-    // Close modal when clicking outside
     window.addEventListener('click', (e) => {
       const modal = document.getElementById('settingsModal');
       if (e.target === modal) {
@@ -1384,20 +2168,29 @@
       }
     });
 
+    document.addEventListener('DOMContentLoaded', () => {
+      const buttons = document.querySelectorAll('button, a, .game-card, .tab-btn, .contact-link');
+      buttons.forEach(btn => {
+        btn.addEventListener('mouseenter', () => playSound('hover'));
+        btn.addEventListener('click', () => playSound('click'));
+      });
+    });
+
     async function loadContent(tab) {
       currentTab = tab;
       const url = CONTENT_URLS[tab];
-      
+
       try {
         const response = await fetch(url);
         if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         games = await response.json();
-        
+
         if (!Array.isArray(games) || games.length === 0) {
           throw new Error('No content found in JSON');
         }
-        
+
         renderGames(games);
+        renderFavorites(); 
         setupHero(games);
       } catch (error) {
         console.error('Error loading content:', error);
@@ -1411,9 +2204,9 @@
       }
     }
 
-    // Tab button event listeners
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
+        playSound('click');
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         e.target.classList.add('active');
         updateSectionTitle(e.target.dataset.tab);
@@ -1433,14 +2226,14 @@
 
     function setupHero(gamesList) {
       if (!gamesList || gamesList.length === 0) return;
-      
+
       if (heroCycleInterval) clearInterval(heroCycleInterval);
-      
+
       allContent = gamesList;
       let currentIndex = 0;
-      
+
       updateHeroDisplay(gamesList[currentIndex]);
-      
+
       heroCycleInterval = setInterval(() => {
         currentIndex = (currentIndex + 1) % gamesList.length;
         updateHeroDisplay(gamesList[currentIndex]);
@@ -1451,17 +2244,23 @@
       const hero = document.getElementById('heroSection');
       document.getElementById('heroImage').src = item.image;
       document.getElementById('heroTitle').textContent = item.name;
-      
+
       if (currentTab === 'minecraft') {
         document.getElementById('heroSubtitle').textContent = 'Click to download';
-        hero.onclick = () => downloadMod(item.file);
+        hero.onclick = () => {
+          playSound('click');
+          downloadMod(item.file);
+        };
       } else {
         document.getElementById('heroSubtitle').textContent = 'Click to launch';
-        hero.onclick = () => loadGame(item.file);
+        hero.onclick = () => {
+          playSound('click');
+          loadGame(item.file, item.name);
+        };
       }
-      
+
       hero.classList.add('active');
-      
+
       const progress = document.getElementById('heroProgress');
       progress.style.animation = 'none';
       setTimeout(() => {
@@ -1472,61 +2271,25 @@
     function renderGames(gamesToRender) {
       const container = document.getElementById('gamesList');
       const noResults = document.getElementById('noResults');
-      
+
       if (gamesToRender.length === 0) {
         container.innerHTML = '';
         noResults.style.display = 'block';
         return;
       }
-      
+
       noResults.style.display = 'none';
       container.innerHTML = '';
 
       gamesToRender.forEach((game, index) => {
-        const card = document.createElement('div');
-        card.className = 'game-card' + (index === 0 ? ' featured' : '');
-
-        const img = document.createElement('img');
-        img.src = game.image;
-        img.alt = game.name;
-        img.className = 'game-image';
-        img.loading = 'lazy';
-        card.appendChild(img);
-
-        const info = document.createElement('div');
-        info.className = 'game-info';
-        
-        const title = document.createElement('div');
-        title.className = 'game-title';
-        title.textContent = game.name;
-        info.appendChild(title);
-
-        const meta = document.createElement('div');
-        meta.className = 'game-meta';
-        meta.innerHTML = ``;
-        info.appendChild(meta);
-
-        card.appendChild(info);
-
-        if (currentTab === 'minecraft') {
-          const downloadBtn = document.createElement('div');
-          downloadBtn.className = 'download-overlay';
-          card.appendChild(downloadBtn);
-          card.onclick = () => downloadMod(game.file);
-        } else {
-          const playBtn = document.createElement('div');
-          playBtn.className = 'play-overlay';
-          card.appendChild(playBtn);
-          card.onclick = () => loadGame(game.file);
-        }
-
+        const card = createGameCard(game);
         container.appendChild(card);
       });
     }
 
     function filterGames(query) {
       const lowerQuery = query.toLowerCase().trim();
-      const filtered = lowerQuery === '' ? games : games.filter(game => 
+      const filtered = lowerQuery === '' ? games : games.filter(game =>
         game.name.toLowerCase().includes(lowerQuery)
       );
       renderGames(filtered);
@@ -1535,15 +2298,6 @@
     document.getElementById('searchInput').addEventListener('input', (e) => {
       filterGames(e.target.value);
     });
-
-    function scrollGames(direction) {
-      const row = document.getElementById('gamesList');
-      const scrollAmount = 400;
-      row.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
 
     async function downloadMod(file) {
       try {
@@ -1563,21 +2317,23 @@
       }
     }
 
-    async function loadGame(file) {
+    async function loadGame(file, gameName = 'Game') {
       currentGameFile = file;
+      showLoadingOverlay(`Loading ${gameName}...`);
+
       try {
         const gameContent = document.getElementById('gameContent');
         gameContent.innerHTML = '';
-        
-        // Determine if it's a movie or game
+
         isMoviePlaying = file.includes('drive.google.com');
         isGamePlaying = !isMoviePlaying;
 
-        // Pause ambiance when playing game/movie
         if (ambianceEnabled) {
           pauseAmbiance();
         }
-        
+
+        await new Promise(resolve => setTimeout(resolve, 800));
+
         if (file.includes('drive.google.com')) {
           const iframe = document.createElement('iframe');
           iframe.src = file;
@@ -1587,7 +2343,7 @@
           iframe.allow = 'fullscreen';
           gameContent.appendChild(iframe);
         } else {
-          const response = await fetch(file, {cache: "no-store"});
+          const response = await fetch(file, { cache: "no-store" });
           if (!response.ok) throw new Error(`Failed to load ${file}: ${response.statusText}`);
           const text = await response.text();
 
@@ -1595,21 +2351,23 @@
           iframe.style.width = '100%';
           iframe.style.height = '100%';
           iframe.style.border = 'none';
-          iframe.sandbox.add('allow-scripts', 'allow-same-origin', 'allow-forms', 'allow-popups', 'allow-modals');
-          
+          iframe.sandbox.add('allow-scripts', 'allow-same-origin', 'allow-forms', 'allow-popups', 'allow-modals', 'allow-pointer-lock');
+
           gameContent.appendChild(iframe);
-          
+
           const doc = iframe.contentDocument || iframe.contentWindow.document;
           doc.open();
           doc.write(text);
           doc.close();
         }
 
+        hideLoadingOverlay();
         showOverlay();
       } catch (error) {
+        hideLoadingOverlay();
         document.getElementById('gameContent').innerHTML = `
           <div style="color: #ff4444; padding: 20px; text-align: center;">
-            <div style="font-size: 24px; margin-bottom: 10px;">⚠Error</div>
+            <div style="font-size: 24px; margin-bottom: 10px;">⚠ Error</div>
             <div>${error.message}</div>
           </div>
         `;
@@ -1636,7 +2394,6 @@
       isGamePlaying = false;
       isMoviePlaying = false;
 
-      // Resume ambiance when closing game/movie
       if (ambianceEnabled) {
         playAmbiance();
       }
@@ -1649,15 +2406,17 @@
     }
 
     document.getElementById('cursorToggleBtn').addEventListener('click', () => {
+      playSound('click');
       cursorHidden = !cursorHidden;
       document.body.style.cursor = cursorHidden ? 'none' : 'auto';
       document.getElementById('cursorToggleBtn').textContent = cursorHidden ? 'Show Cursor' : 'Hide Cursor';
     });
 
     document.getElementById('newTabBtn').addEventListener('click', async () => {
+      playSound('click');
       if (!currentGameFile) return;
       try {
-        const response = await fetch(currentGameFile, {cache: "no-store"});
+        const response = await fetch(currentGameFile, { cache: "no-store" });
         const text = await response.text();
         const modified = text.replace('<head>', `<head>
           <title>Dashboard</title>
@@ -1668,8 +2427,15 @@
         alert('Error: ' + error.message);
       }
     });
+    
+//document.getElementById('reloadGameBtn').addEventListener('click', () => {
+  //playSound('click');
+  //if (!currentGameFile) return;
+  //loadGame(currentGameFile, currentGameName);
+//});
 
     document.getElementById('fullscreenGameBtn').addEventListener('click', () => {
+      playSound('click');
       const overlay = document.getElementById('gameOverlay');
       const controls = document.getElementById('gameControls');
       if (!isFullscreen) {
@@ -1683,7 +2449,10 @@
       overlay.classList.toggle('fullscreen', isFullscreen);
     });
 
-    document.getElementById('closeGameBtn').addEventListener('click', hideOverlay);
+    document.getElementById('closeGameBtn').addEventListener('click', () => {
+      playSound('click');
+      hideOverlay();
+    });
 
     function enterFullscreen(element) {
       if (element.requestFullscreen) element.requestFullscreen();
@@ -1707,13 +2476,16 @@
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && document.getElementById('gameOverlay').style.display === 'flex') {
+        playSound('click');
         hideOverlay();
       }
     });
 
-    // Initialize settings and ambiance on page load
+    createSpaceBackground();
     loadSettings();
+    renderFavorites();
     loadContent('games');
   </script>
 </body>
+
 </html>
