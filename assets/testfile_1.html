@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Greeni's Vault</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: sans-serif;
+    background: #111;
+    color: #fff;
+    padding: 20px;
+  }
+
+  h1 { font-size: 20px; margin-bottom: 14px; }
+
+  input {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px 10px;
+    background: #222;
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  input:focus { border-color: #107C10; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+
+  .card {
+    background: #1a1a1a;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #2a2a2a;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+
+  .card:hover { border-color: #107C10; transform: translateY(-2px); }
+
+  .card img {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card span {
+    display: block;
+    padding: 7px 9px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .msg { color: #aaa; font-size: 13px; padding: 20px 0; }
+  .err { color: #f88; font-size: 13px; padding: 20px 0; background: #1a0808; border-radius: 6px; padding: 14px; margin-top: 8px; }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000;
+    flex-direction: column;
+    z-index: 100;
+  }
+
+  .overlay.open { display: flex !important; }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: #0e0e0e;
+    border-bottom: 1px solid #222;
+    flex-shrink: 0;
+  }
+
+  .bar-title { font-size: 13px; font-weight: 600; }
+
+  .bar button {
+    background: #222;
+    border: none;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 8px;
+  }
+
+  .bar button:hover { background: #333; }
+  .bar button.close { background: #2a0808; color: #f88; }
+  .bar button.close:hover { background: #3a1010; }
+
+  .frame { flex: 1; }
+  .frame iframe { width: 100%; height: 100%; border: none; display: block; }
+</style>
+</head>
+<body>
+
+<h1>Greeni's Vault</h1>
+<input id="search" placeholder="Search games...">
+<div id="grid"><p class="msg">Loading...</p></div>
+
+<div class="overlay" id="overlay" style="display:none">
+  <div class="bar">
+    <div class="bar-title" id="overlayTitle"></div>
+    <div>
+      <button onclick="fs()">Fullscreen</button>
+      <button class="close" onclick="closeGame()">✕ Close</button>
+    </div>
+  </div>
+  <div class="frame" id="frame"></div>
+</div>
+
+<script>
+  let all = [];
+
+  async function init() {
+    const grid = document.getElementById('grid');
+    try {
+      const res = await fetch('https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/gamesv23.json');
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      all = await res.json();
+      render(all);
+    } catch(e) {
+      grid.innerHTML = `<div class="err">
+        <strong>Failed to load games</strong><br>
+        ${e.message}<br><br>
+        <small>Check console for details. Make sure the page is served over HTTP/HTTPS.</small>
+      </div>`;
+      console.error('Load error:', e);
+    }
+  }
+
+  document.getElementById('search').addEventListener('input', e => {
+    const q = e.target.value.toLowerCase();
+    render(q ? all.filter(g => g.name.toLowerCase().includes(q)) : all);
+  });
+
+  function render(items) {
+    const grid = document.getElementById('grid');
+    if (!items.length) { grid.innerHTML = '<p class="msg">No results.</p>'; return; }
+    grid.innerHTML = '';
+    const g = document.createElement('div');
+    g.className = 'grid';
+    items.forEach(game => {
+      const c = document.createElement('div');
+      c.className = 'card';
+      c.innerHTML = `<img src="${game.image}" loading="lazy" onerror="this.style.display='none'"><span>${game.name}</span>`;
+      c.onclick = () => openGame(game.file, game.name);
+      g.appendChild(c);
+    });
+    grid.appendChild(g);
+  }
+
+  async function openGame(file, name) {
+    document.getElementById('overlayTitle').textContent = name;
+    document.getElementById('frame').innerHTML = '<p class="msg" style="padding:30px">Loading...</p>';
+    document.getElementById('overlay').classList.add('open');
+    try {
+      const iframe = document.createElement('iframe');
+      iframe.style.cssText = 'width:100%;height:100%;border:none;display:block';
+      if (file.includes('drive.google.com')) {
+        iframe.src = file;
+        iframe.allow = 'fullscreen';
+        document.getElementById('frame').innerHTML = '';
+        document.getElementById('frame').appendChild(iframe);
+      } else {
+        const res = await fetch(file, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const text = await res.text();
+        iframe.sandbox.add('allow-scripts','allow-same-origin','allow-forms','allow-popups','allow-pointer-lock');
+        document.getElementById('frame').innerHTML = '';
+        document.getElementById('frame').appendChild(iframe);
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        doc.open(); doc.write(text); doc.close();
+      }
+    } catch(e) {
+      document.getElementById('frame').innerHTML = `<p class="msg" style="padding:30px;color:#f88">Error loading game: ${e.message}</p>`;
+    }
+  }
+
+  function closeGame() {
+    document.getElementById('overlay').classList.remove('open');
+    document.getElementById('frame').innerHTML = '';
+    if (document.fullscreenElement) document.exitFullscreen();
+  }
+
+  function fs() {
+    const ov = document.getElementById('overlay');
+    if (!document.fullscreenElement) ov.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeGame(); });
+
+  init();
+</script>
+</body>
+</html>
