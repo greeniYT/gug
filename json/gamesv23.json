@@ -85,7 +85,7 @@
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/riorex.html"
   },
   {
-    "name": "Picos School",
+    "name": "Picos School (mature warning)",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/picoschool.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/picoschool.html"
   },
@@ -93,6 +93,11 @@
     "name": "Super Mario Bros Remastered",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/smb1r.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smb1r.html"
+  },
+  {
+    "name": "Clover Pit",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/cloverpit.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/cloverpit.html"
   },
   {
     "name": "Mutilate-a-Doll 2",
