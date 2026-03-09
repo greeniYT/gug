@@ -337,8 +337,6 @@
   const JSDELIVR_BASE = 'https://cdn.jsdelivr.net/gh/greeniYT/fnf@main/';
   const JSDELIVR_API  = 'https://data.jsdelivr.com/v1/package/gh/greeniYT/fnf@main/';
 
-  let currentBlobURL = null;
-
   async function loadMods() {
     const statusEl = document.getElementById('status');
     const gridEl   = document.getElementById('mod-grid');
@@ -390,7 +388,7 @@
           <span class="corner br"></span>
           <span class="mod-icon">🎮</span>
           <span class="mod-name">${label}</span>
-          <span class="mod-tag">A cool Mod</span>
+          <span class="mod-tag">.html mod</span>
         `;
         btn.onclick = () => openMod(label, url);
         gridEl.appendChild(btn);
@@ -414,27 +412,18 @@
     const frame     = document.getElementById('game-frame');
     const titleEl   = document.getElementById('frame-title');
 
-    // Show loading spinner
     loadingEl.classList.add('active');
 
     try {
-      // Fetch the raw HTML source
       const res = await fetch(url);
       if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
       const html = await res.text();
 
-      // Revoke any previous blob URL to free memory
-      if (currentBlobURL) {
-        URL.revokeObjectURL(currentBlobURL);
-        currentBlobURL = null;
-      }
-
-      // Create a blob URL from the fetched HTML so the iframe can render it
-      const blob = new Blob([html], { type: 'text/html' });
-      currentBlobURL = URL.createObjectURL(blob);
-
       titleEl.textContent = `▶ ${name}`;
-      frame.src = currentBlobURL;
+
+      // Use srcdoc to inject HTML directly — avoids all blob/CSP issues
+      frame.removeAttribute('src');
+      frame.srcdoc = html;
 
       loadingEl.classList.remove('active');
       overlay.classList.add('active');
@@ -452,14 +441,9 @@
     const frame   = document.getElementById('game-frame');
 
     overlay.classList.remove('active');
-    frame.src = '';
+    frame.srcdoc = '';
+    frame.removeAttribute('srcdoc');
     document.body.style.overflow = '';
-
-    // Clean up blob URL
-    if (currentBlobURL) {
-      URL.revokeObjectURL(currentBlobURL);
-      currentBlobURL = null;
-    }
   }
 
   // ESC to close
