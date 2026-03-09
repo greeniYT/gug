@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FNF Mods</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --pink: #ff2d78;
+      --cyan: #00f0ff;
+      --purple: #9b00ff;
+      --dark: #0a0010;
+      --darker: #060008;
+      --card: #120020;
+      --glow-pink: 0 0 8px #ff2d78, 0 0 20px #ff2d7866;
+      --glow-cyan: 0 0 8px #00f0ff, 0 0 20px #00f0ff66;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--darker);
+      color: #fff;
+      font-family: 'Press Start 2P', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated grid background */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,240,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,240,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: gridScroll 20s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes gridScroll {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 40px; }
+    }
+
+    /* Menu screen */
+    #menu {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 60px;
+    }
+
+    .title-block {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .title-main {
+      font-size: clamp(1.2rem, 4vw, 2.2rem);
+      color: var(--pink);
+      text-shadow: var(--glow-pink);
+      letter-spacing: 4px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .title-sub {
+      font-family: 'VT323', monospace;
+      font-size: clamp(1rem, 3vw, 1.6rem);
+      color: var(--cyan);
+      text-shadow: var(--glow-cyan);
+      margin-top: 10px;
+      letter-spacing: 3px;
+    }
+
+    .title-divider {
+      width: 100%;
+      max-width: 600px;
+      height: 2px;
+      margin: 20px auto 0;
+      background: linear-gradient(90deg, transparent, var(--pink), var(--cyan), transparent);
+      box-shadow: 0 0 10px var(--pink);
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: var(--glow-pink); }
+      50% { text-shadow: 0 0 20px #ff2d78, 0 0 50px #ff2d78aa, 0 0 80px #ff2d7844; }
+    }
+
+    /* Status bar */
+    #status {
+      font-family: 'VT323', monospace;
+      font-size: 1.3rem;
+      color: var(--cyan);
+      text-shadow: var(--glow-cyan);
+      margin-bottom: 30px;
+      min-height: 1.5em;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    .blink {
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Mod grid */
+    #mod-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .mod-btn {
+      background: var(--card);
+      border: 2px solid var(--purple);
+      color: #fff;
+      font-family: 'VT323', monospace;
+      font-size: 1.4rem;
+      padding: 22px 16px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.1s;
+      text-align: center;
+      letter-spacing: 1px;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+      word-break: break-all;
+    }
+
+    .mod-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,45,120,0.08), rgba(0,240,255,0.05));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .mod-btn:hover {
+      border-color: var(--pink);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: var(--glow-pink), inset 0 0 20px rgba(255,45,120,0.1);
+    }
+
+    .mod-btn:hover::before { opacity: 1; }
+
+    .mod-btn:active { transform: scale(0.97); }
+
+    .mod-btn .mod-icon {
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .mod-btn .mod-name {
+      display: block;
+      color: var(--cyan);
+      text-shadow: var(--glow-cyan);
+    }
+
+    .mod-btn .mod-tag {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--purple);
+      margin-top: 6px;
+    }
+
+    /* Corner decorations */
+    .mod-btn .corner {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--pink);
+    }
+    .mod-btn .corner.tl { top: 0; left: 0; }
+    .mod-btn .corner.br { bottom: 0; right: 0; }
+
+    /* Error state */
+    .error-msg {
+      font-family: 'VT323', monospace;
+      font-size: 1.4rem;
+      color: var(--pink);
+      text-shadow: var(--glow-pink);
+      text-align: center;
+      max-width: 600px;
+      line-height: 1.8;
+    }
+
+    /* Game overlay — renders fetched HTML inline */
+    #game-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: #000;
+      flex-direction: column;
+    }
+
+    #game-overlay.active {
+      display: flex;
+    }
+
+    #frame-bar {
+      background: var(--darker);
+      border-bottom: 2px solid var(--pink);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      box-shadow: 0 2px 20px rgba(255,45,120,0.4);
+    }
+
+    #frame-title {
+      font-family: 'VT323', monospace;
+      font-size: 1.4rem;
+      color: var(--cyan);
+      text-shadow: var(--glow-cyan);
+      letter-spacing: 2px;
+    }
+
+    #back-btn {
+      background: transparent;
+      border: 2px solid var(--pink);
+      color: var(--pink);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.55rem;
+      padding: 8px 14px;
+      cursor: pointer;
+      text-shadow: var(--glow-pink);
+      box-shadow: var(--glow-pink);
+      transition: background 0.2s, color 0.2s;
+      clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+    }
+
+    #back-btn:hover {
+      background: var(--pink);
+      color: #000;
+    }
+
+    /* The iframe that holds the fetched HTML as a blob URL */
+    #game-frame {
+      flex: 1;
+      border: none;
+      width: 100%;
+    }
+
+    /* Loading spinner */
+    #loading-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0,0,0,0.85);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      color: var(--cyan);
+      font-family: 'VT323', monospace;
+      font-size: 1.5rem;
+      text-shadow: var(--glow-cyan);
+    }
+
+    #loading-overlay.active { display: flex; }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--purple);
+      border-top-color: var(--cyan);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Footer */
+    .footer {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'VT323', monospace;
+      font-size: 0.9rem;
+      color: rgba(155,0,255,0.5);
+      letter-spacing: 2px;
+      z-index: 10;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<!-- Main Menu -->
+<div id="menu">
+  <div class="title-block">
+    <div class="title-main">🎵 FNF MODS 🎵</div>
+    <div class="title-sub">— SELECT YOUR MOD —</div>
+    <div class="title-divider"></div>
+  </div>
+
+  <div id="status"><span class="blink">▶</span> LOADING MODS...</div>
+  <div id="mod-grid"></div>
+</div>
+
+<!-- Game Overlay (renders fetched HTML) -->
+<div id="game-overlay">
+  <div id="frame-bar">
+    <div id="frame-title">▶ NOW PLAYING</div>
+    <button id="back-btn" onclick="closeFrame()">◀ BACK</button>
+  </div>
+  <iframe id="game-frame" allowfullscreen allow="autoplay; fullscreen"></iframe>
+</div>
+
+<!-- Loading spinner overlay -->
+<div id="loading-overlay">
+  <div class="spinner"></div>
+  <span>LOADING MOD...</span>
+</div>
+
+<div class="footer">FRIDAY NIGHT FUNKIN' MOD LAUNCHER</div>
+
+<script>
+  const JSDELIVR_BASE = 'https://cdn.jsdelivr.net/gh/greeniYT/fnf@main/';
+  const JSDELIVR_API  = 'https://data.jsdelivr.com/v1/package/gh/greeniYT/fnf@main/';
+
+  let currentBlobURL = null;
+
+  async function loadMods() {
+    const statusEl = document.getElementById('status');
+    const gridEl   = document.getElementById('mod-grid');
+
+    try {
+      const res  = await fetch(JSDELIVR_API);
+      if (!res.ok) throw new Error(`API returned ${res.status}`);
+      const data = await res.json();
+
+      const htmlFiles = [];
+
+      if (data.files) {
+        for (const f of data.files) {
+          if (f.name.endsWith('.html')) {
+            htmlFiles.push({ name: f.name, path: f.name });
+          }
+        }
+      }
+
+      if (data.files) {
+        for (const f of data.files) {
+          if (f.type === 'directory' && f.files) {
+            for (const sub of f.files) {
+              if (sub.name.endsWith('.html')) {
+                htmlFiles.push({ name: sub.name, path: `${f.name}/${sub.name}` });
+              }
+            }
+          }
+        }
+      }
+
+      if (htmlFiles.length === 0) {
+        statusEl.innerHTML = 'ERROR, NO MODS FOUND';
+        return;
+      }
+
+      statusEl.innerHTML = `<span style="color:var(--pink)">♪</span> ${htmlFiles.length} MOD${htmlFiles.length !== 1 ? 'S' : ''} FOUND — PICK ONE!`;
+      gridEl.innerHTML = '';
+
+      htmlFiles.forEach(({ name, path }, i) => {
+        const label = name.replace('.html', '').replace(/[-_]/g, ' ').toUpperCase();
+        const url   = JSDELIVR_BASE + path;
+
+        const btn = document.createElement('button');
+        btn.className = 'mod-btn';
+        btn.style.animationDelay = `${i * 0.05}s`;
+        btn.innerHTML = `
+          <span class="corner tl"></span>
+          <span class="corner br"></span>
+          <span class="mod-icon">🎮</span>
+          <span class="mod-name">${label}</span>
+          <span class="mod-tag">A cool Mod</span>
+        `;
+        btn.onclick = () => openMod(label, url);
+        gridEl.appendChild(btn);
+      });
+
+    } catch (err) {
+      console.error(err);
+      statusEl.innerHTML = '';
+      gridEl.innerHTML = `
+        <div class="error-msg">
+          ⚠ COULD NOT LOAD MODS<br><br>
+          Check that the repo is public and contains .html files.<br><br>
+          <span style="color:var(--purple);font-size:1rem;">${err.message}</span>
+        </div>`;
+    }
+  }
+
+  async function openMod(name, url) {
+    const loadingEl = document.getElementById('loading-overlay');
+    const overlay   = document.getElementById('game-overlay');
+    const frame     = document.getElementById('game-frame');
+    const titleEl   = document.getElementById('frame-title');
+
+    // Show loading spinner
+    loadingEl.classList.add('active');
+
+    try {
+      // Fetch the raw HTML source
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
+      const html = await res.text();
+
+      // Revoke any previous blob URL to free memory
+      if (currentBlobURL) {
+        URL.revokeObjectURL(currentBlobURL);
+        currentBlobURL = null;
+      }
+
+      // Create a blob URL from the fetched HTML so the iframe can render it
+      const blob = new Blob([html], { type: 'text/html' });
+      currentBlobURL = URL.createObjectURL(blob);
+
+      titleEl.textContent = `▶ ${name}`;
+      frame.src = currentBlobURL;
+
+      loadingEl.classList.remove('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+    } catch (err) {
+      loadingEl.classList.remove('active');
+      console.error('Failed to load mod:', err);
+      alert(`⚠ Could not load mod: ${err.message}`);
+    }
+  }
+
+  function closeFrame() {
+    const overlay = document.getElementById('game-overlay');
+    const frame   = document.getElementById('game-frame');
+
+    overlay.classList.remove('active');
+    frame.src = '';
+    document.body.style.overflow = '';
+
+    // Clean up blob URL
+    if (currentBlobURL) {
+      URL.revokeObjectURL(currentBlobURL);
+      currentBlobURL = null;
+    }
+  }
+
+  // ESC to close
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeFrame();
+  });
+
+  loadMods();
+</script>
+</body>
+</html>
