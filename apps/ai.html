@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Method Links</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --card: #111118;
+    --border: #1e1e2e;
+    --accent: #e8ff47;
+    --muted: #3a3a55;
+    --text: #e0e0f0;
+    --blocked: #ff4757;
+    --ok: #e8ff47;
+  }
+
+  body {
+    background: var(--bg);
+    font-family: 'Syne', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-image: radial-gradient(ellipse at 20% 50%, #1a1a3e22 0%, transparent 60%),
+                      radial-gradient(ellipse at 80% 20%, #2a1a3e22 0%, transparent 60%);
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    text-align: center;
+    margin-bottom: 0.4rem;
+  }
+
+  h1 span { color: var(--accent); }
+
+  .subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 3rem;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .card {
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--card);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    min-height: 160px;
+  }
+
+  .card:not(.blocked):not(.checking):hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 0 24px #e8ff4722;
+  }
+
+  .card.blocked { cursor: not-allowed; opacity: 0.6; pointer-events: none; }
+
+  .card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.75rem 1.25rem 1.25rem;
+    gap: 0.75rem;
+    height: 100%;
+  }
+
+  .card-img {
+    width: 52px; height: 52px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #1a1a2a;
+    padding: 6px;
+  }
+
+  .card-label { font-weight: 700; font-size: 1rem; letter-spacing: -0.02em; }
+
+  .card-url {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .status-badge {
+    position: absolute;
+    top: 10px; right: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 99px;
+    display: flex; align-items: center; gap: 5px;
+  }
+
+  .status-badge.checking { background: #1e1e3a; color: #6666aa; animation: pulse 1.2s ease-in-out infinite; }
+  .status-badge.ok       { background: #e8ff471a; color: var(--ok); }
+  .status-badge.blocked  { background: #ff47571a; color: var(--blocked); }
+
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .checking .status-dot { animation: blink 0.8s ease-in-out infinite alternate; }
+
+  .card.checking .card-inner { opacity: 0.3; }
+
+  .shimmer {
+    position: absolute; inset: 0;
+    background: linear-gradient(110deg, transparent 30%, #ffffff08 50%, transparent 70%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s linear infinite;
+    border-radius: 16px;
+  }
+  .card:not(.checking) .shimmer { display: none; }
+
+  .blocked-msg { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--blocked); letter-spacing: 0.05em; }
+
+  .arrow {
+    position: absolute; bottom: 12px; right: 14px;
+    font-size: 1rem; color: var(--accent);
+    opacity: 0; transition: opacity 0.2s, transform 0.2s;
+  }
+  .card:not(.blocked):not(.checking):hover .arrow { opacity: 1; transform: translate(2px, -2px); }
+
+  @keyframes shimmer  { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  @keyframes pulse    { 0%,100% { opacity:1; } 50% { opacity:.4; } }
+  @keyframes blink    { from { opacity:.3; } to { opacity:1; } }
+  @keyframes fadeIn   { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+  .card { animation: fadeIn 0.4s ease both; }
+</style>
+</head>
+<body>
+
+<h1>ai method <span>links</span></h1>
+<p class="subtitle" id="subtitle">Checking connectivity…</p>
+<div class="grid" id="grid"></div>
+
+<script>
+  // ============================================================
+  //  ✏️  EDIT YOUR LINKS HERE
+  //  Each entry: { label, url }
+  //  Favicons are fetched automatically from each site.
+  // ============================================================
+  const links = [
+    { label: 'Copilot',    url: 'https://www.bing.com/copilotsearch'    },
+    { label: 'Gemini',    url: 'https://www.google.com/search?sxsrf=ANbL-n55r4yu1t4UvoUnMlKk1PwVZHarVA%3A1773025622144&udm=50&aep=10&ntc=1'    },
+    { label: 'Leo AI',   url: 'https://search.brave.com/ask'   },
+    { label: 'Brittanica AI',   url: 'https://www.britannica.com/chatbot'   },
+     { label: 'Flexi AI',   url: 'https://www.ck12.org/flexi/'   },
+    { label: 'ChatGPT', url: 'https://chatgpt-40.zapier.app/' },
+  ];
+  // ============================================================
+
+  function faviconUrl(url) {
+    try {
+      const origin = new URL(url).origin;
+      return `https://www.google.com/s2/favicons?domain=${origin}&sz=64`;
+    } catch { return ''; }
+  }
+
+  function displayUrl(url) {
+    return url.replace(/^https?:\/\//, '');
+  }
+
+  const grid     = document.getElementById('grid');
+  const subtitle = document.getElementById('subtitle');
+
+  links.forEach((link, i) => {
+    const card = document.createElement('a');
+    card.className = 'card checking';
+    card.id = `card-${i}`;
+    card.style.animationDelay = `${i * 0.08}s`;
+    card.innerHTML = `
+      <div class="shimmer"></div>
+      <div class="status-badge checking">
+        <span class="status-dot"></span> Checking
+      </div>
+      <div class="card-inner">
+        <img class="card-img" src="${faviconUrl(link.url)}" alt="${link.label}">
+        <span class="card-label">${link.label}</span>
+        <span class="card-url">${displayUrl(link.url)}</span>
+      </div>
+      <span class="arrow">↗</span>
+    `;
+    grid.appendChild(card);
+  });
+
+  async function checkLink(link, index) {
+    const card  = document.getElementById(`card-${index}`);
+    const badge = card.querySelector('.status-badge');
+
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 5000);
+
+      await fetch(link.url, {
+        method: 'HEAD',
+        mode: 'no-cors',
+        signal: controller.signal,
+        cache: 'no-store'
+      });
+
+      clearTimeout(timeout);
+
+      card.href   = link.url;
+      card.target = '_blank';
+      card.rel    = 'noopener noreferrer';
+      card.classList.remove('checking');
+
+      badge.className = 'status-badge ok';
+      badge.innerHTML = `<span class="status-dot"></span> Unblocked`;
+
+    } catch (err) {
+      card.classList.remove('checking');
+      card.classList.add('blocked');
+
+      badge.className = 'status-badge blocked';
+      badge.innerHTML = `<span class="status-dot"></span> Blocked`;
+
+      const inner = card.querySelector('.card-inner');
+      const msg   = document.createElement('span');
+      msg.className   = 'blocked-msg';
+      msg.textContent = err.name === 'AbortError' ? 'Timed out' : 'Unreachable';
+      inner.appendChild(msg);
+    }
+  }
+
+  Promise.allSettled(
+    links.map((link, i) => new Promise(res => setTimeout(() => checkLink(link, i).then(res).catch(res), i * 200)))
+  ).then(() => {
+    subtitle.textContent = 'All checks complete';
+  });
+</script>
+</body>
+</html>
