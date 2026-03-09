@@ -600,6 +600,11 @@
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnf.html"
   },
   {
+    "name": "Friday Night Funkin Mods",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@refs/heads/main/icons/fnfmods.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnfmods.html"
+  },
+  {
     "name": "Grindcraft",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@refs/heads/main/icons/grindcraft.avif",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/grindcraftv3.html"
