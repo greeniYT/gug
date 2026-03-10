@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang=en-us>
+<head>
+<base href="https://cdn.jsdelivr.net/gh/greeniYT/sonic3air@main/sonic3air-v20240202-r2/" target="_blank">
+<meta charset=utf-8>
+<meta content="text/html; charset=utf-8" http-equiv=Content-Type>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sonic 3 A.I.R.</title>
+<link rel="apple-touch-icon" sizes="256x256" href="icon.png">
+<link rel="icon" type="x-icon" href="icon.png">
+<link rel="manifest" href="manifest.json">
+<style>
+body{background:black;color:white;font-family:arial;margin:0;padding:none;overflow:hidden;-webkit-user-select:none;}
+.emscripten{padding-right:0;margin-left:auto;margin-right:auto;display:block}
+div.emscripten{text-align:center}
+div.emscripten_border{border:0 none;}
+canvas.emscripten{border:0 none;background-color:#000}
+.spinner{height:30px;width:30px;margin:0;margin-top:20px;margin-left:20px;display:inline-block;vertical-align:top;-webkit-animation:rotation .8s linear infinite;-moz-animation:rotation .8s linear infinite;-o-animation:rotation .8s linear infinite;animation:rotation .8s linear infinite;border-left:5px solid #ebebeb;border-right:5px solid #ebebeb;border-bottom:5px solid #ebebeb;border-top:5px solid #787878;border-radius:100%;background-color:#bdd72e}
+@-webkit-keyframes rotation{from{-webkit-transform:rotate(0)}to{-webkit-transform:rotate(360deg)}}
+@-moz-keyframes rotation{from{-moz-transform:rotate(0)}to{-moz-transform:rotate(360deg)}}
+@-o-keyframes rotation{from{-o-transform:rotate(0)}to{-o-transform:rotate(360deg)}}
+@keyframes rotation{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+#status{display:inline-block;vertical-align:top;margin-top:30px;margin-left:20px;font-size:1em;font-weight:700;color:#787878}
+#progress{height:20px;width:250px}
+.hidden{display:none !important;}
+
+@keyframes spin {
+	from { transform: rotate(0deg); }
+	to   { transform: rotate(360deg); }
+}
+
+#romLoadOverlay {
+	position: fixed;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	background: #0a0a0a;
+	z-index: 9999;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 14px;
+}
+
+/* Spinner ring */
+#romSpinner {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	border: 5px solid #1a1a1a;
+	border-top: 5px solid #1e88e5;
+	border-right: 5px solid #1e88e5;
+	box-shadow: 0 0 12px #1e88e566, inset 0 0 10px #1a1a1a;
+	animation: spin 0.9s linear infinite;
+}
+
+#romLoadStatus {
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 13px;
+	font-weight: bold;
+	color: #cccccc;
+	text-align: center;
+	letter-spacing: 0.02em;
+}
+
+#romBarWrap {
+	width: min(340px, 75vw);
+}
+
+/* Thin dark track */
+#romProgressOuter {
+	width: 100%;
+	height: 8px;
+	background: #1e1e1e;
+	border-radius: 4px;
+	overflow: hidden;
+	position: relative;
+}
+
+/* Green fill */
+#romProgressInner {
+	height: 100%;
+	width: 0%;
+	background: repeating-linear-gradient(
+		-45deg,
+		#ffd740 0px,  #ffd740 6px,
+		#ffb300 6px, #ffb300 12px
+	);
+	border-radius: 4px;
+	transition: width 0.12s linear;
+	box-shadow: 0 0 6px #ffd74088;
+}
+
+.restart{text-align:center;font-size: 1em;}
+.extraDownloads{display:inline-block;}
+.restart > button,.extraDownloads > button,.extraDownloadsSection > button {
+  display: inline-block;
+  color: white;
+  background: #222;
+  background: linear-gradient(0deg, #111 0%, #444 100%);
+  border: 1px solid #999;
+  border-radius: 5px;
+  margin-top:3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #555;
+  font-size: 32px;
+}
+.extraDownloadsSection{text-align: center;}
+.extraDownloadsProgress{text-align:center;font-size: 0.9em;}
+#root{color: black;}
+#ios_workaround{
+	width: 100%;
+	height: 100%;
+	position: flex;
+	top: 0;
+	left: 0;
+	text-align: center;
+	padding-top: 40vh;
+	font-size: 2em;
+	user-select: none;
+	cursor: default;
+	background-color: rgba(0,0,0,50%);
+}
+</style>
+<script src="browserfs.min.js"></script>
+<script>
+var hasRemasteredAudio = false;
+
+const ROM_URL = "https://cdn.jsdelivr.net/gh/greeniYT/sonic3air@main/sonic3air-v20240202-r2/Sonic_Knuckles_wSonic3.bin";
+
+function startGame(){
+	callMain();
+	var gameCanvas = document.getElementById('canvas');
+	gameCanvas.style.width = "min(100vw, calc(100vh * 16 / 9))";
+	gameCanvas.style.height = "min(100vh, calc(100vw * 9 / 16))";
+	gameCanvas.style.marginTop = "max(0vh, calc(50vh - (100vw * 9 / 16 / 2)))";
+	if(isRunningOniOS()){
+		let iosoverlay = document.getElementById('ios_workaround');
+		if(iosoverlay) iosoverlay.classList.remove('hidden');
+	}
+}
+
+function isRunningOniOS() {
+	return ['iPad Simulator','iPhone Simulator','iPod Simulator','iPad','iPhone','iPod'].includes(navigator.platform)
+		|| (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+}
+
+function hideIOSoverlay(){
+	let iosoverlay = document.getElementById('ios_workaround');
+	if(iosoverlay) document.body.removeChild(iosoverlay);
+}
+
+function onPageLoaded(){
+	if('serviceWorker' in navigator){
+		navigator.serviceWorker.register('worker.js');
+	}
+	var startup = document.getElementById("startup");
+	startup.style.display = 'none';
+	var uiElements = document.getElementsByClassName('pageUI');
+	for (var i = 0; i < uiElements.length; i++){
+		uiElements[i].classList.remove('hidden');
+	}
+	var loader = document.createElement('script');
+	loader.setAttribute('async', '');
+	loader.setAttribute('src', 'loader.js');
+	document.body.appendChild(loader);
+	Module['calledRun'] = true;
+	if(isRunningOniOS() == false) hideIOSoverlay();
+}
+
+function onGameExit(){
+	var restartBits = document.getElementsByClassName('restart');
+	for (var i = 0; i < restartBits.length; i++) restartBits[i].classList.remove('hidden');
+	if(hasRemasteredAudio === false){
+		var extraBits = document.getElementsByClassName('extraDownloads');
+		for (var i = 0; i < extraBits.length; i++) extraBits[i].classList.remove('hidden');
+	}
+	var gameView = document.getElementById("gameView");
+	gameView.classList.add('hidden');
+	var rootView = document.getElementById("root");
+	rootView.classList.remove('hidden');
+	var jsRuntime = document.createElement('script');
+	jsRuntime.setAttribute('src', 'fileManagerRuntime.js');
+	document.body.appendChild(jsRuntime);
+	var jsReact = document.createElement('script');
+	jsReact.setAttribute('src', 'react.js');
+	document.body.appendChild(jsReact);
+	var jsFileman = document.createElement('script');
+	jsFileman.setAttribute('src', 'filemanager.js');
+	document.body.appendChild(jsFileman);
+	exitRuntime();
+}
+
+function showRomLoadOverlay(){
+	var el = document.getElementById('romLoadOverlay');
+	if(el) el.classList.remove('hidden');
+}
+function hideRomLoadOverlay(){
+	var el = document.getElementById('romLoadOverlay');
+	if(el) el.classList.add('hidden');
+}
+function setRomLoadStatus(text){
+	var el = document.getElementById('romLoadStatus');
+	if(el) el.innerText = text;
+}
+function setRomLoadProgress(pct){
+	var el = document.getElementById('romProgressInner');
+	if(el) el.style.width = pct + '%';
+}
+
+async function autoLoadRom(){
+	showRomLoadOverlay();
+	setRomLoadStatus("Downloading ROM...");
+	setRomLoadProgress(0);
+	try {
+		let response = await fetch(ROM_URL);
+		if(!response.ok) throw new Error("Fetch failed: " + response.status);
+		const reader = response.body.getReader();
+		const totalSize = +response.headers.get('Content-Length');
+		let chunks = [];
+		let currentSize = 0;
+		while(true){
+			const {done, value} = await reader.read();
+			if(done) break;
+			chunks.push(value);
+			currentSize += value.length;
+			if(totalSize > 0){
+				let pct = Math.round(currentSize * 100 / totalSize);
+				setRomLoadProgress(pct);
+				setRomLoadStatus("Loading game data... (" + pct + "%)");
+			} else {
+				setRomLoadStatus("Loading game data... " + Math.round(currentSize / 1024) + " KB");
+			}
+		}
+		setRomLoadStatus("Installing ROM...");
+		setRomLoadProgress(100);
+
+		// Merge chunks
+		let data = new Uint8Array(currentSize);
+		let offset = 0;
+		for(let chunk of chunks){ data.set(chunk, offset); offset += chunk.length; }
+
+		if(data.length !== 4194304){
+			setRomLoadStatus("Error: ROM file size is wrong. Expected 4MB.");
+			return;
+		}
+		if(data[0x186] !== 0x31 || data[0x187] !== 0x35 || data[0x188] !== 0x36 || data[0x189] !== 0x33){
+			setRomLoadStatus("Error: ROM header check failed. Wrong ROM?");
+			return;
+		}
+
+		Module['FS_createDataFile']('/sonic3air/savedata/', 'Sonic_Knuckles_wSonic3.bin', data, true, true, true);
+
+		setRomLoadStatus("ROM loaded! Starting game...");
+		await new Promise(r => setTimeout(r, 600));
+		hideRomLoadOverlay();
+
+		var internalFolder = FS.analyzePath("/sonic3air/___internal/");
+		if(!internalFolder.exists) FS.mkdir('/sonic3air/___internal/');
+		hidePageUI();
+		startGame();
+	} catch(err) {
+		setRomLoadStatus("Failed to download ROM: " + err.message);
+	}
+}
+
+function onDownloadsComplete(){
+	var originalAbort = abort;
+	abort = function(what){
+		if(what.stack.indexOf('browserfs') > 0){ what.errno = 44; return; }
+		originalAbort(what);
+	}
+	var BFS = new BrowserFS.EmscriptenFS(Module.FS, Module.PATH, Module.ERRNO_CODES);
+	FS.mount(BFS, {root: '/'}, '/sonic3air/savedata/');
+	FS.chdir("/sonic3air");
+	hasRemasteredAudio = (FS.analyzePath("/sonic3air/savedata/audioremaster.bin", true).exists === true);
+	if(hasRemasteredAudio === true){
+		FS.symlink('/sonic3air/savedata/audioremaster.bin','/sonic3air/data/audioremaster.bin');
+	}
+	if(FS.analyzePath("/sonic3air/savedata/Sonic_Knuckles_wSonic3.bin", true).exists === true){
+		var internalFolder = FS.analyzePath("/sonic3air/___internal/");
+		if(!internalFolder.exists) FS.mkdir('/sonic3air/___internal/');
+		hidePageUI();
+		startGame();
+	} else {
+		// Auto-load ROM from CDN
+		autoLoadRom();
+	}
+}
+
+function hidePageUI(){
+	var fileElement = document.getElementsByClassName('file_select');
+	if(fileElement.length > 0) fileElement[0].remove();
+	var uiElements = document.getElementsByClassName('pageUI');
+	for (var i = 0; i < uiElements.length; i++) uiElements[i].style.display = 'none';
+}
+
+function showExtraDownloads(){
+	var extraBits = document.getElementsByClassName('extraDownloadsSection');
+	for (var i = 0; i < extraBits.length; i++) extraBits[i].classList.remove('hidden');
+	extraBits = document.getElementsByClassName('restart');
+	for (var i = 0; i < extraBits.length; i++) extraBits[i].classList.add('hidden');
+	extraBits = document.getElementById('root');
+	extraBits.classList.add('hidden');
+}
+
+function hideExtraDownloads(){
+	let extraBits = document.getElementsByClassName('extraDownloadsSection');
+	for (var i = 0; i < extraBits.length; i++) extraBits[i].classList.add('hidden');
+	extraBits = document.getElementsByClassName('restart');
+	for (var i = 0; i < extraBits.length; i++) extraBits[i].classList.remove('hidden');
+	extraBits = document.getElementById('root');
+	extraBits.classList.remove('hidden');
+}
+
+async function downloadRemastered(){
+	let extraBits = document.getElementsByClassName('extraDownloadsSection');
+	for (var i = 0; i < extraBits.length; i++) extraBits[i].classList.add('hidden');
+	extraBits = document.getElementsByClassName('extraDownloadsProgress');
+	for (var i = 0; i < extraBits.length; i++) extraBits[i].classList.remove('hidden');
+	let progressBar = document.getElementById('extraProgress');
+	let statusText = document.getElementById('extraStatus');
+	progressBar.value = 0;
+	let response = await fetch('audioremaster.bin');
+	const reader = response.body.getReader();
+	const totalSize = +response.headers.get('Content-Length');
+	if(totalSize > 0){
+		let file = FS.open('/sonic3air/savedata/audioremaster.bin','w+');
+		for(currentSize = 0; currentSize < totalSize;){
+			const {done, value} = await reader.read();
+			if(done){ progressBar.value = 100; break; }
+			FS.write(file, value, 0, value.length);
+			currentSize += value.length;
+			progressBar.value = currentSize * 100 / totalSize;
+		}
+		FS.close(file);
+		statusText.innerText = "Download complete! Restarting game...";
+	} else {
+		statusText.innerText = "Download failed to start. Restarting game...";
+	}
+	setTimeout(()=>location.reload(), 2000);
+}
+</script>
+</head>
+<body>
+
+<!-- ROM auto-load overlay (hidden until needed) -->
+<div id="romLoadOverlay" class="hidden">
+	<div id="romSpinner"></div>
+	<div id="romLoadStatus">Loading game data...</div>
+	<div id="romBarWrap">
+		<div id="romProgressOuter">
+			<div id="romProgressInner"></div>
+		</div>
+	</div>
+</div>
+
+<div id="startup"><h2>Loading...</h2></div>
+<div class="spinner pageUI hidden" id=spinner></div>
+<div class="emscripten pageUI hidden" id=status>Downloading...</div>
+<div class="emscripten pageUI hidden"><progress hidden id=progress max=100 value=0></progress></div>
+
+<div class="restart hidden">
+	<button type="button" onclick="location.reload()">Restart Game</button>
+	<div class="extraDownloads hidden">
+		<button type="button" onclick="showExtraDownloads()">Extra Downloads</button>
+	</div>
+</div>
+<div class="extraDownloadsSection hidden">
+	<div style="margin:1em;">On other platforms, Sonic 3 A.I.R. includes remastered music which is enabled by default.
+	None of the compositions have been altered, but instead the music is played back in higher quality
+	than the original MegaDrive or Genesis console was capable of. On this device the remastered music
+	is not included by default and you can install it here. Installing this may reduce the stability
+	of the game on devices with low memory causing stuttering or the game to no longer load at all.</div>
+	<br/>
+	<button type="button" onclick="hideExtraDownloads()">Go Back</button>
+	<br/>
+	<button type="button" onclick="downloadRemastered()">Install Anyway</button>
+</div>
+<div class="extraDownloadsProgress hidden">
+	<div id=extraStatus>Downloading...</div>
+	<div><progress id=extraProgress max=100 value=0></progress></div>
+</div>
+<div id="root" class="hidden"></div>
+<div id="gameView" class="emscripten_border">
+	<canvas class="emscripten" id=canvas oncontextmenu=event.preventDefault() tabindex=-1></canvas>
+</div>
+<div id="ios_workaround" class="hidden" onclick="hideIOSoverlay()">
+	Tap to Start
+</div>
+<script>
+var statusElement = document.getElementById("status"),
+    progressElement = document.getElementById("progress"),
+    spinnerElement = document.getElementById("spinner");
+
+var Module = {
+	preRun: function(){
+		onPageLoaded();
+	},
+	postRun: [],
+	onExit: function(){
+		onGameExit();
+	},
+	noInitialRun: true,
+	printErr: function(e) {
+		arguments.length > 1 && (e = Array.prototype.slice.call(arguments).join(" ")), console.error(e)
+	},
+	canvas: function() {
+		var e = document.getElementById("canvas");
+		return e.addEventListener("webglcontextlost", (function(e) {
+			alert("WebGL context lost. You will need to reload the page."), e.preventDefault()
+		}), !1), e
+	}(),
+	setStatus: function(e) {
+		if (Module.setStatus.last || (Module.setStatus.last = { time: Date.now(), text: "" }), e !== Module.setStatus.last.text) {
+			var t = e.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/),
+			    n = Date.now();
+			t && n - Module.setStatus.last.time < 30 || (Module.setStatus.last.time = n, Module.setStatus.last.text = e,
+			t ? (e = t[1], progressElement.value = 100 * parseInt(t[2]), progressElement.max = 100 * parseInt(t[4]),
+			progressElement.hidden = !1, spinnerElement.hidden = !1) :
+			(progressElement.value = null, progressElement.max = null, progressElement.hidden = !0,
+			e || (spinnerElement.style.display = "none")), statusElement.innerHTML = e)
+		}
+	},
+	totalDependencies: 0,
+	monitorRunDependencies: function(e) {
+		this.totalDependencies = Math.max(this.totalDependencies, e),
+		Module.setStatus(e ? "Preparing... (" + (this.totalDependencies - e) + "/" + this.totalDependencies + ")" : "All downloads complete.")
+		if(!e){
+			if(FS.analyzePath("/sonic3air/config.json", true).exists === true){
+				FS.mkdir('/sonic3air/savedata');
+				BrowserFS.configure({
+					fs: "AsyncMirror",
+					options: {
+						sync: { fs: "InMemory" },
+						async: { fs: "IndexedDB", options: { storeName: "sonic3air_savedata" } }
+					}
+				}, function(e) {
+					if (e) throw e;
+					onDownloadsComplete();
+				});
+			}
+		}
+	}
+};
+Module.setStatus("Downloading..."), window.onerror = function(e) {
+	Module.setStatus("Exception thrown, see JavaScript console"), spinnerElement.style.display = "none",
+	Module.setStatus = function(e) { e && Module.printErr("[post-exception status] " + e) }
+}
+</script>
+<script async src=sonic3air_web.js></script>
+</body>
+</html>
