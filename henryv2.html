@@ -49,6 +49,8 @@ p {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
+  color: white;
 }
 
 .game-btn:hover {
@@ -69,37 +71,83 @@ p {
   font-weight: 700;
 }
 
-#game-frame {
+/* Fullscreen overlay */
+#overlay {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
-  border: none;
-  display: none;
   background: black;
   z-index: 1000;
+  display: none;
+  flex-direction: column;
+}
+
+#game-frame {
+  width: 100%;
+  flex: 1;
+  border: none;
+  background: black;
+}
+
+#top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1002;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 12px 18px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+#top-bar.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* invisible hotzone at very top of screen */
+#top-hotzone {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  z-index: 1003;
+  display: none;
+}
+
+#top-bar button {
+  padding: 10px 22px;
+  border: 3px solid black;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 black;
+  font-family: 'Comic Neue', cursive;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+#top-bar button:hover {
+  transform: translate(-2px,-2px);
+  box-shadow: 7px 7px 0 black;
 }
 
 #back-btn {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 1001;
-  padding: 12px 26px;
   background: #ff4040;
-  border: 4px solid black;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 5px 5px 0 black;
-  display: none;
+  color: white;
 }
 
-#back-btn:hover {
-  transform: translate(-2px,-2px);
-  box-shadow: 8px 8px 0 black;
+#fullscreen-btn {
+  background: #222;
+  color: white;
 }
+
+
 </style>
 </head>
 
@@ -110,15 +158,23 @@ p {
 
 <div class="grid" id="gameGrid"></div>
 
-<iframe id="game-frame"></iframe>
-<button id="back-btn" onclick="closeGame()">← Back</button>
+<div id="overlay">
+  <iframe id="game-frame" allowfullscreen allow="autoplay"></iframe>
+</div>
+
+<div id="top-hotzone"></div>
+<div id="top-bar">
+  <button id="fullscreen-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+  <button id="back-btn" onclick="closeGame()">← Back</button>
+</div>
+
 
 <script>
 const games = [
   {
     name: "Breaking the Bank",
     img: "https://imgs.search.brave.com/hnM71Ez7rBz4n02zScIPN2g_PScukHwWfQhLlbchrMM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/bnVtdWtpLmNvbS9n/YW1lL2NhcmQvYnJl/YWtpbmctdGhlLWJh/bmstNDE1OS53ZWJw",
-    url: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/hs/btb.html"
+    url: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/hs/btb2.html"
   },
   {
     name: "Escaping the Prison",
@@ -140,22 +196,42 @@ const games = [
     img: "https://imgs.search.brave.com/kAoVNM4M5yndBZ8RuyvEF64dlAZIdmQTPKeIzs0Bw30/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbGF5/LmdpbGVjdC5jb20v/aW1hZ2VzL2ljb25z/L2ZsZWVpbmd0aGVj/b21wbGV4LndlYnA",
     url: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/hs/ftc.html"
   },
-  {
-    name: "Henry Stickmin Collection",
-    img: "https://imgs.search.brave.com/w1nSmurWmOj3WBr-DYtC3J7TdRVwr-M8WYt_oiSnc38/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aGVo/ZW5yeS1zdGlja21p/bmNvbGxlY3Rpb24u/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDIxLzEwL3RoZS1o/ZW5yeS1zdGlja21p/bi1jb2xsZWN0aW9u/LTItMjQweDI0MC5q/cGc",
-    url: "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/hs/thsc.html"
-  }
+
 ];
 
 const grid = document.getElementById("gameGrid");
 const iframe = document.getElementById("game-frame");
+const overlay = document.getElementById("overlay");
+const topBar = document.getElementById("top-bar");
+const topHotzone = document.getElementById("top-hotzone");
 const backBtn = document.getElementById("back-btn");
+const fullscreenBtn = document.getElementById("fullscreen-btn");
+
+let hideTimer;
+
+topHotzone.addEventListener("mouseenter", () => {
+  clearTimeout(hideTimer);
+  topBar.classList.add("visible");
+});
+
+topBar.addEventListener("mouseenter", () => {
+  clearTimeout(hideTimer);
+  topBar.classList.add("visible");
+});
+
+topBar.addEventListener("mouseleave", () => {
+  hideTimer = setTimeout(() => topBar.classList.remove("visible"), 600);
+});
+
+topHotzone.addEventListener("mouseleave", () => {
+  hideTimer = setTimeout(() => topBar.classList.remove("visible"), 600);
+});
 
 games.forEach(game => {
   const btn = document.createElement("div");
   btn.className = "game-btn";
   btn.innerHTML = `
-    <img src="${game.img}">
+    <img src="${game.img}" onerror="this.style.display='none'">
     <span>${game.name}</span>
   `;
   btn.onclick = () => launchGame(game.url);
@@ -167,26 +243,61 @@ async function launchGame(url) {
     const res = await fetch(url);
     let html = await res.text();
 
+    // Inject a <base> tag so relative URLs (images, scripts, SWFs)
+    // resolve against the original host, not the blob origin.
     const base = url.substring(0, url.lastIndexOf("/") + 1);
-    html = `<base href="${base}">` + html;
+    html = html.replace(/<head>/i, `<head><base href="${base}">`);
+    // Fallback if no <head> tag
+    if (!html.includes(`<base href="${base}">`)) {
+      html = `<base href="${base}">` + html;
+    }
 
-    iframe.srcdoc = html;
+    // Blob URL gives the iframe a real origin so external assets load correctly.
+    const blob = new Blob([html], { type: "text/html" });
+    const blobUrl = URL.createObjectURL(blob);
 
-    iframe.style.display = "block";
-    backBtn.style.display = "block";
+    // Clean up previous blob to avoid memory leaks
+    if (iframe._blobUrl) URL.revokeObjectURL(iframe._blobUrl);
+    iframe._blobUrl = blobUrl;
+
+    iframe.src = blobUrl;
+
+    topBar.style.display = "flex";
+    topHotzone.style.display = "block";
+    overlay.style.display = "flex";
     document.body.style.overflow = "hidden";
   } catch (err) {
-    alert("Game failed to load.");
+    alert("Game failed to load. Try opening in a new tab.");
     console.error(err);
   }
 }
 
 function closeGame() {
-  iframe.style.display = "none";
-  iframe.srcdoc = "";
-  backBtn.style.display = "none";
+  topBar.style.display = "none";
+  topBar.classList.remove("visible");
+  topHotzone.style.display = "none";
+  overlay.style.display = "none";
+  if (iframe._blobUrl) { URL.revokeObjectURL(iframe._blobUrl); iframe._blobUrl = null; }
+  iframe.src = "about:blank";
   document.body.style.overflow = "auto";
+  if (document.fullscreenElement) document.exitFullscreen();
 }
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    overlay.requestFullscreen();
+    fullscreenBtn.textContent = "✕ Exit Fullscreen";
+  } else {
+    document.exitFullscreen();
+    fullscreenBtn.textContent = "⛶ Fullscreen";
+  }
+}
+
+document.addEventListener("fullscreenchange", () => {
+  if (!document.fullscreenElement) {
+    fullscreenBtn.textContent = "⛶ Fullscreen";
+  }
+});
 </script>
 
 </body>
