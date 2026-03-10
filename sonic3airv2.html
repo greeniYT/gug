@@ -130,7 +130,8 @@ canvas.emscripten{border:0 none;background-color:#000}
 <script>
 var hasRemasteredAudio = false;
 
-const ROM_URL = "https://cdn.jsdelivr.net/gh/greeniYT/sonic3air@main/sonic3air-v20240202-r2/Sonic_Knuckles_wSonic3.bin";
+const CDN_BASE = "https://cdn.jsdelivr.net/gh/greeniYT/sonic3air@main/sonic3air-v20240202-r2/";
+const ROM_URL = CDN_BASE + "Sonic_Knuckles_wSonic3.bin";
 
 function startGame(){
 	callMain();
@@ -156,7 +157,7 @@ function hideIOSoverlay(){
 
 function onPageLoaded(){
 	if('serviceWorker' in navigator){
-		navigator.serviceWorker.register('worker.js');
+		navigator.serviceWorker.register(CDN_BASE + 'worker.js');
 	}
 	var startup = document.getElementById("startup");
 	startup.style.display = 'none';
@@ -166,7 +167,7 @@ function onPageLoaded(){
 	}
 	var loader = document.createElement('script');
 	loader.setAttribute('async', '');
-	loader.setAttribute('src', 'loader.js');
+	loader.setAttribute('src', CDN_BASE + 'loader.js');
 	document.body.appendChild(loader);
 	Module['calledRun'] = true;
 	if(isRunningOniOS() == false) hideIOSoverlay();
@@ -184,13 +185,13 @@ function onGameExit(){
 	var rootView = document.getElementById("root");
 	rootView.classList.remove('hidden');
 	var jsRuntime = document.createElement('script');
-	jsRuntime.setAttribute('src', 'fileManagerRuntime.js');
+	jsRuntime.setAttribute('src', CDN_BASE + 'fileManagerRuntime.js');
 	document.body.appendChild(jsRuntime);
 	var jsReact = document.createElement('script');
-	jsReact.setAttribute('src', 'react.js');
+	jsReact.setAttribute('src', CDN_BASE + 'react.js');
 	document.body.appendChild(jsReact);
 	var jsFileman = document.createElement('script');
-	jsFileman.setAttribute('src', 'filemanager.js');
+	jsFileman.setAttribute('src', CDN_BASE + 'filemanager.js');
 	document.body.appendChild(jsFileman);
 	exitRuntime();
 }
@@ -452,6 +453,6 @@ Module.setStatus("Downloading..."), window.onerror = function(e) {
 	Module.setStatus = function(e) { e && Module.printErr("[post-exception status] " + e) }
 }
 </script>
-<script async src=sonic3air_web.js></script>
+<script async src="https://cdn.jsdelivr.net/gh/greeniYT/sonic3air@main/sonic3air-v20240202-r2/sonic3air_web.js"></script>
 </body>
 </html>
