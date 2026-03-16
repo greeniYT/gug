@@ -20,6 +20,16 @@
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ultrakill.html"
   },
   {
+"name": "Brawl Simulator 3D",
+"image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/brawlsim3d.webp",
+"file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/brawlsim3d.html"
+},
+{
+"name": "Brotato",
+"image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/brotato.png",
+"file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/brotato.png"
+},
+  {
     "name": "Tiny Fishing",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tinyfish.png",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tinyfish.html"
