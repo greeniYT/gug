@@ -2073,7 +2073,7 @@ const CONTENT_URLS = {
   games:     `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/gamesv31.json?v=${v}`,
   movies:    `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/movies.json?v=${v}`,
   minecraft: `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/mcv3.json?v=${v}`,
-  other:     `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/otherv4.json?v=${v}`
+  other:     `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/otherv5.json?v=${v}`
 };
     const AMBIANCE_URLS = [
       'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance.mp3',
@@ -2351,7 +2351,7 @@ const CONTENT_URLS = {
           iframe.style.width = '100%';
           iframe.style.height = '100%';
           iframe.style.border = 'none';
-          iframe.sandbox.add('allow-scripts', 'allow-same-origin', 'allow-forms', 'allow-popups', 'allow-modals', 'allow-pointer-lock');
+          iframe.sandbox.add('allow-scripts', 'allow-same-origin', 'allow-forms', 'allow-popups', 'autoplay', 'fullscreen','camera','microphone','allow-modals', 'allow-pointer-lock');
 
           gameContent.appendChild(iframe);
 
