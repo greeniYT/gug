@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MC File Launcher</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    :root {
+      --dirt-dark: #5c3d1e;
+      --dirt-mid: #7a4f2e;
+      --dirt-light: #8b5e3c;
+      --grass-top: #5d9e2f;
+      --grass-side: #4a7d25;
+      --stone: #8a8a8a;
+      --stone-dark: #5a5a5a;
+      --wood: #a0752a;
+      --sky: #5b8bce;
+      --sky-dark: #3a6aad;
+      --btn-face: #c6c6c6;
+      --btn-shadow: #555555;
+      --btn-highlight: #ffffff;
+      --btn-dark: #383838;
+      --btn-hover: #ffe97f;
+      --text-shadow: #3f3f3f;
+      --gui-bg: rgba(0, 0, 0, 0.75);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      image-rendering: pixelated;
+    }
+
+    body {
+      background-color: var(--sky-dark);
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect width='64' height='64' fill='%235b8bce'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%236a9bd8' opacity='0.3'/%3E%3Crect x='48' y='0' width='16' height='16' fill='%236a9bd8' opacity='0.2'/%3E%3C/svg%3E");
+      font-family: 'Press Start 2P', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 40px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Pixelated cloud effect */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Crect x='10' y='30' width='80' height='16' fill='white' opacity='0.5'/%3E%3Crect x='0' y='46' width='96' height='16' fill='white' opacity='0.5'/%3E%3Crect x='10' y='62' width='80' height='16' fill='white' opacity='0.5'/%3E%3Crect x='160' y='10' width='64' height='16' fill='white' opacity='0.5'/%3E%3Crect x='144' y='26' width='96' height='16' fill='white' opacity='0.5'/%3E%3Crect x='160' y='42' width='64' height='16' fill='white' opacity='0.5'/%3E%3C/svg%3E");
+      background-size: 512px 512px;
+      pointer-events: none;
+      z-index: 0;
+      animation: cloudDrift 60s linear infinite;
+    }
+
+    @keyframes cloudDrift {
+      from { background-position: 0 0; }
+      to { background-position: 512px 0; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 700px;
+      padding: 20px;
+    }
+
+    /* TITLE */
+    .title-block {
+      text-align: center;
+      margin: 30px 0 24px;
+    }
+
+    .title-block h1 {
+      font-size: 18px;
+      color: #ffffa0;
+      text-shadow:
+        3px 3px 0 #b8a000,
+        -1px -1px 0 var(--text-shadow),
+        1px -1px 0 var(--text-shadow),
+        -1px 1px 0 var(--text-shadow),
+        1px 1px 0 var(--text-shadow);
+      letter-spacing: 2px;
+      line-height: 1.8;
+      animation: titleFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes titleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .title-block .subtitle {
+      font-size: 7px;
+      color: #aaffaa;
+      text-shadow: 1px 1px 0 #006600;
+      margin-top: 8px;
+    }
+
+    /* GUI PANEL */
+    .gui-panel {
+      background: var(--gui-bg);
+      border: 3px solid #000;
+      box-shadow:
+        inset 2px 2px 0 rgba(255,255,255,0.2),
+        inset -2px -2px 0 rgba(0,0,0,0.5),
+        4px 4px 0 rgba(0,0,0,0.5);
+      padding: 20px;
+      position: relative;
+    }
+
+    /* Corner decoration pixels */
+    .gui-panel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: repeating-linear-gradient(
+        90deg,
+        #555 0px, #555 6px,
+        #888 6px, #888 12px
+      );
+    }
+
+    .section-label {
+      font-size: 7px;
+      color: #aaa;
+      text-shadow: 1px 1px 0 #000;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      border-left: 3px solid var(--grass-top);
+      padding-left: 8px;
+    }
+
+    /* BUTTON GRID */
+    #file-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mc-btn {
+      display: block;
+      width: 100%;
+      padding: 10px 14px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      color: #ffffff;
+      text-shadow: 2px 2px 0 var(--text-shadow);
+      background: #555f6a;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      text-align: left;
+      letter-spacing: 0.5px;
+      outline: none;
+      transition: color 0.05s;
+
+      /* Minecraft button style: 3px bevel */
+      box-shadow:
+        inset 0 0 0 2px #7a8a97,  /* top/left inner highlight */
+        inset -2px -3px 0 0 #2a333a, /* bottom/right inner shadow */
+        2px 2px 0 #000;
+    }
+
+    .mc-btn::before {
+      content: '';
+      position: absolute;
+      top: 2px; left: 2px;
+      right: 3px; height: 2px;
+      background: rgba(255,255,255,0.15);
+      pointer-events: none;
+    }
+
+    .mc-btn:hover {
+      color: #ffff55;
+      background: #6a7f8a;
+      box-shadow:
+        inset 0 0 0 2px #9ab0be,
+        inset -2px -3px 0 0 #2a333a,
+        2px 2px 0 #000;
+    }
+
+    .mc-btn:active {
+      transform: translate(1px, 1px);
+      box-shadow:
+        inset 0 0 0 2px #5a6a77,
+        inset -2px -3px 0 0 #2a333a,
+        1px 1px 0 #000;
+      color: #ffff55;
+      background: #4a5a65;
+    }
+
+    .mc-btn .btn-icon {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background: var(--grass-top);
+      margin-right: 10px;
+      vertical-align: middle;
+      box-shadow: inset -2px -2px 0 var(--grass-side), inset 1px 1px 0 #8edd4a;
+      position: relative;
+      top: -1px;
+      flex-shrink: 0;
+    }
+
+    .mc-btn .btn-text {
+      vertical-align: middle;
+    }
+
+    /* Loading state */
+    .loading-state {
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    .loading-state .spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background: var(--grass-top);
+      animation: spin 0.8s steps(4) infinite;
+      box-shadow: inset -3px -3px 0 var(--grass-side), inset 2px 2px 0 #8edd4a;
+      margin-bottom: 14px;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-state p {
+      font-size: 8px;
+      color: #aaa;
+      text-shadow: 1px 1px 0 #000;
+      animation: blink 1s steps(2) infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Error state */
+    .error-state {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .error-state p {
+      font-size: 8px;
+      color: #ff5555;
+      text-shadow: 1px 1px 0 #000;
+      line-height: 2;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .empty-state p {
+      font-size: 8px;
+      color: #888;
+      text-shadow: 1px 1px 0 #000;
+    }
+
+    /* STATUS BAR */
+    .status-bar {
+      margin-top: 14px;
+      padding: 8px 12px;
+      background: rgba(0,0,0,0.5);
+      border: 2px solid #333;
+      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.05);
+      font-size: 7px;
+      color: #55ff55;
+      text-shadow: 0 0 4px #55ff55;
+    }
+
+    /* Ground strip at bottom */
+    .ground {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      height: 24px;
+      z-index: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--grass-top) 0px, var(--grass-top) 16px,
+        var(--grass-side) 16px, var(--grass-side) 32px
+      );
+    }
+
+    .ground::before {
+      content: '';
+      display: block;
+      height: 8px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--dirt-dark) 0px, var(--dirt-dark) 16px,
+        var(--dirt-mid) 16px, var(--dirt-mid) 32px
+      );
+    }
+
+    /* Open button style */
+    .open-btn {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px 14px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      color: #ffff55;
+      text-shadow: 2px 2px 0 #a05a00;
+      background: #a04000;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      letter-spacing: 0.5px;
+      outline: none;
+      box-shadow:
+        inset 0 0 0 2px #d06020,
+        inset -2px -3px 0 0 #601800,
+        2px 2px 0 #000;
+    }
+
+    .open-btn:hover {
+      background: #c05010;
+      color: #ffffff;
+    }
+
+    .open-btn:active {
+      transform: translate(1px,1px);
+      box-shadow:
+        inset 0 0 0 2px #b04010,
+        inset -2px -3px 0 0 #601800,
+        1px 1px 0 #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="title-block">
+      <h1>EagleCraft Launcher</h1>
+      <div class="subtitle">Select A Version/Client </div>
+    </div>
+
+    <div class="gui-panel">
+      <div class="section-label">📂 Available Files — mc/</div>
+      <div id="file-list">
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p>FETCHING FILES...</p>
+        </div>
+      </div>
+      <div class="status-bar" id="status">Ready.</div>
+    </div>
+  </div>
+
+  <div class="ground"></div>
+
+  <script>
+    const BASE_CDN = 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/mc/';
+    const GITHUB_API = 'https://api.github.com/repos/greeniYT/gug/contents/mc';
+
+    const fileList = document.getElementById('file-list');
+    const status = document.getElementById('status');
+
+    function setStatus(msg) {
+      status.textContent = msg;
+    }
+
+    async function fetchFiles() {
+      try {
+        const res = await fetch(GITHUB_API);
+        if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+        const data = await res.json();
+
+        const htmlFiles = data.filter(f => f.type === 'file' && f.name.endsWith('.html'));
+
+        fileList.innerHTML = '';
+
+        if (htmlFiles.length === 0) {
+          fileList.innerHTML = `
+            <div class="empty-state">
+              <p>NO HTML FILES FOUND<br><br>IN mc/ DIRECTORY</p>
+            </div>`;
+          setStatus('No files found.');
+          return;
+        }
+
+        setStatus(`${htmlFiles.length} file(s) loaded.`);
+
+        htmlFiles.forEach(file => {
+          let displayName = file.name;
+          if (displayName.startsWith('cl')) displayName = displayName.slice(2);
+          if (displayName.endsWith('.html')) displayName = displayName.slice(0, -5);
+
+          const btn = document.createElement('button');
+          btn.className = 'mc-btn';
+          btn.innerHTML = `<span class="btn-icon"></span><span class="btn-text">${displayName}</span>`;
+
+          btn.addEventListener('click', async () => {
+            setStatus(`Loading ${file.name}...`);
+            btn.disabled = true;
+            btn.style.color = '#aaa';
+
+            try {
+              const url = BASE_CDN + encodeURIComponent(file.name);
+              const htmlRes = await fetch(url);
+              if (!htmlRes.ok) throw new Error(`Fetch failed: ${htmlRes.status}`);
+              const htmlContent = await htmlRes.text();
+
+              const win = window.open('about:blank', '_blank');
+              if (!win) {
+                setStatus('Popup blocked! Allow popups and try again.');
+                btn.disabled = false;
+                btn.style.color = '';
+                return;
+              }
+
+              win.document.open();
+              win.document.write(htmlContent);
+              win.document.close();
+
+              setStatus(`Opened: ${file.name}`);
+            } catch (err) {
+              setStatus(`Error: ${err.message}`);
+            }
+
+            btn.disabled = false;
+            btn.style.color = '';
+          });
+
+          fileList.appendChild(btn);
+        });
+
+      } catch (err) {
+        fileList.innerHTML = `
+          <div class="error-state">
+            <p>FAILED TO LOAD FILES<br><br>${err.message}<br><br>CHECK CONSOLE FOR DETAILS</p>
+          </div>`;
+        setStatus(`Error: ${err.message}`);
+        console.error(err);
+      }
+    }
+
+    fetchFiles();
+  </script>
+</body>
+</html>
