@@ -15,6 +15,11 @@
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/apps/canvas.html"
   },
   {
+    "name": "Soundboard",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/soundboard.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/apps/soundboard.html"
+  },
+  {
     "name": "Music",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/music.png",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/apps/music.html"
@@ -32,6 +37,6 @@
   {
     "name": "Eaglercraft",
     "image": "https://gms.parcoil.com/minecraft-18/favicon.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/apps/eagle120.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/apps/egul.html"
   }
 ]
