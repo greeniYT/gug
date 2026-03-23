@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <base href="https://cdn.jsdelivr.net/gh/greeniYT/y@main/appleknight/g.igroutka.ru/games/164/dN8ER3BzYcmXqw21/2/apple_knight_mini_dungeons/" target="_blank">
+    <title>Apple Knight: Mini Dungeons</title>
+    <script>
+        window.config = {
+            loader: 'unity-2020',
+            debug: false,
+            maxRatio: 16 / 9,
+            minRatio: 9 / 16,
+            title: 'Apple Knight: Mini Dungeons',
+            thumbnail: 'thumb.png',
+            numScreenshots: 4,
+            unityVersion: '2021.3.3f1',
+            unityWebglBuildUrl: 'Build',
+            fileSize: 9,
+            cachedDecompressedFileSizes: {
+                '124.data.gz': 3503201,
+                '124.framework.js': 72557,
+                '124.loader.js': 18894,
+                '124.wasm.gz': 5614302,
+            },
+            metadata: {
+                poki_template_version: 1,
+                background_color: "#231F20",
+                code_filename: "124.wasm.gz",
+                company_name: "Limitless LLC",
+                data_filename: "124.data.gz",
+                development_player: "false",
+                framework_filename: "124.framework.js",
+                height: "600",
+                loader_filename: "124.loader.js",
+                product_name: "online.limitless.appleknight.dungeons",
+                product_version: "1.0",
+                splash_screen_style: "Dark",
+                unity_version: "2021.3.3f1",
+                use_data_caching: "true",
+                use_threads: "false",
+                use_wasm: "true",
+                use_webgl_1_0: "true",
+                use_webgl_2_0: "true",
+                width: "960"
+            },
+            streamingAssetsUrl: "https://cdn.jsdelivr.net/gh/greeniYT/y@main/appleknight/g.igroutka.ru/games/164/dN8ER3BzYcmXqw21/2/apple_knight_mini_dungeons/StreamingAssets"
+        };
+    </script>
+</head>
+<body>
+
+    <script>
+        var CDN_STREAMING = "https://cdn.jsdelivr.net/gh/greeniYT/y@main/appleknight/g.igroutka.ru/games/164/dN8ER3BzYcmXqw21/2/apple_knight_mini_dungeons/StreamingAssets";
+
+        // Redirect StreamingAssets requests from local origin to CDN
+        var _origFetch = window.fetch;
+        window.fetch = function(url, opts) {
+            var s = typeof url === 'string' ? url : String(url);
+            if (s.includes('StreamingAssets')) {
+                var fixed = s.replace(/^https?:\/\/[^\/]+\/StreamingAssets/, CDN_STREAMING);
+                console.log("[Fetch] StreamingAssets redirect:", fixed);
+                return _origFetch(fixed, opts);
+            }
+            return _origFetch(url, opts);
+        };
+
+        var _origXHROpen = XMLHttpRequest.prototype.open;
+        XMLHttpRequest.prototype.open = function(method, url) {
+            var s = String(url);
+            if (s.includes('StreamingAssets')) {
+                url = s.replace(/^https?:\/\/[^\/]+\/StreamingAssets/, CDN_STREAMING);
+                console.log("[XHR] StreamingAssets redirect:", url);
+            }
+            return _origXHROpen.apply(this, arguments);
+        };
+
+        // ---- Poki mock ----
+        window._pokiGameObject = null;
+        window._pokiQueue = [];
+
+        function pokiSend(go, method, value) {
+            go = go || window._pokiGameObject;
+            if (!go) return;
+            if (!window.unityInstance) {
+                window._pokiQueue.push([go, method, value || ""]);
+                return;
+            }
+            try { window.unityInstance.SendMessage(go, method, value || ""); }
+            catch(e) { console.warn("[Poki] SendMessage error", e); }
+        }
+
+        function flushPokiQueue() {
+            window._pokiQueue.forEach(function(m) {
+                try { window.unityInstance.SendMessage(m[0], m[1], m[2]); } catch(e) {}
+            });
+            window._pokiQueue = [];
+        }
+
+        var _inst = {
+            isInitialized: true,
+            gameStarted: false,
+            _go: null,
+            init: function(go) {
+                console.log("[Poki] init", go);
+                this._go = go;
+                window._pokiGameObject = go;
+                this.isInitialized = true;
+                setTimeout(function(){ pokiSend(go, "OnInitSuccess", ""); }, 0);
+            },
+            commercialBreak: function(go) {
+                this.isInitialized = true;
+                var t = go || this._go;
+                setTimeout(function(){ pokiSend(t, "OnCommercialBreakComplete", ""); }, 0);
+            },
+            rewardedBreak: function(go) {
+                this.isInitialized = true;
+                var t = go || this._go;
+                setTimeout(function(){ pokiSend(t, "OnRewardedBreakComplete", "true"); }, 0);
+            },
+            gameplayStart:       function() { this.gameStarted = true; },
+            gameplayStop:        function() { this.gameStarted = false; },
+            gameLoadingStart:    function() {},
+            gameLoadingFinished: function() {},
+            gameLoadingProgress: function() {},
+            shareableURL:        function() { return window.location.href; },
+            isAdBlocked:         function() { return false; },
+            setDebug:            function() {},
+        };
+        _inst.Instance = _inst;
+
+        Object.defineProperty(window, 'PokiUnitySDK', {
+            get: function() { return _inst; },
+            set: function() { console.warn("[Poki] Blocked overwrite of PokiUnitySDK"); },
+            configurable: false,
+            enumerable: true
+        });
+
+        Object.defineProperty(window, 'PokiSDK', {
+            get: function() { return {
+                init:                function() { return Promise.resolve(); },
+                gameLoadingStart:    function() {},
+                gameLoadingFinished: function() {},
+                gameLoadingProgress: function() {},
+                gameplayStart:       function() {},
+                gameplayStop:        function() {},
+                commercialBreak:     function() { return Promise.resolve(); },
+                rewardedBreak:       function() { return Promise.resolve(true); },
+                displayAd:           function() {},
+                setDebug:            function() {},
+                shareableURL:        function() { return Promise.resolve(window.location.href); },
+                isAdBlocked:         function() { return false; },
+            }; },
+            set: function() { console.warn("[Poki] Blocked overwrite of PokiSDK"); },
+            configurable: false,
+            enumerable: true
+        });
+
+        window.initPokiBridge = function(go) {
+            console.log("[PokiBridge] initPokiBridge", go);
+            window._pokiGameObject = go;
+            _inst._go = go;
+            _inst.isInitialized = true;
+            setTimeout(function(){ pokiSend(go, "OnInitSuccess", ""); }, 0);
+            return {
+                commercialBreak:     function(cb){ setTimeout(function(){ pokiSend(cb||go,"OnCommercialBreakComplete",""); },0); },
+                rewardedBreak:       function(cb){ setTimeout(function(){ pokiSend(cb||go,"OnRewardedBreakComplete","true"); },0); },
+                gameplayStart:       function(){ _inst.gameStarted = true; },
+                gameplayStop:        function(){ _inst.gameStarted = false; },
+                gameLoadingStart:    function(){},
+                gameLoadingFinished: function(){},
+                gameLoadingProgress: function(){},
+            };
+        };
+
+        window.onUnityInstanceCreated = function(instance) {
+            window.unityInstance = instance;
+            flushPokiQueue();
+            console.log("[Unity] Instance ready");
+        };
+    </script>
+
+    <script src="master-loader.js"></script>
+
+</body>
+</html>
