@@ -40,6 +40,16 @@
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tinyfish.html"
   },
   {
+    "name": "Thief Puzzle",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/thiefpuzzle.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/thiefpuzzle.html"
+  },
+  {
+    "name": "Supreme Duelist",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sd.webp",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sd.html"
+  },
+  {
     "name": "Red Ball 4",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/redball4.webp",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/redball4.html"
