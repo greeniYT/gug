@@ -1645,9 +1645,17 @@
       </div>
 
       <div class="settings-group">
+        <label for="introToggle">Show Intro</label>
+        <label class="toggle-switch">
+          <input type="checkbox" id="introToggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="settings-group">
         <label for="ambianceToggle">Ambient Sound</label>
         <label class="toggle-switch">
-          <input type="checkbox" id="ambianceToggle" checked>
+          <input type="checkbox" id="ambianceToggle">
           <span class="slider"></span>
         </label>
       </div>
@@ -1673,7 +1681,7 @@
         <p><strong>Creator:</strong><br>Greeni</p>
         <p><strong>gn-math Team</strong> (mainly bread)<br>Most Ports and Games, and their site</p>
         <p><strong>Ultimate Game Docs</strong><br>Doc Full Of Games!</p>
-        <p><strong>Version:</strong> 2.3</p>
+        <p><strong>Version:</strong> 2.5</p>
       </div>
 
       <div class="modal-divider"></div>
@@ -1875,6 +1883,17 @@
         hideIntro();
       });
 
+      // Check if intro is enabled (default: false/disabled)
+      const introEnabled = localStorage.getItem('introEnabled') === 'true';
+
+      if (!introEnabled) {
+        // Skip intro immediately
+        introOverlay.style.display = 'none';
+        document.body.classList.remove('intro-active');
+        introComplete = true;
+        return;
+      }
+
       const introVideoUrl = 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/intro.mp4';
       const introAudioUrl = 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/intro.mp3';
 
@@ -2065,16 +2084,16 @@
     let heroCycleInterval = null;
     let isGamePlaying = false;
     let isMoviePlaying = false;
-    let ambianceEnabled = true;
+    let ambianceEnabled = false;
     let ambianceStarted = false;
 
     const v = Date.now();
-const CONTENT_URLS = {
-  games:     `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/gamesv32.json?v=${v}`,
-  movies:    `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/movies.json?v=${v}`,
-  minecraft: `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/mcv3.json?v=${v}`,
-  other:     `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/otherv5.json?v=${v}`
-};
+    const CONTENT_URLS = {
+      games:     `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/gamesv33.json?v=${v}`,
+      movies:    `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/movies.json?v=${v}`,
+      minecraft: `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/mcv3.json?v=${v}`,
+      other:     `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/otherv5.json?v=${v}`
+    };
     const AMBIANCE_URLS = [
       'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance.mp3',
       'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance2.mp3',
@@ -2094,8 +2113,11 @@ const CONTENT_URLS = {
 
     function loadSettings() {
       const savedLightMode = localStorage.getItem('lightMode') === 'true';
-      const savedAmbiance = localStorage.getItem('ambianceEnabled') !== 'false';
+      // Default false (disabled) unless explicitly saved as 'true'
+      const savedAmbiance = localStorage.getItem('ambianceEnabled') === 'true';
       const savedVolume = localStorage.getItem('ambianceVolume') || '50';
+      // Default false (disabled) unless explicitly saved as 'true'
+      const savedIntro = localStorage.getItem('introEnabled') === 'true';
 
       if (savedLightMode) {
         document.body.classList.add('light-mode');
@@ -2108,17 +2130,24 @@ const CONTENT_URLS = {
       document.getElementById('volumeValue').textContent = savedVolume + '%';
       ambianceAudio.volume = parseInt(savedVolume) / 100;
 
+      document.getElementById('introToggle').checked = savedIntro;
     }
 
     function saveSettings() {
       localStorage.setItem('lightMode', document.getElementById('lightModeToggle').checked);
       localStorage.setItem('ambianceEnabled', document.getElementById('ambianceToggle').checked);
       localStorage.setItem('ambianceVolume', document.getElementById('volumeSlider').value);
+      localStorage.setItem('introEnabled', document.getElementById('introToggle').checked);
     }
 
     document.getElementById('lightModeToggle').addEventListener('change', (e) => {
       playSound('click');
       document.body.classList.toggle('light-mode', e.target.checked);
+      saveSettings();
+    });
+
+    document.getElementById('introToggle').addEventListener('change', (e) => {
+      playSound('click');
       saveSettings();
     });
 
@@ -2427,12 +2456,6 @@ const CONTENT_URLS = {
         alert('Error: ' + error.message);
       }
     });
-    
-//document.getElementById('reloadGameBtn').addEventListener('click', () => {
-  //playSound('click');
-  //if (!currentGameFile) return;
-  //loadGame(currentGameFile, currentGameName);
-//});
 
     document.getElementById('fullscreenGameBtn').addEventListener('click', () => {
       playSound('click');
