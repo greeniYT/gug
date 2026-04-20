@@ -84,6 +84,7 @@
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/retrobowl.png",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Retro%20Bowl.html"
   },
+  
   {
     "name": "Chicken CS",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/chickencs.png",
@@ -118,6 +119,16 @@
     "name": "Picos School (mature warning)",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/picoschool.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/picoschool.html"
+  },
+  {
+    "name": "The Binding Of Issac",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/issac.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/issac.html"
+  },
+  {
+    "name": "Bouncemasters",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/bouncemasters.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bouncemasters.html"
   },
   {
     "name": "Super Mario Bros Remastered",
