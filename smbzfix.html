@@ -1,139 +1,184 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-  <meta charset="utf-8">
-  <title>Unity WebGL Player | SMBZ-G</title>
-  <base href="https://cdn.jsdelivr.net/gh/greeniYT/y@bb65e1b53db5f805edc9523491a85b15ed5227d5/smbz/" target="_blank">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
-    #unity-container { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; }
-    #unity-canvas { width: 100% !important; height: 100% !important; display: block; }
-    #unity-loading-bar {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;
-    }
-    #unity-warning { position: absolute; top: 0; left: 0; right: 0; z-index: 20; }
-  </style>
+    <meta charset="utf-8">
+    <title>SMBZ-G</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            width: 100%; height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+        #unity-container {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0; left: 0;
+        }
+        #unity-canvas {
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+        }
+        #loadingBlock {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            color: white;
+        }
+        #progressBar {
+            width: 400px;
+            height: 20px;
+            background: #333;
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        #fullBar {
+            height: 100%;
+            width: 0%;
+            background: #4CAF50;
+            transition: width 0.3s;
+        }
+    </style>
 </head>
 <body>
-  <div id="unity-container">
+
+<div id="unity-container">
     <canvas id="unity-canvas"></canvas>
-    <div id="unity-loading-bar">
-      <div id="unity-logo"></div>
-      <div id="unity-progress-bar-empty">
-        <div id="unity-progress-bar-full" style="width:0%"></div>
-      </div>
+    
+    <div id="loadingBlock">
+        <h2>Loading SMBZ-G...</h2>
+        <div id="progressBar">
+            <div id="fullBar"></div>
+        </div>
+        <p id="status">Downloading game files...</p>
     </div>
-    <div id="unity-warning"></div>
-  </div>
+</div>
 
-  <script>
-    var canvas = document.querySelector("#unity-canvas");
-    var loadingBar = document.querySelector("#unity-loading-bar");
-    var progressBarFull = document.querySelector("#unity-progress-bar-full");
-    var warningBanner = document.querySelector("#unity-warning");
-
-    function unityShowBanner(msg, type) {
-      var div = document.createElement('div');
-      div.innerHTML = msg;
-      if (type === 'error') div.style.background = 'red';
-      else if (type === 'warning') div.style.background = 'yellow';
-      warningBanner.appendChild(div);
-      warningBanner.style.display = 'block';
-      if (type !== 'error') {
-        setTimeout(() => { if (div.parentNode) div.parentNode.removeChild(div); }, 5000);
-      }
-    }
-
-    // Try this more stable commit first
+<script>
+    // ================== CONFIG ==================
     var buildUrl = "https://cdn.jsdelivr.net/gh/greeniYT/y@bb65e1b53db5f805edc9523491a85b15ed5227d5/smbz/Build";
-
+    
     var loaderUrl = buildUrl + "/SMBZ-G.html.loader.js";
-    const TOTAL_PARTS = 8;
-    const partUrls = Array.from({ length: TOTAL_PARTS }, (_, i) => 
-      `${buildUrl}/SMBZ-G.html.data.gz.part${i + 1}`
-    );
 
-    async function fetchWithRetry(url, maxRetries = 6) {
-      for (let attempt = 1; attempt <= maxRetries; attempt++) {
-        try {
-          const res = await fetch(url, { cache: "no-store" });
-          if (res.ok) return res;
-          throw new Error(`HTTP ${res.status}`);
-        } catch (e) {
-          console.warn(`Part fetch attempt ${attempt} failed: ${url}`);
-          if (attempt === maxRetries) throw e;
-          await new Promise(r => setTimeout(r, 1000 * attempt));
+    var canvas = document.querySelector("#unity-canvas");
+    var loadingBlock = document.querySelector("#loadingBlock");
+    var progressBar = document.querySelector("#fullBar");
+    var statusText = document.querySelector("#status");
+
+    // ================== SIMPLE MERGE FUNCTION (like Stick Duel) ==================
+    async function mergeFiles(parts) {
+        console.log(`Merging ${parts.length} files...`);
+        const buffers = await Promise.all(
+            parts.map(async (part, index) => {
+                console.log(`Downloading part ${index + 1}/${parts.length}`);
+                const res = await fetch(part);
+                if (!res.ok) throw new Error(`Failed to fetch ${part}`);
+                return res.arrayBuffer();
+            })
+        );
+
+        const totalSize = buffers.reduce((sum, buf) => sum + buf.byteLength, 0);
+        const combined = new Uint8Array(totalSize);
+        let offset = 0;
+
+        for (const buf of buffers) {
+            combined.set(new Uint8Array(buf), offset);
+            offset += buf.byteLength;
         }
-      }
+
+        console.log(`Merged size: ${totalSize} bytes`);
+        return combined.buffer;
     }
 
-    let wasmBuffer = null;
+    // ================== MAIN GAME INITIALIZATION ==================
+    async function initializeGame() {
+        try {
+            statusText.textContent = "Downloading WASM...";
+            progressBar.style.width = "10%";
 
-    // Override for cached wasm
-    const originalFetch = window.fetch;
-    window.fetch = function(input, init) {
-      const url = typeof input === "string" ? input : input?.url || "";
-      if (url.includes(".wasm") && wasmBuffer) {
-        return Promise.resolve(new Response(wasmBuffer.slice(), { status: 200, headers: {"Content-Type": "application/wasm"} }));
-      }
-      return originalFetch(input, init);
-    };
+            // === Merge WASM (gzipped) ===
+            const wasmParts = [
+                buildUrl + "/SMBZ-G.html.wasm.gz"   // Note: SMBZ-G only has 1 wasm.gz file
+            ];
+            const wasmBuffer = await mergeFiles(wasmParts);
+            
+            // Decompress WASM
+            const wasmDecompressed = await new Response(
+                new Blob([wasmBuffer]).stream().pipeThrough(new DecompressionStream("gzip"))
+            ).arrayBuffer();
 
-    async function fetchParts() {
-      const blobs = [];
-      for (let i = 0; i < TOTAL_PARTS; i++) {
-        console.log(`[data] Downloading part ${i+1}/${TOTAL_PARTS}`);
-        const response = await fetchWithRetry(partUrls[i]);
-        blobs.push(await response.blob());
-        progressBarFull.style.width = Math.round((i + 1) / TOTAL_PARTS * 45) + "%";
-      }
-      const merged = new Blob(blobs);
-      const decompressed = await new Response(merged.stream().pipeThrough(new DecompressionStream("gzip"))).arrayBuffer();
-      console.log("[data] Decompressed size:", decompressed.byteLength);
-      return URL.createObjectURL(new Blob([decompressed]));
+            const wasmBlob = new Blob([wasmDecompressed], { type: 'application/wasm' });
+            const wasmUrl = URL.createObjectURL(wasmBlob);
+
+            progressBar.style.width = "40%";
+            statusText.textContent = "Downloading main game data...";
+
+            // === Merge Data parts (gzipped) ===
+            const TOTAL_DATA_PARTS = 8;
+            const dataParts = Array.from({ length: TOTAL_DATA_PARTS }, (_, i) => 
+                `${buildUrl}/SMBZ-G.html.data.gz.part${i + 1}`
+            );
+
+            const dataBuffer = await mergeFiles(dataParts);
+
+            // Decompress Data
+            const dataDecompressed = await new Response(
+                new Blob([dataBuffer]).stream().pipeThrough(new DecompressionStream("gzip"))
+            ).arrayBuffer();
+
+            const dataUrl = URL.createObjectURL(new Blob([dataDecompressed]));
+
+            progressBar.style.width = "70%";
+            statusText.textContent = "Starting game...";
+
+            // ================== UNITY CONFIG ==================
+            var config = {
+                dataUrl: dataUrl,
+                frameworkUrl: buildUrl + "/SMBZ-G.html.framework.js",
+                codeUrl: wasmUrl,                    // Use our decompressed wasm URL
+                streamingAssetsUrl: "https://cdn.jsdelivr.net/gh/greeniYT/y@latest/smbz/StreamingAssets",
+                companyName: "Jonathan Miller aka Zethros",
+                productName: "SMBZ-G",
+                productVersion: "1.05",
+            };
+
+            // Load the Unity loader script
+            const script = document.createElement("script");
+            script.src = loaderUrl;
+            
+            script.onload = () => {
+                console.log("Unity loader loaded, creating instance...");
+                createUnityInstance(canvas, config, (progress) => {
+                    progressBar.style.width = (70 + progress * 30) + "%";
+                }).then((unityInstance) => {
+                    console.log("✅ SMBZ-G loaded successfully!");
+                    loadingBlock.style.display = "none";
+                }).catch((message) => {
+                    console.error("Unity Instance Error:", message);
+                    alert("Game failed to start: " + message);
+                });
+            };
+
+            script.onerror = () => {
+                alert("Failed to load the game loader script.");
+            };
+
+            document.head.appendChild(script);
+
+        } catch (error) {
+            console.error("Initialization error:", error);
+            alert("Failed to load SMBZ-G:\n" + error.message + "\n\nThis game is very sensitive to null-origin environments.");
+        }
     }
 
-    async function fetchWasm() {
-      console.log("[wasm] Downloading...");
-      const response = await fetchWithRetry(buildUrl + "/SMBZ-G.html.wasm.gz");
-      const decompressed = await new Response(response.body.pipeThrough(new DecompressionStream("gzip"))).arrayBuffer();
-      wasmBuffer = decompressed;
-      console.log("[wasm] Decompressed size:", wasmBuffer.byteLength);
-    }
-
-    // Load the game
-    var script = document.createElement("script");
-    script.src = loaderUrl;
-    script.onload = async () => {
-      try {
-        progressBarFull.style.width = "5%";
-        const [dataUrl] = await Promise.all([fetchParts(), fetchWasm()]);
-        progressBarFull.style.width = "50%";
-
-        var config = {
-          dataUrl: dataUrl,
-          frameworkUrl: buildUrl + "/SMBZ-G.html.framework.js",
-          codeUrl: buildUrl + "/SMBZ-G.html.wasm.gz",
-          streamingAssetsUrl: "https://cdn.jsdelivr.net/gh/greeniYT/y@latest/smbz/StreamingAssets",
-          companyName: "Jonathan Miller aka Zethros",
-          productName: "SMBZ-G",
-          productVersion: "1.05",
-          showBanner: unityShowBanner
-        };
-
-        createUnityInstance(canvas, config, (progress) => {
-          progressBarFull.style.width = (50 + progress * 50) + "%";
-        }).then(() => {
-          loadingBar.style.display = "none";
-          console.log("✅ SMBZ-G loaded!");
-        }).catch(err => alert("Unity error: " + err));
-      } catch (err) {
-        console.error(err);
-        alert("Failed to load game data.\n\nThis is usually due to jsDelivr issues with large split files.\nTry the itch.io version below.");
-      }
-    };
-    document.body.appendChild(script);
-  </script>
+    // Start loading
+    initializeGame();
+</script>
 </body>
 </html>
