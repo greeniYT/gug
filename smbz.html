@@ -1,216 +1,139 @@
-<!--greeni-->
-
-
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | SMBZ-G</title>
-    <base href="https://cdn.jsdelivr.net/gh/greeniYT/y@latest/smbz/" target="_blank">
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      html, body {
-        width: 100%; height: 100%;
-        overflow: hidden;
-        background: #000;
-      }
-      #unity-container {
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
-        top: 0; left: 0;
-      }
-      #unity-canvas {
-        width: 100% !important;
-        height: 100% !important;
-        display: block;
-      }
-      #unity-loading-bar {
-        position: absolute;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 10;
-      }
-      #unity-warning {
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        z-index: 20;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="unity-container">
-      <canvas id="unity-canvas"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
-        </div>
+<head>
+  <meta charset="utf-8">
+  <title>Unity WebGL Player | SMBZ-G</title>
+  <base href="https://cdn.jsdelivr.net/gh/greeniYT/y@bb65e1b53db5f805edc9523491a85b15ed5227d5/smbz/" target="_blank">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+    #unity-container { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; }
+    #unity-canvas { width: 100% !important; height: 100% !important; display: block; }
+    #unity-loading-bar {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;
+    }
+    #unity-warning { position: absolute; top: 0; left: 0; right: 0; z-index: 20; }
+  </style>
+</head>
+<body>
+  <div id="unity-container">
+    <canvas id="unity-canvas"></canvas>
+    <div id="unity-loading-bar">
+      <div id="unity-logo"></div>
+      <div id="unity-progress-bar-empty">
+        <div id="unity-progress-bar-full" style="width:0%"></div>
       </div>
-      <div id="unity-warning"> </div>
-
     </div>
-    <script>
-      var container = document.querySelector("#unity-container");
-      var canvas = document.querySelector("#unity-canvas");
-      var loadingBar = document.querySelector("#unity-loading-bar");
-      var progressBarFull = document.querySelector("#unity-progress-bar-full");
-      var warningBanner = document.querySelector("#unity-warning");
+    <div id="unity-warning"></div>
+  </div>
 
-      function unityShowBanner(msg, type) {
-        function updateBannerVisibility() {
-          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-        }
-        var div = document.createElement('div');
-        div.innerHTML = msg;
-        warningBanner.appendChild(div);
-        if (type == 'error') div.style = 'background: red; padding: 10px;';
-        else {
-          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-          setTimeout(function() {
-            warningBanner.removeChild(div);
-            updateBannerVisibility();
-          }, 5000);
-        }
-        updateBannerVisibility();
+  <script>
+    var canvas = document.querySelector("#unity-canvas");
+    var loadingBar = document.querySelector("#unity-loading-bar");
+    var progressBarFull = document.querySelector("#unity-progress-bar-full");
+    var warningBanner = document.querySelector("#unity-warning");
+
+    function unityShowBanner(msg, type) {
+      var div = document.createElement('div');
+      div.innerHTML = msg;
+      if (type === 'error') div.style.background = 'red';
+      else if (type === 'warning') div.style.background = 'yellow';
+      warningBanner.appendChild(div);
+      warningBanner.style.display = 'block';
+      if (type !== 'error') {
+        setTimeout(() => { if (div.parentNode) div.parentNode.removeChild(div); }, 5000);
       }
+    }
 
-      var buildUrl = "https://cdn.jsdelivr.net/gh/greeniYT/y@bb65e1b53db5f805edc9523491a85b15ed5227d5/smbz/Build";
-      var loaderUrl = buildUrl + "/SMBZ-G.html.loader.js";
+    // Try this more stable commit first
+    var buildUrl = "https://cdn.jsdelivr.net/gh/greeniYT/y@bb65e1b53db5f805edc9523491a85b15ed5227d5/smbz/Build";
 
-      const TOTAL_PARTS = 8;
-      const partUrls = Array.from({ length: TOTAL_PARTS }, (_, i) =>
-        `${buildUrl}/SMBZ-G.html.data.gz.part${i + 1}`
-      );
+    var loaderUrl = buildUrl + "/SMBZ-G.html.loader.js";
+    const TOTAL_PARTS = 8;
+    const partUrls = Array.from({ length: TOTAL_PARTS }, (_, i) => 
+      `${buildUrl}/SMBZ-G.html.data.gz.part${i + 1}`
+    );
 
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        unityShowBanner('WebGL builds are not supported on mobile devices.');
-      }
-
-      loadingBar.style.display = "block";
-
-      let wasmBuffer = null;
-
-      const _origFetch = window.fetch;
-      window.fetch = async function(input, init) {
-        const url = typeof input === "string" ? input : (input?.url ?? "");
-        if (url.includes(".wasm") && wasmBuffer) {
-          return new Response(wasmBuffer.slice(0), {
-            status: 200,
-            headers: { "Content-Type": "application/wasm" }
-          });
-        }
-        return _origFetch(input, init);
-      };
-
-      const OrigXHR = window.XMLHttpRequest;
-      window.XMLHttpRequest = function() {
-        const xhr = new OrigXHR();
-        let _isWasm = false;
-        let _responseOverride = null;
-
-        const origOpen = xhr.open.bind(xhr);
-        xhr.open = function(method, url, ...rest) {
-          if ((url || "").toString().includes(".wasm")) _isWasm = true;
-          return origOpen(method, url, ...rest);
-        };
-
-        const origSend = xhr.send.bind(xhr);
-        xhr.send = function(...args) {
-          if (_isWasm && wasmBuffer) {
-            _responseOverride = wasmBuffer.slice(0);
-            Object.defineProperty(xhr, "response", { get: () => _responseOverride, configurable: true });
-            Object.defineProperty(xhr, "status", { get: () => 200, configurable: true });
-            Object.defineProperty(xhr, "readyState", { get: () => 4, configurable: true });
-            setTimeout(() => {
-              const loadEvent = new ProgressEvent("load", {
-                loaded: _responseOverride.byteLength,
-                total: _responseOverride.byteLength,
-                lengthComputable: true
-              });
-              xhr.dispatchEvent(loadEvent);
-              if (typeof xhr.onload === "function") xhr.onload(loadEvent);
-              if (typeof xhr.onreadystatechange === "function") xhr.onreadystatechange();
-              const loadendEvent = new ProgressEvent("loadend");
-              xhr.dispatchEvent(loadendEvent);
-              if (typeof xhr.onloadend === "function") xhr.onloadend(loadendEvent);
-            }, 0);
-            return;
-          }
-          return origSend(...args);
-        };
-
-        return xhr;
-      };
-      Object.assign(window.XMLHttpRequest, OrigXHR);
-      window.XMLHttpRequest.prototype = OrigXHR.prototype;
-
-      async function fetchParts() {
-        const blobs = [];
-        for (let i = 0; i < partUrls.length; i++) {
-          const response = await _origFetch(partUrls[i]);
-          if (!response.ok) throw new Error(`Failed to fetch part ${i + 1}: ${response.status}`);
-          blobs.push(await response.blob());
-          progressBarFull.style.width = ((i + 1) / TOTAL_PARTS * 35) + "%";
-        }
-
-        progressBarFull.style.width = "38%";
-        const merged = new Blob(blobs, { type: "application/octet-stream" });
-        const mergedStream = merged.stream().pipeThrough(new DecompressionStream("gzip"));
-        const decompressedBuffer = await new Response(mergedStream).arrayBuffer();
-        console.log("[data] decompressed size:", decompressedBuffer.byteLength);
-        progressBarFull.style.width = "45%";
-
-        return URL.createObjectURL(new Blob([decompressedBuffer], { type: "application/octet-stream" }));
-      }
-
-      async function fetchAndDecompressWasm(url) {
-        const response = await _origFetch(url);
-        if (!response.ok) throw new Error("Failed to fetch wasm: " + response.status);
-        const decompressed = response.body.pipeThrough(new DecompressionStream("gzip"));
-        wasmBuffer = await new Response(decompressed).arrayBuffer();
-        console.log("[wasm] decompressed size:", wasmBuffer.byteLength);
-      }
-
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = async () => {
+    async function fetchWithRetry(url, maxRetries = 6) {
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
-          progressBarFull.style.width = "0%";
-          const [dataUrl] = await Promise.all([
-            fetchParts(),
-            fetchAndDecompressWasm(buildUrl + "/SMBZ-G.html.wasm.gz")
-          ]);
-
-          progressBarFull.style.width = "50%";
-
-          var config = {
-            dataUrl: dataUrl,
-            frameworkUrl: buildUrl + "/SMBZ-G.html.framework.js",
-            codeUrl: buildUrl + "/SMBZ-G.html.wasm.gz",
-            streamingAssetsUrl: "https://cdn.jsdelivr.net/gh/greeniYT/y@latest/smbz/StreamingAssets",
-            companyName: "Jonathan Miller aka Zethros",
-            productName: "SMBZ-G",
-            productVersion: "1.05",
-            showBanner: unityShowBanner,
-          };
-
-          createUnityInstance(canvas, config, (progress) => {
-            progressBarFull.style.width = (50 + progress * 50) + "%";
-          }).then((unityInstance) => {
-            loadingBar.style.display = "none";
-          }).catch((message) => {
-            alert(message);
-          });
-
-        } catch (err) {
-          alert("Failed to load game: " + err.message);
+          const res = await fetch(url, { cache: "no-store" });
+          if (res.ok) return res;
+          throw new Error(`HTTP ${res.status}`);
+        } catch (e) {
+          console.warn(`Part fetch attempt ${attempt} failed: ${url}`);
+          if (attempt === maxRetries) throw e;
+          await new Promise(r => setTimeout(r, 1000 * attempt));
         }
-      };
-      document.body.appendChild(script);
-    </script>
-  </body>
+      }
+    }
+
+    let wasmBuffer = null;
+
+    // Override for cached wasm
+    const originalFetch = window.fetch;
+    window.fetch = function(input, init) {
+      const url = typeof input === "string" ? input : input?.url || "";
+      if (url.includes(".wasm") && wasmBuffer) {
+        return Promise.resolve(new Response(wasmBuffer.slice(), { status: 200, headers: {"Content-Type": "application/wasm"} }));
+      }
+      return originalFetch(input, init);
+    };
+
+    async function fetchParts() {
+      const blobs = [];
+      for (let i = 0; i < TOTAL_PARTS; i++) {
+        console.log(`[data] Downloading part ${i+1}/${TOTAL_PARTS}`);
+        const response = await fetchWithRetry(partUrls[i]);
+        blobs.push(await response.blob());
+        progressBarFull.style.width = Math.round((i + 1) / TOTAL_PARTS * 45) + "%";
+      }
+      const merged = new Blob(blobs);
+      const decompressed = await new Response(merged.stream().pipeThrough(new DecompressionStream("gzip"))).arrayBuffer();
+      console.log("[data] Decompressed size:", decompressed.byteLength);
+      return URL.createObjectURL(new Blob([decompressed]));
+    }
+
+    async function fetchWasm() {
+      console.log("[wasm] Downloading...");
+      const response = await fetchWithRetry(buildUrl + "/SMBZ-G.html.wasm.gz");
+      const decompressed = await new Response(response.body.pipeThrough(new DecompressionStream("gzip"))).arrayBuffer();
+      wasmBuffer = decompressed;
+      console.log("[wasm] Decompressed size:", wasmBuffer.byteLength);
+    }
+
+    // Load the game
+    var script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = async () => {
+      try {
+        progressBarFull.style.width = "5%";
+        const [dataUrl] = await Promise.all([fetchParts(), fetchWasm()]);
+        progressBarFull.style.width = "50%";
+
+        var config = {
+          dataUrl: dataUrl,
+          frameworkUrl: buildUrl + "/SMBZ-G.html.framework.js",
+          codeUrl: buildUrl + "/SMBZ-G.html.wasm.gz",
+          streamingAssetsUrl: "https://cdn.jsdelivr.net/gh/greeniYT/y@latest/smbz/StreamingAssets",
+          companyName: "Jonathan Miller aka Zethros",
+          productName: "SMBZ-G",
+          productVersion: "1.05",
+          showBanner: unityShowBanner
+        };
+
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = (50 + progress * 50) + "%";
+        }).then(() => {
+          loadingBar.style.display = "none";
+          console.log("✅ SMBZ-G loaded!");
+        }).catch(err => alert("Unity error: " + err));
+      } catch (err) {
+        console.error(err);
+        alert("Failed to load game data.\n\nThis is usually due to jsDelivr issues with large split files.\nTry the itch.io version below.");
+      }
+    };
+    document.body.appendChild(script);
+  </script>
+</body>
 </html>
