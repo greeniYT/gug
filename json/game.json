@@ -2,852 +2,1198 @@
   {
     "name": "Block Blast",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/block-blast.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/blockblastv2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/blockblastv2.html",
+    "creator": "Hungry Studio",
+    "type": "Puzzle"
   },
   {
     "name": "Sausage Flip",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sausageflip.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sausageflip.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sausageflip.html",
+    "creator": "Madbox",
+    "type": "Casual"
+  },
+  {
+    "name": "Sausage Flip (rip-off)",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sausagefliprip.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sausagefliprip.html",
+    "creator": "bestgames.com",
+    "type": "Casual"
   },
   {
     "name": "Gladihoppers",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gladihoppers.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gladdihoppersv2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gladdihoppersv2.html",
+    "creator": "Dreamon Studios",
+    "type": "Fighting"
   },
   {
     "name": "ULTRAKILL",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ultrakill.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ultrakill.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ultrakill.html",
+    "creator": "Arsi Patala",
+    "type": "Shooter"
   },
   {
     "name": "Stick War: Legacy",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/stickwarleg.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickwarleg.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickwarleg.html",
+    "creator": "Max Games Studios",
+    "type": "Strategy"
   },
   {
     "name": "Apple Knight: Mini Dungeons",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/appleknight.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/appleknight.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/appleknight.html",
+    "creator": "Limitless LLC",
+    "type": "Platformer"
   },
   {
-"name": "Brawl Simulator 3D",
-"image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/brawlsim3d.webp",
-"file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/brawlsim3d.html"
-},
-{
-"name": "Brotato",
-"image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/brotato.jpg",
-"file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/brotato.html"
-},
+    "name": "Brawl Simulator 3D",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/brawlsim3d.webp",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/brawlsim3d.html",
+    "creator": "Fire Games",
+    "type": "Simulator"
+  },
+  {
+    "name": "Brotato",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/brotato.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/brotato.html",
+    "creator": "Blobfish",
+    "type": "Roguelite"
+  },
   {
     "name": "Tiny Fishing",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tinyfish.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tinyfish.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tinyfish.html",
+    "creator": "Mad Buffer",
+    "type": "Idle"
   },
   {
     "name": "Thief Puzzle",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/thiefpuzzle.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/thiefpuzzle.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/thiefpuzzle.html",
+    "creator": "SayGames",
+    "type": "Puzzle"
   },
   {
     "name": "Supreme Duelist",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sd.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sd.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sd.html",
+    "creator": "Neonglitch86",
+    "type": "Fighting"
   },
   {
     "name": "Red Ball 4",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/redball4.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/redball4.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/redball4.html",
+    "creator": "FDG Entertainment",
+    "type": "Platformer"
   },
   {
     "name": "Sonic CD",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/scd.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/scd.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/scd.html",
+    "creator": "Sega / Sonic Team",
+    "type": "Platformer"
   },
   {
     "name": "Sonic 3 A.I.R",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sonic3air.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sonic3airv2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sonic3airv2.html",
+    "creator": "Eukaryot",
+    "type": "Platformer"
   },
   {
     "name": "Sonic Mania Plus",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sonicmania.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sonicmania.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sonicmania.html",
+    "creator": "PagodaWest Games / Headcannon / Sega",
+    "type": "Platformer"
   },
   {
     "name": "Sonic Robo Blast 2",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/srb2.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/srb2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/srb2.html",
+    "creator": "Sonic Team Jr.",
+    "type": "Platformer"
   },
   {
     "name": "Pou",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pou.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pou.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pou.html",
+    "creator": "Zakeh",
+    "type": "Virtual Pet"
   },
   {
     "name": "Retro Bowl",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/retrobowl.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Retro%20Bowl.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Retro%20Bowl.html",
+    "creator": "New Star Games",
+    "type": "Sports"
   },
-  
   {
     "name": "Chicken CS",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/chickencs.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/chickencs.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/chickencs.html",
+    "creator": "DS Studios",
+    "type": "Shooter"
   },
   {
     "name": "Retro Bowl College",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rbcollege.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rbcollege.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rbcollege.html",
+    "creator": "New Star Games",
+    "type": "Sports"
   },
   {
     "name": "Death Run 3D",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/deathrun.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/deathrun.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/deathrun.html",
+    "creator": "Flash512",
+    "type": "Runner"
   },
   {
     "name": "A Dance of Fire and Ice (Scratch)",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/adofai.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/adofai.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/adofai.html",
+    "creator": "7th Beat Games",
+    "type": "Rhythm"
   },
   {
     "name": "Super Mario Construct",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/smc.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smc.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smc.html",
+    "creator": "Scirra",
+    "type": "Platformer"
   },
   {
     "name": "Rio Rex",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/riorex.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/riorex.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/riorex.html",
+    "creator": "Game Dist / AMG",
+    "type": "Action"
   },
   {
     "name": "Picos School (mature warning)",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/picoschool.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/picoschool.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/picoschool.html",
+    "creator": "Tom Fulp",
+    "type": "Action"
   },
   {
     "name": "The Binding Of Issac",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/issac.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/issac.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/issac.html",
+    "creator": "Edmund McMillen / Florian Himsl",
+    "type": "Roguelike"
   },
   {
     "name": "Bouncemasters",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/bouncemasters.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bouncemasters.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bouncemasters.html",
+    "creator": "Playgendary",
+    "type": "Casual"
   },
   {
     "name": "Super Mario Bros Remastered",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/smb1r.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smb1rv2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smb1rv2.html",
+    "creator": "Nintendo",
+    "type": "Platformer"
   },
   {
     "name": "Clover Pit",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/cloverpit.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/cloverpit.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/cloverpit.html",
+    "creator": "Panik Arcade",
+    "type": "Casual"
   },
   {
     "name": "Mutilate-a-Doll 2",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/mad2.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/mad2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/mad2.html",
+    "creator": "jejugames",
+    "type": "Sandbox"
   },
-{
+  {
     "name": "Untitled Goose Game",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ugoose.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ugoose.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ugoose.html",
+    "creator": "House House",
+    "type": "Stealth"
   },
   {
     "name": "Dan The Man",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dan.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dan.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dan.html",
+    "creator": "Halfbrick Studios",
+    "type": "Beat Em Up"
   },
   {
     "name": "Rise Higher",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/risehigher.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/risehigher.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/risehigher.html",
+    "creator": "Mayk Studio",
+    "type": "Casual"
   },
   {
     "name": "Four Colors",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/4colors.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/4colors.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/4colors.html",
+    "creator": "Famobi",
+    "type": "Card Game"
   },
   {
     "name": "Johnny Trigger",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/johntrigger.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/johntrigger.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/johntrigger.html",
+    "creator": "SayGames",
+    "type": "Shooter"
   },
   {
     "name": "Plants vs Zombies",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pvz.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pvz.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pvz.html",
+    "creator": "PopCap Games",
+    "type": "Tower Defense"
   },
   {
     "name": "Animator Vs Animation",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ava.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ava.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ava.html",
+    "creator": "Alan Becker",
+    "type": "Action"
   },
   {
     "name": "Rooftop Run",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rooftoprun.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rooftoprun.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rooftoprun.html",
+    "creator": "BPTop",
+    "type": "Runner"
   },
   {
     "name": "Plants vs Zombies MODDED",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pvzm.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pvzm.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pvzm.html",
+    "creator": "ROBINET13 / Clay",
+    "type": "Tower Defense"
   },
   {
     "name": "Scary Teacher 3D",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/st3d.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/st3d.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/st3d.html",
+    "creator": "Z & K Games",
+    "type": "Stealth"
   },
   {
     "name": "The Final Earth 2",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tfe2.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tfe2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tfe2.html",
+    "creator": "Florian van Strien",
+    "type": "City Builder"
   },
   {
     "name": "Dragon vs Icy Bricks",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dvb.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dvb.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dvb.html",
+    "creator": "Famobi",
+    "type": "Arcade"
   },
   {
     "name": "Sonic.EXE",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/se.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/se.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/se.html",
+    "creator": "MY5TCrimson",
+    "type": "Horror"
   },
   {
     "name": "Gun Spin",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gunspin.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gnspn.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gnspn.html",
+    "creator": "Ketchapp",
+    "type": "Casual"
   },
   {
     "name": "Battle Starr",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/battlestarr.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/battlestarr.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/battlestarr.html",
+    "creator": "EshackGames",
+    "type": "Battle Royale"
   },
   {
     "name": "Henry Stickmin",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/The_Henry_Stickmin_Collection_Infobox.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/henryv2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/henryv2.html",
+    "creator": "PuffballsUnited / Innersloth",
+    "type": "Adventure"
   },
   {
     "name": "Squid Game 2",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sq.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sq.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sq.html",
+    "creator": "Famobi",
+    "type": "Arcade"
   },
   {
     "name": "Tag",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tag.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tag.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tag.html",
+    "creator": "Laney Games",
+    "type": "Casual"
   },
   {
     "name": "Orange Roulette",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/or.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/or.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/or.html",
+    "creator": "Phigames",
+    "type": "Casual"
   },
-   {
+  {
     "name": "Mr. Dude King of the Hill",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/mrdude.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/mrdude.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/mrdude.html",
+    "creator": "BubbleBox",
+    "type": "Action"
   },
   {
     "name": "Bad Piggies",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/badpiggies.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/badpiggies.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/badpiggies.html",
+    "creator": "Rovio Entertainment",
+    "type": "Puzzle"
   },
   {
     "name": "Time Shooter 1",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ts1.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ts1.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ts1.html",
+    "creator": "GoGoMan",
+    "type": "Shooter"
   },
   {
     "name": "Time Shooter 2",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ts2.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ts2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ts2.html",
+    "creator": "GoGoMan",
+    "type": "Shooter"
   },
   {
     "name": "Time Shooter 3",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ts3.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ts3swat.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ts3swat.html",
+    "creator": "GoGoMan",
+    "type": "Shooter"
   },
   {
     "name": "Jetpack Joyride",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/jj.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/jj.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/jj.html",
+    "creator": "Halfbrick Studios",
+    "type": "Runner"
   },
   {
     "name": "Om Nom Bounce",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/onb.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/onb.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/onb.html",
+    "creator": "ZeptoLab",
+    "type": "Casual"
   },
   {
     "name": "Level Devil",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ld.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ld.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ld.html",
+    "creator": "Unept",
+    "type": "Platformer"
   },
   {
     "name": "Basketball Stars",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketball-stars1-m240x240.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketstars.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketstars.html",
+    "creator": "Miniclip",
+    "type": "Sports"
   },
   {
     "name": "Basketball Legends 2020",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketlegends.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketlegends.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketlegends.html",
+    "creator": "MadPuffers",
+    "type": "Sports"
   },
   {
     "name": "Stick Slasher",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/stickslash.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickslash.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickslash.html",
+    "creator": "Kiz10",
+    "type": "Action"
   },
   {
     "name": "KS2 Teams",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ks2t.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ks2t.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ks2t.html",
+    "creator": "Krunker",
+    "type": "Shooter"
   },
-{
+  {
     "name": "PolyTrack",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/polytrack.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/polytrack.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/polytrack.html",
+    "creator": "Kodub",
+    "type": "Racing"
   },
-{
+  {
     "name": "Javelin Fighting",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/javelin.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/javelin.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/javelin.html",
+    "creator": "New Eich Games",
+    "type": "Fighting"
   },
   {
     "name": "Slope Plus",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/slope-plus-slope3online.io.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Slope.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Slope.html",
+    "creator": "Rob Kay",
+    "type": "Runner"
   },
   {
     "name": "Slope 2 Player",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/slope-2.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/slope2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/slope2.html",
+    "creator": "Rob Kay",
+    "type": "Runner"
   },
   {
     "name": "Slope 3",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/slope3.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/slope3.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/slope3.html",
+    "creator": "Rob Kay",
+    "type": "Runner"
   },
   {
     "name": "Criminal Russia 3D",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/russia3d.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/russia3d.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/russia3d.html",
+    "creator": "Avega Games",
+    "type": "Open World"
   },
   {
     "name": "Knife Hit",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/knifehit.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/knifehit.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/knifehit.html",
+    "creator": "Ketchapp",
+    "type": "Casual"
   },
   {
     "name": "Battle Simulator",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/battlesim.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/battlesim.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/battlesim.html",
+    "creator": "Onix Studio",
+    "type": "Simulator"
   },
   {
     "name": "Level Up: Mario",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/lummm.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/lummm.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/lummm.html",
+    "creator": "Nintendo",
+    "type": "Platformer"
   },
   {
     "name": "Infinite Mario Bros",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/infmario.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/infmario.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/infmario.html",
+    "creator": "Infinite Mario",
+    "type": "Platformer"
   },
   {
     "name": "GTA: Vice City",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/GTAVC.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/GTAVC.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/GTAVC.html",
+    "creator": "Rockstar Games",
+    "type": "Open World"
   },
   {
     "name": "Rocket Soccer Derby",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rocketsoccerderby.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rocketsoccerderby.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rocketsoccerderby.html",
+    "creator": "Unept",
+    "type": "Sports"
   },
   {
     "name": "Terraria",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/terraria.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/terarria.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/terarria.html",
+    "creator": "Re-Logic",
+    "type": "Sandbox"
   },
   {
     "name": "Duck Life",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dl.jpeg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dlv2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dlv2.html",
+    "creator": "Wix Games",
+    "type": "Racing"
   },
   {
     "name": "Basket Random",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketr.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketr.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketr.html",
+    "creator": "RHM Interactive",
+    "type": "Sports"
   },
   {
     "name": "Boxing Random",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/boxingr.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/boxingr.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/boxingr.html",
+    "creator": "RHM Interactive",
+    "type": "Sports"
   },
   {
     "name": "Volley Random",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/volleyr.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/volleyr.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/volleyr.html",
+    "creator": "RHM Interactive",
+    "type": "Sports"
   },
   {
     "name": "Soccer Random",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/soccerr.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/soccerr.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/soccerr.html",
+    "creator": "RHM Interactive",
+    "type": "Sports"
   },
   {
     "name": "We Become What We Behold",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/wbwwb.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/wbwwb.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/wbwwb.html",
+    "creator": "Nicky Case",
+    "type": "Narrative"
   },
   {
     "name": "DTA6",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dta6.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dta6.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dta6.html",
+    "creator": "VSEGON",
+    "type": "Action"
   },
   {
     "name": "Riddle School",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/Riddle-School_logo.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/riddleschoolv2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/riddleschoolv2.html",
+    "creator": "JonBro",
+    "type": "Adventure"
   },
   {
     "name": "Stick Duel - The War",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sd-thewar.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sd-thewar.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sd-thewar.html",
+    "creator": "Kiz10",
+    "type": "Fighting"
   },
   {
     "name": "Destroy The Car 3D",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dtc3d.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dtc3d.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dtc3d.html",
+    "creator": "Yad Games",
+    "type": "Sandbox"
   },
   {
     "name": "Draw Jousting",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/drawjoust.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/drawjoust.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/drawjoust.html",
+    "creator": "New Eich Games",
+    "type": "Casual"
   },
   {
     "name": "Drift Boss",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/drift-boss-game.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/driftboss.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/driftboss.html",
+    "creator": "CrazyGames",
+    "type": "Racing"
   },
   {
     "name": "Tomb of the Mask",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/totm.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/totm.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/totm.html",
+    "creator": "Playgendary",
+    "type": "Arcade"
   },
   {
     "name": "Deltarune",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/deltarune.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/deltarunev2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/deltarunev2.html",
+    "creator": "Toby Fox",
+    "type": "RPG"
   },
-   {
+  {
     "name": "Undertale",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/undertale.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/undertale.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/undertale.html",
+    "creator": "Toby Fox",
+    "type": "RPG"
   },
   {
     "name": "Monkey Mart",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/monkey-mart.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/monkeymart.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/monkeymart.html",
+    "creator": "TinyDobbins",
+    "type": "Idle"
   },
   {
     "name": "Subway Surfers",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/subway_surfers.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/subwaysurferss.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/subwaysurferss.html",
+    "creator": "Kiloo / SYBO Games",
+    "type": "Runner"
   },
   {
     "name": "Bloxorz",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/bloxorz.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bloxorz.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bloxorz.html",
+    "creator": "Damien Clarke",
+    "type": "Puzzle"
   },
   {
     "name": "Pizza Tower",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pt.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pt.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pt.html",
+    "creator": "Tour De Pizza",
+    "type": "Platformer"
   },
   {
     "name": "Cut The Rope",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ctr.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ctr.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ctr.html",
+    "creator": "ZeptoLab",
+    "type": "Puzzle"
   },
   {
     "name": "G-Switch",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gswitch.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gswitch.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gswitch.html",
+    "creator": "Serius Games",
+    "type": "Runner"
   },
   {
     "name": "G-Switch 2",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gswitch2.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gswitch2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gswitch2.html",
+    "creator": "Serius Games",
+    "type": "Runner"
   },
   {
     "name": "Candy Crush",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/cc.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/cc.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/cc.html",
+    "creator": "King",
+    "type": "Puzzle"
   },
   {
     "name": "Rhythm Hell",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rh.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rh.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rh.html",
+    "creator": "Nintendo",
+    "type": "Rhythm"
   },
-{
+  {
     "name": "Catch the Candy",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ctc.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ctc.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ctc.html",
+    "creator": "DifferenceGames",
+    "type": "Puzzle"
   },
-{
+  {
     "name": "The Backrooms Game",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/backrooms.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/backrooms.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/backrooms.html",
+    "creator": "Pie on a Plate Productions",
+    "type": "Horror"
   },
-{
+  {
     "name": "Planet Smash Destruction",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/psd.avif",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/psd.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/psd.html",
+    "creator": "Hypernova Interactive",
+    "type": "Sandbox"
   },
   {
     "name": "Super Mario Crossover",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/smcross.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smcross.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smcross.html",
+    "creator": "Exploding Rabbit",
+    "type": "Platformer"
   },
   {
     "name": "Crossy Road",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/crossyroad.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/crossyroad.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/crossyroad.html",
+    "creator": "Hipster Whale",
+    "type": "Arcade"
   },
   {
     "name": "Raft",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/raft.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/raft.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/raft.html",
+    "creator": "Redbeet Interactive",
+    "type": "Survival"
   },
   {
     "name": "Stick Fighter",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/stickfighter.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickfighter.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickfighter.html",
+    "creator": "Kizi Games",
+    "type": "Fighting"
   },
   {
     "name": "Stickman Hook",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/stickhook.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickhook.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickhook.html",
+    "creator": "Madbox",
+    "type": "Platformer"
   },
   {
     "name": "Ragdoll Archers",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ragarch.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ragarch.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/ragarch.html",
+    "creator": "Blobfish",
+    "type": "Action"
   },
   {
     "name": "Mari0",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/mari0.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pmari0.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pmari0.html",
+    "creator": "Stabyourself.net",
+    "type": "Platformer"
   },
   {
     "name": "Ragdoll Hit",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/raghit.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/raghit.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/raghit.html",
+    "creator": "Zynga",
+    "type": "Casual"
   },
   {
     "name": "QWOP",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/qwop.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/qwop.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/qwop.html",
+    "creator": "Bennett Foddy",
+    "type": "Sports"
   },
   {
     "name": "Fruit Ninja",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/fruitninja.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fruitninja.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fruitninja.html",
+    "creator": "Halfbrick Studios",
+    "type": "Arcade"
   },
   {
     "name": "Angry Birds",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/ab.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abnew.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abnew.html",
+    "creator": "Rovio Entertainment",
+    "type": "Puzzle"
   },
   {
     "name": "Angry Birds Showdown",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/abshowdown.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abshowdown.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abshowdown.html",
+    "creator": "Rovio Entertainment",
+    "type": "Puzzle"
   },
   {
     "name": "Angry Birds RIO",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/abrio.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abrio.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abrio.html",
+    "creator": "Rovio Entertainment",
+    "type": "Puzzle"
   },
   {
     "name": "Angry Birds Space",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/abspace.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abspace.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abspace.html",
+    "creator": "Rovio Entertainment",
+    "type": "Puzzle"
   },
   {
     "name": "Super Mario Bros Z - The Game!",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/smbz.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smbz.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smbz.html",
+    "creator": "Alvin Earthworm",
+    "type": "Platformer"
   },
   {
     "name": "Cluster Rush",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/cluster-rush.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/clusterrush.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/clusterrush.html",
+    "creator": "Torque Game",
+    "type": "Platformer"
   },
   {
     "name": "Smash Hit",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/smashhit.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smashhitv2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/smashhitv2.html",
+    "creator": "Mediocre AB",
+    "type": "Arcade"
   },
   {
     "name": "Tube Jumpers",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tube-jumpers-game-cover-400x400.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Tube%20Jumpers.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Tube%20Jumpers.html",
+    "creator": "Spilgames",
+    "type": "Party"
   },
   {
     "name": "BitLife",
     "image": "https://play-lh.googleusercontent.com/fUM-UyywXxjC8soxAZdIlxJrlRRXmql8wkE426SHzft4lJycSKVd2jCYQQX1BEG9Xw",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bitlife.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bitlife.html",
+    "creator": "Candywriter",
+    "type": "Simulator"
   },
   {
     "name": "Stickman Duel",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/stickmanduel.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickmanduel.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/stickmanduel.html",
+    "creator": "Kiz10",
+    "type": "Fighting"
   },
   {
     "name": "Rooftop Snipers",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rs.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs.html",
+    "creator": "New Eich Games",
+    "type": "Action"
   },
   {
     "name": "Rooftop Snipers 2",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rs2.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rs2.html",
+    "creator": "New Eich Games",
+    "type": "Action"
   },
   {
     "name": "Jelly Mario",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/jellymario.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/jellymario.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/jellymario.html",
+    "creator": "stefosh",
+    "type": "Platformer"
   },
   {
     "name": "NZP",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/nzp.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/nzp.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/nzp.html",
+    "creator": "Nazi Zombies Portable Team",
+    "type": "Shooter"
   },
   {
     "name": "Space Waves",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/space-waves.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/spacewaves.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/spacewaves.html",
+    "creator": "Famobi",
+    "type": "Arcade"
   },
   {
     "name": "MotoX3M",
     "image": "https://parental-control.flashget.com/wp-content/uploads/sites/3/2025/01/Moto-X3M.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/moto.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/moto.html",
+    "creator": "MadPuffers",
+    "type": "Racing"
   },
   {
     "name": "Vex Series",
     "image": "https://play-lh.googleusercontent.com/dcEJdY9smUt_CXJP7gKQV1RAgK-0lasc9UbDp_0qR-QAXyavsvHjHTRYN_BAS3vunXvw=w240-h480-rw",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Vex.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Vex.html",
+    "creator": "Amazing Adam",
+    "type": "Platformer"
   },
   {
     "name": "Buckshot Roulette",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/205.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/br.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/br.html",
+    "creator": "Mike Klubnika",
+    "type": "Horror"
   },
   {
     "name": "Thats Not My Neighbor",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/thats-not-my-neighbor.icon.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tnmn.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tnmn.html",
+    "creator": "Nacho Sama",
+    "type": "Horror"
   },
   {
     "name": "Friday Night Funkin",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@refs/heads/main/icons/friday-night-funkin.avif",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnf.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnf.html",
+    "creator": "ninjamuffin99 / PhantomArcade / evilsk8r / Kawai Sprite",
+    "type": "Rhythm"
   },
   {
     "name": "Friday Night Funkin Mods",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@refs/heads/main/icons/fnfmods.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnfmods3.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnfmods3.html",
+    "creator": "Various Community Modders",
+    "type": "Rhythm"
   },
   {
     "name": "Grindcraft",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@refs/heads/main/icons/grindcraft.avif",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/grindcraftv3.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/grindcraftv3.html",
+    "creator": "Zygomatic",
+    "type": "Idle"
   },
   {
     "name": "House Of Hazards",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/hoh.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/hoh.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/hoh.html",
+    "creator": "New Eich Games",
+    "type": "Party"
   },
   {
     "name": "GTA: NY Car Gang",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gasnycg.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gasnycg.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gasnycg.html",
+    "creator": "Rockstar Games",
+    "type": "Open World"
   },
   {
     "name": "Super Mario 63",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/mario63.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/mario63.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/mario63.html",
+    "creator": "Runouw",
+    "type": "Platformer"
   },
   {
     "name": "Flash Sonic",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sonicflash.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sonicflash.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sonicflash.html",
+    "creator": "Dennis-Gid",
+    "type": "Platformer"
   },
   {
     "name": "People Playground",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/peopleplayground.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/peopleplayground.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/peopleplayground.html",
+    "creator": "mestiez",
+    "type": "Sandbox"
   },
   {
     "name": "Diggy",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/diggy.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/diggy.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/diggy.html",
+    "creator": "Mobirate",
+    "type": "Adventure"
   },
   {
     "name": "They Are Coming",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tac.jfif",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tac.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tac.html",
+    "creator": "ByteVenture",
+    "type": "Survival"
   },
   {
     "name": "Wrestle Bros",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/boxingbros.jfif",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/boxingbros.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/boxingbros.html",
+    "creator": "Blue Wizard Digital",
+    "type": "Sports"
   },
   {
     "name": "Basket Bros",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketbros-io.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketbros.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketbros.html",
+    "creator": "Blue Wizard Digital",
+    "type": "Sports"
   },
   {
     "name": "Baseball Bros",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/baseball-bros-game.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Baseball%20Bros.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Baseball%20Bros.html",
+    "creator": "Blue Wizard Digital",
+    "type": "Sports"
   },
   {
     "name": "Escape Road",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/escaperoad.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Escape%20Road.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Escape%20Road.html",
+    "creator": "Pika Studios",
+    "type": "Racing"
   },
   {
     "name": "Paper Minecraft",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/paperminecraft.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/paperminecraft.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/paperminecraft.html",
+    "creator": "griffpatch",
+    "type": "Sandbox"
   },
   {
     "name": "Schoolboy Runaway",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/schoolboy.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Schoolboy%20Runaway.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Schoolboy%20Runaway.html",
+    "creator": "Avega Games",
+    "type": "Runner"
   },
   {
     "name": "Football Bros",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/football-bros-m320x190.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Football%20Bros.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Football%20Bros.html",
+    "creator": "Blue Wizard Digital",
+    "type": "Sports"
   },
   {
     "name": "Baldis Basics",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/466.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bbcr.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bbcr.html",
+    "creator": "Mystman12",
+    "type": "Horror"
   },
   {
     "name": "Getting Over It",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/goi.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/goi.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/goi.html",
+    "creator": "Bennett Foddy",
+    "type": "Platformer"
   },
   {
     "name": "12 Minigame Battles",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/12battles.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/12battles.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/12battles.html",
+    "creator": "Spilgames",
+    "type": "Party"
   },
   {
     "name": "Pumpkill 64",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/pumpkill.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pumpkill.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/pumpkill.html",
+    "creator": "BenBonk",
+    "type": "Platformer"
   },
   {
     "name": "3Dash",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/3dash.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/3dash.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/3dash.html",
+    "creator": "Caeden117",
+    "type": "Rhythm"
   },
   {
     "name": "War Of The Knights",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/wtk.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/knights.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/knights.html",
+    "creator": "Kiz10",
+    "type": "Fighting"
   },
   {
     "name": "Unfair Mario",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/unfairmario.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/unfairmario.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/unfairmario.html",
+    "creator": "SuperFlashBros",
+    "type": "Platformer"
   },
   {
     "name": "Sprinter",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sprinter.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sprinter.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sprinter.html",
+    "creator": "BubbleBox",
+    "type": "Sports"
   },
   {
     "name": "Granny",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/granny.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/granny.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/granny.html",
+    "creator": "DVloper",
+    "type": "Horror"
   },
   {
     "name": "Granny 2",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/granny2.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/granny2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/granny2.html",
+    "creator": "DVloper",
+    "type": "Horror"
   },
   {
     "name": "Granny 3",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/granny3.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/granny3.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/granny3.html",
+    "creator": "DVloper",
+    "type": "Horror"
   },
   {
     "name": "Race Survival",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rs.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/racesurvival.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/racesurvival.html",
+    "creator": "CrazyGames",
+    "type": "Racing"
   },
   {
     "name": "Dragon Ball Z Devolution",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/dbzd.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dbzd.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/dbzd.html",
+    "creator": "Txori",
+    "type": "Fighting"
   },
   {
     "name": "FNAF",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/fnaf.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf.html",
+    "creator": "Scott Cawthon",
+    "type": "Horror"
   },
   {
     "name": "FNAF 3D",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/fnaf3d.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf3dd.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/fnaf3dd.html",
+    "creator": "Scott Cawthon",
+    "type": "Horror"
   },
   {
     "name": "Bank Robbery 2",
     "image": "https://codehs.com/uploads/66b295c40702814fe388317c40a66efb",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Bank%20Robbery%202.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Bank%20Robbery%202.html",
+    "creator": "Kiz10",
+    "type": "Action"
   },
   {
     "name": "Summer Rider 3D",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/summerrider.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/summerrider.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/summerrider.html",
+    "creator": "Laney Games",
+    "type": "Racing"
   },
   {
     "name": "Snow Rider 3D",
     "image": "https://theartsherpa.com/blog/image/blog_image/821/large/_v=b2a4d1759977095",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Snow%20Rider%203D.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/Snow%20Rider%203D.html",
+    "creator": "Laney Games",
+    "type": "Racing"
   },
   {
     "name": "Cat Mario",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/Syobon_Takumi_cover_.webp",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/catmario.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/catmario.html",
+    "creator": "Chiku",
+    "type": "Platformer"
   },
   {
     "name": "A Koopas Revenge",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/koopa1.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/koopa1.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/koopa1.html",
+    "creator": "Hamumu Software",
+    "type": "Platformer"
   },
   {
     "name": "A Koopas Revenge 2",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/koopa2.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/koopa2.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/koopa2.html",
+    "creator": "Hamumu Software",
+    "type": "Platformer"
   },
   {
     "name": "Geometry Dash",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gd.png",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gd.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gd.html",
+    "creator": "RobTop Games",
+    "type": "Rhythm"
   },
   {
     "name": "Red vs Blue (ripoff ravenfield)",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/rvb.jpg",
-    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rvbv3.html"
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/rvbv3.html",
+    "creator": "SteelRaven7",
+    "type": "Shooter"
   }
 ]
