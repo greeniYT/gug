@@ -80,7 +80,7 @@
     "name": "Supreme Duelist",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sd.webp",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sd.html",
-    "creator": "Neonglitch86",
+    "creator": "Neron's Brother / Gael Redard",
     "type": "Fighting"
   },
   {
@@ -791,6 +791,13 @@
     "type": "Puzzle"
   },
   {
+    "name": "Angry Birds Chrome",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/abchrome.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abchrome.html",
+    "creator": "Rovio Entertainment",
+    "type": "Puzzle"
+  },
+  {
     "name": "Angry Birds Showdown",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/abshowdown.png",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/abshowdown.html",
@@ -945,10 +952,10 @@
     "type": "Party"
   },
   {
-    "name": "GTA: NY Car Gang",
+    "name": "Grand Action Simulator: New York",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gasnycg.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gasnycg.html",
-    "creator": "Rockstar Games",
+    "creator": "HGames Artworks",
     "type": "Open World"
   },
   {
