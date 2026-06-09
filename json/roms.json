@@ -8,6 +8,16 @@
     "name": "Super Mario Bros 2",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/smb2.png",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/nes/smb2.nes"
+  },
+  {
+    "name": "Super Mario Bros 2: Lost Levels",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/smb2ll.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/nes/smb2ll.nes"
+  },
+  {
+    "name": "Super Mario Bros 3",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/smb3.webp",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/nes/smb3.nes"
   }
   
 ]
