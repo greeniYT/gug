@@ -18,6 +18,16 @@
     "name": "Super Mario Bros 3",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/smb3.webp",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/nes/smb3.nes"
-  }
+  },
+  {
+    "name": "Super Mario 64",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/sm64.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/nes/sm64.z64"
+  },
+  {
+    "name": "Mario Kart 64",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/mk64.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/nes/smb3.n64"
+  },
   
 ]
