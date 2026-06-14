@@ -171,15 +171,14 @@
 		// From here you can configure game startup parameters via the CUSTOM_PARAMETERS object,
 		// override ProgressView to create your own loader. See dmloader.js for more details.
 	</script>
-  <script id="engine-start" type="text/javascript">
-		var runningFromFileWarning = document.getElementById("running-from-file-warning");
-		if (window.location.href.startsWith("file://")) {
-			runningFromFileWarning.style.display = "block";
-		}
-		else {
-			EngineLoader.load("canvas", "BattleRacingStars");
-			runningFromFileWarning.parentNode.removeChild(runningFromFileWarning);
-		}
-	</script>
+   <script id="engine-start" type="text/javascript">
+	// Hide the "running from file" warning — we handle file:// and about:blank now
+	var runningFromFileWarning = document.getElementById("running-from-file-warning");
+	if (runningFromFileWarning && runningFromFileWarning.parentNode) {
+		runningFromFileWarning.parentNode.removeChild(runningFromFileWarning);
+	}
+ 
+	EngineLoader.load("canvas", "BattleRacingStars");
+  </script>
  </body>
 </html>
