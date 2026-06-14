@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Stick Fight The Chaos</title>
+	<base href="https://cdn.jsdelivr.net/gh/greeniYT/y@main/stickfightchaos/" target="_blank">
+	<style>
+		html, body {
+			background-image: url("Build/Build.jpg");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			width: 100%;
+			height: 100%;
+			overflow: visible;
+			padding: 0;
+			margin: 0;
+		}
+		div#gameContainer {
+			background: transparent !important;
+			position: absolute;
+		}
+		div#gameContainer canvas {
+			position: absolute;
+		}
+		div#gameContainer canvas[data-pixel-art="true"] {
+			position: absolute;
+			image-rendering: optimizeSpeed;
+			image-rendering: -webkit-crisp-edges;
+			image-rendering: -moz-crisp-edges;
+			image-rendering: -o-crisp-edges;
+			image-rendering: crisp-edges;
+			image-rendering: -webkit-optimize-contrast;
+			image-rendering: optimize-contrast;
+			image-rendering: pixelated;
+			-ms-interpolation-mode: nearest-neighbor;
+		}
+		.loadingOut {
+			width: 250px;
+			position: fixed;
+			left: 50%;
+			top: calc(50% - 8px);
+			transform: translate(-50%);
+			border: 2px solid white;
+			height: 14px;
+		}
+		.centered {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			margin-top: -150px;
+			margin-left: -250px;
+			width: 500px;
+		}
+		#loadingStatus {
+			position: fixed;
+			left: 50%;
+			top: calc(50% + 20px);
+			transform: translate(-50%);
+			color: white;
+			font-family: sans-serif;
+			font-size: 13px;
+			white-space: nowrap;
+		}
+	</style>
+</head>
+<body>
+	<div id="gameContainer">
+		<img src="TemplateData/logo.png" class="centered">
+		<div class="loadingOut"></div>
+		<div id="loadingStatus">Downloading game files...</div>
+		<canvas id="unity-canvas" data-pixel-art=""></canvas>
+		<script src="Build/Test_Build_11_GD.loader.js"></script>
+		<script>
+			var canvas = document.querySelector("#unity-canvas");
+			var statusEl = document.getElementById("loadingStatus");
+
+			var scaleToFit;
+			try {
+				scaleToFit = !!JSON.parse("");
+			} catch (e) {
+				scaleToFit = true;
+			}
+
+			function progressHandler(progress) {
+				var percent = progress * 100 + '%';
+				canvas.style.background = 'linear-gradient(to right, white, white ' + percent + ', transparent ' + percent + ', transparent) no-repeat center';
+				canvas.style.backgroundSize = '100% 1rem';
+				canvas.style.width = '250px';
+				canvas.style.position = 'fixed';
+				canvas.style.left = '50%';
+				canvas.style.transform = 'translate(-50%)';
+			}
+
+			function onResize() {
+				var container = canvas.parentElement;
+				var w, h;
+				if (scaleToFit) {
+					w = window.innerWidth;
+					h = window.innerHeight;
+					var r = 450 / 800;
+					if (w * r > window.innerHeight) {
+						w = Math.min(w, Math.ceil(h / r));
+					}
+					h = Math.floor(w * r);
+				} else {
+					w = 800;
+					h = 450;
+				}
+				container.style.width = canvas.style.width = w + "px";
+				container.style.height = canvas.style.height = h + "px";
+				container.style.top = Math.floor((window.innerHeight - h) / 2) + "px";
+				container.style.left = Math.floor((window.innerWidth - w) / 2) + "px";
+			}
+
+			// Fetches two parts and concatenates them into a single ArrayBuffer
+			async function fetchPartsAndMerge(part1Url, part2Url, label) {
+				statusEl.textContent = "Downloading " + label + " (part 1 of 2)...";
+				var r1 = await fetch(part1Url);
+				if (!r1.ok) throw new Error("Failed to fetch " + part1Url);
+				var buf1 = await r1.arrayBuffer();
+
+				statusEl.textContent = "Downloading " + label + " (part 2 of 2)...";
+				var r2 = await fetch(part2Url);
+				if (!r2.ok) throw new Error("Failed to fetch " + part2Url);
+				var buf2 = await r2.arrayBuffer();
+
+				statusEl.textContent = "Merging " + label + "...";
+				var merged = new Uint8Array(buf1.byteLength + buf2.byteLength);
+				merged.set(new Uint8Array(buf1), 0);
+				merged.set(new Uint8Array(buf2), buf1.byteLength);
+				return merged.buffer;
+			}
+
+			// Converts an ArrayBuffer into an object URL so Unity's loader can use it
+			function bufferToObjectUrl(buffer, mimeType) {
+				var blob = new Blob([buffer], { type: mimeType });
+				return URL.createObjectURL(blob);
+			}
+
+			(async function () {
+				try {
+					var dataBuffer = await fetchPartsAndMerge(
+						"https://cdn.jsdelivr.net/gh/greeniYT/y@main/stickfightchaos/Build/Test_Build_11_GD.data.part1",
+						"https://cdn.jsdelivr.net/gh/greeniYT/y@main/stickfightchaos/Build/Test_Build_11_GD.data.part2",
+						".data"
+					);
+
+					var wasmBuffer = await fetchPartsAndMerge(
+						"https://cdn.jsdelivr.net/gh/greeniYT/y@main/stickfightchaos/Build/Test_Build_11_GD.wasm.part1",
+						"https://cdn.jsdelivr.net/gh/greeniYT/y@main/stickfightchaos/Build/Test_Build_11_GD.wasm.part2",
+						".wasm"
+					);
+
+					var dataUrl  = bufferToObjectUrl(dataBuffer,  "application/octet-stream");
+					var wasmUrl  = bufferToObjectUrl(wasmBuffer,  "application/wasm");
+
+					statusEl.textContent = "Starting game...";
+
+					var config = {
+						dataUrl:           dataUrl,
+						frameworkUrl:      "https://cdn.jsdelivr.net/gh/greeniYT/y@main/stickfightchaos/Build/Test_Build_11_GD.framework.js",
+						codeUrl:           wasmUrl,
+						streamingAssetsUrl: "https://cdn.jsdelivr.net/gh/greeniYT/y@main/stickfightchaos/StreamingAssets",
+						companyName:       "Hihoy",
+						productName:       "Stick Fight The Chaos",
+						productVersion:    "1.0.6",
+					};
+
+					createUnityInstance(canvas, config, function (progress) {
+						progressHandler(progress);
+						if (progress >= 1) {
+							statusEl.textContent = "";
+						}
+					}).then(function (instance) {
+						canvas = instance.Module.canvas;
+						onResize();
+						// Revoke object URLs to free memory
+						URL.revokeObjectURL(dataUrl);
+						URL.revokeObjectURL(wasmUrl);
+					}).catch(function (err) {
+						statusEl.textContent = "Error starting game: " + err.message;
+						console.error(err);
+					});
+
+				} catch (err) {
+					statusEl.textContent = "Download error: " + err.message;
+					console.error(err);
+				}
+			})();
+
+			window.addEventListener('resize', onResize);
+			onResize();
+		</script>
+	</div>
+</body>
+</html>
