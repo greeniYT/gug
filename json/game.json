@@ -462,6 +462,12 @@
     "creator": "Wix Games"
   },
   {
+    "name": "Magic Tiles 3",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/mt3.jpeg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/mt3.html",
+    "creator": "Amanotes"
+  },
+  {
     "name": "Basket Random",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/basketr.png",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/basketr.html",
@@ -1023,7 +1029,7 @@
     "name": "Battle Racing Stars",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/battleracingstar.png",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/battleracestar.html",
-    "creator": "Halfbrick"
+    "creator": "Halfbrick Studios"
   },
   {
     "name": "A Koopas Revenge",
