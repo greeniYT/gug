@@ -435,12 +435,18 @@
     "name": "Infinite Mario Bros",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/infmario.webp",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/infmario.html",
-    "creator": "Infinite Mario"
+    "creator": "Markus “Notch” Persson"
   },
   {
     "name": "GTA: Vice City",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/GTAVC.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/GTAVC.html",
+    "creator": "Rockstar Games"
+  },
+  {
+    "name": "GTA III",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/gta3.webp",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/gta3.html",
     "creator": "Rockstar Games"
   },
   {
