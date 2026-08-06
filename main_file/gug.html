@@ -1,2514 +1,1179 @@
 <!DOCTYPE html>
 <html lang="en">
- 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta property="og:title" content="Greeni's Notebook">
-  <meta property="og:description" content="Testing...">
-  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/bred.webp">
-  <meta property="og:url" content="https://grogy-learning-17470093.codehs.me/">
-  <meta property="og:type" content="website">
-  <title>Greeni's Notebook: Lockdown Browser</title>
-  <link rel="icon" type="image/png" href="../assets/favicon.png">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --xbox-green: #107C10;
-      --xbox-dark: #0F0F0F;
-      --xbox-darker: #050505;
-      --xbox-gray: #1F1F1F;
-      --xbox-light: #FFFFFF;
-      --xbox-accent: #9BF00B;
-    }
-
-    body {
-      font-family: 'Segoe UI Variable', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--xbox-darker);
-      color: var(--xbox-light);
-      min-height: 100vh;
-      overflow-x: hidden;
-      cursor: url('https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/c.png') 0 0, auto;
-    }
-
-    body.cursor-clicking {
-      cursor: url('https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/cl.png') 0 0, auto;
-    }
-
-    button,
-    a,
-    .game-card,
-    .tab-btn,
-    .contact-link,
-    [role="button"],
-    input[type="button"],
-    input[type="heroSection"] input[type="submit"] {
-      cursor: url('https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/c.png') 0 0, auto !important;
-    }
-
-    #spaceBackground {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: linear-gradient(135deg, #020205 0%, #0a0810 50%, #010103 100%);
-      transition: background 0.3s ease;
-    }
-
-    body.light-mode #spaceBackground {
-      background: linear-gradient(135deg, #0a0e27 0%, #1a0033 50%, #0f0a2e 100%);
-    }
-
-    .star {
-      position: absolute;
-      background: white;
-      border-radius: 50%;
-      opacity: 0;
-      animation: twinkle 3s infinite;
-    }
-
-    @keyframes twinkle {
-
-      0%,
-      100% {
-        opacity: 0.3;
-      }
-
-      50% {
-        opacity: 1;
-      }
-    }
-
-    .nebula {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.1;
-      pointer-events: none;
-    }
-
-    .nebula-purple {
-      background: radial-gradient(circle, #9945ff, transparent);
-    }
-
-    .nebula-cyan {
-      background: radial-gradient(circle, #00d9ff, transparent);
-    }
-
-    .nebula-pink {
-      background: radial-gradient(circle, #ff006e, transparent);
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    body.light-mode {
-      background: #F5F5F5;
-      color: #1F1F1F;
-    }
-
-    body.light-mode::before {
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.05) 100%);
-    }
-
-    .content {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background: rgba(15, 15, 15, 0.8);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      transition: all 0.3s ease;
-    }
-
-    body.light-mode header {
-      background: rgba(255, 255, 255, 0.85);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-    }
-
-    .back-btn {
-      background: var(--xbox-gray);
-      border: none;
-      color: var(--xbox-light);
-      padding: 10px 24px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      display: none;
-      align-items: center;
-      gap: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .back-btn:hover {
-      background: var(--xbox-green);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(16, 124, 16, 0.4);
-    }
-
-    body.light-mode .back-btn {
-      background: #E0E0E0;
-      color: #1F1F1F;
-    }
-
-    body.light-mode .back-btn:hover {
-      background: var(--xbox-green);
-      color: white;
-    }
-
-    .site-logo {
-      height: 40px;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .time-display {
-      font-size: 18px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.9);
-      font-variant-numeric: tabular-nums;
-    }
-
-    body.light-mode .time-display {
-      color: rgba(0, 0, 0, 0.8);
-    }
-
-    .menu-btn,
-    .settings-btn {
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: var(--xbox-light);
-      padding: 10px 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    body.light-mode .menu-btn,
-    body.light-mode .settings-btn {
-      color: #1F1F1F;
-      background: rgba(0, 0, 0, 0.08);
-    }
-
-    .menu-btn:hover,
-    .settings-btn:hover {
-      background: var(--xbox-green);
-      color: white;
-      transform: translateY(-1px);
-    }
-
-    .user-avatar {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, var(--xbox-green), var(--xbox-accent));
-      border-radius: 50%;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      color: #000;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .user-avatar:hover {
-      transform: scale(1.1);
-    }
-
-    .main-content {
-      flex: 1;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      animation: fadeIn 0.6s ease-out 0.8s both;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero-section {
-      position: relative;
-      width: 100%;
-      height: 400px;
-      border-radius: 8px;
-      overflow: hidden;
-      background: var(--xbox-gray);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      display: none;
-    }
-
-    body.light-mode .hero-section {
-      background: #E0E0E0;
-    }
-
-    .hero-section.active {
-      display: block;
-    }
-
-    .hero-section:hover {
-      transform: scale(1.01);
-    }
-
-    .hero-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.8;
-      transition: opacity 0.3s;
-    }
-
-    .hero-section:hover .hero-image {
-      opacity: 0.6;
-    }
-
-    .hero-content {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 40px;
-      background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: var(--xbox-green);
-      color: white;
-      padding: 6px 16px;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 16px;
-    }
-
-    .hero-title {
-      font-size: 48px;
-      font-weight: 300;
-      margin-bottom: 12px;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    .hero-subtitle {
-      font-size: 16px;
-      color: rgba(255, 255, 255, 0.7);
-      max-width: 600px;
-      line-height: 1.5;
-    }
-
-    .hero-progress {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 3px;
-      background: var(--xbox-green);
-      border-radius: 0;
-      animation: progressBar 5s linear;
-    }
-
-    @keyframes progressBar {
-      from {
-        width: 0%;
-      }
-
-      to {
-        width: 100%;
-      }
-    }
-
-    .search-container {
-      max-width: 600px;
-      width: 100%;
-    }
-
-    .search-bar {
-      width: 100%;
-      padding: 16px 24px;
-      font-size: 16px;
-      border: none;
-      border-radius: 4px;
-      background: var(--xbox-gray);
-      color: var(--xbox-light);
-      transition: all 0.2s ease;
-      outline: none;
-      border: 2px solid transparent;
-    }
-
-    body.light-mode .search-bar {
-      background: #E0E0E0;
-      color: #1F1F1F;
-    }
-
-    body.light-mode .search-bar::placeholder {
-      color: rgba(0, 0, 0, 0.4);
-    }
-
-    .search-bar:focus {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: var(--xbox-green);
-    }
-
-    body.light-mode .search-bar:focus {
-      background: rgba(0, 0, 0, 0.05);
-      border-color: var(--xbox-green);
-    }
-
-    .search-bar::placeholder {
-      color: rgba(255, 255, 255, 0.4);
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .section-title {
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--xbox-light);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    body.light-mode .section-title {
-      color: #1F1F1F;
-    }
-
-    .section-title::before {
-      content: '';
-      width: 4px;
-      height: 24px;
-      background: var(--xbox-green);
-      border-radius: 2px;
-    }
-
-    .view-all {
-      color: rgba(255, 255, 255, 0.6);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    body.light-mode .view-all {
-      color: rgba(0, 0, 0, 0.6);
-    }
-
-    .view-all:hover {
-      color: var(--xbox-accent);
-    }
-
-    .games-grid-container {
-      position: relative;
-      width: 100%;
-    }
-
-    .games-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 24px;
-      padding: 20px 0;
-    }
-
-    .game-card {
-      width: 100%;
-      height: 270px;
-      background: var(--xbox-gray);
-      border-radius: 8px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      border: 2px solid transparent;
-    }
-
-    body.light-mode .game-card {
-      background: #E0E0E0;
-    }
-
-    .game-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      border-color: var(--xbox-green);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(16, 124, 16, 0.3);
-    }
-
-    .game-card.featured {
-      height: 270px;
-    }
-
-    .game-image {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .game-card.featured .game-image {
-      height: 180px;
-      position: relative;
-      top: auto;
-      left: auto;
-      opacity: 1;
-    }
-
-    .game-card:hover .game-image {
-      transform: scale(1.05);
-    }
-
-    .game-info {
-      padding: 16px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .game-card.featured .game-info {
-      position: relative;
-      bottom: auto;
-      left: auto;
-      right: auto;
-      background: none;
-    }
-
-    .game-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--xbox-light);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-bottom: 4px;
-    }
-
-    body.light-mode .game-title {
-      color: #1F1F1F;
-    }
-
-    .game-meta {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.5);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    body.light-mode .game-meta {
-      color: rgba(0, 0, 0, 0.5);
-    }
-
-    .game-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 2px 8px;
-      background: var(--xbox-green);
-      color: white;
-      border-radius: 3px;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .play-overlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      width: 60px;
-      height: 60px;
-      background: rgba(16, 124, 16, 0.95);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 3;
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    .play-overlay::after {
-      content: '▶';
-      color: white;
-      font-size: 24px;
-      margin-left: 4px;
-    }
-
-    .game-card:hover .play-overlay {
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    .download-overlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      width: 60px;
-      height: 60px;
-      background: rgba(16, 124, 16, 0.95);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 3;
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    .download-overlay::after {
-      content: '⬇';
-      color: white;
-      font-size: 24px;
-    }
-
-    .game-card:hover .download-overlay {
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    .no-results {
-      text-align: center;
-      padding: 80px 20px;
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 18px;
-      background: var(--xbox-gray);
-      border-radius: 8px;
-      margin: 20px 0;
-    }
-
-    body.light-mode .no-results {
-      background: #E0E0E0;
-      color: rgba(0, 0, 0, 0.5);
-    }
-
-    .scroll-btn {
-      display: none;
-    }
-
-    .loading {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px;
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 16px;
-      gap: 12px;
-    }
-
-    .spinner {
-      width: 24px;
-      height: 24px;
-      border: 3px solid rgba(255, 255, 255, 0.1);
-      border-top-color: var(--xbox-green);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    .error-message {
-      text-align: center;
-      padding: 40px;
-      color: #ff4444;
-      background: rgba(255, 68, 68, 0.1);
-      border-radius: 8px;
-      margin: 20px;
-    }
-
-    .error-message button {
-      margin-top: 16px;
-      padding: 10px 20px;
-      background: var(--xbox-green);
-      border: none;
-      color: white;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    @media (max-width: 768px) {
-      .main-content {
-        padding: 20px;
-      }
-
-      .game-card {
-        height: 220px;
-      }
-
-      .game-card.featured {
-        height: 220px;
-      }
-
-      .hero-title {
-        font-size: 32px;
-      }
-
-      .intro-text {
-        font-size: 24px;
-      }
-    }
-
-    .tabs-container {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 40px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    body.light-mode .tabs-container {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    .tabs-container::-webkit-scrollbar {
-      display: none;
-    }
-
-    .tab-btn {
-      padding: 12px 24px;
-      background: none;
-      border: none;
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 16px;
-      font-weight: 500;
-      cursor: pointer;
-      border-bottom: 3px solid transparent;
-      transition: all 0.2s ease;
-      white-space: nowrap;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    body.light-mode .tab-btn {
-      color: rgba(0, 0, 0, 0.6);
-    }
-
-    .tab-btn:hover {
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    body.light-mode .tab-btn:hover {
-      color: rgba(0, 0, 0, 0.9);
-    }
-
-    .tab-btn.active {
-      color: var(--xbox-light);
-      border-bottom-color: var(--xbox-green);
-    }
-
-    body.light-mode .tab-btn.active {
-      color: #1F1F1F;
-      border-bottom-color: var(--xbox-green);
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 5000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    .modal.active {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-content {
-      background: var(--xbox-gray);
-      padding: 40px;
-      border-radius: 8px;
-      max-width: 500px;
-      width: 90%;
-      max-height: 80vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-      animation: slideUp 0.3s ease;
-    }
-
-    body.light-mode .modal-content {
-      background: #F0F0F0;
-      color: #1F1F1F;
-    }
-
-    @keyframes slideUp {
-      from {
-        transform: translateY(30px);
-        opacity: 0;
-      }
-
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      border-bottom: 2px solid var(--xbox-green);
-      padding-bottom: 16px;
-    }
-
-    .modal-header h2 {
-      font-size: 24px;
-      font-weight: 600;
-    }
-
-    .close-modal {
-      background: none;
-      border: none;
-      color: var(--xbox-light);
-      font-size: 28px;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-
-    body.light-mode .close-modal {
-      color: #1F1F1F;
-    }
-
-    .close-modal:hover {
-      color: var(--xbox-green);
-    }
-
-    .settings-group {
-      margin-bottom: 24px;
-    }
-
-    .settings-group label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    body.light-mode .settings-group label {
-      color: rgba(0, 0, 0, 0.9);
-    }
-
-    .toggle-switch {
-      position: relative;
-      display: inline-block;
-      width: 50px;
-      height: 24px;
-    }
-
-    .toggle-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: 0.3s;
-      border-radius: 24px;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 18px;
-      width: 18px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      transition: 0.3s;
-      border-radius: 50%;
-    }
-
-    input:checked+.slider {
-      background-color: var(--xbox-green);
-    }
-
-    input:checked+.slider:before {
-      transform: translateX(26px);
-    }
-
-    .volume-control {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .volume-control input[type="range"] {
-      flex: 1;
-      height: 6px;
-      border-radius: 3px;
-      background: rgba(255, 255, 255, 0.2);
-      outline: none;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-
-    body.light-mode .volume-control input[type="range"] {
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    .volume-control input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--xbox-green);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .volume-control input[type="range"]::-webkit-slider-thumb:hover {
-      transform: scale(1.2);
-      box-shadow: 0 0 10px rgba(16, 124, 16, 0.6);
-    }
-
-    .volume-control input[type="range"]::-moz-range-thumb {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--xbox-green);
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s;
-    }
-
-    .volume-control input[type="range"]::-moz-range-thumb:hover {
-      transform: scale(1.2);
-      box-shadow: 0 0 10px rgba(16, 124, 16, 0.6);
-    }
-
-    .volume-value {
-      min-width: 40px;
-      text-align: right;
-      font-weight: 600;
-      color: var(--xbox-accent);
-    }
-
-    .credits-section {
-      margin-top: 24px;
-    }
-
-    .credits-section h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--xbox-accent);
-    }
-
-    .credits-section p {
-      font-size: 14px;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 8px;
-    }
-
-    body.light-mode .credits-section p {
-      color: rgba(0, 0, 0, 0.7);
-    }
-
-    .credits-section a {
-      color: var(--xbox-green);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .credits-section a:hover {
-      color: var(--xbox-accent);
-    }
-
-    .modal-divider {
-      height: 1px;
-      background: rgba(255, 255, 255, 0.1);
-      margin: 20px 0;
-    }
-
-    body.light-mode .modal-divider {
-      background: rgba(0, 0, 0, 0.1);
-    }
-
-    .contacts-section {
-      margin-top: 24px;
-    }
-
-    .contacts-section h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 16px;
-      color: var(--xbox-accent);
-    }
-
-    .contacts-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .contact-link {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      padding: 12px;
-      border-radius: 6px;
-      background: rgba(155, 240, 11, 0.1);
-      color: var(--xbox-accent);
-      text-decoration: none;
-      transition: all 0.2s ease;
-      border: 1px solid rgba(155, 240, 11, 0.3);
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    body.light-mode .contact-link {
-      background: rgba(16, 124, 16, 0.1);
-      border-color: rgba(16, 124, 16, 0.3);
-      color: var(--xbox-green);
-    }
-
-    .contact-link:hover {
-      background: rgba(155, 240, 11, 0.2);
-      border-color: var(--xbox-accent);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(155, 240, 11, 0.2);
-    }
-
-    body.light-mode .contact-link:hover {
-      background: rgba(16, 124, 16, 0.2);
-      border-color: var(--xbox-green);
-      box-shadow: 0 4px 12px rgba(16, 124, 16, 0.2);
-    }
-
-    .contact-icon {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-      display: block;
-    }
-
-    .game-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #000;
-      display: none;
-      flex-direction: column;
-      z-index: 9999;
-    }
-
-    .game-controls {
-      background: rgba(15, 15, 15, 0.95);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 16px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-shrink: 0;
-      z-index: 10000;
-      transition: opacity 0.3s, height 0.3s;
-      backdrop-filter: blur(20px);
-    }
-
-    .game-controls.hidden {
-      opacity: 0;
-      height: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .control-group {
-      display: flex;
-      gap: 12px;
-    }
-
-    .control-btn {
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 13px;
-      transition: all 0.2s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .control-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    .control-btn.primary {
-      background: var(--xbox-green);
-    }
-
-    .control-btn.primary:hover {
-      background: #0e6e0e;
-      box-shadow: 0 4px 12px rgba(16, 124, 16, 0.4);
-    }
-
-    .game-content {
-      flex: 1;
-      overflow: auto;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      position: relative;
-    }
-
-    .game-content iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
-
-    .game-overlay.fullscreen {
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #000;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.95);
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 10001;
-      backdrop-filter: blur(10px);
-    }
-
-    .loading-overlay.active {
-      display: flex;
-      animation: fadeInLoad 0.3s ease-out;
-    }
-
-    @keyframes fadeInLoad {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    .loading-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .loading-spinner {
-      width: 80px;
-      height: 80px;
-      position: relative;
-    }
-
-    .loading-spinner::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 4px solid rgba(16, 124, 16, 0.2);
-      border-top-color: var(--xbox-green);
-      border-radius: 50%;
-      animation: spin 1.5s linear infinite;
-    }
-
-    .loading-spinner::after {
-      content: '';
-      position: absolute;
-      top: 20%;
-      left: 20%;
-      width: 60%;
-      height: 60%;
-      border: 3px solid rgba(155, 240, 11, 0.3);
-      border-right-color: var(--xbox-accent);
-      border-radius: 50%;
-      animation: spin 1s linear infinite reverse;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .loading-text {
-      font-size: 18px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.8);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .loading-bar {
-      width: 200px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 2px;
-      overflow: hidden;
-      margin-top: 12px;
-    }
-
-    .loading-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--xbox-green), var(--xbox-accent));
-      width: 30%;
-      border-radius: 2px;
-      animation: loadingProgress 2s ease-in-out infinite;
-    }
-
-    @keyframes loadingProgress {
-      0% {
-        width: 10%;
-      }
-
-      50% {
-        width: 70%;
-      }
-
-      100% {
-        width: 90%;
-      }
-    }
-
-    .intro-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 99999;
-    }
-
-    .intro-overlay.hide {
-      animation: fadeOutIntro 0.6s ease-out forwards;
-    }
-
-    @keyframes fadeOutIntro {
-      from {
-        opacity: 1;
-        pointer-events: auto;
-      }
-
-      to {
-        opacity: 0;
-        pointer-events: none;
-      }
-    }
-
-    .intro-video-container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .intro-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .intro-video::-webkit-media-controls {
-      display: none;
-    }
-
-    .skip-intro-btn {
-      position: absolute;
-      bottom: 40px;
-      right: 40px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      transition: all 0.2s ease;
-      backdrop-filter: blur(10px);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      z-index: 10;
-    }
-
-    .skip-intro-btn:hover {
-      background: var(--xbox-green);
-      border-color: var(--xbox-green);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(16, 124, 16, 0.4);
-    }
-
-    .intro-fallback {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #020205 0%, #0a0810 50%, #010103 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      animation: introScaleIn 2.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-    }
-
-    @keyframes introScaleIn {
-      0% {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-
-      50% {
-        transform: scale(1);
-        opacity: 1;
-      }
-
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .intro-logo {
-      width: 120px;
-      height: 120px;
-      background: var(--xbox-green);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 60px;
-      font-weight: 700;
-      color: #000;
-      box-shadow: 0 20px 60px rgba(16, 124, 16, 0.4);
-      animation: introBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s both;
-    }
-
-    @keyframes introBounce {
-      0% {
-        transform: scale(0);
-      }
-
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    .intro-text {
-      font-size: 32px;
-      font-weight: 300;
-      color: var(--xbox-light);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      animation: introFadeIn 0.8s ease-out 0.8s both;
-    }
-
-    @keyframes introFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    ::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--xbox-darker);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--xbox-gray);
-      border-radius: 5px;
-      border: 2px solid var(--xbox-darker);
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--xbox-green);
-    }
-
-    body.light-mode ::-webkit-scrollbar-track {
-      background: #E0E0E0;
-    }
-
-    body.light-mode ::-webkit-scrollbar-thumb {
-      background: #B0B0B0;
-      border: 2px solid #E0E0E0;
-    }
-
-    body.light-mode ::-webkit-scrollbar-thumb:hover {
-      background: var(--xbox-green);
-    }
-
-    body.intro-active {
-      overflow: hidden;
-    }
-
-    body.intro-active ::-webkit-scrollbar {
-      display: none;
-    }
-
-    .favorites-section {
-      margin-bottom: 40px;
-    }
-
-    .favorites-section .section-title::before {
-      background: #FFD700;
-    }
-
-    .star-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 32px;
-      height: 32px;
-      background: rgba(0, 0, 0, 0.6);
-      border: none;
-      border-radius: 50%;
-      color: rgba(255, 255, 255, 0.6);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      transition: all 0.2s ease;
-      z-index: 5;
-      backdrop-filter: blur(4px);
-    }
-
-    .star-btn:hover {
-      background: rgba(0, 0, 0, 0.8);
-      transform: scale(1.1);
-    }
-
-    .star-btn.active {
-      color: #FFD700;
-      background: rgba(255, 215, 0, 0.2);
-    }
-
-    .star-btn.active:hover {
-      background: rgba(255, 215, 0, 0.3);
-    }
-
-    body.light-mode .star-btn {
-      background: rgba(255, 255, 255, 0.6);
-      color: rgba(0, 0, 0, 0.6);
-    }
-
-    body.light-mode .star-btn:hover {
-      background: rgba(255, 255, 255, 0.8);
-    }
-
-    body.light-mode .star-btn.active {
-      color: #FFD700;
-      background: rgba(255, 215, 0, 0.3);
-    }
-
-    .game-card {
-      position: relative;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeni's Notebook: Lockdown Browser</title> 
+ <link rel="icon" type="image/png" href="../assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap');
+
+        :root {
+            --xbox-green: #107c10;
+            --xbox-green-glow: #90c040;
+            --accent: #90c040;
+            --accent-dark: #107c10;
+            --bg-center: #2d3e1d;
+            --bg-edge: #0d0e0d;
+            --text-main: #ffffff;
+            --text-secondary: #9ca3af;
+            --panel-bg: rgba(255,255,255,0.04);
+            --panel-border: rgba(255,255,255,0.08);
+            --blade-bg: #27272a;
+            --sidebar-bg: linear-gradient(135deg,rgba(20,20,20,0.98) 0%,rgba(35,35,35,0.98) 100%);
+            --border-color: #27272a;
+            --card-bg: rgba(24,24,27,0.9);
+            --input-bg: rgba(0,0,0,0.4);
+            --loader-bg: #09090b;
+        }
+        .light-theme {
+            --bg-center: #e0eac7;
+            --bg-edge: #f3f4f6;
+            --text-main: #111827;
+            --text-secondary: #4b5563;
+            --panel-bg: rgba(0,0,0,0.05);
+            --panel-border: rgba(0,0,0,0.1);
+            --blade-bg: #e5e7eb;
+            --sidebar-bg: linear-gradient(135deg,rgba(243,244,246,0.98) 0%,rgba(255,255,255,0.98) 100%);
+            --border-color: #d1d5db;
+            --card-bg: rgba(255,255,255,0.9);
+            --input-bg: rgba(255,255,255,0.7);
+            --loader-bg: #f9fafb;
+        }
+
+        /* ── Custom cursor ─────────────────────────────────── */
+        *, *::before, *::after {
+            cursor: url('https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/cursorfinal.cur'), auto !important;
+        }
+        body.clicking *, body.clicking *::before, body.clicking *::after {
+            cursor: url('https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/cursorfinalclick.cur'), pointer !important;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at center, var(--bg-center) 0%, var(--bg-edge) 100%);
+            color: var(--text-main);
+            overflow-x: hidden;
+            user-select: none;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .theme-bg-blade   { background-color: var(--blade-bg);  transition: background-color 0.3s; }
+        .theme-text-main  { color: var(--text-main);   transition: color 0.3s; }
+        .theme-text-secondary { color: var(--text-secondary); transition: color 0.3s; }
+        .theme-border     { border-color: var(--border-color); transition: border-color 0.3s; }
+        .theme-card-bg    { background-color: var(--card-bg);  transition: background-color 0.3s; }
+        .theme-input      { background-color: var(--input-bg); color: var(--text-main); }
+        .theme-loader     { background-color: var(--loader-bg); }
+
+        #space-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        #trail-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 99999;
+            pointer-events: none;
+        }
+
+        .xbox-aura {
+            position: absolute;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(144,192,64,0.08) 0%, rgba(0,0,0,0) 70%);
+            top: -200px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            pointer-events: none;
+            transition: background 0.5s;
+        }
+
+        .glass-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--panel-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .blade-tab {
+            position: relative;
+            cursor: url('https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/cursorfinal.cur'), auto !important;
+            transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+            transform: skewX(-15deg);
+            border-bottom: none;
+            white-space: nowrap;
+        }
+        .blade-tab-content { transform: skewX(15deg); }
+        .blade-tab.active {
+            background: linear-gradient(to right, var(--accent-dark) 0%, var(--accent) 100%);
+            box-shadow: 0 -4px 15px rgba(144,192,64,0.4);
+            transform: skewX(-15deg) translateY(-4px);
+            color: #ffffff;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: var(--accent-dark); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        #hover-trigger-zone {
+            position: fixed;
+            z-index: 9998;
+            pointer-events: auto;
+        }
+        #hover-trigger-zone.side-left  { top:0; left:0;  width:60px; height:100%; }
+        #hover-trigger-zone.side-right { top:0; right:0; left:auto; width:60px; height:100%; }
+        #hover-trigger-zone.side-top    { top:0;    left:0; width:100%; height:50px; }
+        #hover-trigger-zone.side-bottom { bottom:0; top:auto; left:0; width:100%; height:50px; }
+
+        #hamburger-menu-btn {
+            position: fixed;
+            z-index: 9999;
+            background: rgba(0,0,0,0.75);
+            border: 2px solid var(--accent);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            padding: 12px 10px;
+            transition: left   0.3s cubic-bezier(0.175,0.885,0.32,1.275),
+                        right  0.3s cubic-bezier(0.175,0.885,0.32,1.275),
+                        top    0.3s cubic-bezier(0.175,0.885,0.32,1.275),
+                        bottom 0.3s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+        #hamburger-menu-btn.side-left  { top:50%; left:-52px; right:auto; bottom:auto; transform:translateY(-50%); border-radius: 0 8px 8px 0; }
+        #hover-trigger-zone.side-left:hover  #hamburger-menu-btn.side-left, #hamburger-menu-btn.side-left:hover  { left:0; }
+        #hamburger-menu-btn.side-right { top:50%; right:-52px; left:auto; bottom:auto; transform:translateY(-50%); border-radius: 8px 0 0 8px; }
+        #hover-trigger-zone.side-right:hover #hamburger-menu-btn.side-right, #hamburger-menu-btn.side-right:hover { right:0; }
+        #hamburger-menu-btn.side-top { top:-52px; left:50%; right:auto; bottom:auto; transform:translateX(-50%); border-radius: 0 0 8px 8px; padding: 10px 18px; }
+        #hover-trigger-zone.side-top:hover   #hamburger-menu-btn.side-top, #hamburger-menu-btn.side-top:hover   { top:0; }
+        #hamburger-menu-btn.side-bottom { bottom:-52px; top:auto; left:50%; right:auto; transform:translateX(-50%); border-radius: 8px 8px 0 0; padding: 10px 18px; }
+        #hover-trigger-zone.side-bottom:hover #hamburger-menu-btn.side-bottom, #hamburger-menu-btn.side-bottom:hover { bottom:0; }
+
+        #xbox-sidebar {
+            position: fixed;
+            z-index: 10000;
+            background: var(--sidebar-bg);
+            box-shadow: 10px 0 30px rgba(0,0,0,0.3);
+            transition: left   0.4s cubic-bezier(0.16,1,0.3,1),
+                        right  0.4s cubic-bezier(0.16,1,0.3,1),
+                        top    0.4s cubic-bezier(0.16,1,0.3,1),
+                        bottom 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+        #xbox-sidebar.side-left  { top:0; left:-320px; right:auto; bottom:0; width:300px; height:100%; border-right:3px solid var(--accent-dark); border-left:none; border-top:none; border-bottom:none; }
+        #xbox-sidebar.side-right { top:0; right:-320px; left:auto; bottom:0; width:300px; height:100%; border-left:3px solid var(--accent-dark); border-right:none; border-top:none; border-bottom:none; }
+        #xbox-sidebar.side-left.open  { left:0; }
+        #xbox-sidebar.side-right.open { right:0; }
+        #xbox-sidebar.side-top    { top:-180px; left:0; right:0; bottom:auto; width:100%; height:160px; border-bottom:3px solid var(--accent-dark); border-top:none; border-left:none; border-right:none; flex-direction:row; align-items:center; padding:0 2rem; gap:2rem; }
+        #xbox-sidebar.side-bottom { bottom:-180px; top:auto; left:0; right:0; width:100%; height:160px; border-top:3px solid var(--accent-dark); border-bottom:none; border-left:none; border-right:none; flex-direction:row; align-items:center; padding:0 2rem; gap:2rem; }
+        #xbox-sidebar.side-top.open    { top:0; }
+        #xbox-sidebar.side-bottom.open { bottom:0; }
+
+        #xbox-sidebar.side-top    .sidebar-header, #xbox-sidebar.side-bottom .sidebar-header { display:none; }
+        #xbox-sidebar.side-top    .sidebar-buttons, #xbox-sidebar.side-bottom .sidebar-buttons { flex-direction:row; gap:1rem; }
+
+        #sidebar-overlay {
+            position:fixed; top:0; left:0;
+            width:100vw; height:100vh;
+            background:rgba(0,0,0,0.5);
+            backdrop-filter:blur(4px);
+            z-index:9999;
+            opacity:0; pointer-events:none;
+            transition:opacity 0.3s ease;
+        }
+        #sidebar-overlay.active { opacity:1; pointer-events:auto; }
+
+        .side-picker-btn {
+            flex:1; padding:8px 4px;
+            font-size:11px; font-weight:700;
+            letter-spacing:0.08em; text-transform:uppercase;
+            border-radius:6px; transition:all 0.2s;
+            border:2px solid transparent;
+        }
+        .side-picker-btn.selected {
+            border-color: var(--accent);
+            background:rgba(144,192,64,0.15);
+            color: var(--accent);
+        }
+        .side-picker-btn:not(.selected) {
+            background:var(--blade-bg); color:var(--text-secondary);
+        }
+
+        .reflection-layer {
+            position:absolute; top:0; left:0; right:0; height:50%;
+            background:linear-gradient(to bottom,rgba(255,255,255,0.1) 0%,rgba(255,255,255,0) 100%);
+            pointer-events:none;
+        }
+
+        .fav-btn {
+            position:absolute; top:6px; right:6px; z-index:10;
+            background:rgba(0,0,0,0.55); border-radius:50%;
+            width:26px; height:26px;
+            display:flex; align-items:center; justify-content:center;
+            font-size:14px;
+            transition:transform 0.15s, background 0.2s;
+            border:none; outline:none;
+        }
+        .fav-btn:hover { transform:scale(1.25); background:rgba(0,0,0,0.8); }
+        .fav-btn.active  { color:#facc15; }
+        .fav-btn:not(.active) { color:#6b7280; }
+
+        #dashboard-view { position:relative; z-index:2; }
+    </style>
 </head>
+<body class="min-h-screen flex flex-col justify-between">
 
-<body class="intro-active">
-  <!-- Intro Overlay -->
-  <div class="intro-overlay" id="introOverlay">
-    <div class="intro-video-container">
-      <video id="introVideo" class="intro-video" autoplay muted playsinline>
-        <source src="" type="video/mp4">
-        <div class="intro-fallback" id="introFallback">
-          <div class="intro-logo">🎮</div>
-          <div class="intro-text">Greeni's Vault</div>
-        </div>
-      </video>
-      <button class="skip-intro-btn" id="skipIntroBtn">Skip Intro</button>
-    </div>
-  </div>
+    <canvas id="space-canvas"></canvas>
+    <canvas id="trail-canvas"></canvas>
 
-  <!-- Intro Audio (plays separately from video) -->
-  <audio id="introAudio" playsinline></audio>
+    <div class="xbox-aura" id="xbox-aura"></div>
 
-  <!-- Loading Overlay -->
-  <div class="loading-overlay" id="loadingOverlay">
-    <div class="loading-content">
-      <div class="loading-spinner"></div>
-      <div class="loading-text" id="loadingText">Loading Game...</div>
-      <div class="loading-bar">
-        <div class="loading-bar-fill"></div>
-      </div>
-    </div>
-  </div>
+    <div id="dashboard-view" class="w-full flex-grow flex flex-col justify-start p-6 md:p-12">
 
-  <div id="spaceBackground"></div>
-
-  <div class="content">
-    <header>
-      <div class="header-left">
-        <a href="index.html" class="back-btn">← Back</a>
-        <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/logo.png" alt="VAULT" class="site-logo" />
-      </div>
-      <div class="header-right">
-        <div class="time-display" id="clock">12:00 PM</div>
-        <button class="menu-btn" id="menuBtn">☰ Menu</button>
-      </div>
-    </header>
-
-    <div class="main-content">
-      <div class="tabs-container">
-        <button class="tab-btn active" data-tab="games">Games</button>
-        <button class="tab-btn" data-tab="movies">Movies</button>
-        <button class="tab-btn" data-tab="minecraft">Minecraft Mods</button>
-        <button class="tab-btn" data-tab="other">Other Apps</button>
-      </div>
-
-      <div class="hero-section" id="heroSection">
-        <img src="" alt="Featured" class="hero-image" id="heroImage">
-        <div class="hero-content">
-          <h1 class="hero-title" id="heroTitle">title</h1>
-          <p class="hero-subtitle" id="heroSubtitle">Click to launch</p>
-        </div>
-        <div class="hero-progress" id="heroProgress"></div>
-      </div>
-
-      <div class="search-container">
-        <input type="text" id="searchInput" class="search-bar" placeholder="Search...">
-      </div>
-
-      <!-- Favorites Section -->
-      <div class="favorites-section" id="favoritesSection" style="display: none;">
-        <div class="section-header">
-          <h2 class="section-title">Favorites</h2>
-        </div>
-        <div class="games-grid-container">
-          <div class="games-grid" id="favoritesGrid">
-          </div>
-        </div>
-      </div>
-
-      <div class="games-section">
-        <div class="section-header">
-          <h2 class="section-title" id="sectionTitle">Games</h2>
-        </div>
-
-        <div class="games-grid-container">
-          <div class="games-grid" id="gamesList">
-            <div class="loading">
-              <div class="spinner"></div>
-              Loading...
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+            <div class="flex items-center gap-4">
+                <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/logo.png" alt="Logo" class="h-16 w-auto object-contain">
             </div>
-          </div>
         </div>
-      </div>
 
-      <div class="no-results" id="noResults" style="display: none;">
-        <div style="font-size: 48px; margin-bottom: 16px;">:(</div>
-        <div>No content found matching your search.</div>
-        <div style="font-size: 14px; margin-top: 8px; opacity: 0.6;">Try a different keyword</div>
-      </div>
-    </div>
-  </div>
+        <div class="flex-grow flex flex-col justify-start">
 
-  <!-- Settings Modal -->
-  <div class="modal" id="settingsModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Settings</h2>
-        <button class="close-modal" onclick="closeSettings()">&times;</button>
-      </div>
+            <div class="flex gap-1 md:gap-3 overflow-x-auto pb-1 mb-6 border-b-2 theme-border" id="blade-navigation">
+                <div onclick="selectBlade('games')" id="blade-tab-games" class="blade-tab active theme-bg-blade font-bold py-3 px-8 rounded-t-lg transition-transform text-sm uppercase tracking-widest">
+                    <div class="blade-tab-content">Games Library</div>
+                </div>
+                <div onclick="selectBlade('emulators')" id="blade-tab-emulators" class="blade-tab theme-bg-blade theme-text-secondary font-bold py-3 px-8 rounded-t-lg text-sm uppercase tracking-widest hover:brightness-110">
+                    <div class="blade-tab-content">🕹️ Emulators</div>
+                </div>
+                <div onclick="selectBlade('favorites')" id="blade-tab-favorites" class="blade-tab theme-bg-blade theme-text-secondary font-bold py-3 px-8 rounded-t-lg text-sm uppercase tracking-widest hover:brightness-110">
+                    <div class="blade-tab-content">⭐ Favorites</div>
+                </div>
+                <div onclick="selectBlade('system')" id="blade-tab-system" class="blade-tab theme-bg-blade theme-text-secondary font-bold py-3 px-8 rounded-t-lg text-sm uppercase tracking-widest hover:brightness-110">
+                    <div class="blade-tab-content">System Settings</div>
+                </div>
+            </div>
 
-      <div class="settings-group">
-        <label for="lightModeToggle">Light Mode</label>
-        <label class="toggle-switch">
-          <input type="checkbox" id="lightModeToggle">
-          <span class="slider"></span>
-        </label>
-      </div>
+            <div class="flex-grow">
 
-      <div class="settings-group">
-        <label for="introToggle">Show Intro</label>
-        <label class="toggle-switch">
-          <input type="checkbox" id="introToggle">
-          <span class="slider"></span>
-        </label>
-      </div>
+                <div id="content-games" class="blade-content block">
+                    <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto ml-auto mb-6 justify-between md:justify-end">
+                        <button onclick="clearAuthorFilter()" id="clear-filter-btn" class="hidden px-4 py-2 bg-red-600/80 hover:bg-red-500 text-white rounded-lg text-sm font-bold transition-colors">Clear Author Filter ✖</button>
+                        <div class="flex gap-2">
+                            <select id="game-filter" onchange="filterGames()" class="theme-input border rounded-lg py-2 px-4 text-sm focus:outline-none transition-colors">
+                                <option value="default">Default Order</option>
+                                <option value="az">A-Z</option>
+                                <option value="za">Z-A</option>
+                            </select>
+                            <div class="relative w-64 md:w-80">
+                                <input type="text" id="game-search" oninput="filterGames()" placeholder="Search game files or author..."
+                                    class="w-full theme-input border rounded-lg py-2 px-4 text-sm focus:outline-none transition-colors">
+                                <span class="absolute right-3 top-2 theme-text-secondary">🔍</span>
+                            </div>
+                        </div>
+                    </div>
 
-      <div class="settings-group">
-        <label for="ambianceToggle">Ambient Sound</label>
-        <label class="toggle-switch">
-          <input type="checkbox" id="ambianceToggle">
-          <span class="slider"></span>
-        </label>
-      </div>
+                    <div id="loading-state" class="flex flex-col items-center justify-center py-20 gap-4">
+                        <div class="w-12 h-12 border-4 border-dashed rounded-full animate-spin" id="loader-spinner" style="border-color: var(--accent)"></div>
+                        <p class="theme-text-secondary tracking-widest">Retrieving catalog from CDN...</p>
+                    </div>
 
-      <div class="settings-group">
-        <label>Ambiance Volume</label>
-        <div class="volume-control">
-          <input type="range" id="volumeSlider" min="0" max="100" value="50">
-          <span class="volume-value" id="volumeValue">50%</span>
+                    <div id="error-state" class="hidden text-center py-12 text-red-500 glass-panel p-6 rounded-xl max-w-lg mx-auto">
+                        <p class="font-bold text-lg mb-2">System Error</p>
+                        <p class="text-sm mb-4 theme-text-main">Failed to initialize the catalog. The remote JSON host could be down.</p>
+                        <button onclick="fetchGamesList()" class="px-5 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500 transition-colors">Retry Connection</button>
+                    </div>
+
+                    <div id="games-grid" class="hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"></div>
+                    <div id="game-counter" class="text-center mt-6 text-xs font-bold tracking-widest theme-text-secondary uppercase"></div>
+                </div>
+
+                <div id="content-emulators" class="blade-content hidden">
+                    
+                    <div id="emulators-console-select" class="grid grid-cols-2 sm:grid-cols-3 gap-6 max-w-4xl mx-auto py-6">
+                        <div onclick="selectConsole('NES')" class="glass-panel p-6 rounded-xl text-center cursor-pointer border-2 border-transparent hover:border-[var(--accent)] hover:scale-105 transition-all duration-200 theme-card-bg">
+                            <span class="text-4xl block mb-2">🕹️</span>
+                            <div class="font-bold tracking-widest text-xs uppercase text-white">NES</div>
+                        </div>
+                        <div onclick="selectConsole('SNES')" class="glass-panel p-6 rounded-xl text-center cursor-pointer border-2 border-transparent hover:border-[var(--accent)] hover:scale-105 transition-all duration-200 theme-card-bg">
+                            <span class="text-4xl block mb-2">🎮</span>
+                            <div class="font-bold tracking-widest text-xs uppercase text-white">SNES</div>
+                        </div>
+                        <div onclick="selectConsole('GBA')" class="glass-panel p-6 rounded-xl text-center cursor-pointer border-2 border-transparent hover:border-[var(--accent)] hover:scale-105 transition-all duration-200 theme-card-bg">
+                            <span class="text-4xl block mb-2">📟</span>
+                            <div class="font-bold tracking-widest text-xs uppercase text-white">Game Boy Advance</div>
+                        </div>
+                        <div onclick="selectConsole('GameBoy')" class="glass-panel p-6 rounded-xl text-center cursor-pointer border-2 border-transparent hover:border-[var(--accent)] hover:scale-105 transition-all duration-200 theme-card-bg">
+                            <span class="text-4xl block mb-2">🔋</span>
+                            <div class="font-bold tracking-widest text-xs uppercase text-white">Game Boy / GBC</div>
+                        </div>
+                        <div onclick="selectConsole('N64')" class="glass-panel p-6 rounded-xl text-center cursor-pointer border-2 border-transparent hover:border-[var(--accent)] hover:scale-105 transition-all duration-200 theme-card-bg">
+                            <span class="text-4xl block mb-2">🎲</span>
+                            <div class="font-bold tracking-widest text-xs uppercase text-white">Nintendo 64</div>
+                        </div>
+                        <div onclick="selectConsole('Genesis')" class="glass-panel p-6 rounded-xl text-center cursor-pointer border-2 border-transparent hover:border-[var(--accent)] hover:scale-105 transition-all duration-200 theme-card-bg">
+                            <span class="text-4xl block mb-2">⚡</span>
+                            <div class="font-bold tracking-widest text-xs uppercase text-white">Sega Genesis</div>
+                        </div>
+                    </div>
+
+                    <div id="emulators-roms-container" class="hidden">
+                        <div class="flex flex-col md:flex-row gap-2 w-full ml-auto mb-6 justify-between items-center">
+                            <button onclick="showConsoleSelect()" class="px-4 py-2 theme-bg-blade hover:brightness-110 theme-text-main border theme-border rounded-lg text-xs font-bold tracking-widest uppercase transition-colors flex items-center gap-2">
+                                ◀ Back to Consoles
+                            </button>
+                            <div class="flex gap-2 w-full md:w-auto justify-end">
+                                <button onclick="clearRomAuthorFilter()" id="clear-rom-filter-btn" class="hidden px-4 py-2 bg-red-600/80 hover:bg-red-500 text-white rounded-lg text-sm font-bold transition-colors">Clear Author Filter ✖</button>
+                                <div class="flex gap-2">
+                                    <select id="rom-filter" onchange="filterRoms()" class="theme-input border rounded-lg py-2 px-4 text-sm focus:outline-none transition-colors">
+                                        <option value="default">Default Order</option>
+                                        <option value="az">A-Z</option>
+                                        <option value="za">Z-A</option>
+                                    </select>
+                                    <div class="relative w-64 md:w-80">
+                                        <input type="text" id="rom-search" oninput="filterRoms()" placeholder="Search ROMs or author..."
+                                            class="w-full theme-input border rounded-lg py-2 px-4 text-sm focus:outline-none transition-colors">
+                                        <span class="absolute right-3 top-2 theme-text-secondary">🔍</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="roms-loading-state" class="flex flex-col items-center justify-center py-20 gap-4">
+                            <div class="w-12 h-12 border-4 border-dashed rounded-full animate-spin" style="border-color: var(--accent)"></div>
+                            <p class="theme-text-secondary tracking-widest">Retrieving ROMs from CDN...</p>
+                        </div>
+
+                        <div id="roms-error-state" class="hidden text-center py-12 text-red-500 glass-panel p-6 rounded-xl max-w-lg mx-auto">
+                            <p class="font-bold text-lg mb-2">System Error</p>
+                            <p class="text-sm mb-4 theme-text-main">Failed to initialize the ROMs catalog.</p>
+                            <button onclick="fetchRomsList()" class="px-5 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500 transition-colors">Retry Connection</button>
+                        </div>
+
+                        <div id="roms-grid" class="hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"></div>
+                    </div>
+                </div>
+
+                <div id="content-favorites" class="blade-content hidden">
+                    <div id="favorites-empty" class="hidden text-center py-20 theme-text-secondary tracking-widest text-sm">
+                        No favorites yet — star a game to pin it here.
+                    </div>
+                    <div id="favorites-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"></div>
+                </div>
+
+                <div id="content-system" class="blade-content hidden">
+                    <div class="glass-panel p-6 rounded-2xl max-w-2xl">
+                        <h3 class="text-xl font-bold uppercase tracking-widest mb-4" style="color:var(--accent)">Local Engine Configurations</h3>
+                        <div class="space-y-4">
+
+                            <div class="flex justify-between items-center p-3 theme-card-bg theme-border border rounded-lg">
+                                <div class="font-bold text-sm theme-text-main">Dashboard Theme</div>
+                                <button onclick="toggleTheme()" id="theme-toggle-btn" class="px-4 py-2 theme-bg-blade hover:brightness-110 theme-text-main border theme-border rounded text-xs font-bold transition-colors">DARK MODE</button>
+                            </div>
+
+                            <div class="flex justify-between items-center p-3 theme-card-bg theme-border border rounded-lg">
+                                <div class="font-bold text-sm theme-text-main">UI Sound Effects</div>
+                                <button onclick="toggleUIAudio()" id="ui-audio-toggle-btn" class="px-4 py-2 text-white rounded text-xs font-bold transition-colors" style="background:var(--accent-dark)">ENABLED</button>
+                            </div>
+
+                            <div class="flex justify-between items-center p-3 theme-card-bg theme-border border rounded-lg">
+                                <div class="font-bold text-sm theme-text-main">Background Ambiance</div>
+                                <button onclick="toggleAmbiance()" id="ambiance-toggle-btn" class="px-4 py-2 text-white rounded text-xs font-bold transition-colors" style="background:var(--accent-dark)">ENABLED</button>
+                            </div>
+
+                            <div class="p-3 theme-card-bg theme-border border rounded-lg">
+                                <div class="font-bold text-sm theme-text-main mb-3">Game Guide Position</div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button id="side-btn-left"   onclick="setGuideSide('left')"   class="side-picker-btn selected">◀ Left</button>
+                                    <button id="side-btn-right"  onclick="setGuideSide('right')"  class="side-picker-btn">Right ▶</button>
+                                    <button id="side-btn-top"    onclick="setGuideSide('top')"    class="side-picker-btn">▲ Top</button>
+                                    <button id="side-btn-bottom" onclick="setGuideSide('bottom')" class="side-picker-btn">Bottom ▼</button>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-between items-center p-3 theme-card-bg theme-border border rounded-lg">
+                                <div class="font-bold text-sm theme-text-main">Custom Theme Color</div>
+                                <input type="color" id="custom-color-picker" value="#90c040" onchange="applyCustomColor(this.value)" class="w-12 h-8 cursor-pointer rounded border-0 bg-transparent p-0">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-      </div>
+    </div>
 
-      <div class="modal-divider"></div>
-
-      <div class="credits-section">
-        <h3>About</h3>
-        <p><strong>Greeni's Unblocked Games</strong> features 115+ unblocked games including Block Blast, Slope,
-          Geometry Dash, Retro Bowl, and more!</p>
-        <p style="margin-top: 12px;">Join our growing community with live chat to connect and talk with other players, a
-          thriving Discord community, and constantly added new games.</p>
-
-        <h3 style="margin-top: 16px;">Credits</h3>
-        <p><strong>Creator:</strong><br>Greeni</p>
-        <p><strong>gn-math Team</strong> (mainly bread)<br>Most Ports and Games, and their site</p>
-        <p><strong>Ultimate Game Docs</strong><br>Doc Full Of Games!</p>
-        <p><strong>Version:</strong> 2.5</p>
-      </div>
-
-      <div class="modal-divider"></div>
-
-      <div class="contacts-section">
-        <h3>Connect With Us</h3>
-        <div class="contacts-grid">
-          <a href="https://discord.gg/5xxWCJGBT8" target="_blank" rel="noopener noreferrer" class="contact-link"
-            title="Join our Discord">
-            <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/dc.gif" alt="Discord" class="contact-icon">
-            <span>Discord</span>
-          </a>
-          <a href="https://www.tiktok.com/@greeniwastaken" target="_blank" rel="noopener noreferrer"
-            class="contact-link" title="Follow on TikTok">
-            <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/tt.gif" alt="TikTok" class="contact-icon">
-            <span>TikTok</span>
-          </a>
-          <a href="mailto:notgreenirealz@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-link"
-            title="Email us">
-            <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/gm.gif" alt="Gmail" class="contact-icon">
-            <span>Gmail</span>
-          </a>
-          <a href="mailto:greenirealz@outlook.com" target="_blank" rel="noopener noreferrer" class="contact-link"
-            title="Email us">
-            <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ol.gif" alt="Outlook" class="contact-icon">
-            <span>Outlook</span>
-          </a>
+    <div id="game-player-view" class="hidden fixed inset-0 w-screen h-screen bg-black z-50 overflow-hidden">
+        
+        <div id="hover-trigger-zone" class="side-left">
+            <button id="hamburger-menu-btn" onclick="toggleSidebar(true)" class="side-left">
+                <div class="flex flex-col gap-1.5 w-5 justify-center items-center">
+                    <span class="block w-full h-0.5 bg-white rounded"></span>
+                    <span class="block w-full h-0.5 bg-white rounded"></span>
+                    <span class="block w-full h-0.5 bg-white rounded"></span>
+                </div>
+            </button>
         </div>
-      </div>
+
+        <div id="game-compilation-loader" class="absolute inset-0 theme-loader flex flex-col items-center justify-center gap-4 z-40">
+            <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/bred.webp" alt="Loader Logo" class="h-24 w-24 animate-spin rounded-full">
+        </div>
+
+        <div id="game-renderer-container" class="w-full h-full border-0 bg-black block flex items-center justify-center relative"></div>
     </div>
-  </div>
 
-  <div class="game-overlay" id="gameOverlay" tabindex="-1">
-    <div class="game-controls" id="gameControls">
-      <div class="control-group">
-        <button class="control-btn" id="newTabBtn">Open in New Tab</button>
-        <!--<button class="control-btn" id="reloadGameBtn">Reload</button>-->
-        <button class="control-btn" id="cursorToggleBtn">Hide Cursor</button>
-        <button class="control-btn" id="fullscreenGameBtn">Fullscreen</button>
-        <button class="control-btn primary" id="closeGameBtn">Close</button>
-      </div>
+    <div id="sidebar-overlay" onclick="toggleSidebar(false)"></div>
+    <div id="xbox-sidebar" class="side-left flex flex-col justify-start py-8 px-6 theme-text-main">
+        <div class="sidebar-header flex items-center gap-3 border-b theme-border pb-6 mb-6">
+            <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/logo.png" alt="Logo" class="h-12 w-auto object-contain">
+        </div>
+        <div class="sidebar-buttons flex flex-col space-y-4">
+            <button onclick="toggleFullscreen()" class="text-left flex items-center gap-4 p-3 rounded-lg hover:border-l-4 transition-all theme-card-bg border theme-border shadow-sm" style="hover-border-color:var(--accent)">
+                <span class="text-lg">📺</span>
+                <div class="font-bold text-sm">Toggle Fullscreen</div>
+            </button>
+            <button onclick="reloadGame()" class="text-left flex items-center gap-4 p-3 rounded-lg hover:border-l-4 transition-all theme-card-bg border theme-border shadow-sm" style="hover-border-color:var(--accent)">
+                <span class="text-lg">🔄</span>
+                <div class="font-bold text-sm">Reload Game</div>
+            </button>
+            <button onclick="openGameInNewTab()" class="text-left flex items-center gap-4 p-3 rounded-lg hover:border-l-4 transition-all theme-card-bg border theme-border shadow-sm" style="hover-border-color:var(--accent)">
+                <span class="text-lg">🔗</span>
+                <div class="font-bold text-sm">Open in New Tab</div>
+            </button>
+            <button onclick="exitGameAndReturn()" class="text-left flex items-center gap-4 p-3 rounded-lg hover:border-l-4 hover:border-red-400 transition-all theme-card-bg border theme-border shadow-sm">
+                <span class="text-lg">🚪</span>
+                <div class="font-bold text-sm text-red-500">Exit Game</div>
+            </button>
+        </div>
     </div>
-    <div class="game-content" id="gameContent" tabindex="0"></div>
-  </div>
 
+    <script>
+    window.mouseX = -999;
+    window.mouseY = -999;
+    window.addEventListener('mousemove', e => { 
+        window.mouseX = e.clientX; 
+        window.mouseY = e.clientY; 
+    });
 
-  <audio id="ambianceAudio" loop preload="auto"></audio>
+    let currentTrailColor = 'rgba(144,192,64,'; 
+    let guideSide = 'left';
+    let selectedConsole = null;
 
-  <script async type='module'
-    src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
-  <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmixugfwj001ss2j44sn02p3o'>
-  </zapier-interfaces-chatbot-embed>
+    // ══════════════════════════════════════════════
+    //  CUSTOM COLOR THEME
+    // ══════════════════════════════════════════════
+    function applyCustomColor(hex) {
+        if (uiAudioEnabled) playClickSound();
+        const root = document.documentElement;
+        
+        let r = parseInt(hex.substring(1,3), 16);
+        let g = parseInt(hex.substring(3,5), 16);
+        let b = parseInt(hex.substring(5,7), 16);
+        
+        let darkHex = '#' + [r,g,b].map(c => Math.max(0, Math.floor(c * 0.6)).toString(16).padStart(2, '0')).join('');
+        let bgCenterHex = '#' + [r,g,b].map(c => Math.max(0, Math.floor(c * 0.22)).toString(16).padStart(2, '0')).join('');
+        
+        root.style.setProperty('--xbox-green',      darkHex);
+        root.style.setProperty('--xbox-green-glow', hex);
+        root.style.setProperty('--accent',          hex);
+        root.style.setProperty('--accent-dark',     darkHex);
 
-  <script>
-    let allFavorites = JSON.parse(localStorage.getItem('favoritesV2')) || {};
+        if (!isLightMode) {
+            root.style.setProperty('--bg-center', bgCenterHex);
+        }
+
+        const aura = document.getElementById('xbox-aura');
+        if (aura) aura.style.background = `radial-gradient(circle, rgba(${r},${g},${b},0.08) 0%, rgba(0,0,0,0) 70%)`;
+
+        const spinner = document.getElementById('loader-spinner');
+        if (spinner) spinner.style.borderColor = `transparent transparent transparent ${hex}`;
+
+        currentTrailColor = `rgba(${r},${g},${b},`;
+    }
+
+    // ══════════════════════════════════════════════
+    //  SPACE CANVAS
+    // ══════════════════════════════════════════════
+    (function initSpace() {
+        const canvas = document.getElementById('space-canvas');
+        const ctx = canvas.getContext('2d');
+        let W, H;
+
+        const STAR_COUNT = 250;
+        const stars = [];
+
+        function resize() {
+            W = canvas.width  = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', () => { resize(); initObjects(); });
+
+        function rand(a, b) { return a + Math.random() * (b - a); }
+
+        function initObjects() {
+            stars.length = 0;
+            for (let i = 0; i < STAR_COUNT; i++) {
+                stars.push({
+                    x: rand(0, W), y: rand(0, H),
+                    r: rand(0.3, 1.8),
+                    speed: rand(0.05, 0.35),
+                    twinkle: rand(0, Math.PI * 2),
+                    twinkleSpeed: rand(0.01, 0.04),
+                    baseAlpha: rand(0.4, 1.0),
+                });
+            }
+        }
+        initObjects();
+
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+
+            stars.forEach(s => {
+                s.twinkle += s.twinkleSpeed;
+                s.y -= s.speed;
+                if (s.y < -2) { s.y = H + 2; s.x = rand(0, W); }
+
+                let dx = s.x - window.mouseX;
+                let dy = s.y - window.mouseY;
+                let dist = Math.sqrt(dx*dx + dy*dy);
+                if (dist < 120) {
+                    let force = (120 - dist) / 120;
+                    s.x += (dx / dist) * force * 3;
+                    s.y += (dy / dist) * force * 3;
+                }
+
+                const alpha = s.baseAlpha * (0.6 + 0.4 * Math.sin(s.twinkle));
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+                ctx.fill();
+            });
+
+            requestAnimationFrame(draw);
+        }
+        draw();
+    })();
+
+    // ══════════════════════════════════════════════
+    //  CURSOR TRAIL
+    // ══════════════════════════════════════════════
+    (function initTrail() {
+        const canvas = document.getElementById('trail-canvas');
+        const ctx = canvas.getContext('2d');
+        let W, H;
+        const particles = [];
+
+        function resize() {
+            W = canvas.width  = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        function spawnParticle() {
+            if (window.mouseX < 0) return;
+            particles.push({
+                x: window.mouseX + (Math.random()-0.5)*6,
+                y: window.mouseY + (Math.random()-0.5)*6,
+                r: Math.random()*4 + 2,
+                vx: (Math.random()-0.5)*1.2,
+                vy: (Math.random()-0.5)*1.2 - 0.5,
+                life: 1.0,
+                decay: Math.random()*0.04 + 0.03,
+            });
+        }
+
+        let tickCount = 0;
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+            tickCount++;
+            if (tickCount % 2 === 0) spawnParticle();
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.x  += p.vx;
+                p.y  += p.vy;
+                p.r  *= 0.97;
+                p.life -= p.decay;
+                if (p.life <= 0 || p.r < 0.3) { particles.splice(i, 1); continue; }
+
+                ctx.beginPath();
+                const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+                grd.addColorStop(0, currentTrailColor + (p.life * 0.9) + ')');
+                grd.addColorStop(1, currentTrailColor + '0)');
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+                ctx.fillStyle = grd;
+                ctx.fill();
+            }
+            requestAnimationFrame(draw);
+        }
+        draw();
+    })();
+
+    document.addEventListener('mousedown', () => document.body.classList.add('clicking'));
+    document.addEventListener('mouseup',   () => document.body.classList.remove('clicking'));
+
+    // ══════════════════════════════════════════════
+    //  APP STATE & FETCHING
+    // ══════════════════════════════════════════════
+    let allGames = [];
+    let allRoms = [];
+    let favorites = new Set(JSON.parse(localStorage.getItem('gug_favorites') || '[]'));
+    let isLightMode = false;
+    let uiAudioEnabled  = true;
+    let ambianceEnabled = true;
+    let ambianceStarted = false;
+    let currentTrackIndex = 0;
+
+    const ambianceAudio = new Audio();
+    ambianceAudio.volume = 0.3;
+    const hoverSound = new Audio('https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/hover.wav');
+    const clickSound  = new Audio('https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/click.wav');
+    hoverSound.volume = 0.4;
+    clickSound.volume = 0.5;
+
+    const ambianceTracks = [
+        'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance.mp3',
+        'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance2.mp3',
+        'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance3.mp3',
+        'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance4.mp3',
+    ];
+
+    function playHoverSound() { if (!uiAudioEnabled) return; hoverSound.currentTime=0; hoverSound.play().catch(()=>{}); }
+    function playClickSound()  { if (!uiAudioEnabled) return; clickSound.currentTime=0;  clickSound.play().catch(()=>{}); }
+    function playNextAmbiance() {
+        if (!ambianceEnabled) return;
+        ambianceAudio.src = ambianceTracks[currentTrackIndex];
+        ambianceAudio.play().catch(()=>{});
+        currentTrackIndex = (currentTrackIndex+1) % ambianceTracks.length;
+    }
+    ambianceAudio.addEventListener('ended', playNextAmbiance);
+    document.body.addEventListener('click', () => {
+        if (!ambianceStarted && ambianceEnabled) { ambianceStarted=true; playNextAmbiance(); }
+    }, { once:true });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        fetchGamesList();
+        fetchRomsList();
+    });
+
+    function setGuideSide(side) {
+        guideSide = side;
+        playClickSound();
+        const trigger = document.getElementById('hover-trigger-zone');
+        const btn     = document.getElementById('hamburger-menu-btn');
+        const sidebar = document.getElementById('xbox-sidebar');
+        const isOpen  = sidebar.classList.contains('open');
+
+        trigger.className = 'side-' + side;
+        btn.className     = 'side-' + side;
+
+        let sidebarBase = 'flex flex-col justify-start py-8 px-6 theme-text-main';
+        sidebar.className = sidebarBase + ' side-' + side + (isOpen ? ' open' : '');
+
+        ['left','right','top','bottom'].forEach(s => {
+            const el = document.getElementById('side-btn-' + s);
+            if (el) el.classList.toggle('selected', s === side);
+        });
+    }
+
+    function getConsoleType(filename) {
+        if (!filename) return 'Retro';
+        const lower = filename.toLowerCase();
+        if (lower.endsWith('.sfc') || lower.endsWith('.smc')) return 'SNES';
+        if (lower.endsWith('.gba')) return 'GBA';
+        if (lower.endsWith('.gbc') || lower.endsWith('.gb')) return 'GameBoy';
+        if (lower.endsWith('.n64') || lower.endsWith('.z64')) return 'N64';
+        if (lower.endsWith('.genesis') || lower.endsWith('.md')) return 'Genesis';
+        if (lower.endsWith('.nes')) return 'NES';
+        if (lower.endsWith('.nds')) return 'NDS';
+        return 'Retro';
+    }
+
+    function filterByAuthor(authorName) {
+        const searchInput = document.getElementById('game-search');
+        searchInput.value = authorName;
+        document.getElementById('clear-filter-btn').classList.remove('hidden');
+        filterGames();
+        selectBlade('games');
+    }
+
+    // ──────────────────────────────────────────────
+    //  EMULATOR VIEW CONSOLE FLOW CONTROLS
+    // ──────────────────────────────────────────────
+    function selectConsole(consoleName) {
+        playClickSound();
+        selectedConsole = consoleName;
+        document.getElementById('emulators-console-select').classList.add('hidden');
+        document.getElementById('emulators-roms-container').classList.remove('hidden');
+        filterRoms();
+    }
+
+    function showConsoleSelect(skipSound = false) {
+        if (!skipSound) playClickSound();
+        selectedConsole = null;
+        const selectView = document.getElementById('emulators-console-select');
+        const romsView = document.getElementById('emulators-roms-container');
+        if (selectView) selectView.classList.remove('hidden');
+        if (romsView) romsView.classList.add('hidden');
+    }
+
+    function clearAuthorFilter() {
+        document.getElementById('game-search').value = '';
+        document.getElementById('clear-filter-btn').classList.add('hidden');
+        filterGames();
+    }
+
+    function filterRomsByAuthor(authorName) {
+        const searchInput = document.getElementById('rom-search');
+        searchInput.value = authorName;
+        document.getElementById('clear-rom-filter-btn').classList.remove('hidden');
+        filterRoms();
+    }
+
+    function clearRomAuthorFilter() {
+        document.getElementById('rom-search').value = '';
+        document.getElementById('clear-rom-filter-btn').classList.add('hidden');
+        filterRoms();
+    }
 
     function saveFavorites() {
-      localStorage.setItem('favoritesV2', JSON.stringify(allFavorites));
+        localStorage.setItem('gug_favorites', JSON.stringify([...favorites]));
+    }
+    
+    function toggleFavorite(file, e) {
+        e.stopPropagation();
+        playClickSound();
+        favorites.has(file) ? favorites.delete(file) : favorites.add(file);
+        saveFavorites();
+        renderGames(getCurrentFiltered());
+        renderRoms(getCurrentFilteredRoms());
+        renderFavorites();
+    }
+    
+    function getCurrentFiltered() {
+        const query = (document.getElementById('game-search')||{value:''}).value.toLowerCase();
+        const ft    = (document.getElementById('game-filter')||{value:'default'}).value;
+        let filtered = allGames.filter(g => 
+            g.name.toLowerCase().includes(query) || 
+            (g.creator && g.creator.toLowerCase().includes(query))
+        );
+        if (ft==='az') filtered.sort((a,b)=>a.name.localeCompare(b.name));
+        else if (ft==='za') filtered.sort((a,b)=>b.name.localeCompare(a.name));
+        
+        if(query === "") {
+            document.getElementById('clear-filter-btn').classList.add('hidden');
+        }
+        return filtered;
     }
 
-    function getCurrentTabFavorites() {
-      return allFavorites[currentTab] || [];
-    }
+    function getCurrentFilteredRoms() {
+        const query = (document.getElementById('rom-search')||{value:''}).value.toLowerCase();
+        const ft    = (document.getElementById('rom-filter')||{value:'default'}).value;
+        
+        let filtered = allRoms.filter(r => {
+            const matchesQuery = r.name.toLowerCase().includes(query) || (r.creator && r.creator.toLowerCase().includes(query));
+            const matchesConsole = selectedConsole ? (getConsoleType(r.file) === selectedConsole) : true;
+            return matchesQuery && matchesConsole;
+        });
 
-    function toggleFavorite(game, event) {
-      event.stopPropagation();
+        if (ft==='az') filtered.sort((a,b)=>a.name.localeCompare(b.name));
+        else if (ft==='za') filtered.sort((a,b)=>b.name.localeCompare(a.name));
 
-      if (!allFavorites[currentTab]) {
-        allFavorites[currentTab] = [];
-      }
-
-      const tabFavs = allFavorites[currentTab];
-      const index = tabFavs.findIndex(f => f.name === game.name);
-
-      if (index > -1) {
-        tabFavs.splice(index, 1);
-      } else {
-        tabFavs.push(game);
-      }
-
-      saveFavorites();
-      renderFavorites();
-
-      const searchQuery = document.getElementById('searchInput').value;
-      if (searchQuery.trim() === '') {
-        renderGames(games);
-      } else {
-        filterGames(searchQuery);
-      }
-    }
-
-    function isFavorited(gameName) {
-      return getCurrentTabFavorites().some(f => f.name === gameName);
+        if(query === "") {
+            const btn = document.getElementById('clear-rom-filter-btn');
+            if (btn) btn.classList.add('hidden');
+        }
+        return filtered;
     }
 
     function renderFavorites() {
-      const favoritesSection = document.getElementById('favoritesSection');
-      const favoritesGrid = document.getElementById('favoritesGrid');
-      const tabFavs = getCurrentTabFavorites();
+        const grid  = document.getElementById('favorites-grid');
+        const empty = document.getElementById('favorites-empty');
+        
+        const favGames = allGames.filter(g => favorites.has(g.file));
+        const favRoms = allRoms.filter(r => favorites.has(r.file));
+        const allFavsCount = favGames.length + favRoms.length;
 
-      if (tabFavs.length === 0) {
-        favoritesSection.style.display = 'none';
-        return;
-      }
-
-      favoritesSection.style.display = 'block';
-      favoritesGrid.innerHTML = '';
-
-      tabFavs.forEach((game) => {
-        const card = createGameCard(game, true);
-        favoritesGrid.appendChild(card);
-      });
-    }
-
-    function createGameCard(game, isFavoriteSection = false) {
-      const card = document.createElement('div');
-      card.className = 'game-card';
-
-      const img = document.createElement('img');
-      img.src = game.image;
-      img.alt = game.name;
-      img.className = 'game-image';
-      img.loading = 'lazy';
-      card.appendChild(img);
-
-      const starBtn = document.createElement('button');
-      starBtn.className = 'star-btn' + (isFavorited(game.name) ? ' active' : '');
-      starBtn.innerHTML = '★';
-      starBtn.title = isFavorited(game.name) ? 'Remove from favorites' : 'Add to favorites';
-      starBtn.onclick = (e) => toggleFavorite(game, e);
-      card.appendChild(starBtn);
-
-      const info = document.createElement('div');
-      info.className = 'game-info';
-
-      const title = document.createElement('div');
-      title.className = 'game-title';
-      title.textContent = game.name;
-      info.appendChild(title);
-
-      const meta = document.createElement('div');
-      meta.className = 'game-meta';
-      meta.innerHTML = ``;
-      info.appendChild(meta);
-
-      card.appendChild(info);
-
-      if (currentTab === 'minecraft') {
-        const downloadBtn = document.createElement('div');
-        downloadBtn.className = 'download-overlay';
-        card.appendChild(downloadBtn);
-        card.addEventListener('click', () => {
-          playSound('click');
-          downloadMod(game.file);
-        });
-      } else {
-        const playBtn = document.createElement('div');
-        playBtn.className = 'play-overlay';
-        card.appendChild(playBtn);
-        card.addEventListener('click', () => {
-          playSound('click');
-          loadGame(game.file, game.name);
-        });
-      }
-
-      card.addEventListener('mouseenter', () => playSound('hover'));
-
-      return card;
-    }
-
-    let introComplete = false;
-
-    function hideIntro() {
-      const intro = document.getElementById('introOverlay');
-      const introAudio = document.getElementById('introAudio');
-      intro.classList.add('hide');
-      introAudio.pause();
-      introAudio.currentTime = 0;
-
-      document.body.classList.remove('intro-active');
-
-      setTimeout(() => {
-        intro.style.display = 'none';
-        introComplete = true;
-        if (ambianceEnabled && !isGamePlaying && !isMoviePlaying) {
-          playAmbiance();
+        grid.innerHTML = '';
+        if (allFavsCount===0) { 
+            empty.classList.remove('hidden'); 
+        } else { 
+            empty.classList.add('hidden'); 
+            favGames.forEach(g=>grid.appendChild(buildCard(g))); 
+            favRoms.forEach(r=>grid.appendChild(buildRomCard(r)));
         }
-      }, 600);
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const introVideo = document.getElementById('introVideo');
-      const introAudio = document.getElementById('introAudio');
-      const introOverlay = document.getElementById('introOverlay');
-      const skipIntroBtn = document.getElementById('skipIntroBtn');
+    function buildCard(game) {
+        const card = document.createElement('div');
+        card.className = "glass-panel rounded-xl overflow-hidden cursor-pointer group hover:scale-105 active:scale-95 transition-all duration-200 border-2 border-transparent relative flex flex-col justify-between";
+        card.onmouseenter = () => { card.style.borderColor='var(--accent)'; card.style.boxShadow='0 0 20px color-mix(in srgb, var(--accent) 30%, transparent)'; playHoverSound(); };
+        card.onmouseleave = () => { card.style.borderColor='transparent'; card.style.boxShadow=''; };
+        card.onclick = () => { playClickSound(); launchGameEngine(game); };
 
-      skipIntroBtn.addEventListener('click', () => {
-        playSound('click');
-        hideIntro();
-      });
-
-      // Check if intro is enabled (default: false/disabled)
-      const introEnabled = localStorage.getItem('introEnabled') === 'true';
-
-      if (!introEnabled) {
-        // Skip intro immediately
-        introOverlay.style.display = 'none';
-        document.body.classList.remove('intro-active');
-        introComplete = true;
-        return;
-      }
-
-      const introVideoUrl = 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/intro.mp4';
-      const introAudioUrl = 'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/intro.mp3';
-
-      if (introVideoUrl) {
-        introVideo.querySelector('source').src = introVideoUrl;
-        introVideo.load();
-
-        if (introAudioUrl) {
-          introAudio.src = introAudioUrl;
-          introAudio.load();
-        }
-
-        introVideo.addEventListener('play', () => {
-          if (introAudioUrl && introAudio.paused) {
-            introAudio.play().catch(err => console.log('Audio playback prevented:', err));
-          }
-        }, { once: true });
-
-        introVideo.addEventListener('ended', () => {
-          hideIntro();
-        }, { once: true });
-
-        setTimeout(() => {
-          if (introOverlay.style.display !== 'none') {
-            hideIntro();
-          }
-        }, 20000);
-      } else {
-        setTimeout(() => {
-          hideIntro();
-        }, 2000);
-      }
-    });
-
-    function showLoadingOverlay(text = 'Loading...') {
-      const overlay = document.getElementById('loadingOverlay');
-      document.getElementById('loadingText').textContent = text;
-      overlay.classList.add('active');
+        const isFav = favorites.has(game.file);
+        card.innerHTML = `
+            <div class="relative w-full aspect-square bg-black overflow-hidden">
+                <img src="${game.image}" alt="${game.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                <div class="reflection-layer"></div>
+                <button class="fav-btn ${isFav?'active':''}" title="${isFav?'Unfavorite':'Favorite'}">★</button>
+            </div>
+            <div class="p-3 theme-card-bg text-center border-t theme-border flex flex-col justify-between flex-grow min-h-[90px]">
+                <div>
+                    <div class="font-bold text-xs theme-text-main truncate transition-colors uppercase tracking-wide" style="--hover-c:var(--accent)" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color=''">${game.name}</div>
+                    <div class="author-link text-[10px] theme-text-secondary tracking-widest mt-1 truncate uppercase cursor-pointer hover:text-white transition-colors" title="View all by ${game.creator||'Unknown'}">${game.creator||'Unknown'}</div>
+                </div>
+                <button class="play-btn mt-2 w-full py-1.5 bg-[var(--accent-dark)] hover:bg-[var(--accent)] text-white rounded text-[10px] font-bold transition-colors shadow-lg tracking-widest uppercase">PLAY</button>
+            </div>`;
+            
+        card.querySelector('.fav-btn').addEventListener('click', e => toggleFavorite(game.file, e));
+        card.querySelector('.author-link').addEventListener('click', e => { e.stopPropagation(); playClickSound(); filterByAuthor(game.creator || 'Unknown'); });
+        card.querySelector('.play-btn').addEventListener('click', e => { e.stopPropagation(); playClickSound(); launchGameEngine(game); });
+        
+        return card;
     }
 
-    function hideLoadingOverlay() {
-      const overlay = document.getElementById('loadingOverlay');
-      overlay.classList.remove('active');
+    function buildRomCard(rom) {
+        const card = document.createElement('div');
+        card.className = "glass-panel rounded-xl overflow-hidden cursor-pointer group hover:scale-105 active:scale-95 transition-all duration-200 border-2 border-transparent relative flex flex-col justify-between";
+        card.onmouseenter = () => { card.style.borderColor='var(--accent)'; card.style.boxShadow='0 0 20px color-mix(in srgb, var(--accent) 30%, transparent)'; playHoverSound(); };
+        card.onmouseleave = () => { card.style.borderColor='transparent'; card.style.boxShadow=''; };
+        card.onclick = () => { playClickSound(); launchEmulator(rom); };
+
+        const isFav = favorites.has(rom.file);
+        const consoleType = getConsoleType(rom.file);
+
+        card.innerHTML = `
+            <div class="relative w-full aspect-square bg-black overflow-hidden flex items-center justify-center">
+                <img src="${rom.image}" alt="${rom.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                <div class="reflection-layer"></div>
+                <button class="fav-btn ${isFav?'active':''}" title="${isFav?'Unfavorite':'Favorite'}">★</button>
+            </div>
+            <div class="p-3 theme-card-bg text-center border-t theme-border flex flex-col justify-between flex-grow min-h-[90px]">
+                <div>
+                    <div class="font-bold text-xs theme-text-main truncate transition-colors uppercase tracking-wide" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color=''">${rom.name}</div>
+                    <div class="author-link text-[10px] theme-text-secondary tracking-widest mt-1 truncate uppercase cursor-pointer hover:text-white transition-colors" title="View all by ${rom.creator||'Unknown'}">${rom.creator||'Unknown'} • ${consoleType}</div>
+                </div>
+                <button class="play-btn mt-2 w-full py-1.5 bg-[var(--accent-dark)] hover:bg-[var(--accent)] text-white rounded text-[10px] font-bold transition-colors shadow-lg tracking-widest uppercase">PLAY</button>
+            </div>`;
+
+        card.querySelector('.fav-btn').addEventListener('click', e => toggleFavorite(rom.file, e));
+        card.querySelector('.author-link').addEventListener('click', e => { e.stopPropagation(); playClickSound(); filterRomsByAuthor(rom.creator || 'Unknown'); });
+        card.querySelector('.play-btn').addEventListener('click', e => { e.stopPropagation(); playClickSound(); launchEmulator(rom); });
+
+        return card;
     }
 
-    function playSound(type) {
-      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      const now = audioContext.currentTime;
-      const oscillator = audioContext.createOscillator();
-      const gain = audioContext.createGain();
+    function renderGames(arr) {
+        const grid    = document.getElementById('games-grid');
+        const counter = document.getElementById('game-counter');
+        grid.innerHTML = '';
+        counter.textContent = `Total Games Available: ${arr.length}`;
+        if (arr.length===0) { grid.innerHTML=`<div class="col-span-full text-center theme-text-secondary py-12">No matches found.</div>`; return; }
+        arr.forEach(g => grid.appendChild(buildCard(g)));
+    }
+    function filterGames() { renderGames(getCurrentFiltered()); }
 
-      oscillator.connect(gain);
-      gain.connect(audioContext.destination);
+    function renderRoms(arr) {
+        const grid = document.getElementById('roms-grid');
+        grid.innerHTML = '';
+        if (arr.length === 0) { grid.innerHTML = `<div class="col-span-full text-center theme-text-secondary py-12">No matches found.</div>`; return; }
+        arr.forEach(r => grid.appendChild(buildRomCard(r)));
+    }
+    function filterRoms() { renderRoms(getCurrentFilteredRoms()); }
 
-      if (type === 'click') {
-        oscillator.frequency.setValueAtTime(800, now);
-        oscillator.frequency.exponentialRampToValueAtTime(400, now + 0.1);
-        gain.gain.setValueAtTime(0.1, now);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
-        oscillator.start(now);
-        oscillator.stop(now + 0.1);
-      } else if (type === 'hover') {
-        oscillator.frequency.setValueAtTime(600, now);
-        oscillator.frequency.exponentialRampToValueAtTime(800, now + 0.05);
-        gain.gain.setValueAtTime(0.05, now);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
-        oscillator.start(now);
-        oscillator.stop(now + 0.05);
-      }
+    function fetchGamesList() {
+        document.getElementById('loading-state').classList.remove('hidden');
+        document.getElementById('error-state').classList.add('hidden');
+        document.getElementById('games-grid').classList.add('hidden');
+        fetch(`https://cdn.jsdelivr.net/gh/greeniYT/gug@latest/json/game.json?t=${Date.now()}`, { cache:'no-store' })
+            .then(r => { if (!r.ok) throw 0; return r.json(); })
+            .then(data => {
+                allGames = data;
+                renderGames(allGames);
+                renderFavorites();
+                document.getElementById('loading-state').classList.add('hidden');
+                document.getElementById('games-grid').classList.remove('hidden');
+            })
+            .catch(() => {
+                document.getElementById('loading-state').classList.add('hidden');
+                document.getElementById('error-state').classList.remove('hidden');
+            });
     }
 
-    function createSpaceBackground() {
-      const bg = document.getElementById('spaceBackground');
-      const stars = [];
-      const repelRadius = 150;
-      const repelForce = 5;
-
-      for (let i = 0; i < 150; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        const size = Math.random() * 2 + 1;
-        star.style.width = size + 'px';
-        star.style.height = size + 'px';
-
-        const x = Math.random() * window.innerWidth;
-        const y = Math.random() * window.innerHeight;
-        star.style.left = x + 'px';
-        star.style.top = y + 'px';
-        star.style.position = 'fixed';
-        star.style.animation = `twinkle ${Math.random() * 2 + 2}s infinite`;
-
-        bg.appendChild(star);
-
-        stars.push({
-          element: star,
-          x: x,
-          y: y,
-          baseX: x,
-          baseY: y,
-          vx: 0,
-          vy: 0,
-          driftX: (Math.random() - 0.5) * 0.5,
-          driftY: (Math.random() - 0.5) * 0.5,
-          size: size
-        });
-      }
-
-      const nebulas = [
-        { class: 'nebula-purple', size: 400, x: 10, y: 20 },
-        { class: 'nebula-cyan', size: 350, x: 70, y: 30 },
-        { class: 'nebula-pink', size: 300, x: 40, y: 70 }
-      ];
-
-      nebulas.forEach(nebula => {
-        const el = document.createElement('div');
-        el.className = 'nebula ' + nebula.class;
-        el.style.width = nebula.size + 'px';
-        el.style.height = nebula.size + 'px';
-        el.style.left = nebula.x + '%';
-        el.style.top = nebula.y + '%';
-        el.style.transform = 'translate(-50%, -50%)';
-        bg.appendChild(el);
-      });
-
-      let mouseX = window.innerWidth / 2;
-      let mouseY = window.innerHeight / 2;
-
-      document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-      });
-
-      function animateStars() {
-        stars.forEach(star => {
-          star.baseX += star.driftX;
-          star.baseY += star.driftY;
-
-          if (star.baseX < 0) star.baseX = window.innerWidth;
-          if (star.baseX > window.innerWidth) star.baseX = 0;
-          if (star.baseY < 0) star.baseY = window.innerHeight;
-          if (star.baseY > window.innerHeight) star.baseY = 0;
-
-          const dx = star.x - mouseX;
-          const dy = star.y - mouseY;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < repelRadius && distance > 0) {
-            const angle = Math.atan2(dy, dx);
-            const force = (repelRadius - distance) / repelRadius * repelForce;
-            star.vx = Math.cos(angle) * force;
-            star.vy = Math.sin(angle) * force;
-          } else {
-            star.vx += (star.baseX - star.x) * 0.02;
-            star.vy += (star.baseY - star.y) * 0.02;
-            star.vx *= 0.92;
-            star.vy *= 0.92;
-          }
-
-          star.x += star.vx;
-          star.y += star.vy;
-
-          star.element.style.transform = `translate(${star.x}px, ${star.y}px)`;
-        });
-
-        requestAnimationFrame(animateStars);
-      }
-
-      animateStars();
+    function fetchRomsList() {
+        document.getElementById('roms-loading-state').classList.remove('hidden');
+        document.getElementById('roms-error-state').classList.add('hidden');
+        document.getElementById('roms-grid').classList.add('hidden');
+        fetch(`https://cdn.jsdelivr.net/gh/greeniYT/gug@latest/json/roms.json?t=${Date.now()}`, { cache:'no-store' })
+            .then(r => { if (!r.ok) throw 0; return r.json(); })
+            .then(data => {
+                allRoms = data;
+                renderRoms(allRoms);
+                document.getElementById('roms-loading-state').classList.add('hidden');
+                document.getElementById('roms-grid').classList.remove('hidden');
+            })
+            .catch(() => {
+                document.getElementById('roms-loading-state').classList.add('hidden');
+                document.getElementById('roms-error-state').classList.remove('hidden');
+            });
     }
 
-    function updateClock() {
-      const now = new Date();
-      const hours = now.getHours();
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const ampm = hours >= 12 ? 'PM' : 'AM';
-      const displayHours = hours % 12 || 12;
-      document.getElementById('clock').textContent = `${displayHours}:${minutes} ${ampm}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    let games = [];
-    let allContent = [];
-    let currentGameFile = null;
-    let isFullscreen = false;
-    let cursorHidden = false;
-    let currentTab = 'games';
-    let heroCycleInterval = null;
-    let isGamePlaying = false;
-    let isMoviePlaying = false;
-    let ambianceEnabled = false;
-    let ambianceStarted = false;
-
-    const v = Date.now();
-    const CONTENT_URLS = {
-      games:     `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/game.json`,
-      movies:    `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/movie.json`,
-      minecraft: `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/mc-mods.json`,
-      other:     `https://cdn.jsdelivr.net/gh/greeniYT/gug@main/json/apps.json`
-    };
-    const AMBIANCE_URLS = [
-      'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance.mp3',
-      'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance2.mp3',
-      'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance3.mp3',
-      'https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/ambiance4.mp3'
-    ];
-
-    const ambianceAudio = document.getElementById('ambianceAudio');
-    ambianceAudio.src = AMBIANCE_URLS[Math.floor(Math.random() * AMBIANCE_URLS.length)];
-    ambianceAudio.volume = 0.5;
-    ambianceAudio.loop = true;
-
-    ambianceAudio.addEventListener('ended', () => {
-      ambianceAudio.src = AMBIANCE_URLS[Math.floor(Math.random() * AMBIANCE_URLS.length)];
-      ambianceAudio.play().catch(err => console.log('Ambiance playback failed:', err));
-    });
-
-    function loadSettings() {
-      const savedLightMode = localStorage.getItem('lightMode') === 'true';
-      // Default false (disabled) unless explicitly saved as 'true'
-      const savedAmbiance = localStorage.getItem('ambianceEnabled') === 'true';
-      const savedVolume = localStorage.getItem('ambianceVolume') || '50';
-      // Default false (disabled) unless explicitly saved as 'true'
-      const savedIntro = localStorage.getItem('introEnabled') === 'true';
-
-      if (savedLightMode) {
-        document.body.classList.add('light-mode');
-        document.getElementById('lightModeToggle').checked = true;
-      }
-
-      ambianceEnabled = savedAmbiance;
-      document.getElementById('ambianceToggle').checked = ambianceEnabled;
-      document.getElementById('volumeSlider').value = savedVolume;
-      document.getElementById('volumeValue').textContent = savedVolume + '%';
-      ambianceAudio.volume = parseInt(savedVolume) / 100;
-
-      document.getElementById('introToggle').checked = savedIntro;
+    function selectBlade(id) {
+        playClickSound();
+        document.querySelectorAll('.blade-tab').forEach(t => { t.classList.remove('active'); t.classList.add('theme-text-secondary'); });
+        document.querySelectorAll('.blade-content').forEach(c => { c.classList.add('hidden'); c.classList.remove('block'); });
+        document.getElementById('blade-tab-'+id).classList.add('active');
+        document.getElementById('blade-tab-'+id).classList.remove('theme-text-secondary');
+        document.getElementById('content-'+id).classList.remove('hidden');
+        document.getElementById('content-'+id).classList.add('block');
+        if (id==='favorites') renderFavorites();
+        if (id==='emulators') showConsoleSelect(true);
     }
 
-    function saveSettings() {
-      localStorage.setItem('lightMode', document.getElementById('lightModeToggle').checked);
-      localStorage.setItem('ambianceEnabled', document.getElementById('ambianceToggle').checked);
-      localStorage.setItem('ambianceVolume', document.getElementById('volumeSlider').value);
-      localStorage.setItem('introEnabled', document.getElementById('introToggle').checked);
-    }
-
-    document.getElementById('lightModeToggle').addEventListener('change', (e) => {
-      playSound('click');
-      document.body.classList.toggle('light-mode', e.target.checked);
-      saveSettings();
-    });
-
-    document.getElementById('introToggle').addEventListener('change', (e) => {
-      playSound('click');
-      saveSettings();
-    });
-
-    document.getElementById('ambianceToggle').addEventListener('change', (e) => {
-      playSound('click');
-      ambianceEnabled = e.target.checked;
-      if (ambianceEnabled && introComplete && !isGamePlaying && !isMoviePlaying) {
-        playAmbiance();
-      } else {
-        pauseAmbiance();
-      }
-      saveSettings();
-    });
-
-    document.getElementById('volumeSlider').addEventListener('input', (e) => {
-      const volume = parseInt(e.target.value);
-      document.getElementById('volumeValue').textContent = volume + '%';
-      ambianceAudio.volume = volume / 100;
-      saveSettings();
-    });
-
-    function playAmbiance() {
-      if (ambianceEnabled && introComplete && !isGamePlaying && !isMoviePlaying) {
-        ambianceAudio.play().catch(err => console.log('Ambiance autoplay prevented:', err));
-        ambianceStarted = true;
-      }
-    }
-
-    function pauseAmbiance() {
-      ambianceAudio.pause();
-    }
-
-    document.getElementById('menuBtn').addEventListener('click', () => {
-      playSound('click');
-      document.getElementById('settingsModal').classList.add('active');
-    });
-
-    function closeSettings() {
-      playSound('click');
-      document.getElementById('settingsModal').classList.remove('active');
-    }
-
-    window.addEventListener('click', (e) => {
-      const modal = document.getElementById('settingsModal');
-      if (e.target === modal) {
-        closeSettings();
-      }
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const buttons = document.querySelectorAll('button, a, .game-card, .tab-btn, .contact-link');
-      buttons.forEach(btn => {
-        btn.addEventListener('mouseenter', () => playSound('hover'));
-        btn.addEventListener('click', () => playSound('click'));
-      });
-    });
-
-    async function loadContent(tab) {
-      currentTab = tab;
-      const url = CONTENT_URLS[tab];
-
-      try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        games = await response.json();
-
-        if (!Array.isArray(games) || games.length === 0) {
-          throw new Error('No content found in JSON');
-        }
-
-        renderGames(games);
-        renderFavorites(); 
-        setupHero(games);
-      } catch (error) {
-        console.error('Error loading content:', error);
-        document.getElementById('gamesList').innerHTML = `
-          <div class="error-message" style="display: block; background: transparent; flex: 1;">
-            <div style="font-size: 24px; margin-bottom: 10px;">⚠️ Error Loading Content</div>
-            <div>${error.message}</div>
-            <button onclick="loadContent('${tab}')">Retry</button>
-          </div>
-        `;
-      }
-    }
-
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        playSound('click');
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        e.target.classList.add('active');
-        updateSectionTitle(e.target.dataset.tab);
-        loadContent(e.target.dataset.tab);
-      });
-    });
-
-    function updateSectionTitle(tab) {
-      const titles = {
-        games: 'Games',
-        movies: 'Movies',
-        minecraft: 'Mods',
-        other: 'Apps'
-      };
-      document.getElementById('sectionTitle').textContent = titles[tab] || 'Launcher';
-    }
-
-    function setupHero(gamesList) {
-      if (!gamesList || gamesList.length === 0) return;
-
-      if (heroCycleInterval) clearInterval(heroCycleInterval);
-
-      allContent = gamesList;
-      let currentIndex = 0;
-
-      updateHeroDisplay(gamesList[currentIndex]);
-
-      heroCycleInterval = setInterval(() => {
-        currentIndex = (currentIndex + 1) % gamesList.length;
-        updateHeroDisplay(gamesList[currentIndex]);
-      }, 5000);
-    }
-
-    function updateHeroDisplay(item) {
-      const hero = document.getElementById('heroSection');
-      document.getElementById('heroImage').src = item.image;
-      document.getElementById('heroTitle').textContent = item.name;
-
-      if (currentTab === 'minecraft') {
-        document.getElementById('heroSubtitle').textContent = 'Click to download';
-        hero.onclick = () => {
-          playSound('click');
-          downloadMod(item.file);
-        };
-      } else {
-        document.getElementById('heroSubtitle').textContent = 'Click to launch';
-        hero.onclick = () => {
-          playSound('click');
-          loadGame(item.file, item.name);
-        };
-      }
-
-      hero.classList.add('active');
-
-      const progress = document.getElementById('heroProgress');
-      progress.style.animation = 'none';
-      setTimeout(() => {
-        progress.style.animation = 'progressBar 5s linear';
-      }, 10);
-    }
-
-    function renderGames(gamesToRender) {
-      const container = document.getElementById('gamesList');
-      const noResults = document.getElementById('noResults');
-
-      if (gamesToRender.length === 0) {
-        container.innerHTML = '';
-        noResults.style.display = 'block';
-        return;
-      }
-
-      noResults.style.display = 'none';
-      container.innerHTML = '';
-
-      gamesToRender.forEach((game, index) => {
-        const card = createGameCard(game);
-        container.appendChild(card);
-      });
-    }
-
-    function filterGames(query) {
-      const lowerQuery = query.toLowerCase().trim();
-      const filtered = lowerQuery === '' ? games : games.filter(game =>
-        game.name.toLowerCase().includes(lowerQuery)
-      );
-      renderGames(filtered);
-    }
-
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-      filterGames(e.target.value);
-    });
-
-    async function downloadMod(file) {
-      try {
-        const response = await fetch(file);
-        if (!response.ok) throw new Error(`Failed to download: ${response.statusText}`);
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = file.split('/').pop() || 'minecraft-mod';
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
-      } catch (error) {
-        alert('Error downloading mod: ' + error.message);
-      }
-    }
-
-    async function loadGame(file, gameName = 'Game') {
-      currentGameFile = file;
-      showLoadingOverlay(`Loading ${gameName}...`);
-
-      try {
-        const gameContent = document.getElementById('gameContent');
-        gameContent.innerHTML = '';
-
-        isMoviePlaying = file.includes('drive.google.com');
-        isGamePlaying = !isMoviePlaying;
-
-        if (ambianceEnabled) {
-          pauseAmbiance();
-        }
-
-        await new Promise(resolve => setTimeout(resolve, 800));
-
-        if (file.includes('drive.google.com')) {
-          const iframe = document.createElement('iframe');
-          iframe.src = file;
-          iframe.style.width = '100%';
-          iframe.style.height = '100%';
-          iframe.style.border = 'none';
-          iframe.allow = 'fullscreen';
-          gameContent.appendChild(iframe);
+    function toggleTheme() {
+        isLightMode = !isLightMode;
+        const btn = document.getElementById('theme-toggle-btn');
+        if (isLightMode) {
+            document.body.classList.add('light-theme');
+            btn.textContent='LIGHT MODE';
+            btn.className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-black rounded text-xs font-bold transition-colors";
         } else {
-          const response = await fetch(file, { cache: "no-store" });
-          if (!response.ok) throw new Error(`Failed to load ${file}: ${response.statusText}`);
-          const text = await response.text();
-
-          const iframe = document.createElement('iframe');
-          iframe.style.width = '100%';
-          iframe.style.height = '100%';
-          iframe.style.border = 'none';
-          iframe.sandbox.add('allow-scripts', 'allow-same-origin', 'allow-forms', 'allow-popups', 'autoplay', 'fullscreen','camera','microphone','allow-modals', 'allow-pointer-lock');
-
-          gameContent.appendChild(iframe);
-
-          const doc = iframe.contentDocument || iframe.contentWindow.document;
-          doc.open();
-          doc.write(text);
-          doc.close();
+            document.body.classList.remove('light-theme');
+            btn.textContent='DARK MODE';
+            btn.className="px-4 py-2 theme-bg-blade hover:brightness-110 theme-text-main border theme-border rounded text-xs font-bold transition-colors";
         }
+        playClickSound();
+    }
+    function toggleUIAudio() {
+        uiAudioEnabled = !uiAudioEnabled;
+        const btn = document.getElementById('ui-audio-toggle-btn');
+        btn.textContent = uiAudioEnabled ? 'ENABLED' : 'DISABLED';
+        btn.style.background = uiAudioEnabled ? 'var(--accent-dark)' : '#6b7280';
+        if (uiAudioEnabled) playHoverSound();
+    }
+    function toggleAmbiance() {
+        ambianceEnabled = !ambianceEnabled;
+        const btn = document.getElementById('ambiance-toggle-btn');
+        btn.textContent = ambianceEnabled ? 'ENABLED' : 'DISABLED';
+        btn.style.background = ambianceEnabled ? 'var(--accent-dark)' : '#6b7280';
+        if (ambianceEnabled) {
+            playClickSound();
+            if (!ambianceStarted) { ambianceStarted=true; playNextAmbiance(); } else ambianceAudio.play();
+        } else {
+            ambianceAudio.pause();
+        }
+    }
 
-        hideLoadingOverlay();
-        showOverlay();
-      } catch (error) {
-        hideLoadingOverlay();
-        document.getElementById('gameContent').innerHTML = `
-          <div style="color: #ff4444; padding: 20px; text-align: center;">
-            <div style="font-size: 24px; margin-bottom: 10px;">⚠ Error</div>
-            <div>${error.message}</div>
-          </div>
+    let _currentGame = null;
+    let _currentRom  = null;
+
+    function _setTrailVisible(visible) {
+        const tc = document.getElementById('trail-canvas');
+        if (tc) tc.style.display = visible ? '' : 'none';
+    }
+
+    function setupIframeEventListners(iframe) {
+        iframe.onload = () => {
+            try {
+                const iWin = iframe.contentWindow;
+                iWin.addEventListener('mousemove', e => {
+                    window.mouseX = e.clientX;
+                    window.mouseY = e.clientY;
+                });
+                iWin.addEventListener('mousedown', () => document.body.classList.add('clicking'));
+                iWin.addEventListener('mouseup', () => document.body.classList.remove('clicking'));
+            } catch (err) {}
+        };
+    }
+
+    function launchGameEngine(game) {
+        _currentGame = game;
+        _currentRom  = null;
+        const playerView = document.getElementById('game-player-view');
+        const loader     = document.getElementById('game-compilation-loader');
+        const container  = document.getElementById('game-renderer-container');
+
+        ambianceAudio.pause();
+        playerView.classList.remove('hidden');
+        loader.classList.remove('hidden');
+        _setTrailVisible(false);
+
+        container.innerHTML = '';
+        
+        const iframe = document.createElement('iframe');
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = 'none';
+        iframe.sandbox.add('allow-scripts', 'allow-same-origin', 'allow-forms', 'allow-popups', 'autoplay', 'fullscreen','camera','microphone','allow-modals', 'allow-pointer-lock');
+        container.appendChild(iframe);
+
+        setupIframeEventListners(iframe);
+
+        if (game.file.includes('drive.google.com')) {
+            iframe.src = game.file;
+            setTimeout(() => loader.classList.add('hidden'), 1500);
+        } else {
+            fetch(game.file + '?t=' + Date.now(), { cache:'no-store' })
+                .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+                .then(text => {
+                    const doc = iframe.contentDocument || iframe.contentWindow.document;
+                    doc.open();
+                    doc.write(text);
+                    doc.close();
+                    setTimeout(() => loader.classList.add('hidden'), 1200);
+                })
+                .catch(() => {
+                    iframe.src = game.file;
+                    setTimeout(() => loader.classList.add('hidden'), 1500);
+                });
+        }
+    }
+
+    function launchEmulator(rom) {
+        _currentRom  = rom;
+        _currentGame = null;
+        const playerView = document.getElementById('game-player-view');
+        const loader     = document.getElementById('game-compilation-loader');
+        const container  = document.getElementById('game-renderer-container');
+
+        ambianceAudio.pause();
+        playerView.classList.remove('hidden');
+        loader.classList.remove('hidden');
+        _setTrailVisible(false);
+
+        container.innerHTML = '';
+
+        const iframe = document.createElement('iframe');
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = 'none';
+        iframe.sandbox.add('allow-scripts', 'allow-same-origin', 'allow-forms', 'allow-popups', 'autoplay', 'fullscreen','camera','microphone','allow-modals', 'allow-pointer-lock');
+        container.appendChild(iframe);
+
+        setupIframeEventListners(iframe);
+
+        let core = 'nes';
+        const lowerFile = rom.file.toLowerCase();
+        if (lowerFile.endsWith('.sfc') || lowerFile.endsWith('.smc')) core = 'snes';
+        else if (lowerFile.endsWith('.gba')) core = 'gba';
+        else if (lowerFile.endsWith('.gbc') || lowerFile.endsWith('.gb')) core = 'gb';
+        else if (lowerFile.endsWith('.n64') || lowerFile.endsWith('.z64')) core = 'n64';
+        else if (lowerFile.endsWith('.genesis') || lowerFile.endsWith('.md')) core = 'segaMD';
+        else if (lowerFile.endsWith('.nes')) core = 'nes';
+
+        // Read active custom hex theme dynamically for loader bar integration
+        const activeAccent = document.documentElement.style.getPropertyValue('--accent') || '#107c10';
+
+        const emulatorHTML = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
+                #game-container { width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; }
+                #game { width: 100%; height: 100%; max-width: 100%; max-height: 100%; }
+            </style>
+        </head>
+        <body>
+            <div id="game-container">
+                <div id="game"></div>
+            </div>
+            <script>
+                window.EJS_player = '#game';
+                window.EJS_core = '${core}';
+                window.EJS_gameUrl = '${rom.file}';
+                window.EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
+                window.EJS_color = '${activeAccent}'; 
+                window.EJS_startOnLoaded = true;
+                window.EJS_fullscreenOnLoad = false;
+            <\/script>
+            <script src="https://cdn.emulatorjs.org/stable/data/loader.js"><\/script>
+        </body>
+        </html>
         `;
-        showOverlay();
-      }
+
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        doc.open();
+        doc.write(emulatorHTML);
+        doc.close();
+
+        setTimeout(() => {
+            loader.classList.add('hidden');
+        }, 2000);
     }
 
-    function showOverlay() {
-      const overlay = document.getElementById('gameOverlay');
-      overlay.style.display = 'flex';
-      isFullscreen = false;
-      cursorHidden = false;
-      overlay.classList.remove('fullscreen');
-      document.getElementById('gameControls').classList.remove('hidden');
-      document.getElementById('cursorToggleBtn').textContent = 'Hide Cursor';
-      document.body.style.cursor = 'auto';
-      overlay.focus();
+    function toggleSidebar(open) {
+        playClickSound();
+        document.getElementById('xbox-sidebar').classList.toggle('open', open);
+        document.getElementById('sidebar-overlay').classList.toggle('active', open);
     }
 
-    function hideOverlay() {
-      document.getElementById('gameOverlay').style.display = 'none';
-      document.getElementById('gameContent').innerHTML = '';
-      document.body.style.cursor = 'auto';
-      isGamePlaying = false;
-      isMoviePlaying = false;
+    function exitGameAndReturn() {
+        toggleSidebar(false);
+        playClickSound();
+        if (ambianceEnabled) ambianceAudio.play().catch(()=>{});
+        
+        const container = document.getElementById('game-renderer-container');
+        container.innerHTML = '';
+        
+        _currentGame = null;
+        _currentRom  = null;
+        _setTrailVisible(true);
 
-      if (ambianceEnabled) {
-        playAmbiance();
-      }
-
-      if (isFullscreen) {
-        exitFullscreen();
-        isFullscreen = false;
-        document.getElementById('gameOverlay').classList.remove('fullscreen');
-      }
+        document.getElementById('game-player-view').classList.add('hidden');
+        if (document.fullscreenElement) document.exitFullscreen();
     }
 
-    document.getElementById('cursorToggleBtn').addEventListener('click', () => {
-      playSound('click');
-      cursorHidden = !cursorHidden;
-      document.body.style.cursor = cursorHidden ? 'none' : 'auto';
-      document.getElementById('cursorToggleBtn').textContent = cursorHidden ? 'Show Cursor' : 'Hide Cursor';
-    });
-
-    document.getElementById('newTabBtn').addEventListener('click', async () => {
-      playSound('click');
-      if (!currentGameFile) return;
-      try {
-        const response = await fetch(currentGameFile, { cache: "no-store" });
-        const text = await response.text();
-        const modified = text.replace('<head>', `<head>
-          <title>Dashboard</title>
-          <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/canvas-fav.png">`);
-        const blob = new Blob([modified], { type: 'text/html' });
-        window.open(URL.createObjectURL(blob), '_blank');
-      } catch (error) {
-        alert('Error: ' + error.message);
-      }
-    });
-
-    document.getElementById('fullscreenGameBtn').addEventListener('click', () => {
-      playSound('click');
-      const overlay = document.getElementById('gameOverlay');
-      const controls = document.getElementById('gameControls');
-      if (!isFullscreen) {
-        enterFullscreen(overlay);
-        controls.classList.add('hidden');
-      } else {
-        exitFullscreen();
-        controls.classList.remove('hidden');
-      }
-      isFullscreen = !isFullscreen;
-      overlay.classList.toggle('fullscreen', isFullscreen);
-    });
-
-    document.getElementById('closeGameBtn').addEventListener('click', () => {
-      playSound('click');
-      hideOverlay();
-    });
-
-    function enterFullscreen(element) {
-      if (element.requestFullscreen) element.requestFullscreen();
-      else if (element.webkitRequestFullscreen) element.webkitRequestFullscreen();
-      else if (element.msRequestFullscreen) element.msRequestFullscreen();
+    function reloadGame() {
+        toggleSidebar(false);
+        playClickSound();
+        if (_currentGame) launchGameEngine(_currentGame);
+        else if (_currentRom) launchEmulator(_currentRom);
     }
 
-    function exitFullscreen() {
-      if (document.exitFullscreen) document.exitFullscreen();
-      else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-      else if (document.msExitFullscreen) document.msExitFullscreen();
+    function openGameInNewTab() {
+        toggleSidebar(false);
+        playClickSound();
+        const container = document.getElementById('game-renderer-container');
+        const iframe = container.querySelector('iframe');
+        if (!iframe) return;
+
+        const win = window.open('about:blank', '_blank');
+        if (!win) return;
+        
+        const src    = iframe.src;
+        if (src && src !== 'about:blank' && src !== window.location.href) {
+            win.location.href = src;
+        } else {
+            try {
+                const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+                const htmlContent = innerDoc.documentElement.outerHTML;
+                win.document.open();
+                win.document.write(htmlContent);
+                win.document.close();
+            } catch (err) {}
+        }
     }
 
-    document.addEventListener('fullscreenchange', () => {
-      if (!document.fullscreenElement && isFullscreen) {
-        isFullscreen = false;
-        document.getElementById('gameOverlay').classList.remove('fullscreen');
-        document.getElementById('gameControls').classList.remove('hidden');
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && document.getElementById('gameOverlay').style.display === 'flex') {
-        playSound('click');
-        hideOverlay();
-      }
-    });
-
-    createSpaceBackground();
-    loadSettings();
-    renderFavorites();
-    loadContent('games');
-  </script>
+    function toggleFullscreen() {
+        toggleSidebar(false);
+        playClickSound();
+        const pv = document.getElementById('game-player-view');
+        if (!document.fullscreenElement) {
+            pv.requestFullscreen().catch(()=>{});
+        } else {
+            document.exitFullscreen();
+        }
+    }
+    </script>
 </body>
-
 </html>
