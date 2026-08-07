@@ -90,6 +90,24 @@
     "creator": "Eukaryot"
   },
   {
+    "name": "BFDIA 5B",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/bfdia5b.webp",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/bfdia5b.html",
+    "creator": "jacknjellify"
+  },
+  {
+    "name": "OneShot",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/oneshot.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/oneshot.html",
+    "creator": "Future Cat LLC"
+  },
+  {
+    "name": "Tattletail",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/tattletail.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/tattletail.html",
+    "creator": "Ben Esposito"
+  },
+  {
     "name": "Sonic Mania Plus",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/icons/sonicmania.webp",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/sonicmania.html",
