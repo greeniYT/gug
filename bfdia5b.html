@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HTML5b - Battle for Dream Island</title>
+    <base href="https://cdn.jsdelivr.net/gh/greeniYT/5b@master/" target="_blank">
+    <link rel="shortcut icon" type="image/x-icon" href="./visuals/blocks/b0001.svg" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/greeniYT/5b@master/5b.js"></script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+        #center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+        }
+        #hide-contenteditable {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #cnv {
+            /* keep the game's internal resolution at 960x540, scale visually */
+            width: 100vw;
+            height: 100vh;
+            max-width: 177.78vh;   /* 960/540 aspect ratio locked to height */
+            max-height: 56.25vw;   /* 540/960 aspect ratio locked to width */
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+<div id="center">
+    <div id="hide-contenteditable"><canvas width="960" height="540" id="cnv" contenteditable="false"></canvas></div>
+</div>
+</body>
+</html>
