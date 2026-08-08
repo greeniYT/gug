@@ -28,6 +28,36 @@
     "name": "Mario Kart 64",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/mk64.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/n64/mk64.n64"
+  },
+  {
+    "name": "Sonic The Hedgehog",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/sth.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gen/sth.md"
+  },
+  {
+    "name": "Sonic The Hedgehog 2",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/sth2.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gen/sth2.md"
+  },
+  {
+    "name": "Sonic The Hedgehog 3 & Knuckles",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/sth3.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gen/sth3.md"
+  },
+    {
+    "name": "Super Mario World",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/smw.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/snes/smw.sfc"
+  },
+  {
+    "name": "The Legend of Zelda: A Link to the Past",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/lozalttp.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/snes/lozalttp.sfc"
+  },
+  {
+    "name": "Donkey Kong Country",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/dkc.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/snes/dkc.sfc"
   }
   
 ]
