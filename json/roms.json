@@ -44,6 +44,21 @@
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/sth3.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gen/sth3.md"
   },
+  {
+    "name": "Super Mario Land",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/sml.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gb/sml.gb"
+  },
+  {
+    "name": "Tetris",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/tetris.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gb/tetris.gb"
+  },
+  {
+    "name": "Super Mario Land 2 - 6 Golden Coins",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/sml2.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gb/sml2.gb"
+  },
     {
     "name": "Super Mario World",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/smw.png",
