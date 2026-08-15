@@ -1,78 +1,158 @@
 [
   {
     "name": "Super Mario Bros",
+    "creator": "Nintendo",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/smb1.webp",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/nes/smb1.nes"
   },
   {
     "name": "Super Mario Bros 2",
+    "creator": "Nintendo",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/smb2.png",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/nes/smb2.nes"
   },
   {
     "name": "Super Mario Bros 2: Lost Levels",
+    "creator": "Nintendo",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/smb2ll.png",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/nes/smb2ll.nes"
   },
   {
     "name": "Super Mario Bros 3",
+    "creator": "Nintendo",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/smb3.webp",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/nes/smb3.nes"
   },
   {
     "name": "Super Mario 64",
+    "creator": "Nintendo",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/sm64.png",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/n64/sm64.z64"
   },
   {
     "name": "Mario Kart 64",
+    "creator": "Nintendo",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/mk64.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/n64/mk64.n64"
   },
   {
     "name": "Sonic The Hedgehog",
+    "creator": "Sega",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/sth.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gen/sth.md"
   },
   {
     "name": "Sonic The Hedgehog 2",
+    "creator": "Sega",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/sth2.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gen/sth2.md"
   },
   {
     "name": "Sonic The Hedgehog 3 & Knuckles",
+    "creator": "Sega",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/sth3.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gen/sth3.md"
   },
   {
     "name": "Super Mario Land",
+    "creator": "Nintendo",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/sml.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gb/sml.gb"
   },
   {
     "name": "Tetris",
+    "creator": "Nintendo",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/tetris.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gb/tetris.gb"
   },
   {
     "name": "Super Mario Land 2 - 6 Golden Coins",
+    "creator": "Nintendo",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/sml2.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gb/sml2.gb"
   },
-    {
+  {
     "name": "Super Mario World",
+    "creator": "Nintendo",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/smw.png",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/snes/smw.sfc"
   },
   {
     "name": "The Legend of Zelda: A Link to the Past",
+    "creator": "Nintendo",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/lozalttp.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/snes/lozalttp.sfc"
   },
   {
     "name": "Donkey Kong Country",
+    "creator": "Rare",
     "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/dkc.jpg",
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/snes/dkc.sfc"
+  },
+  {
+    "name": "Pokemon Red",
+    "creator": "Game Freak",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/pkr.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gb/pkr.gb"
+  },
+  {
+    "name": "Pokemon Blue",
+    "creator": "Game Freak",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/pkb.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gb/pkb.gb"
+  },
+  {
+    "name": "Pokemon Yellow",
+    "creator": "Game Freak",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/pky.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gbc/pky.gbc"
+  },
+  {
+    "name": "Pokemon Gold",
+    "creator": "Game Freak",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/pkg.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gbc/pkg.gbc"
+  },
+  {
+    "name": "Pokemon Silver",
+    "creator": "Game Freak",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/pksilver.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gbc/pks.gbc"
+  },
+  {
+    "name": "Pokemon Crystal",
+    "creator": "Game Freak",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/pkc.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gbc/pkc.gbc"
+  },
+  {
+    "name": "Pokemon Ruby",
+    "creator": "Game Freak",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/pkruby.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gba/pkr.gba"
+  },
+  {
+    "name": "Pokemon Sapphire",
+    "creator": "Game Freak",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/pks.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gba/pks.gba"
+  },
+  {
+    "name": "Pokemon Emerald",
+    "creator": "Game Freak",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/pke.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gba/pke.gba"
+  },
+  {
+    "name": "Pokemon FireRed",
+    "creator": "Game Freak",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/pkfr.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gba/pkfr.gba"
+  },
+  {
+    "name": "Pokemon LeafGreen",
+    "creator": "Game Freak",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/pklg.jpg",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/gba/pklg.gba"
   }
-  
 ]
