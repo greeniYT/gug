@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greeni's Notebook: Lockdown Browser</title> 
  <link rel="icon" type="image/png" href="../assets/favicon.png">
- <script src="https://cdn.jsdelivr.net/gh/greeniYT/coi-serviceworker@master/coi-serviceworker.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap');
@@ -1125,12 +1124,16 @@ async function launchEmulator(rom) {
 
     const activeAccent = document.documentElement.style.getPropertyValue('--accent') || '#107c10';
 
+    if (core === 'azahar') {
+        launchAzahar(gameUrl, container, loader);
+        return;
+    }
+
     const emulatorHTML = `
     <!DOCTYPE html>
     <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="https://cdn.jsdelivr.net/gh/greeniYT/coi-serviceworker@master/coi-serviceworker.min.js"><\/script>
         <style>
             body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
             #game-container { width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; }
@@ -1148,7 +1151,7 @@ async function launchEmulator(rom) {
             window.EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/greeniYT/4.3.0@main/EmulatorJS-4.3.0-pre/data/';
             window.EJS_color = '${activeAccent}'; 
             window.EJS_startOnLoaded = true;
-			window.EJS_threads = true;
+			window.EJS_threads = false;
 			window.EJS_gameID = '${rom.file}';
             window.EJS_fullscreenOnLoad = false;
         <\/script>
@@ -1166,6 +1169,111 @@ async function launchEmulator(rom) {
         loader.classList.add('hidden');
     }, 2000);
 }
+
+    // Folder on your CDN containing azahar.js, azahar.wasm, aes_keys.txt, seeddb.bin
+    // (boot9.bin/boot11.bin optional). EDIT THIS to match where you upload those files.
+    const AZAHAR_BASE = 'https://cdn.jsdelivr.net/gh/greeniYT/Azahar-Web@main/';
+
+    function launchAzahar(gameUrl, container, loader) {
+        const iframe = document.createElement('iframe');
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = 'none';
+        iframe.sandbox.add('allow-scripts', 'allow-same-origin', 'allow-forms', 'allow-popups', 'allow-modals', 'allow-pointer-lock');
+        container.appendChild(iframe);
+
+        const azaharHTML = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>
+                html, body { margin:0; padding:0; width:100%; height:100%; background:#000; overflow:hidden; }
+                #wrap { width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+                canvas { width:100%; height:100%; max-width:100%; max-height:100%; image-rendering:pixelated; }
+                #status { position:absolute; top:8px; left:8px; color:#9ca3af; font:12px sans-serif; z-index:2; }
+            </style>
+        </head>
+        <body>
+            <div id="status">Initializing…</div>
+            <div id="wrap"><canvas id="azahar-canvas" width="800" height="480"></canvas></div>
+            <script type="module">
+                const BASE = '${AZAHAR_BASE}';
+                const ROM_URL = '${gameUrl}';
+                const statusEl = document.getElementById('status');
+                const canvas = document.getElementById('azahar-canvas');
+                const setStatus = (t) => { statusEl.textContent = t; };
+
+                function setupInput(Module) {
+                    const setButtonFn = Module._web_set_button;
+                    const keyMap = new Map([
+                        ['ArrowLeft', 6], ['ArrowRight', 7], ['ArrowUp', 4], ['ArrowDown', 5],
+                        ['KeyZ', 0], ['KeyX', 8], ['KeyA', 1], ['KeyS', 9],
+                        ['KeyQ', 10], ['KeyW', 11], ['Enter', 3], ['ShiftRight', 2],
+                    ]);
+                    const setButton = (code, pressed) => {
+                        if (!keyMap.has(code)) return;
+                        setButtonFn(keyMap.get(code), pressed ? 1 : 0);
+                    };
+                    window.addEventListener('keydown', (e) => { if (!e.repeat) setButton(e.code, true); });
+                    window.addEventListener('keyup', (e) => setButton(e.code, false));
+                }
+
+                async function boot() {
+                    if (!crossOriginIsolated) {
+                        setStatus('Cross-origin isolation required (COOP/COEP) — see setup notes.');
+                        return;
+                    }
+                    setStatus('Loading engine…');
+                    const { default: createModule } = await import(BASE + 'azahar.js');
+                    const Module = await createModule({
+                        canvas,
+                        locateFile: (path) => BASE + path,
+                    });
+                    Module.FS.mkdir('/system');
+                    Module.FS.mkdir('/save');
+                    Module.FS.mkdir('/content');
+
+                    const tryLoadFile = async (url, dest) => {
+                        const res = await fetch(url);
+                        if (!res.ok) return false;
+                        Module.FS.writeFile(dest, new Uint8Array(await res.arrayBuffer()));
+                        return true;
+                    };
+                    await tryLoadFile(BASE + 'aes_keys.txt', '/system/aes_keys.txt');
+                    await tryLoadFile(BASE + 'seeddb.bin', '/system/seeddb.bin');
+                    await tryLoadFile(BASE + 'boot9.bin', '/system/boot9.bin');
+                    await tryLoadFile(BASE + 'boot11.bin', '/system/boot11.bin');
+
+                    setStatus('Loading ROM…');
+                    const romRes = await fetch(ROM_URL);
+                    if (!romRes.ok) { setStatus('ROM failed to fetch.'); return; }
+                    Module.FS.writeFile('/content/rom.cci', new Uint8Array(await romRes.arrayBuffer()));
+
+                    Module._web_init(canvas.width, canvas.height);
+                    const ok = Module.ccall('web_load_game', 'number', ['string'], ['/content/rom.cci']);
+                    if (!ok) { setStatus('ROM failed to load.'); return; }
+
+                    setupInput(Module);
+                    setStatus('');
+                    const runFrame = Module._web_run_frame;
+                    const frame = () => { runFrame(); requestAnimationFrame(frame); };
+                    requestAnimationFrame(frame);
+                }
+                boot().catch((err) => { console.error(err); setStatus('Boot failed — see console.'); });
+            <\/script>
+        </body>
+        </html>
+        `;
+
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        doc.open();
+        doc.write(azaharHTML);
+        doc.close();
+
+        setTimeout(() => loader.classList.add('hidden'), 2000);
+    }
 
     function toggleSidebar(open) {
         playClickSound();
