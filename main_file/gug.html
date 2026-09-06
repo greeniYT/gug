@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greeni's Notebook: Lockdown Browser</title> 
  <link rel="icon" type="image/png" href="../assets/favicon.png">
+ <script src="https://cdn.jsdelivr.net/gh/greeniYT/coi-serviceworker@master/coi-serviceworker.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap');
@@ -317,6 +318,14 @@
         <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/n64.png" alt="N64" class="h-12 w-12 mx-auto mb-2 object-contain">
         <div class="font-bold tracking-widest text-xs uppercase text-white">Nintendo 64</div>
     </div>
+<div onclick="selectConsole('NDS')" class="glass-panel p-6 rounded-xl text-center cursor-pointer border-2 border-transparent hover:border-[var(--accent)] hover:scale-105 transition-all duration-200 theme-card-bg">
+    <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/nds.png" alt="NDS" class="h-12 w-12 mx-auto mb-2 object-contain">
+    <div class="font-bold tracking-widest text-xs uppercase text-white">Nintendo DS</div>
+</div>
+<div onclick="selectConsole('3DS')" class="glass-panel p-6 rounded-xl text-center cursor-pointer border-2 border-transparent hover:border-[var(--accent)] hover:scale-105 transition-all duration-200 theme-card-bg">
+    <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/3ds.png" alt="3DS" class="h-12 w-12 mx-auto mb-2 object-contain">
+    <div class="font-bold tracking-widest text-xs uppercase text-white">Nintendo 3DS</div>
+</div>
     <div onclick="selectConsole('Genesis')" class="glass-panel p-6 rounded-xl text-center cursor-pointer border-2 border-transparent hover:border-[var(--accent)] hover:scale-105 transition-all duration-200 theme-card-bg">
         <img src="https://cdn.jsdelivr.net/gh/greeniYT/gug@main/assets/genesis.png" alt="Genesis" class="h-12 w-12 mx-auto mb-2 object-contain">
         <div class="font-bold tracking-widest text-xs uppercase text-white">Sega Genesis</div>
@@ -695,6 +704,7 @@
     if (lower.endsWith('.n64') || lower.endsWith('.z64')) return 'N64';
     if (lower.endsWith('.genesis') || lower.endsWith('.md')) return 'Genesis';
     if (lower.endsWith('.nes')) return 'NES';
+	if (lower.endsWith('.3ds') || lower.endsWith('.cci')) return '3DS';
     if (lower.endsWith('.nds')) return 'NDS';
     return 'Retro';
 }
@@ -979,6 +989,7 @@
 
     let _currentGame = null;
     let _currentRom  = null;
+	let _currentRomObjectUrl = null;
 
     function _setTrailVisible(visible) {
         const tc = document.getElementById('trail-canvas');
@@ -1017,7 +1028,7 @@
         iframe.style.width = '100%';
         iframe.style.height = '100%';
         iframe.style.border = 'none';
-        iframe.sandbox.add('allow-scripts', 'allow-same-origin', 'allow-forms', 'allow-popups', 'autoplay', 'fullscreen','camera','microphone','allow-modals', 'allow-pointer-lock');
+        iframe.sandbox.add('allow-scripts', 'allow-downloads','allow-same-origin', 'allow-forms', 'allow-popups', 'autoplay', 'fullscreen','camera','microphone','allow-modals', 'allow-pointer-lock');
         container.appendChild(iframe);
 
         setupIframeEventListners(iframe);
@@ -1042,79 +1053,119 @@
         }
     }
 
-    function launchEmulator(rom) {
-        _currentRom  = rom;
-        _currentGame = null;
-        const playerView = document.getElementById('game-player-view');
-        const loader     = document.getElementById('game-compilation-loader');
-        const container  = document.getElementById('game-renderer-container');
+async function resolveRomUrl(rom) {
+    const partCount = Number(rom.parts) || 1;
+    if (partCount <= 1) return rom.file;
 
-        ambianceAudio.pause();
-        playerView.classList.remove('hidden');
-        loader.classList.remove('hidden');
-        _setTrailVisible(false);
-
-        container.innerHTML = '';
-
-        const iframe = document.createElement('iframe');
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        iframe.style.border = 'none';
-        iframe.sandbox.add('allow-scripts', 'allow-same-origin', 'allow-forms', 'allow-popups', 'autoplay', 'fullscreen','camera','microphone','allow-modals', 'allow-pointer-lock');
-        container.appendChild(iframe);
-
-        setupIframeEventListners(iframe);
-
-        let core = 'nes';
-        const lowerFile = rom.file.toLowerCase();
-        if (lowerFile.endsWith('.sfc') || lowerFile.endsWith('.smc')) core = 'snes';
-        else if (lowerFile.endsWith('.gba')) core = 'gba';
-        else if (lowerFile.endsWith('.gbc') || lowerFile.endsWith('.gb')) core = 'gb';
-        else if (lowerFile.endsWith('.n64') || lowerFile.endsWith('.z64')) core = 'n64';
-        else if (lowerFile.endsWith('.genesis') || lowerFile.endsWith('.md')) core = 'segaMD';
-        else if (lowerFile.endsWith('.nes')) core = 'nes';
-
-        // Read active custom hex theme dynamically for loader bar integration
-        const activeAccent = document.documentElement.style.getPropertyValue('--accent') || '#107c10';
-
-        const emulatorHTML = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <style>
-                body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
-                #game-container { width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; }
-                #game { width: 100%; height: 100%; max-width: 100%; max-height: 100%; }
-            </style>
-        </head>
-        <body>
-            <div id="game-container">
-                <div id="game"></div>
-            </div>
-            <script>
-                window.EJS_player = '#game';
-                window.EJS_core = '${core}';
-                window.EJS_gameUrl = '${rom.file}';
-                window.EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/bubbls/brogoofyahhmangogotonablacklistskullwiltingrose@main/';
-                window.EJS_color = '${activeAccent}'; 
-                window.EJS_startOnLoaded = true;
-                window.EJS_fullscreenOnLoad = false;
-            <\/script>
-            <script src="https://cdn.jsdelivr.net/gh/bubbls/brogoofyahhmangogotonablacklistskullwiltingrose@main/loader.js"><\/script>
-        </body>
-        </html>
-        `;
-
-        const doc = iframe.contentDocument || iframe.contentWindow.document;
-        doc.open();
-        doc.write(emulatorHTML);
-        doc.close();
-
-        setTimeout(() => {
-            loader.classList.add('hidden');
-        }, 2000);
+    const padWidth = String(partCount).length;
+    const urls = [];
+    for (let i = 1; i <= partCount; i++) {
+        const num = String(i).padStart(padWidth, '0');
+        urls.push(`${rom.file}.part${num}`);
     }
+
+    const buffers = await Promise.all(
+        urls.map(url =>
+            fetch(url + '?t=' + Date.now(), { cache: 'no-store' })
+                .then(r => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+        )
+    );
+    const blob = new Blob(buffers);
+    return URL.createObjectURL(blob);
+}
+
+async function launchEmulator(rom) {
+    _currentRom  = rom;
+    _currentGame = null;
+    const playerView = document.getElementById('game-player-view');
+    const loader     = document.getElementById('game-compilation-loader');
+    const container  = document.getElementById('game-renderer-container');
+
+    ambianceAudio.pause();
+    playerView.classList.remove('hidden');
+    loader.classList.remove('hidden');
+    _setTrailVisible(false);
+
+    container.innerHTML = '';
+
+    if (_currentRomObjectUrl) {
+        URL.revokeObjectURL(_currentRomObjectUrl);
+        _currentRomObjectUrl = null;
+    }
+
+    let gameUrl;
+    try {
+        gameUrl = await resolveRomUrl(rom);
+        if (gameUrl.startsWith('blob:')) _currentRomObjectUrl = gameUrl;
+    } catch (err) {
+        loader.classList.add('hidden');
+        container.innerHTML = `<div class="text-red-500 text-center p-6">Failed to load ROM parts.</div>`;
+        return;
+    }
+
+    const iframe = document.createElement('iframe');
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    iframe.sandbox.add('allow-scripts', 'allow-downloads','allow-same-origin', 'allow-forms', 'allow-popups', 'autoplay', 'fullscreen','camera','microphone','allow-modals', 'allow-pointer-lock');
+    container.appendChild(iframe);
+
+    setupIframeEventListners(iframe);
+
+    let core = 'nes';
+    const lowerFile = rom.file.toLowerCase();
+    if (lowerFile.endsWith('.sfc') || lowerFile.endsWith('.smc')) core = 'snes';
+    else if (lowerFile.endsWith('.gba')) core = 'gba';
+    else if (lowerFile.endsWith('.gbc') || lowerFile.endsWith('.gb')) core = 'gb';
+    else if (lowerFile.endsWith('.n64') || lowerFile.endsWith('.z64')) core = 'n64';
+    else if (lowerFile.endsWith('.genesis') || lowerFile.endsWith('.md')) core = 'segaMD';
+    else if (lowerFile.endsWith('.nes')) core = 'nes';
+	else if (lowerFile.endsWith('.nds')) core = 'nds';
+	else if (lowerFile.endsWith('.3ds') || lowerFile.endsWith('.cci')) core = 'azahar';
+
+    const activeAccent = document.documentElement.style.getPropertyValue('--accent') || '#107c10';
+
+    const emulatorHTML = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://cdn.jsdelivr.net/gh/greeniYT/coi-serviceworker@master/coi-serviceworker.min.js"><\/script>
+        <style>
+            body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
+            #game-container { width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; }
+            #game { width: 100%; height: 100%; max-width: 100%; max-height: 100%; }
+        </style>
+    </head>
+    <body>
+        <div id="game-container">
+            <div id="game"></div>
+        </div>
+        <script>
+            window.EJS_player = '#game';
+            window.EJS_core = '${core}';
+            window.EJS_gameUrl = '${gameUrl}';
+            window.EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/greeniYT/4.3.0@main/EmulatorJS-4.3.0-pre/data/';
+            window.EJS_color = '${activeAccent}'; 
+            window.EJS_startOnLoaded = true;
+			window.EJS_threads = true;
+			window.EJS_gameID = '${rom.file}';
+            window.EJS_fullscreenOnLoad = false;
+        <\/script>
+        <script src="https://cdn.jsdelivr.net/gh/greeniYT/4.3.0@main/EmulatorJS-4.3.0-pre/data/loader.js"><\/script>
+    </body>
+    </html>
+    `;
+
+    const doc = iframe.contentDocument || iframe.contentWindow.document;
+    doc.open();
+    doc.write(emulatorHTML);
+    doc.close();
+
+    setTimeout(() => {
+        loader.classList.add('hidden');
+    }, 2000);
+}
 
     function toggleSidebar(open) {
         playClickSound();
@@ -1123,20 +1174,25 @@
     }
 
     function exitGameAndReturn() {
-        toggleSidebar(false);
-        playClickSound();
-        if (ambianceEnabled) ambianceAudio.play().catch(()=>{});
-        
-        const container = document.getElementById('game-renderer-container');
-        container.innerHTML = '';
-        
-        _currentGame = null;
-        _currentRom  = null;
-        _setTrailVisible(true);
+    toggleSidebar(false);
+    playClickSound();
+    if (ambianceEnabled) ambianceAudio.play().catch(()=>{});
 
-        document.getElementById('game-player-view').classList.add('hidden');
-        if (document.fullscreenElement) document.exitFullscreen();
+    if (_currentRomObjectUrl) {
+        URL.revokeObjectURL(_currentRomObjectUrl);
+        _currentRomObjectUrl = null;
     }
+
+    const container = document.getElementById('game-renderer-container');
+    container.innerHTML = '';
+
+    _currentGame = null;
+    _currentRom  = null;
+    _setTrailVisible(true);
+
+    document.getElementById('game-player-view').classList.add('hidden');
+    if (document.fullscreenElement) document.exitFullscreen();
+}
 
     function reloadGame() {
         toggleSidebar(false);
