@@ -181,6 +181,13 @@
     "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/nds/nsmb/New%20Super%20Mario%20Bros.%20(USA%2C%20Australia).nds",
     "parts": 2
   },
+   {
+    "name": "New Super Mario Bros 2",
+    "creator": "Nintendo",
+    "image": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/icons/nsmb2.png",
+    "file": "https://cdn.jsdelivr.net/gh/greeniYT/gug@main/roms/3ds/nsmb2/New%20Super%20Mario%20Bros.%202%20(USA)%20(En%2CFr%2CEs).cci",
+    "parts": 27
+  },
   {
     "name": "Pokemon LeafGreen",
     "creator": "Game Freak",
